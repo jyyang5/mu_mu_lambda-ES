@@ -13,10 +13,10 @@
 % example input:      fun = @(x) x' * x
 %                     noGP(fun, randn(10,1),1,1000) 
 f = @(x) (x'*x);
-n = 2;
-mu = 3;
-lambda = 6;
-x0 = randn(n,mu)*100;
+n = 10;
+mu = 2;
+lambda = 5;
+x0 = randn(n,mu);
 sigma_star = 1;
 sigma_ep_star = 0;
 sigma0 = 1;
