@@ -1,8 +1,7 @@
 % CSA uses z = randn(n,1) in offspring genenration 
 % two approaches in adapting c
 % a) take the mean of mean(AVG(z(1:mu))), c is 1-dim 
-% b) use the averaged n-dimensional for c, c is n-dim but later take l2-nurm still work 
-% for performance, b) works slightly better
+% b) use the averaged n-dimensional for c, c is n-dim but later take l2-nurm s 
 function val = mml_noise_csa(f,x0,sigma0,sigma_star,sigma_ep_star,lambda,NUM_OF_ITERATIONS)
 % initialization
 % f:                  objective function value
