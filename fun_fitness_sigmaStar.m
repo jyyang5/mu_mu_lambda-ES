@@ -12,9 +12,8 @@ function fun_fitness_sigmaStar(ita,n,scatterColour,typeDot,LINE_OR_NOT)
 f = @(x) (x'*x);
 
 %n = 10;                 % dim of the data
-%ita = 4;
-mu = 3;
-x0 = randn(n,mu); 
+%ita = 4;                
+x0 = randn(n,1); 
 
 NUM_OF_ITERATIONS = 4000;
 NUM_OF_RUNS = 10;
@@ -26,12 +25,14 @@ NUM_OF_RUNS = 10;
 s_start = 0.2;
 increment =0.2;
 s_end = 8;
-%temp_sigma_success_rate_array = zeros(1,NUM_OF_RUNS);
+temp_sigma_success_rate_array = zeros(1,NUM_OF_RUNS);
+temp_parent_not_lowest_of_quadratic_array = zeros(1,NUM_OF_RUNS);
 temp_sigma_T_array = zeros(1,NUM_OF_RUNS);
 temp_sigma_f_x_array = zeros(NUM_OF_RUNS,6000);
 temp_sigma_counvergence_rate_array = zeros(1,NUM_OF_RUNS);
 
-%sigma_success_rate_array = zeros(1,(s_end-s_start)/increment+1);
+sigma_success_rate_array = zeros(1,(s_end-s_start)/increment+1);
+parent_not_lowest_of_quadratic_array = zeros(1,(s_end-s_start)/increment+1);
 sigma_T_array = zeros(1,(s_end-s_start)/increment+1);
 sigma_f_x_array = zeros((s_end-s_start)/increment+1,6000);
 sigma_counvergence_rate_array = zeros(1,(s_end-s_start)/increment+1);
@@ -40,7 +41,8 @@ i = 1;
 for sigma_star = s_start:increment:s_end
     for j = 1:1:NUM_OF_RUNS
         sigma_ep_star = ita*sigma_star;
-        a = mml_noise(f,x0,sigma_star,sigma_ep_star,10,NUM_OF_ITERATIONS);
+        a = mml_noise(f,x0,sigma_star,sigma_ep_star,NUM_OF_ITERATIONS);
+        temp_parent_not_lowest_of_quadratic_array(j) = cell2mat(a(6));
         %temp_sigma_counvergence_rate_array(j) = cell2mat(a(7));
         %temp_sigma_T_array(j) = cell2mat(a(1));
         %temp_sigma_success_rate_array(j) = cell2mat(a(5));
@@ -49,17 +51,18 @@ for sigma_star = s_start:increment:s_end
         if(sum(isnan(temp_sigma_f_x_array(j,:))) == 0)
             temp_sigma_counvergence_rate_array(j) = cell2mat(a(7));
             temp_sigma_T_array(j) = cell2mat(a(1));
-            %temp_sigma_success_rate_array(j) = cell2mat(a(5));
+            temp_sigma_success_rate_array(j) = cell2mat(a(5));
         else 
             temp_sigma_counvergence_rate_array(j) = 0;
             temp_sigma_T_array(j) = 0;
-            %temp_sigma_success_rate_array(j) = 0;
+            temp_sigma_success_rate_array(j) = 0;
         end
     end
     for j = 1:1:6000
         sigma_f_x_array(i,j) = median(temp_sigma_f_x_array(:,j));
     end
-    %sigma_success_rate_array(i) = median(temp_sigma_success_rate_array);
+    sigma_success_rate_array(i) = median(temp_sigma_success_rate_array);
+    parent_not_lowest_of_quadratic_array(i) = median(temp_parent_not_lowest_of_quadratic_array);
     sigma_counvergence_rate_array(i) = median(temp_sigma_counvergence_rate_array);
     sigma_T_array(i) = median(temp_sigma_T_array);
     
