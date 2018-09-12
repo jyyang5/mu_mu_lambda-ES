@@ -13,7 +13,7 @@
 
 figure(4);
 % green
-ita = 4;
+ita = 2;
 %fun_fitness_sigmaStar(4,100000,'g','.',1);        
 fun_fitness_sigmaStar(ita,10,'g','x',0);        
 fun_fitness_sigmaStar(ita,100,'g','o',0);
