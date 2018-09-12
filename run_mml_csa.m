@@ -14,10 +14,10 @@
 %                     noGP(fun, randn(10,1),1,1000) 
 f = @(x) (x'*x);
 n = 10;
-mu = 3;
+mu = 2;
 lambda = 10;
-sigma0 = 0.9;
-x0 = randn(n,mu);
+sigma0 = 0.1420;
+%x0 = randn(n,mu);
 sigma_star = 1/2;
 sigma_ep_star = 4*sigma_star;
 NUM_OF_ITERATIONS = 5000;
