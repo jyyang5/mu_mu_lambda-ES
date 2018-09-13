@@ -3,11 +3,11 @@
 % a) take the mean of mean(AVG(z(1:mu))), c is 1-dim 
 % b) use the averaged n-dimensional for c, c is n-dim but later take l2-nurm still work 
 % for performance, b) works slightly better
-function val = mml_noise_csa(f,x0,sigma0,sigma_star,sigma_ep_star,lambda,NUM_OF_ITERATIONS)
+function val = mml_noise_csa(f,x0,sigma0,sigma_GP,sigma_ep_star,lambda,NUM_OF_ITERATIONS)
 % initialization
 % f:                  objective function value
 % x0:                 mu initial point size [n, mu]
-% sigma_star:         normalized step size 
+% sigma_GP:           a scalar multiplied when compare the fep with fcentroid
 % sigma_ep_star:      normalized noise-to-signal ratio 
 % lambda:             # of offsprings genenerated in each itertaion  
 % mu:                 parent size
@@ -26,9 +26,9 @@ xtrain = zeros(n,TRAINING_SIZE);            % training data for GP size 4*mu
 fTrain = zeros(TRAINING_SIZE);
 
 
-centroid_array = zeros(n,6000);
-fcentroid_array = zeros(1,6000);
-sigma_array = zeros(1,6000);
+centroid_array = zeros(n,10000);
+fcentroid_array = zeros(1,10000);
+sigma_array = zeros(1,10000);
 
 y = zeros(n,lambda);                        % lambda offspring solution with dim n
 fy = zeros(lambda,1);                       % objective function value of y                                              
@@ -89,7 +89,7 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
             y_temp = centroid + sigma*randn(n,1);
             fyep_temp = f(y_temp) + sigma_ep * randn();
             % add offspring candidate solution iff. GP estimate superior to centroid
-            while(f_centroid < fyep_temp)
+            while(f_centroid*sigma_GP < fyep_temp)
                 y_temp = centroid + sigma*randn(n,1);
                 fyep_temp = f(y_temp) + sigma_ep * randn();
                 %fyep_temp = gp(xTrain, fTrain, y_temp,theta);
@@ -132,8 +132,8 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     f_centroid = f(centroid);
         
     % CSA
-    %s = (1-c)*s + sqrt(mu*c*(2-c))*mean(z);
-    s = (1-c)*s + sqrt(mu*c*(2-c))*z; 
+    s = (1-c)*s + sqrt(mu*c*(2-c))*mean(z);
+%     s = (1-c)*s + sqrt(mu*c*(2-c))*z; 
     sigma = sigma*exp((norm(s)-n)/(2*D*n));
     
     centroid_array(:,t) = centroid;

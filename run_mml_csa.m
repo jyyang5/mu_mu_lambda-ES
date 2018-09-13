@@ -16,12 +16,13 @@ f = @(x) (x'*x);
 n = 10;
 mu = 3;
 lambda = 10;
-sigma0 = 0.5;
+sigma0 = 1;
 %x0 = randn(n,mu);
-sigma_star = 1/2;
-sigma_ep_star = 4*sigma_star;
-NUM_OF_ITERATIONS = 5000;
-a = mml_noise_csa(f,x0,sigma0,sigma_star,sigma_ep_star,lambda,NUM_OF_ITERATIONS);
+sigma_GP = 2.5;           % choose as offspring iff. sigma_GP*fcentrod > fyep_temp  
+% sigma_ep_star = 1*sigma_star;
+sigma_ep_star = 4;
+NUM_OF_ITERATIONS = 10000;
+a = mml_noise_csa(f,x0,sigma0,sigma_GP,sigma_ep_star,lambda,NUM_OF_ITERATIONS);
 t = cell2mat(a(1));
 disp("number of iterations");
 disp(t);
