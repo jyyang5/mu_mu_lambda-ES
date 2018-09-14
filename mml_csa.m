@@ -1,13 +1,13 @@
-% Use Gaussian distributed random noise to model GP estimate replace objective 
+% Use Cumulative step size adaptation
 % function evaluation for lambda offsprings with GP estimate 
 % In each iteration only the centroid is evaluated
 
 
-function val = mml_noise(f,x0,sigma_star,sigma_ep_star,lambda,NUM_OF_ITERATIONS)
+function val = mml_csa(f,x0,sigma0,sigma_ep_star,lambda,NUM_OF_ITERATIONS)
 % initialization
 % f:                  objective function value
 % x0:                 mu initial point size [n, mu]
-% sigma_star:         normalized step size
+% sigma0:             initial step size
 % sigma_ep_star:      normalized noise-to-signal ratio 
 % lambda:             # of offsprings genenerated in each itertaion  
 % mu:                 parent size
@@ -52,13 +52,15 @@ c = 1/sqrt(n);
 D = sqrt(n);
 s = 0;
 
+sigma = sigma0;
+
 
 
 while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     
-    dist = norm(centroid);                  % distance to optimal
-    sigma = sigma_star/n*dist;              % mutation strength/step size(temp)  
-    
+%     dist = norm(centroid);                  % distance to optimal
+%     sigma = sigma_star/n*dist;              % mutation strength/step size(temp)  
+%
     % (mu/mu, lambda)-ES 4 times to obtain GP traning set
     if t <= 4
         % offspring genneration 
@@ -98,15 +100,12 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     z = z(:,sorted_order);
     % choose the best mu candidate solutions as parent
     z = mean(z(:,1:mu),2);
-%     z = (mean(y(:,1:mu),2)-centroid)/sigma;           % AVG(step of offspring chosen)
-%     centroid = mean(y(:,1:mu), 2);
     centroid = centroid + sigma*z;
     f_centroid = f(centroid);
         
     % CSA
     s = (1-c)*s + sqrt(mu*c*(2-c))*z;
-    
-%     sigma = sigma*exp((norm(s)^2-n)/(2*D*n));
+    sigma = sigma*exp((norm(s)^2-n)/(2*D*n));
     
     centroid_array(:,t) = centroid;
     fcentroid_array(t) = f_centroid;
@@ -129,7 +128,6 @@ end
     %plot(1:1:t-1,s_array(1:t-1));
     
     val = {t,centroid,f_centroid,sigma_array, centroid_array, fcentroid_array,convergence_rate,s_array};
-%val = {t,centroid,f_centroid,sigma_array, 1, 1,convergence_rate};
 
 end
 
