@@ -34,8 +34,6 @@ t_gp = cell2mat(a(8));
 t = cell2mat(a(1));
 s_array = cell2mat(a(9));
 
-% plot the graph 
-plot()
 
 
 disp("convergence rate");
