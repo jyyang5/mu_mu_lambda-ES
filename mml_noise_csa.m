@@ -103,26 +103,11 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
         % for simple calculation 
         fy = fyep;
         
-%         % selection 
-%         % sort fyep (smaller first)
-%         [index, sorted_order] = sort(fyep);
-%         y = y(:,sorted_order);
-%         % choose the best mu candidate solutions as parent 
-%         % centroid 
-%         z = mean(y(:,1:mu),2)-centroid;            % AVG(step of offspring chosen)         
-%         centroid = mean(y(:, 1:mu), 2);
-%         f_centroid = f(centroid);
-%         
-%         % CSA
-%         s = (1-c)*s + sqrt(mu*c(2-c))*z;
-%         sigma = sigma*exp((norm(s)-n)/(2*D*n));
-        
-        
-        
     
     end
     
     disp(t_gp)
+    
     % sort fyep (smaller first)
     [index, sorted_order] = sort(fy);
     y = y(:,sorted_order);
@@ -132,8 +117,8 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     f_centroid = f(centroid);
         
     % CSA
-    s = (1-c)*s + sqrt(mu*c*(2-c))*mean(z);
-%     s = (1-c)*s + sqrt(mu*c*(2-c))*z; 
+    %s = (1-c)*s + sqrt(mu*c*(2-c))*mean(z);
+    s = (1-c)*s + sqrt(mu*c*(2-c))*z; 
     sigma = sigma*exp((norm(s)-n)/(2*D*n));
     
     centroid_array(:,t) = centroid;
