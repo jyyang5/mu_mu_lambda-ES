@@ -3,7 +3,7 @@
 % a) take the mean of mean(AVG(z(1:mu))), c is 1-dim 
 % b) use the averaged n-dimensional for c, c is n-dim but later take l2-nurm still work 
 % for performance, b) works slightly better
-function val = mml_noise_csa(f,x0,sigma0,sigma_GP,sigma_ep_star,lambda,NUM_OF_ITERATIONS)
+function val = mml_noise_CSA_S(f,x0,sigma_star,sigma_GP,sigma_ep_star,lambda,NUM_OF_ITERATIONS)
 % initialization
 % f:                  objective function value
 % x0:                 mu initial point size [n, mu]
@@ -29,6 +29,7 @@ fTrain = zeros(TRAINING_SIZE);
 centroid_array = zeros(n,10000);
 fcentroid_array = zeros(1,10000);
 sigma_array = zeros(1,10000);
+s_array = zeros(1,10000);
 
 y = zeros(n,lambda);                        % lambda offspring solution with dim n
 fy = zeros(lambda,1);                       % objective function value of y                                              
@@ -59,9 +60,9 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
 
     % (mu/mu, lambda)-ES 4 times to obtain GP traning set
     if t <= 4
-%         dist = norm(centroid);                  % distance to optimal
-%         sigma = sigma_star/n*dist;              % mutation strength/step size(temp)  
-%         
+         dist = norm(centroid);                  % distance to optimal
+         sigma = sigma_star/n*dist;              % mutation strength/step size(temp)  
+         
     
         % offspring genneration 
         for i = 1:1:lambda

@@ -3,7 +3,7 @@
 % a) take the mean of mean(AVG(z(1:mu))), c is 1-dim 
 % b) use the averaged n-dimensional for c, c is n-dim but later take l2-nurm still work 
 % for performance, b) works slightly better
-function val = mml_noise_csa(f,x0,sigma0,sigma_GP,sigma_ep_star,lambda,NUM_OF_ITERATIONS)
+function val = mml_noise_testS(f,x0,sigma_star,sigma_GP,sigma_ep_star,lambda,NUM_OF_ITERATIONS)
 % initialization
 % f:                  objective function value
 % x0:                 mu initial point size [n, mu]
@@ -29,6 +29,7 @@ fTrain = zeros(TRAINING_SIZE);
 centroid_array = zeros(n,10000);
 fcentroid_array = zeros(1,10000);
 sigma_array = zeros(1,10000);
+s_array = zeros(1,10000);
 
 y = zeros(n,lambda);                        % lambda offspring solution with dim n
 fy = zeros(lambda,1);                       % objective function value of y                                              
@@ -51,17 +52,16 @@ c = 1/sqrt(n);
 D = sqrt(n);
 s = 0;
 
-sigma = sigma0;
-sigma_array(t) = sigma;
 
 
 while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
-
+    
+    dist = norm(centroid);                  % distance to optimal
+    sigma = sigma_star/n*dist;              % mutation strength/step size(temp)  
     % (mu/mu, lambda)-ES 4 times to obtain GP traning set
     if t <= 4
-%         dist = norm(centroid);                  % distance to optimal
-%         sigma = sigma_star/n*dist;              % mutation strength/step size(temp)  
-%         
+         
+         
     
         % offspring genneration 
         for i = 1:1:lambda
@@ -118,12 +118,14 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
         
     % CSA
     %s = (1-c)*s + sqrt(mu*c*(2-c))*mean(z);
-    s = (1-c)*s + sqrt(mu*c*(2-c))*z; 
-    sigma = sigma*exp((norm(s)^2-n)/(2*D*n));
+    s = (1-c)*s + sqrt(mu*c*(2-c))*z;
+    
+%     sigma = sigma*exp((norm(s)^2-n)/(2*D*n));
     
     centroid_array(:,t) = centroid;
     fcentroid_array(t) = f_centroid;
-    sigma_array(t+1) = sigma;
+    sigma_array(t) = sigma;
+    s_array(t) = norm(s)^2-n;
     
     t = t + 1;
     T = T + 1;
@@ -137,8 +139,10 @@ end
     end
 
     convergence_rate = -n/2*convergence_rate/(t-2);
-
-val = {t,centroid,f_centroid,sigma_array, centroid_array, fcentroid_array,convergence_rate,t_gp};
+    
+    plot(1:1:t-1,s_array(1:t-1));
+    
+    val = {t,centroid,f_centroid,sigma_array, centroid_array, fcentroid_array,convergence_rate,t_gp,s_array};
 %val = {t,centroid,f_centroid,sigma_array, 1, 1,convergence_rate};
 
 end

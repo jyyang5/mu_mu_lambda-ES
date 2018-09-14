@@ -18,10 +18,10 @@ mu = 2;
 lambda = 10;
 sigma0 = 1;
 %x0 = randn(n,mu);
-sigma_star = 1/2;
+sigma_star = 1;
 sigma_ep_star = 4*sigma_star;
 NUM_OF_ITERATIONS = 5000;
-a = mml_noise_csa(f,x0,sigma0,sigma_star,sigma_ep_star,lambda,NUM_OF_ITERATIONS);
+a = mml_noise_testS(f,x0,sigma0,sigma_star,sigma_ep_star,lambda,NUM_OF_ITERATIONS);
 t = cell2mat(a(1));
 disp("number of iterations");
 disp(t);
@@ -31,6 +31,10 @@ fcentroid = cell2mat(a(6));
 sigma_array = cell2mat(a(4));
 convergence_rate = cell2mat(a(7));
 t_gp = cell2mat(a(8));
+t = cell2mat(a(1));
+s_array = cell2mat(a(9));
+
+
 
 disp("convergence rate");
 disp(convergence_rate);
