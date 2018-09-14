@@ -37,28 +37,22 @@ t_gp = cell2mat(a(8));
 t = cell2mat(a(1));
 temp_array = cell2mat(a(9));
 
-% t_array = zeros(END_SIGMA_STAR,1);
-% temp_matrix = zeros(END_SIGMA_STAR,10000);
-% 
-% for i=1:1:END_SIGMA_STAR
-%     sigma_star = i;
-%     sigma_ep_star = v*sigma_star;
-%     tolerance = 1;
-%     NUM_OF_ITERATIONS = 5000;
-%     a = mml_noise_testS(f,x0,sigma_star,tolerance,sigma_ep_star,lambda,NUM_OF_ITERATIONS);
-%     t_array(i) = cell2mat(a(1));
-%     temp_matrix(i,:) = cell2mat(a(9));
-%     
-% end
+t_array = zeros(END_SIGMA_STAR,1);
+temp_matrix = zeros();
+
+for i=1:1:END_SIGMA_STAR
+    sigma_star = i;
+    sigma_ep_star = v*sigma_star;
+    tolerance = 1;
+    NUM_OF_ITERATIONS = 5000;
+    a = mml_noise_testS(f,x0,sigma_star,tolerance,sigma_ep_star,lambda,NUM_OF_ITERATIONS);
+    
+end
 
 
 % plot the graph 
 figure(1)
-subplot(1,2,1)
-% for i=1:1:END_SIGMA_STAR
-%     hold on
-%     plot(1:1:t_array(i)-1, temp_matrix(1:t_array(i)-1));
-% end
+subplot(1,2,1) 
 plot(1:1:t-1, temp_array(1:t-1));
 hold on
 ylabel('||s||^2 -n');

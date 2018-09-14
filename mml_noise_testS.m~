@@ -50,7 +50,7 @@ fcentroid_array(t) = f_centroid;
 % parameters for CSA
 c = 1/sqrt(n);
 D = sqrt(n);
-s = 0;
+s = zeros(n, 1);
 
 
 

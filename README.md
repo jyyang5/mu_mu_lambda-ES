@@ -98,3 +98,21 @@ x0 =
 There is much randomness in the algorithm. Using the same parameter setting, the algorithm sometimes finishes with very limited sampling, sometimes finishes with over millions sampleing and sometimes just does not converge over 10000 iterations (almost half of the time).
 
 Sampling a good candidate solution becomes much harder as we approaches the optimal, the number of sampling increases drastically in the last few steps before reaching the stopping criteria.
+
+## Test CSA parameter
+
+Verified in CSA, s = (1-c)*s + sqrt(mu*c*(2-c))*z which is n-dimensional. 
+
+We plot |s|^2-n as the iteration goes. 
+
+For noise-to-signal ratio v = 4 (quite high noise level) we obatin a similar pattern for sigma_star = 1,2 where the value goes up to around -9.7 then jump back to -10 and converge to -10. The scalar (exp((norm(s)-N)/(2*D*N)) mutiplied to sigma each time goes up to 0.216 then jump to 0.206. When sigma_star > 3, the algorithm does not converge and the both two terms are zero almost all time.
+
+v = 2 similar pattern as stated.
+
+---
+## Change of Algorithm 
+Just evaluate the offsprings by the GP estimate.
+
+
+
+
