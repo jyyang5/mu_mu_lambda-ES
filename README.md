@@ -1,4 +1,5 @@
 # mu_mu_lambda-ES
+<<<<<<< HEAD
 
 Implement a (mu/mu,lambda)-ES
 
@@ -152,3 +153,5 @@ The number of iteratins needed coincides that with the convergence rate plot, wh
 
 
 
+=======
+>>>>>>> parent of b5bfe20... Simple mml-ES
