@@ -3,11 +3,11 @@
 % In each iteration only the centroid is evaluated
 
 
-function val = mml_noise(f,x0,sigma_star,sigma_ep_star,lambda,NUM_OF_ITERATIONS)
+function val = mml_csa(f,x0,sigma0,sigma_ep_star,lambda,NUM_OF_ITERATIONS)
 % initialization
 % f:                  objective function value
 % x0:                 mu initial point size [n, mu]
-% sigma_star:         normalized step size
+% sigma0:             initial step size
 % sigma_ep_star:      normalized noise-to-signal ratio 
 % lambda:             # of offsprings genenerated in each itertaion  
 % mu:                 parent size
@@ -52,12 +52,12 @@ c = 1/sqrt(n);
 D = sqrt(n);
 s = 0;
 
-
+sigma = sigma0;
 
 while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
-    
-    dist = norm(centroid);                  % distance to optimal
-    sigma = sigma_star/n*dist;              % mutation strength/step size(temp)  
+%     
+%     dist = norm(centroid);                  % distance to optimal
+%     sigma = sigma_star/n*dist;              % mutation strength/step size(temp)  
     
     % (mu/mu, lambda)-ES 4 times to obtain GP traning set
     if t <= 4
@@ -106,7 +106,7 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     % CSA
     s = (1-c)*s + sqrt(mu*c*(2-c))*z;
     
-%     sigma = sigma*exp((norm(s)^2-n)/(2*D*n));
+    sigma = sigma*exp((norm(s)^2-n)/(2*D*n));
     
     centroid_array(:,t) = centroid;
     fcentroid_array(t) = f_centroid;

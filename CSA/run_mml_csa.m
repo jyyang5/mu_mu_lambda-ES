@@ -15,23 +15,24 @@
 f = @(x) (x'*x);
 n = 10;
 mu = 3;
+%x0 = randn(n,mu);
 lambda = 10;
-sigma0 = 1;
-sigma_star = 1;
-sigma_ep_star = 4*sigma_star;
+sigma0 = 5;
+v = 4;
+sigma_ep_star = v*sigma_star;
 NUM_OF_ITERATIONS = 5000;
-a = mml_noise(f,x0,sigma0,sigma_star,sigma_ep_star,lambda,NUM_OF_ITERATIONS);
+a = mml_csa(f,x0,sigma0,sigma_ep_star,lambda,NUM_OF_ITERATIONS);
 t = cell2mat(a(1));
 disp("number of iterations");
 disp(t);
 
-centroid = cell2mat(a(5));
-fcentroid = cell2mat(a(6));
-sigma_array = cell2mat(a(4));
-convergence_rate = cell2mat(a(7));
-t_gp = cell2mat(a(8));
 t = cell2mat(a(1));
-s_array = cell2mat(a(9));
+centroid = cell2mat(a(2));
+f_centroid = cell2mat(a(3));
+sigma_array = cell2mat(a(4));
+fcentroid_array = cell2mat(a(6));
+convergence_rate = cell2mat(a(7));
+s_array = cell2mat(a(8));
 
 
 
