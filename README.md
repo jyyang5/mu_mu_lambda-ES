@@ -7,6 +7,37 @@ The algorithm is initialized with mu parents, choose the centroid of parents to 
 
 **Note**: lambda >= mu
 
+## Schedule
+
+### 1. Model GP estimate using Gaussin distributed noise 
+
+Assume the GP estimate can be modelled by the true objective function value with some random Gaussian noise terms.
+
+fep(y) = f(y) + sigma_ep_star*randn(N,1)
+
+### 2. Step size adapted by sigma = sigma_star/n*dist
+
+The step size is proportional to the distance to the optimal point (dist).
+
+### 3. Plot convergence rate over sigma* and noise-to-signal ratio
+
+Plot is attached. With noise-to-signal ratio = 0,0.25,1,4. The negative convergence rate means the algorithm does not converge.
+
+### 4. Step size adapted by cumulative step-size adaptation
+
+The number of iteratins needed coincides that with the convergence rate plot, where a high convergence rate gives a small number of iterations to reach stopping criteria. 
+
+### 5. Build GP model by adding training set 
+
+The objective function evaluation value of offsprings is evaluated using the GP model after the model is built and therefore, reduce the objective function evaluation time to 1 in each iteration.
+
+The improvement compared with a normal (mu/mu,lambda)-ES is the saving of objective function evaluation in each itertaion. The effectiveness of the improvement lies in the precision of the approximation using Gaussian Process model.
+
+### 6. Compare the model with GP and without
+
+### 7. The precision of GP estimate
+
+
 ## Different noise level
 
 Plot the performance of mml-ES under different noise-to-signal ratio defined as v = sigma_ep_star/sigma_star.
@@ -129,29 +160,8 @@ while not terminate() do{
 }
 ```
 
-### 1. Model GP estimate using Gaussin distributed noise 
-
-Assume the GP estimate can be modelled by the true objective function value with some random Gaussian noise terms.
-
-fep(y) = f(y) + sigma_ep_star*randn(N,1)
-
-### 2. Step size adapted by sigma = sigma_star/n*dist
-
-The step size is proportional to the distance to the optimal point (dist).
-
-### 3. Plot convergence rate over sigma* and noise-to-signal ratio
-
-Plot is attached. With noise-to-signal ratio = 0,0.25,1,4. The negative convergence rate means the algorithm does not converge.
-
-### 4. Step size adapted by cumulative step-size adaptation
-
-The number of iteratins needed coincides that with the convergence rate plot, where a high convergence rate gives a small number of iterations to reach stopping criteria. 
-
-### 5. Build GP model by adding training set 
 
 
 
 
 
-=======
->>>>>>> parent of b5bfe20... Simple mml-ES
