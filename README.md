@@ -37,7 +37,16 @@ The objective function evaluation value of offsprings is evaluated using the GP 
 
 The improvement compared with a normal (mu/mu,lambda)-ES is the saving of objective function evaluation in each itertaion. The effectiveness of the improvement lies in the precision of the approximation using Gaussian Process model.
 
-### 6. Compare the model with GP and without
+
+### 6. Compare the mml-ES with GP and without and similarly with (1+1)-ES 
+
+| Test function      | mml-ES with model assistance | mml-ES without model assistance| (1+1)-ES with model assistance| (1+1)-ES without model assistance |
+| :----------------- |--------:| ------:| ------:| ------:|
+| linear sphere      |   705+40| 272*10 | 499    | 1236   |
+| quadratic sphere   |   257+40| 138*10 | 203    | 628    |
+| cubic sphere       |   227+40| 97*10  | 196    | 469    |
+| Schwefel’s function|  2484+40| 568*10 | 1425   | 2365   |
+| quartic function   |  984    | 595*10 |1238    | 4208   |
 
 ### 7. The precision of GP estimate
 
