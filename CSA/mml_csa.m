@@ -30,6 +30,7 @@ centroid_array = zeros(n,10000);
 fcentroid_array = zeros(1,10000);
 sigma_array = zeros(1,10000);
 s_array = zeros(1,10000);
+sigma_star_array = zeros(1,10000);          % store normailzed step size 
 
 y = zeros(n,lambda);                        % lambda offspring solution with dim n
 z = zeros(n,lambda);                        % random directions added for lambda offsprings dim n
@@ -53,6 +54,7 @@ D = sqrt(n);
 s = 0;
 
 sigma = sigma0;
+sigma_star_array(t) = sigma*n/norm(centroid);
 
 while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
 %     
@@ -113,11 +115,14 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     sigma_array(t) = sigma;
     s_array(t) = norm(s)^2-n;
     
+    
+
+    
     t = t + 1;
     T = T + 1;
     
     
-    
+    sigma_star_array(t) = sigma*n/norm(centroid);
 end
 
     for i = 1:1:t-2
@@ -127,8 +132,9 @@ end
     convergence_rate = -n/2*convergence_rate/(t-2);
     
     %plot(1:1:t-1,s_array(1:t-1));
-    
-    val = {t,centroid,f_centroid,sigma_array, centroid_array, fcentroid_array,convergence_rate,s_array};
+    % AVG normalized step size
+    normalized_step_size = mean(sigma_star_array(1:t));
+    val = {t,centroid,f_centroid,sigma_array, centroid_array, fcentroid_array,convergence_rate,normalized_step_size};
 %val = {t,centroid,f_centroid,sigma_array, 1, 1,convergence_rate};
 
 end

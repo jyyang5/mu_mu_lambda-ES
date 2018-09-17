@@ -19,7 +19,7 @@ mu = 3;
 lambda = 10;
 sigma0 = 5;
 v = 4;
-sigma_ep_star = v*sigma_star;
+sigma_ep_star = 5;
 NUM_OF_ITERATIONS = 5000;
 a = mml_csa(f,x0,sigma0,sigma_ep_star,lambda,NUM_OF_ITERATIONS);
 t = cell2mat(a(1));
@@ -32,9 +32,13 @@ f_centroid = cell2mat(a(3));
 sigma_array = cell2mat(a(4));
 fcentroid_array = cell2mat(a(6));
 convergence_rate = cell2mat(a(7));
-s_array = cell2mat(a(8));
+sigma_star = cell2mat(a(8));
 
 
 
 disp("convergence rate");
 disp(convergence_rate);
+
+
+disp("AVG(normalized step size)");
+disp(sigma_star);

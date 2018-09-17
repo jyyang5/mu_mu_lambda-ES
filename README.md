@@ -27,6 +27,10 @@ Plot is attached. With noise-to-signal ratio = 0,0.25,1,4. The negative converge
 
 The number of iteratins needed coincides that with the convergence rate plot, where a high convergence rate gives a small number of iterations to reach stopping criteria. 
 
+- Convergence rate and normalized step size over noise ratio
+
+- 
+
 ### 5. Build GP model by adding training set 
 
 The objective function evaluation value of offsprings is evaluated using the GP model after the model is built and therefore, reduce the objective function evaluation time to 1 in each iteration.
