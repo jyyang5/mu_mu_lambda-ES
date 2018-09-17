@@ -1,9 +1,14 @@
+% test file
+% using 5 different obejctive functions plot 5 seperate graphs
+% NOTE: DO NOT CHANGE THE NUMBER WHEN CALL fun_graph_merged
+%       OR CANNOT SAVE ITERTAION DATA
+
 f1 = @(x) (x'*x)^(1/2);
 f2 = @(x) (x'*x);
 f3 = @(x) (x'*x)^(3/2);
 
 
-NUM_OF_RUNS = 500;
+NUM_OF_RUNS = 2;
 
 
 disp("===========================================================");

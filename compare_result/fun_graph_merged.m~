@@ -149,7 +149,7 @@ end
     xlabel('number of function evaluations','fontsize',15);
     ylabel('log(\sigma)','fontsize',15);
     set(gca,'yscale','log')
-    title('step size \sigma','fontsize',20);
+    title('sigma','fontsize',20);
     
     
     
@@ -165,7 +165,7 @@ end
     xlabel('number of function evaluations','fontsize',15);
     ylabel('log( f(x) )','fontsize',15);
     set(gca,'yscale','log')
-    title('objective function value f(x)','fontsize',20);
+    title('function evaluation','fontsize',20);
     
     if name == 6
        save('T_linear_sphere.mat','T_array','T_array1','T_array2','T_array3');
