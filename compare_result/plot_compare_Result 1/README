@@ -1,0 +1,9 @@
+## Result 1
+
+Plot using the following setting.
+
+	NUM_OF_RUNS = 400;
+	sigma0 = 1;
+	Length scale: theta = 8sigmasqrt(n)  
+	(3/3,10)-ES 
+	Evaluate and choose centroid as parent for each itertation

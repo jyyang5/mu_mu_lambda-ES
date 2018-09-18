@@ -1,4 +1,6 @@
-% usual mml-ES using CSA
+% usual mml-ES using CSA no GP
+
+
 function val = mml(f,x0,sigma0,lambda,NUM_OF_ITERATIONS)
 % initialization
 % f:                  objective function value
@@ -10,6 +12,16 @@ function val = mml(f,x0,sigma0,lambda,NUM_OF_ITERATIONS)
 % sigma0:             initial muttaion strength
 % NUM_OF_ITERATIONS:  number of maximum iterations
 
+% Return 
+% 1.t:                  # of objective function calls                    
+% 2.centroid:           last parent x(centroid)
+% 3.f_centroid:         last objective function value
+% 4.sigma_array:        simage arrary over # of objective function calls  
+% 5.centroid_array:     parent set(centroids)
+% 6.fcentroid_array:    objective function values for parents(centroids)
+% 7.convergence_rate:   rate of convergence
+% 8.1:                  no GP estimate
+% 9.sigma_star_array:   normalized step size
 
 
 % OPTIMAL:            global optima
@@ -28,7 +40,8 @@ sigma_array = zeros(1,10000);
 s_array = zeros(1,10000);
 fep_centroid = zeros(1,10000);
 theta_array = zeros(1,10000);
- 
+sigma_star_array = zeros(1,10000);          % store normalized step size
+
 
 y = zeros(n,lambda);                        % lambda offspring solution with dim n
 z = zeros(n,lambda);                        % random directions added for lambda offsprings dim n
@@ -71,19 +84,15 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
             
     % (mu/mu, lambda)-ES use GP estiate 
     else  
-        xTrain(:, rem(t, 40)+1) = centroid;                
-        fTrain(rem(t, 40)+1) = f_centroid;
+        xTrain(:, rem(t+35, 40)+1) = centroid;                
+        fTrain(rem(t+35, 40)+1) = f_centroid;
        
-%         dist = norm(centroid);
-%         sigma_ep = sigma_ep_star/n*2*dist^2;      % Gaussian noise 
-%         
         % offspring_generation (lambda offspring) 
         for i = 1:1:lambda
             % offspring = mean(parent) + stepsize*z
             z(:,i) = randn(n,1);
             y(:,i) = centroid + sigma*z(:,i);
             fyep(i) = f(y(:,i));
-%             fyep(i) = gp(xTrain, fTrain, y(:,i), theta);
             
         end
         % for simple calculation 
@@ -114,7 +123,7 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     fcentroid_array(t) = f_centroid;
     
     
-    fep_centroid(t) = gp(xTrain, fTrain, centroid, theta);
+    %fep_centroid(t) = gp(xTrain, fTrain, centroid, theta);
     theta_array(t) = theta;
     
     sigma_array(t) = sigma;
@@ -123,20 +132,20 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     t = t + 1;
     T = T + 1;
     
+    dist = norm(centroid);
+    sigma_star = sigma*n/dist;
+    sigma_star_array(t)=sigma_star;
+    
     
     
 end
-
-    for i = 1:1:t-2
-        convergence_rate = convergence_rate + (log(fcentroid_array(i+1)/fcentroid_array(i)));
-    end
-
-    convergence_rate = -n/2*convergence_rate/(t-2);
-    
+    t = t - 1;
+ 
+    % convergence rate
+    convergence_rate = -n/2*sum(log(fcentroid_array(2:t)./fcentroid_array(1:t-1)))/(t-1);
     %plot(1:1:t-1,s_array(1:t-1));
     
-    val = {t,centroid,f_centroid,sigma_array, centroid_array, fcentroid_array,convergence_rate,fep_centroid};
-%val = {t,centroid,f_centroid,sigma_array, 1, 1,convergence_rate};
+    val = {t,centroid,f_centroid,sigma_array, centroid_array, fcentroid_array, convergence_rate,-1,sigma_star_array};
 
 end
 

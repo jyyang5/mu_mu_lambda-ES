@@ -14,6 +14,16 @@ function val = mml_GP(f,x0,sigma0,lambda,NUM_OF_ITERATIONS)
 % sigma0:             initial muttaion strength
 % NUM_OF_ITERATIONS:  number of maximum iterations
 
+% Return 
+% 1.t:                  # of objective function calls                    
+% 2.centroid:           last parent x(centroid)
+% 3.f_centroid:         last objective function value
+% 4.sigma_array:        simage arrary over # of objective function calls  
+% 5.centroid_array:     parent set(centroids)
+% 6.fcentroid_array:    objective function values for parents(centroids)
+% 7.convergence_rate:   rate of convergence
+% 8.GP_error:           mean[f_centroid(t)-fep_centroid(t))/(f_centroid(t)-f_centroid(t-1))] 
+% 9.sigma_star_array:   normalized step size
 
 
 % OPTIMAL:            global optima
@@ -32,7 +42,8 @@ sigma_array = zeros(1,10000);
 s_array = zeros(1,10000);
 fep_centroid = zeros(1,10000);
 theta_array = zeros(1,10000);
- 
+sigma_star_array = zeros(1,10000);          % store normalized step size
+
 
 y = zeros(n,lambda);                        % lambda offspring solution with dim n
 z = zeros(n,lambda);                        % random directions added for lambda offsprings dim n
@@ -79,13 +90,7 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     else  
         xTrain(:, rem(t+35, 40)+1) = centroid;                
         fTrain(rem(t+35, 40)+1) = f_centroid;
-%           xTrain(:, 1:TRAINING_SIZE-1) = xTrain(:, 2:TRAINING_SIZE);
-%           xTrain(:,TRAINING_SIZE) = centroid;
-%           fTrain(1:TRAINING_SIZE-1) = fTrain(2:TRAINING_SIZE);
-%           fTrain(TRAINING_SIZE) = f_centroid;
-%         dist = norm(centroid);
-%         sigma_ep = sigma_ep_star/n*2*dist^2;      % Gaussian noise 
-%         
+
         % offspring_generation (lambda offspring) 
         for i = 1:1:lambda
             % offspring = mean(parent) + stepsize*z
@@ -112,7 +117,9 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
 %     centroid = mean(y(:,1:mu), 2);
     centroid = centroid + sigma*z;
     f_centroid = f(centroid);
-        
+    if(t>4)
+        fep_centroid(t) = gp(xTrain, fTrain, centroid, theta);
+    end    
     % CSA
     s = (1-c)*s + sqrt(mu*c*(2-c))*z;
     
@@ -123,30 +130,32 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     fcentroid_array(t) = f_centroid;
     
     
-    fep_centroid(t) = gp(xTrain, fTrain, centroid, theta);
     theta_array(t) = theta;
     
     sigma_array(t) = sigma;
     s_array(t) = norm(s)^2-n;
     
+    dist = norm(centroid);
+    sigma_star = sigma*n/dist;
+    sigma_star_array(t)=sigma_star;
+
+    
     t = t + 1;
     T = T + 1;
+    
+    % update normalized step size array 
+    
    
     
     
 end
-
-    for i = 1:1:t-2
-        convergence_rate = convergence_rate + (log(fcentroid_array(i+1)/fcentroid_array(i)));
-        
-    end
-
-    convergence_rate = -n/2*convergence_rate/(t-2);
     
-    %plot(1:1:t-1,s_array(1:t-1));
-     GP_error = median((fep_centroid(1:t)-fcentroid_array(1:t))./fcentroid_array(1:t));
+    % convergence rate
+    convergence_rate = -n/2*sum(log(fcentroid_array(2:t)./fcentroid_array(1:t-1)))/(t-1);
+    % relative error for GP |f(y)-fep(y)|/ |f(y)-f(x)|
+    GP_error = mean(abs(fep_centroid(6:t)-fcentroid_array(6:t))./abs(fcentroid_array(5:t-1)-fcentroid_array(6:t)));
     
-    val = {t,centroid,f_centroid,sigma_array, centroid_array, fcentroid_array,convergence_rate,fep_centroid,GP_error};
+    val = {t,centroid,f_centroid,sigma_array, centroid_array, fcentroid_array,convergence_rate,GP_error,sigma_star_array};
 %val = {t,centroid,f_centroid,sigma_array, 1, 1,convergence_rate};
 
 end
