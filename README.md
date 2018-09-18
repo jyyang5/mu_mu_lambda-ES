@@ -40,13 +40,24 @@ The improvement compared with a normal (mu/mu,lambda)-ES is the saving of object
 
 ### 6. Compare the mml-ES with GP and without and similarly with (1+1)-ES 
 
-| Test function      | mml-ES with model assistance | mml-ES without model assistance| (1+1)-ES with model assistance| (1+1)-ES without model assistance | mml speed-up|
-| :----------------- |--------:| ------:| ------:| ------:|-----:|
-| linear sphere      |   698+40| 270*10 | 496    | 1251   |
-| quadratic sphere   |   257+40| 140*10 | 207    | 652    |
-| cubic sphere       |   227+40| 97*10  | 196    | 445    |
-| Schwefel’s function|  2484+40| 568*10 | 1425   | 2365   |
-| quartic function   |  984 +40| 595*10 |1238    | 4208   |
+
+The objective function evaluation obtained by averaging 400 runs is shown below. The plot of step size $\sigma$ and objective function value f(x) over # of objective function calls for 5 different test functions are attached. 
+
+	(1+1)-speed-up = (# of objective function calls of (1+1)-ES withGP)/(# of … of (1+1)-ES noGP)
+	mml-speed-up = (# of objective function calls of mml withGP)/(# of … of mml noGP)
+	(1+1)-mml-ratio = (# of … of (1+1)-ES noGP)/(# of objective function calls of mml noGP)
+	(1+1)-mml-GP-ratio = (# of … of (1+1)-ES withGP)/(# of objective function calls of mml withGP)
+	
+	
+
+| Test function          | mml-ES withGP | mml-ES noGP | (1+1)-ES withGP | (1+1)-ES noGP | mml-speed-up   | (1+1)-speed-up | mml-(1+1)-GP-ratio   | mml-(1+1)-ratio    |
+| :------------------------|-----------------------:| -------------------:|-----------------------:|----------------------:|---------------------:|----------------------:|----------------------------:|------------------------:|
+| linear sphere         |                     734  |               2700  |                  505    |                1275    |                 3.68  |                  2.52  |                      0.688    |                0.472    |
+| quadratic sphere   |                     301  |               1400  |                  214    |                  681    |                 4.65  |                  3.18  |                       0.711    |                0.486    |  
+| cubic sphere          |                    267  |                 960   |                  202    |                 481    |                 3.60  |                   2.38  |                      0.756    |                0.501    |
+| Schwefel’s function|                  2599  |               5490   |                 1490   |                 2381  |                 2.11  |                   1.60  |                      0.573    |                0.434    |
+| quartic function      |                  1024  |               6250   |                 1259   |                 4218  |                  6.10 |                   3.35  |                      1.229    |                0.675    | 
+
 
 ### 7. The precision of GP estimate
 
