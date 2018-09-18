@@ -16,8 +16,8 @@ function val = fun_graph_merged(f,name,NUM_OF_RUNS)
 sigma0 = 1;
 NUM_OF_ITERATIONS = 10000;
 lambda = 10;
-mu = 3;
-n = 10;
+mu = 2;
+n = 5;
 
 
 % (mu/mu,lambda)-ES with GP

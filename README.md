@@ -29,7 +29,6 @@ The number of iteratins needed coincides that with the convergence rate plot, wh
 
 - Convergence rate and normalized step size over noise ratio
 
-- 
 
 ### 5. Build GP model by adding training set 
 
@@ -48,7 +47,12 @@ The objective function evaluation obtained by averaging 400 runs is shown below.
 	(1+1)-mml-ratio = (# of … of (1+1)-ES noGP)/(# of objective function calls of mml noGP)
 	(1+1)-mml-GP-ratio = (# of … of (1+1)-ES withGP)/(# of objective function calls of mml withGP)
 	
-	
+### 7. GP error 
+
+#### Result 1
+Length scale: theta = 8*sigma*sqrt(n)
+(3/3,10)-ES
+Evaluate and choose centroid as parent for each itertation 
 
 | Test function          | mml-ES withGP | mml-ES noGP | (1+1)-ES withGP | (1+1)-ES noGP | mml-speed-up   | (1+1)-speed-up | mml-(1+1)-GP-ratio   | mml-(1+1)-ratio    |
 | :------------------------|-----------------------:| -------------------:|-----------------------:|----------------------:|---------------------:|----------------------:|----------------------------:|------------------------:|
@@ -57,7 +61,31 @@ The objective function evaluation obtained by averaging 400 runs is shown below.
 | cubic sphere          |                    267  |                 960   |                  202    |                 481    |                 3.60  |                   2.38  |                      0.756    |                0.501    |
 | Schwefel’s function|                  2599  |               5490   |                 1490   |                 2381  |                 2.11  |                   1.60  |                      0.573    |                0.434    |
 | quartic function      |                  1024  |               6250   |                 1259   |                 4218  |                  6.10 |                   3.35  |                      1.229    |                0.675    | 
+#### Result 2
+Length scale theta = 8*sigma*sqrt(n)
+(2/2,5)-ES
+Evaluate and choose centroid as parent for each itertation
+ 
 
+#### To be done
+- Modify the training set s.t. the training data is added by a first come first out basis.
+
+- Double the GP length scale to see what happens. 
+
+- Run Arash's (1+1)-ES on the three sphere functions and plot the normalized step size against the iteration number.
+
+- In the (\mu/\mu,\;ambda)$-ES, would evaluating the best candidate solution rather than the centroid make a difference?
+
+- Can you extend the GP code to compute variances and plot those in relation to errors and step size?
+	GP estimate: fTest = mu + Ks'*(K\(fTrain'-mu))
+	variances = Ks'*(K\(fTrain'-mu))
+	error = |f(y)-fep(y)|/|f(y)-f(x)|
+	Find the relation between variance & error, variance & step size.
+	**Intepretation**: make the decision on variance rather than evaluate evaluate one per iteration. 
+
+- Avoid the increase in objective function value by comparing the objective function value of the current centroid and the last one.
+**Problem**: may easily trapped in a local minima E.G. a saddle point. 
+	
 
 ### 7. The precision of GP estimate
 

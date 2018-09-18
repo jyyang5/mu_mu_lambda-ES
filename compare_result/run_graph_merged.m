@@ -17,27 +17,27 @@ disp("---------------");
 %graph_fun(f1,1);
 T_f1=fun_graph_merged(f1,6,NUM_OF_RUNS);
 
-% disp("===========================================================");
-% disp("quadratic sphere");
-% disp("---------------");
-% T_f2=fun_graph_merged(f2,7,NUM_OF_RUNS);
-% 
-% disp("===========================================================");
-% disp("cubic sphere");
-% disp("---------------");
-% T_f3=fun_graph_merged(f3,8,NUM_OF_RUNS);
-% 
-% disp("===========================================================");
-% disp("schwefel's function");
-% disp("---------------");
-% T_f4=fun_graph_merged(@f4,9,NUM_OF_RUNS);
-% 
-% disp("===========================================================");
-% disp("quartic function");
-% disp("---------------");
-% T_f5=fun_graph_merged(@f5,10,NUM_OF_RUNS);
-% disp("===========================================================");
-% 
+disp("===========================================================");
+disp("quadratic sphere");
+disp("---------------");
+T_f2=fun_graph_merged(f2,7,NUM_OF_RUNS);
+
+disp("===========================================================");
+disp("cubic sphere");
+disp("---------------");
+T_f3=fun_graph_merged(f3,8,NUM_OF_RUNS);
+
+disp("===========================================================");
+disp("schwefel's function");
+disp("---------------");
+T_f4=fun_graph_merged(@f4,9,NUM_OF_RUNS);
+
+disp("===========================================================");
+disp("quartic function");
+disp("---------------");
+T_f5=fun_graph_merged(@f5,10,NUM_OF_RUNS);
+disp("===========================================================");
+
 
 
 function [val] = f4(x)

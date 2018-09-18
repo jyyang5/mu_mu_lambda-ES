@@ -30,7 +30,7 @@ centroid_array = zeros(n,10000);
 fcentroid_array = zeros(1,10000);
 sigma_array = zeros(1,10000);
 s_array = zeros(1,10000);
-fep_centroid = zeros(1,10000);
+fepcentroid_array = zeros(1,10000);
 theta_array = zeros(1,10000);
  
 
@@ -59,6 +59,8 @@ s = 0;
 sigma = sigma0;
 theta = sigma*8*sqrt(n);
 
+GP_error=0;
+
 while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     
     % (mu/mu, lambda)-ES 4 times to obtain GP traning set
@@ -75,9 +77,12 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
             
     % (mu/mu, lambda)-ES use GP estiate 
     else  
-        xTrain(:, rem(t, 40)+1) = centroid;                
-        fTrain(rem(t, 40)+1) = f_centroid;
-       
+        xTrain(:, rem(t+35, 40)+1) = centroid;                
+        fTrain(rem(t+35, 40)+1) = f_centroid;
+%           xTrain(:, 1:TRAINING_SIZE-1) = xTrain(:, 2:TRAINING_SIZE);
+%           xTrain(:,TRAINING_SIZE) = centroid;
+%           fTrain(1:TRAINING_SIZE-1) = fTrain(2:TRAINING_SIZE);
+%           fTrain(TRAINING_SIZE) = f_centroid;
 %         dist = norm(centroid);
 %         sigma_ep = sigma_ep_star/n*2*dist^2;      % Gaussian noise 
 %         
@@ -118,7 +123,7 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     fcentroid_array(t) = f_centroid;
     
     
-    fep_centroid(t) = gp(xTrain, fTrain, centroid, theta);
+    fepcentroid_array(t) = gp(xTrain, fTrain, centroid, theta);
     theta_array(t) = theta;
     
     sigma_array(t) = sigma;
@@ -126,20 +131,23 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     
     t = t + 1;
     T = T + 1;
-    
+   
     
     
 end
-
-    for i = 1:1:t-2
+    t=t-1;
+    for i = 1:1:t-1
         convergence_rate = convergence_rate + (log(fcentroid_array(i+1)/fcentroid_array(i)));
+        
     end
 
-    convergence_rate = -n/2*convergence_rate/(t-2);
+    convergence_rate = -n/2*convergence_rate/(t-1);
     
     %plot(1:1:t-1,s_array(1:t-1));
     
-    val = {t,centroid,f_centroid,sigma_array, centroid_array, fcentroid_array,convergence_rate,fep_centroid};
+     GP_error = median((fepcentroid_array(1:t)-fcentroid_array(1:t))./fcentroid_array(1:t));
+    
+    val = {t,centroid,f_centroid,sigma_array, centroid_array, fcentroid_array,convergence_rate,fepcentroid_array,GP_error};
 %val = {t,centroid,f_centroid,sigma_array, 1, 1,convergence_rate};
 
 end
@@ -168,6 +176,6 @@ function fTest = gp(xTrain, fTrain, xTest, theta)
     %Kinv = inv(K);       
 
     mu = min(fTrain);                                            % estimated mean of GP
-    fTest = mu + Ks'*(K\(fTrain'-mu));
+    fTest = mu + Ks'*(K\(fTrain'-mu));                           % variance of GP
 
 end

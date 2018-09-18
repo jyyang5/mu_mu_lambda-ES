@@ -59,6 +59,8 @@ s = 0;
 sigma = sigma0;
 theta = sigma*8*sqrt(n);
 
+GP_error=0;
+
 while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     
     % (mu/mu, lambda)-ES 4 times to obtain GP traning set
@@ -75,9 +77,12 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
             
     % (mu/mu, lambda)-ES use GP estiate 
     else  
-        xTrain(:, rem(t, 40)+1) = centroid;                
-        fTrain(rem(t, 40)+1) = f_centroid;
-       
+        xTrain(:, rem(t+35, 40)+1) = centroid;                
+        fTrain(rem(t+35, 40)+1) = f_centroid;
+%           xTrain(:, 1:TRAINING_SIZE-1) = xTrain(:, 2:TRAINING_SIZE);
+%           xTrain(:,TRAINING_SIZE) = centroid;
+%           fTrain(1:TRAINING_SIZE-1) = fTrain(2:TRAINING_SIZE);
+%           fTrain(TRAINING_SIZE) = f_centroid;
 %         dist = norm(centroid);
 %         sigma_ep = sigma_ep_star/n*2*dist^2;      % Gaussian noise 
 %         
@@ -126,20 +131,22 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     
     t = t + 1;
     T = T + 1;
-    
+   
     
     
 end
 
     for i = 1:1:t-2
         convergence_rate = convergence_rate + (log(fcentroid_array(i+1)/fcentroid_array(i)));
+        
     end
 
     convergence_rate = -n/2*convergence_rate/(t-2);
     
     %plot(1:1:t-1,s_array(1:t-1));
+     GP_error = median((fep_centroid(1:t)-fcentroid_array(1:t))./fcentroid_array(1:t));
     
-    val = {t,centroid,f_centroid,sigma_array, centroid_array, fcentroid_array,convergence_rate,fep_centroid};
+    val = {t,centroid,f_centroid,sigma_array, centroid_array, fcentroid_array,convergence_rate,fep_centroid,GP_error};
 %val = {t,centroid,f_centroid,sigma_array, 1, 1,convergence_rate};
 
 end
@@ -151,7 +158,7 @@ function fTest = gp(xTrain, fTrain, xTest, theta)
 %       xTrain(40 training pts)
 %       fTrain(true objective function value)
 %       xTest(1 test pt)   
-%       theta mutation length     
+%       theta length scale  
 % return: the prediction of input test data
 
     [n, m] = size(xTrain);                                       % m:  # of training data
