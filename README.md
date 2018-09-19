@@ -1,5 +1,4 @@
 # mu_mu_lambda-ES
-<<<<<<< HEAD
 
 Implement a (mu/mu,lambda)-ES
 
@@ -47,47 +46,117 @@ The objective function evaluation obtained by averaging 400 runs is shown below.
 	(1+1)-mml-ratio = (# of … of (1+1)-ES noGP)/(# of objective function calls of mml noGP)
 	(1+1)-mml-GP-ratio = (# of … of (1+1)-ES withGP)/(# of objective function calls of mml withGP)
 	
-### 7. GP error 
+### 7. The precision of GP estimate
 
 #### Result 1
+
+Number of runs = 400
 Length scale: theta = 8*sigma*sqrt(n)
 (3/3,10)-ES
 Evaluate and choose centroid as parent for each itertation 
+**Note**: plot and data stored in folder plot_cmp_result1
 
-| Test function          | mml-ES withGP | mml-ES noGP | (1+1)-ES withGP | (1+1)-ES noGP | mml-speed-up   | (1+1)-speed-up | mml-(1+1)-GP-ratio   | mml-(1+1)-ratio    |
-| :------------------------|-----------------------:| -------------------:|-----------------------:|----------------------:|---------------------:|----------------------:|----------------------------:|------------------------:|
-| linear sphere         |                     734  |               2700  |                  505    |                1275    |                 3.68  |                  2.52  |                      0.688    |                0.472    |
-| quadratic sphere   |                     301  |               1400  |                  214    |                  681    |                 4.65  |                  3.18  |                       0.711    |                0.486    |  
-| cubic sphere          |                    267  |                 960   |                  202    |                 481    |                 3.60  |                   2.38  |                      0.756    |                0.501    |
-| Schwefel’s function|                  2599  |               5490   |                 1490   |                 2381  |                 2.11  |                   1.60  |                      0.573    |                0.434    |
-| quartic function      |                  1024  |               6250   |                 1259   |                 4218  |                  6.10 |                   3.35  |                      1.229    |                0.675    | 
+| Test function       |mml-ES withGP|mml-ES noGP|(1+1)-ES withGP|(1+1)-ES noGP|mml-speed-up|(1+1)-speed-up|mml-(1+1)-GP-ratio| mml-(1+1)-ratio|
+| :-------------------|------------:| ---------:|--------------:|------------:|-----------:|-------------:|-----------------:|---------------:|
+| linear sphere       |734|2700|505|1275| 3.68|2.52|0.688|0.472|
+| quadratic sphere    |301|1400|214|681|  4.65|3.18|0.711|0.486|  
+| cubic sphere        |267|960 |202|481|  3.60|2.38|0.756|0.501|
+| Schwefel’s function|2599|5490|1490|2381|2.11|1.60|0.573|0.434|
+| quartic function   |1024|6250|1259|4218|6.10|3.35|1.229|0.675| 
+
 #### Result 2
+
+Number of runs = 500
 Length scale theta = 8*sigma*sqrt(n)
 (2/2,5)-ES
 Evaluate and choose centroid as parent for each itertation
- 
+**Note**: plot and data stored in folder plot_cmp_result2
+
+| Test function       |mml-ES withGP|mml-ES noGP|(1+1)-ES withGP|(1+1)-ES noGP|mml-speed-up|(1+1)-speed-up|mml-(1+1)-GP-ratio| mml-(1+1)-ratio|
+| :-------------------|------------:| ---------:|--------------:|------------:|-----------:|-------------:|-----------------:|---------------:|
+| linear sphere      |1097|4470|507|1271|      
+| quadratic sphere   | 485|2340|213|678|   
+| cubic sphere       | 385|1660|202|480|
+| Schwefel’s function|1833|13825|1246|4233|  
+| quartic function   |3283|11285|1498|2378|  
+
+#### Result 3
+
+Number of runs = 500
+Length scale theta = **16** *sigma*sqrt(n)
+(2/2,5)-ES
+Evaluate and choose centroid as parent for each itertation
+**Note**: plot and data stored in folder plot_cmp_result3
+
+| Test function       |mml-ES withGP|mml-ES noGP|(1+1)-ES withGP|(1+1)-ES noGP|mml-speed-up|(1+1)-speed-up|mml-(1+1)-GP-ratio| mml-(1+1)-ratio|
+| :-------------------|------------:| ---------:|--------------:|------------:|-----------:|-------------:|-----------------:|---------------:|
+| linear sphere      |1128|4460|505|1279|      
+| quadratic sphere   | 479|2350|214|676|   
+| cubic sphere       | 386|1640|203|483|
+| Schwefel’s function|1833|13825|1246|4233|  
+| quartic function   |3356|11320|1502|2385|  
+
+**Observation: the length scale factor does not seem to make a difference.**
+
+
+#### Result 4
+
+Number of runs = 500
+Length scale theta = 8 *sigma*sqrt(n)
+(4/4,15)-ES
+Evaluate and choose centroid as parent for each itertation
+**Note**: plot and data stored in folder plot_cmp_result3
+
+| Test function       |mml-ES withGP|mml-ES noGP|(1+1)-ES withGP|(1+1)-ES noGP|mml-speed-up|(1+1)-speed-up|mml-(1+1)-GP-ratio| mml-(1+1)-ratio|
+| :-------------------|------------:| ---------:|--------------:|------------:|-----------:|-------------:|-----------------:|---------------:|
+| linear sphere      |||||      
+| quadratic sphere   | ||||   
+| cubic sphere       | ||||
+| Schwefel’s function|||||  
+| quartic function   |||||  
 
 #### To be done
-- Modify the training set s.t. the training data is added by a first come first out basis.
 
-- Double the GP length scale to see what happens. 
+- [x] Format the code s.t. the output is the same for 4 different strategies. 
+	1. t:                  # of objective function calls                    
+	2. x_last:             last parent x(centroid)
+	3. fx:                 last objective function value for parent(centroid)
+	4. sigma_array:        simage arrary over # of objective function calls  
+	5. x_array:            parent set for x
+	6. fx_array:           objective function values for parents
+	7. convergence_rate:   rate of convergence
+	8. GP_error:           if no GP error = -1
+	9. sigma_star_array:   normalized step size
 
-- Run Arash's (1+1)-ES on the three sphere functions and plot the normalized step size against the iteration number.
+- [x] Modify the plot fucntion (fun_graph_funCall_merged.m,fun_graph_iterate_merged.m) script s.t. 
+	1. the data and plot is automatically saved.
+	2. plot for step size (sigma), objective function value (fx) and normalized step size (sigma*) over # objective function calls and # iterations respectively.
+	3. plot over # objective function call: run_graph_funCall_merged.m 
+	4. plot over # iterations call: run_graph_iterate_merged.m
 
-- In the (\mu/\mu,\;ambda)$-ES, would evaluating the best candidate solution rather than the centroid make a difference?
+- [x] Modify the training set s.t. the training data is added by a first come first out basis.
+	See mml_GP.m
 
-- Can you extend the GP code to compute variances and plot those in relation to errors and step size?
+- [x] Double the GP length scale to see what happens.
+	Use the (2/2,5)-ES to test and the result for length scale mutiplied by 8 and 16 are stored in folder plot_cmp_result1 and plot_cmp_result2 respectively.
+	Result: the length scale does not matter in the context.
+
+- [x] Run Arash's (1+1)-ES on the three sphere functions and plot the normalized step size against the iteration number.
+
+- [ ]In the (\mu/\mu,\;ambda)$-ES, would evaluating the best candidate solution rather than the centroid make a difference?
+
+- [ ] Can you extend the GP code to compute variances and plot those in relation to errors and step size?
 	GP estimate: fTest = mu + Ks'*(K\(fTrain'-mu))
 	variances = Ks'*(K\(fTrain'-mu))
 	error = |f(y)-fep(y)|/|f(y)-f(x)|
 	Find the relation between variance & error, variance & step size.
 	**Intepretation**: make the decision on variance rather than evaluate evaluate one per iteration. 
 
-- Avoid the increase in objective function value by comparing the objective function value of the current centroid and the last one.
-**Problem**: may easily trapped in a local minima E.G. a saddle point. 
+- [ ]Avoid the increase in objective function value by comparing the objective function value of the current centroid and the last one.
+	**Problem**: may easily trapped in a local minima E.G. a saddle point. 
 	
 
-### 7. The precision of GP estimate
+
 
 
 ## Different noise level
