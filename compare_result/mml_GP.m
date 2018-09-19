@@ -1,8 +1,7 @@
 % Use Gaussian distributed random noise to model GP estimate replace objective 
 % function evaluation for lambda offsprings with GP estimate 
 % In each iteration only the centroid is evaluated
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function val = mml_GP(f,x0,sigma0,lambda,NUM_OF_ITERATIONS)
 % initialization
 % f:                  objective function value
@@ -29,6 +28,7 @@ function val = mml_GP(f,x0,sigma0,lambda,NUM_OF_ITERATIONS)
 % OPTIMAL:            global optima
 % example input:      f = @(x) x' * x
 %                     mml(f,randn(n,mu),1,0,10,1,4000)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 [n, mu] = size(x0);
 
 TRAINING_SIZE = 4*lambda;
@@ -67,8 +67,10 @@ c = 1/sqrt(n);
 D = sqrt(n);
 s = 0;
 
+length_scale_factor = 8;
+
 sigma = sigma0;
-theta = sigma*8*sqrt(n);
+theta = sigma*length_scale_factor*sqrt(n);
 
 GP_error=0;
 
@@ -124,7 +126,7 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     s = (1-c)*s + sqrt(mu*c*(2-c))*z;
     
     sigma = sigma*exp((norm(s)^2-n)/(2*D*n));
-    theta = sigma*8*sqrt(n);
+    theta = sigma*length_scale_factor*sqrt(n);
     
     centroid_array(:,t) = centroid;
     fcentroid_array(t) = f_centroid;

@@ -16,6 +16,7 @@ function val = withGP(f,x0,sigma0,NUM_OF_ITERATIONS)%, OPTIMAL, TARGET_DISTANCE)
 % 7.convergence_rate:   rate of convergence
 % 8.GP error:           mean of relative GP error 
 % 9.sigma_star_array:   normalized step size
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % initialization
 [n,m] = size(x0);                         % dim of the data

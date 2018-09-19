@@ -6,8 +6,9 @@
 % difficulty: 
 %            mml-ES with GP first 4 iterations 10 objective function calls
 %            mml-ES without GP each iteration 10 objective function calls
-%            save t data for different strategy over each objective function 
-function val = fun_graph_funCall_merged(f,name,NUM_OF_RUNS)
+%            save t data for different strategy over each objective function
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function val = fun_graph_funCall_merged(f,name,NUM_OF_RUNS,mu,lambda)
 %Input:
 %       f:          objective function 
 %    name:          a number specify f  
@@ -16,8 +17,8 @@ function val = fun_graph_funCall_merged(f,name,NUM_OF_RUNS)
 %    iteration number for [mmlWithGP,mmlNoGP,1+1WithGP,1+1NoGP]    
 sigma0 = 1;
 NUM_OF_ITERATIONS = 10000;
-lambda = 10;
-mu = 3;
+% lambda = 10;
+% mu = 3;
 n = 10;
 
 

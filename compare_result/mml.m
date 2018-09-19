@@ -1,5 +1,5 @@
 % usual mml-ES using CSA no GP
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function val = mml(f,x0,sigma0,lambda,NUM_OF_ITERATIONS)
 % initialization
@@ -27,6 +27,7 @@ function val = mml(f,x0,sigma0,lambda,NUM_OF_ITERATIONS)
 % OPTIMAL:            global optima
 % example input:      f = @(x) x' * x
 %                     mml(f,randn(n,mu),1,0,10,1,4000)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 [n, mu] = size(x0);
 
 TRAINING_SIZE = 4*lambda;

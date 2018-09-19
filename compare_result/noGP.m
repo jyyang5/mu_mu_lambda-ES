@@ -21,7 +21,7 @@ function val = noGP(f,x0,sigma0,NUM_OF_ITERATIONS)
 % TARGET_DISTANCE:    target distance to global optima
 % example input:      fun = @(x) x' * x
 %                     noGP(fun, randn(10,1),1,1000) 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 [n,m] = size(x0);
 
 x = zeros(n, 10000);                       % parent solution with dim n 
