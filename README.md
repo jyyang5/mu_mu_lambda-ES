@@ -154,13 +154,14 @@ Evaluate and choose centroid as parent for each itertation
 	- GP_error = |f(y)-fep(y)|/(f(y)-f(x)| where x is the parent and y offspring.
 	- Function for merged plot of the 5 test functions.
 	- Below is by taking the median relative error and the number of objective function calls for each iteration by running 50 replicates.
+
 	|strategy\median relative error| linear sphere | quadratic sphere | cubic  sphere | Schwefel’s function | quartic function
- 	| :-------- | --------:| ------: |
+ 	| :-------- | --------:| ------: |--------:| ------: |------: |
 	|(1+1) withGP | 1.302|0.9086|2.0487|1.7776|1.2200|
 	|(4/4,15) withGP|1.2042|1.2085|1.9871|1.3764|1.1586|
 
 	|strategy\median funCall| linear sphere | quadratic sphere | cubic  sphere | Schwefel’s function | quartic function
-	| :-------- | --------:| ------: |
+	| :-------- | --------:| ------: |--------:| ------: |------: |
 	|(1+1) withGP | 633|203|228.5|3005|817.5|
 	|(4/4,15) withGP|488|216|206|1536|1236|
 
@@ -174,7 +175,7 @@ Evaluate and choose centroid as parent for each itertation
 - [ ]In the (\mu/\mu,\;ambda)$-ES, would evaluating the best candidate solution rather than the centroid make a difference?
 
 - [ ]Avoid the increase in objective function value by comparing the objective function value of the current centroid and the last one.
-	**Problem**: may easily trapped in a local minima E.G. a saddle point. 
+	- **Problem**: may easily trapped in a local minima E.G. a saddle point. 
 	
 
 
