@@ -23,12 +23,12 @@ f3 = @(x) (x'*x)^(3/2);  % cubic sphere
 % x0 for mml-ES
 f = @(x) (x'*x);
 n = 10;
-mu = 3;
-lambda = 10;
+mu = 4;
+lambda = 30;
 % x0 for mml-ES
 x0 = randn(n,mu);
 % x1 for (1+1)-ES
-x1 = x0(:,1);
+x1 = randn(n,1);
 
 
 sigma0 = 1;
@@ -36,7 +36,7 @@ NUM_OF_RUNS = 10;
 
 NUM_OF_ITERATIONS = 10000;
 % mml-ES with GP
-a = mml_GP(@f5,x0,sigma0,lambda,NUM_OF_ITERATIONS);
+a = mml_GP(f1,x0,sigma0,lambda,NUM_OF_ITERATIONS);
 t = cell2mat(a(1));
 centroid = cell2mat(a(2));
 f_centroid = cell2mat(a(3));
@@ -45,10 +45,9 @@ fcentroid_array = cell2mat(a(6));
 convergence_rate = cell2mat(a(7));
 GP_error = cell2mat(a(8));
 sigma_star_array = cell2mat(a(9));
-disp(t);
 
 % (1+1)-ES with GP
-b = noGP(f2,x1,sigma0,NUM_OF_ITERATIONS);
+b = withGP(f1,x1,sigma0,NUM_OF_ITERATIONS);
 t1 = cell2mat(b(1));
 centroid1 = cell2mat(b(2));
 f_centroid1 = cell2mat(b(3));
@@ -59,19 +58,22 @@ GP_error1 = cell2mat(b(8));
 sigma_star_array1 = cell2mat(b(9));
 
 
-disp('GP error');
-disp(GP_error);
-disp(GP_error1);
+% disp('GP error');
+% disp(GP_error);
+% disp(GP_error1);
+disp('# of objective functions');
+disp(t);
+disp(t1);
 
 figure(10);
 hold on;
 % plot(x_axis,fcentroid_array(1:t));
-plot(1:1:t,sigma_star_array(1:t));
-plot(1:1:t1,sigma_star_array1(1:t1));
-ylabel('sigma star','FontSize',15);%
+plot(GP_error);
+plot(GP_error1);
+ylabel('relative GP error','FontSize',15);%
 xlabel('number of objective function calls','FontSize',15); 
-% set(gca, 'YScale', 'log');
-%legend({'f(x)','fep(x)'},'FontSize',10); %
+set(gca, 'YScale', 'log');
+legend({'mml-ES','(1+1)-ES'},'FontSize',10); %
 hold off;
 
 % b = mml(@f5,x0,sigma0,lambda,NUM_OF_ITERATIONS);
