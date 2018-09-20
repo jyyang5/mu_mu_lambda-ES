@@ -48,7 +48,7 @@ The objective function evaluation obtained by averaging 400 runs is shown below.
 	
 ### 7. The precision of GP estimate
 
-#### Result 1
+#### Compare funCalls 1
 
 Number of runs = 400
 Length scale: theta = 8*sigma*sqrt(n)
@@ -64,7 +64,7 @@ Evaluate and choose centroid as parent for each itertation
 | Schwefel’s function|2599|5490|1490|2381|2.11|1.60|0.573|0.434|
 | quartic function   |1024|6250|1259|4218|6.10|3.35|1.229|0.675| 
 
-#### Result 2
+#### Compare funCalls 2
 
 Number of runs = 500
 Length scale theta = 8*sigma*sqrt(n)
@@ -77,10 +77,10 @@ Evaluate and choose centroid as parent for each itertation
 | linear sphere      |1097|4470|507|1271|      
 | quadratic sphere   | 485|2340|213|678|   
 | cubic sphere       | 385|1660|202|480|
-| Schwefel’s function|1833|13825|1246|4233|  
+| Schwefel’s function|2681|13825|1246|4233|  
 | quartic function   |3283|11285|1498|2378|  
 
-#### Result 3
+#### Compare funCalls 3
 
 Number of runs = 500
 Length scale theta = **16** *sigma*sqrt(n)
@@ -99,7 +99,7 @@ Evaluate and choose centroid as parent for each itertation
 **Observation: the length scale factor does not seem to make a difference.**
 
 
-#### Result 4
+#### Compare funCalls 4
 
 Number of runs = 500
 Length scale theta = 8 *sigma*sqrt(n)
@@ -109,13 +109,13 @@ Evaluate and choose centroid as parent for each itertation
 
 | Test function       |mml-ES withGP|mml-ES noGP|(1+1)-ES withGP|(1+1)-ES noGP|mml-speed-up|(1+1)-speed-up|mml-(1+1)-GP-ratio| mml-(1+1)-ratio|
 | :-------------------|------------:| ---------:|--------------:|------------:|-----------:|-------------:|-----------------:|---------------:|
-| linear sphere      |||||      
-| quadratic sphere   | ||||   
-| cubic sphere       | ||||
-| Schwefel’s function|||||  
-| quartic function   |||||  
+| linear sphere      |670.5|2310|504|1270|      
+| quadratic sphere   |238|1180|213|680.5|   
+| cubic sphere       |276|800|202|476|
+| Schwefel’s function|2683|13825|1246|4233|  
+| quartic function   |841|4610|1250|4191|  
 
-#### To be done
+#### Next
 
 - [x] Format the code s.t. the output is the same for 4 different strategies. 
 	1. t:                  # of objective function calls                    
@@ -142,8 +142,11 @@ Evaluate and choose centroid as parent for each itertation
 	Result: the length scale does not matter in the context.
 
 - [x] Run Arash's (1+1)-ES on the three sphere functions and plot the normalized step size against the iteration number.
+	Plot attached as the subplot combined with f(x) and sigma over number of objective function calls.
 
-- [ ]In the (\mu/\mu,\;ambda)$-ES, would evaluating the best candidate solution rather than the centroid make a difference?
+- [x] Plot the relative error of GP using the following and plot the GP error of (1+1)-ES with GP and mml-ES with GP accordingly.
+	GP_error = |f(y)-fep(y)|/(f(y)-f(x)| where x is the parent and y offspring.
+	Function for merged plot of the 5 test functions.
 
 - [ ] Can you extend the GP code to compute variances and plot those in relation to errors and step size?
 	GP estimate: fTest = mu + Ks'*(K\(fTrain'-mu))
@@ -151,6 +154,8 @@ Evaluate and choose centroid as parent for each itertation
 	error = |f(y)-fep(y)|/|f(y)-f(x)|
 	Find the relation between variance & error, variance & step size.
 	**Intepretation**: make the decision on variance rather than evaluate evaluate one per iteration. 
+
+- [ ]In the (\mu/\mu,\;ambda)$-ES, would evaluating the best candidate solution rather than the centroid make a difference?
 
 - [ ]Avoid the increase in objective function value by comparing the objective function value of the current centroid and the last one.
 	**Problem**: may easily trapped in a local minima E.G. a saddle point. 

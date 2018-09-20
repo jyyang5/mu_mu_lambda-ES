@@ -14,7 +14,7 @@ function val = withGP(f,x0,sigma0,NUM_OF_ITERATIONS)%, OPTIMAL, TARGET_DISTANCE)
 % 5.x_array:            parent set for x
 % 6.f_x:                objective function values for parents
 % 7.convergence_rate:   rate of convergence
-% 8.GP error:           mean of relative GP error 
+% 8.GP error:           relative GP error (after GP is built) SIZE = T-41
 % 9.sigma_star_array:   normalized step size
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -33,7 +33,9 @@ f_x(1) = f(x0);
 sigma_array(1) = sigma0;
 sigma_iterate_array(1) = sigma0;
 sigma_star_array = zeros(1,10000);        % store normalized step size
-fep_x = zeros(1,10000);                   % store GP estimate of parent 
+fep_x = zeros(1,10000);                   % store GP estimate of parent
+GP_error = zeros(1,10000);                % relative error for GP
+GP_error_final = zeros
 
 c1 = 0.05;                                % 1/5 rule
 c2 = 0.2;
@@ -85,6 +87,9 @@ while(t < NUM_OF_ITERATIONS && f(x_array(:,T))>10^(-8))%(norm(x_array(:,T)-OPTIM
         xTrain(:, T) = y;                
         fTrain(T) = fy;
         T = T + 1;
+        if(T>41)
+            GP_error(T-41) = abs(fy_ep-fy)./abs(fy-fx);
+        end
         if(fy >= fx)                      % bad offspring                      
             sigma = sigma * exp(-c2/D);   % reduce step size
         else
@@ -114,12 +119,16 @@ end
     fep_x(T) = gp(xTrain(:, T-40:T-1), fTrain(T-40:T-1), x, theta);
     % store convergence rate
     convergence_rate = -n/2*sum(log(f_x(2:T)./f_x(1:T-1)))/(T-1);
-    % relative error for GP |f(y)-fep(y)|/ |f(y)-f(x)|
-    temp = abs(fep_x(42:T)-f_x(42:T))./abs(f_x(41:T-1)-f_x(42:T));
-    notInf = ~isinf(temp);
-    temp = temp(notInf);
-    notNan = ~isnan(temp);
-    GP_error = mean(temp(notNan));
+    
+    % relative error of GP |f(y)-fep(y)|/ |f(y)-f(x)| after GP built
+    GP_error_final = GP_error(42:T);
+    
+%     temp = abs(fep_x(42:T)-f_x(42:T))./abs(f_x(41:T-1)-f_x(42:T));
+%     notInf = ~isinf(temp);
+%     temp = temp(notInf);
+%     notNan = ~isnan(temp);
+%     GP_error = mean(temp(notNan));
+    %GP_error = abs(fep_x(42:T)-f_x(42:T))./abs(f_x(41:T-1)-f_x(42:T));
     
 val = {T, x_array(:,T), fx, sigma_funEva_array, x_array, f_x, convergence_rate,GP_error,sigma_star_array};
 

@@ -21,7 +21,8 @@ function val = mml_GP(f,x0,sigma0,lambda,NUM_OF_ITERATIONS)
 % 5.centroid_array:     parent set(centroids)
 % 6.fcentroid_array:    objective function values for parents(centroids)
 % 7.convergence_rate:   rate of convergence
-% 8.GP_error:           mean[f_centroid(t)-fep_centroid(t))/(f_centroid(t)-f_centroid(t-1))] 
+% 8.GP_error:           f_centroid(t)-fep_centroid(t))/(f_centroid(t)-f_centroid(t-1)
+%                       effective SIZE = t-6
 % 9.sigma_star_array:   normalized step size
 
 
@@ -51,6 +52,7 @@ fy = zeros(lambda,1);                       % objective function value of y
 centroid = mean(x0, 2);                     % centroid of parent set, size = [n, 1]
 f_centroid = f(centroid);                   % fx of centroid
 fyep = zeros(lambda,1);                     % GP estimate for offsprings
+GP_error = zeros(1,10000);                  % relative error of GP 
 
 
 convergence_rate = 0;
@@ -72,7 +74,6 @@ length_scale_factor = 8;
 sigma = sigma0;
 theta = sigma*length_scale_factor*sqrt(n);
 
-GP_error=0;
 
 while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     
@@ -155,7 +156,7 @@ end
     % convergence rate
     convergence_rate = -n/2*sum(log(fcentroid_array(2:t)./fcentroid_array(1:t-1)))/(t-1);
     % relative error for GP |f(y)-fep(y)|/ |f(y)-f(x)|
-    GP_error = mean(abs(fep_centroid(6:t)-fcentroid_array(6:t))./abs(fcentroid_array(5:t-1)-fcentroid_array(6:t)));
+    GP_error(1:t-5) = abs(fep_centroid(6:t)-fcentroid_array(6:t))./abs(fcentroid_array(5:t-1)-fcentroid_array(6:t));
     
     val = {t,centroid,f_centroid,sigma_array, centroid_array, fcentroid_array,convergence_rate,GP_error,sigma_star_array};
 %val = {t,centroid,f_centroid,sigma_array, 1, 1,convergence_rate};
