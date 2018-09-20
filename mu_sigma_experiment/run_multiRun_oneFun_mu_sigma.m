@@ -17,13 +17,13 @@ f3 = @(x) (x'*x)^(3/2);  % cubic sphere
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Open the file to write data 
-fileID = fopen('mu_lambda_result.txt','w');
+fileID = fopen('oneFun_mu_lambda_result.txt','w');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % initialization
 n = 10;
-NUM_OF_RUNS = 2;
-
+NUM_OF_RUNS = 1;
+sigma0 = 1;
 mu_start = 2;
 mu_end = 6;
 mu_increment = 2;
@@ -58,7 +58,7 @@ for mu_temp = mu_start:mu_increment:mu_end
     for lambda_temp = lambda_start:lambda_increment:lambda_end
         x0 = randn(n,mu_temp);
         % (mu/mu,lambda)-ES with GP
-        a = fun_multiRun_strategy(f1, mu_temp, lambda_temp, NUM_OF_RUNS);
+        a = fun_multiRun_strategy(f1, mu_temp, lambda_temp, NUM_OF_RUNS, n, sigma0);
         T_array(i,j) = cell2mat(a(1));
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         % Print result
@@ -79,6 +79,11 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Close the file to put data
 fclose(fileID);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Save data    
+save('oneFun_mu_lambda_data.mat','a','T_array','mu_start','mu_end','mu_increment','lambda_start','lambda_end','lambda_increment');
+
     
 %     % graph
 %     figure(name);

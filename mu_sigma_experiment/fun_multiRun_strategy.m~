@@ -4,10 +4,9 @@ function val = fun_multiRun_strategy(f,mu,lambda,NUM_OF_RUNS,n,sigma0)
 % initialization
 % f:                  objective function value
 % mu:                 population size
-% lambda:             # of offsprings to generate in each iteration 
-% NUM_OF_ITERATIONS:  number of maximum iterations
-% n:                  dimension of the data
+% lambda:
 % sigma0:             initial muttaion strength
+% NUM_OF_ITERATIONS:  number of maximum iterations
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Test functions
 f1 = @(x) (x'*x)^(1/2);  % linear sphere
