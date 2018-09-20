@@ -129,24 +129,40 @@ Evaluate and choose centroid as parent for each itertation
 	9. sigma_star_array:   normalized step size
 
 - [x] Modify the plot fucntion (fun_graph_funCall_merged.m,fun_graph_iterate_merged.m) script s.t. 
-	1. the data and plot is automatically saved.
-	2. plot for step size (sigma), objective function value (fx) and normalized step size (sigma*) over # objective function calls and # iterations respectively.
-	3. plot over # objective function call: run_graph_funCall_merged.m 
-	4. plot over # iterations call: run_graph_iterate_merged.m
+	- the data and plot is automatically saved.
+	- plot for step size (sigma), objective function value (fx) and normalized step size (sigma*) over # objective function calls and # iterations respectively.
+	- plot over # objective function call: run_graph_funCall_merged.m 
+	- plot over # iterations call: run_graph_iterate_merged.m
 
 - [x] Modify the training set s.t. the training data is added by a first come first out basis.
 	See mml_GP.m
 
 - [x] Double the GP length scale to see what happens.
-	Use the (2/2,5)-ES to test and the result for length scale mutiplied by 8 and 16 are stored in folder plot_cmp_result1 and plot_cmp_result2 respectively.
-	Result: the length scale does not matter in the context.
+	- Use the (2/2,5)-ES to test and the result for length scale mutiplied by 8 and 16 are stored in folder plot_cmp_result1 and plot_cmp_result2 respectively.
+	- Result: the length scale does not matter in the context.
 
 - [x] Run Arash's (1+1)-ES on the three sphere functions and plot the normalized step size against the iteration number.
-	Plot attached as the subplot combined with f(x) and sigma over number of objective function calls.
+	- Plot attached as the subplot combined with f(x) and sigma over number of objective function calls.
+	- We need large normalized step size to beat the (1+1)-ES with GP essentially because of the step-size adaptation proposed. It could produce a large normalized step size s.t. the mml-ES with GP cannot beat that.
+	- The normalized step size (sigma*) increases as we increase lambda. 
+		- sigma* for (2/2,5)-ES < (1+1)-ES
+		- sigma* for (3/3,10)-ES > (1+1)-ES
+		- The difference grows even larger for (4/4,15)-ES (much larger normalized step size)
+
 
 - [x] Plot the relative error of GP using the following and plot the GP error of (1+1)-ES with GP and mml-ES with GP accordingly.
-	GP_error = |f(y)-fep(y)|/(f(y)-f(x)| where x is the parent and y offspring.
-	Function for merged plot of the 5 test functions.
+	- GP_error = |f(y)-fep(y)|/(f(y)-f(x)| where x is the parent and y offspring.
+	- Function for merged plot of the 5 test functions.
+	- Below is by taking the median relative error and the number of objective function calls for each iteration by running 50 replicates.
+	|strategy\median relative error| linear sphere | quadratic sphere | cubic  sphere | Schwefel’s function | quartic function
+ 	| :-------- | --------:| ------: |
+	|(1+1) withGP | 1.302|0.9086|2.0487|1.7776|1.2200|
+	|(4/4,15) withGP|1.2042|1.2085|1.9871|1.3764|1.1586|
+
+	|strategy\median funCall| linear sphere | quadratic sphere | cubic  sphere | Schwefel’s function | quartic function
+	| :-------- | --------:| ------: |
+	|(1+1) withGP | 633|203|228.5|3005|817.5|
+	|(4/4,15) withGP|488|216|206|1536|1236|
 
 - [ ] Can you extend the GP code to compute variances and plot those in relation to errors and step size?
 	GP estimate: fTest = mu + Ks'*(K\(fTrain'-mu))
