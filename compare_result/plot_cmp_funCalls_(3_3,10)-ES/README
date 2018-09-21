@@ -1,4 +1,4 @@
-## Plot_cmp_funCalls_(2_2,5)-ES
+## Plot_cmp_funCalls_(3_3,10)-ES
 
 Plot using the following setting.
 
@@ -6,4 +6,4 @@ Plot using the following setting.
 	sigma0 = 1;
 	Length scale: theta = 8*sigma*sqrt(n)  
 	(2/2,5)-ES 
-	Evaluate and choose centroid as parent for each itertation
+	Evaluate and choose centroid as parent for each iteration

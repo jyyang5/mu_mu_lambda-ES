@@ -8,7 +8,7 @@ f2 = @(x) (x'*x);
 f3 = @(x) (x'*x)^(3/2);
 
 
-NUM_OF_RUNS = 500;
+NUM_OF_RUNS = 100;
 mu = 3;
 lambda = 10;
 

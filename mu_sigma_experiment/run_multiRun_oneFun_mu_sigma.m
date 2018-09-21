@@ -22,16 +22,18 @@ fileID = fopen('oneFun_mu_lambda_result.txt','w');
 
 % initialization
 n = 10;
-NUM_OF_RUNS = 1;
+NUM_OF_RUNS = 5;
 sigma0 = 1;
 mu_start = 2;
-mu_end = 6;
-mu_increment = 2;
+mu_end = 5;
+mu_increment = 1;
 
 lambda_start = 10;
-lambda_end = 18;
+lambda_end = 40;
 % lambda_end = 50;
-lambda_increment = 4;
+lambda_increment = 10;
+
+f=@f4;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -58,7 +60,7 @@ for mu_temp = mu_start:mu_increment:mu_end
     for lambda_temp = lambda_start:lambda_increment:lambda_end
         x0 = randn(n,mu_temp);
         % (mu/mu,lambda)-ES with GP
-        a = fun_multiRun_strategy(f1, mu_temp, lambda_temp, NUM_OF_RUNS, n, sigma0);
+        a = fun_multiRun_strategy(f, mu_temp, lambda_temp, NUM_OF_RUNS, n, sigma0);
         T_array(i,j) = cell2mat(a(1));
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         % Print result

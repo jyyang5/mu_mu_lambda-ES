@@ -1,9 +1,9 @@
-## Plot_cmp_funCalls_(2_2,5)-ES(theta=16)
+## Plot_cmp_funCalls_(4_4,15)-ES
 
 Plot using the following setting.
 
-	NUM_OF_RUNS = 500;
+	NUM_OF_RUNS = 100;
 	sigma0 = 1;
-	Length scale: theta = 16*sigma*sqrt(n)  
+	Length scale: theta = 8*sigma*sqrtn)  
 	(2/2,5)-ES 
 	Evaluate and choose centroid as parent for each iteration
