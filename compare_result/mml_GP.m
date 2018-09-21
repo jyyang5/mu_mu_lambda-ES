@@ -56,6 +56,7 @@ GP_error = zeros(1,10000);                  % relative error of GP
 
 
 convergence_rate = 0;
+success_count = 0;
 
 t = 1;       
 T = 1;
@@ -152,13 +153,14 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     
     
 end
-    
+    t = t-1;
     % convergence rate
     convergence_rate = -n/2*sum(log(fcentroid_array(2:t)./fcentroid_array(1:t-1)))/(t-1);
     % relative error for GP |f(y)-fep(y)|/ |f(y)-f(x)|
     GP_error(1:t-5) = abs(fep_centroid(6:t)-fcentroid_array(6:t))./abs(fcentroid_array(5:t-1)-fcentroid_array(6:t));
+    success_rate = sum(fcentroid_array(4:t-1)>fcentroid_array(5:t))/(t-3);
     
-    val = {t,centroid,f_centroid,sigma_array, centroid_array, fcentroid_array,convergence_rate,GP_error,sigma_star_array};
+    val = {t,centroid,f_centroid,sigma_array, centroid_array, fcentroid_array,convergence_rate,GP_error,sigma_star_array,success_rate};
 %val = {t,centroid,f_centroid,sigma_array, 1, 1,convergence_rate};
 
 end

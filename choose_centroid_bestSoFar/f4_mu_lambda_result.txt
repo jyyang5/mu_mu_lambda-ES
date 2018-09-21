@@ -1,0 +1,16 @@
+(2/2,7)-ES with GP, T_array[1,1]numOfFunCalls = 1.732500e+03 
+(2/2,8)-ES with GP, T_array[1,2]numOfFunCalls = 1521 
+(2/2,9)-ES with GP, T_array[1,3]numOfFunCalls = 1.536500e+03 
+(2/2,10)-ES with GP, T_array[1,4]numOfFunCalls = 5040 
+(2/2,11)-ES with GP, T_array[1,5]numOfFunCalls = 1.478500e+03 
+(2/2,12)-ES with GP, T_array[1,6]numOfFunCalls = 5040 
+(2/2,13)-ES with GP, T_array[1,7]numOfFunCalls = 5040 
+(2/2,14)-ES with GP, T_array[1,8]numOfFunCalls = 5040 
+(3/3,7)-ES with GP, T_array[2,9]numOfFunCalls = 1.571500e+03 
+(3/3,8)-ES with GP, T_array[2,10]numOfFunCalls = 1.456500e+03 
+(3/3,9)-ES with GP, T_array[2,11]numOfFunCalls = 1313 
+(3/3,10)-ES with GP, T_array[2,12]numOfFunCalls = 1479 
+(3/3,11)-ES with GP, T_array[2,13]numOfFunCalls = 1368 
+(3/3,12)-ES with GP, T_array[2,14]numOfFunCalls = 1404 
+(3/3,13)-ES with GP, T_array[2,15]numOfFunCalls = 1378 
+(3/3,14)-ES with GP, T_array[2,16]numOfFunCalls = 1758 

@@ -1,2 +1,0 @@
-(2/2,10)-ES with GP, T_array[1,1]numOfFunCalls = 2908
-(2/2,20)-ES with GP, T_array[1,2]numOfFunCalls = 3040

@@ -19,17 +19,17 @@ f3 = @(x) (x'*x)^(3/2);  % cubic sphere
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % initialization
 n = 10;
-NUM_OF_RUNS = 5;
+NUM_OF_RUNS = 10;
 sigma0 = 1;
 
-mu_start = 2;
-mu_end = 4;
+mu_start = 3;
+mu_end = 3;
 mu_increment = 1;
 
-lambda_start = 8;
-lambda_end = 15;
+lambda_start = 20;
+lambda_end = 30;
 % lambda_end = 50;
-lambda_increment = 1;
+lambda_increment = 10;
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
