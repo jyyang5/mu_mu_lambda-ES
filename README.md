@@ -48,7 +48,39 @@ The objective function evaluation obtained by averaging 400 runs is shown below.
 	
 ### 7. The precision of GP estimate
 
-#### Compare funCalls (2/2,5)-ES lengthScale=16
+#### Compare funCalls 1
+
+Number of runs = 400
+Length scale: theta = 8*sigma*sqrt(n)
+(3/3,10)-ES
+Evaluate and choose centroid as parent for each itertation 
+**Note**: plot and data stored in folder plot_cmp_result1
+
+| Test function       |mml-ES withGP|mml-ES noGP|(1+1)-ES withGP|(1+1)-ES noGP|mml-speed-up|(1+1)-speed-up|mml-(1+1)-GP-ratio| mml-(1+1)-ratio|
+| :-------------------|------------:| ---------:|--------------:|------------:|-----------:|-------------:|-----------------:|---------------:|
+| linear sphere       |734|2700|505|1275| 3.68|2.52|0.688|0.472|
+| quadratic sphere    |301|1400|214|681|  4.65|3.18|0.711|0.486|  
+| cubic sphere        |267|960 |202|481|  3.60|2.38|0.756|0.501|
+| Schwefel’s function|2599|5490|1490|2381|2.11|1.60|0.573|0.434|
+| quartic function   |1024|6250|1259|4218|6.10|3.35|1.229|0.675| 
+
+#### Compare funCalls 2
+
+Number of runs = 500
+Length scale theta = 8*sigma*sqrt(n)
+(2/2,5)-ES
+Evaluate and choose centroid as parent for each itertation
+**Note**: plot and data stored in folder plot_cmp_result2
+
+| Test function       |mml-ES withGP|mml-ES noGP|(1+1)-ES withGP|(1+1)-ES noGP|mml-speed-up|(1+1)-speed-up|mml-(1+1)-GP-ratio| mml-(1+1)-ratio|
+| :-------------------|------------:| ---------:|--------------:|------------:|-----------:|-------------:|-----------------:|---------------:|
+| linear sphere      |1097|4470|507|1271|      
+| quadratic sphere   | 485|2340|213|678|   
+| cubic sphere       | 385|1660|202|480|
+| Schwefel’s function|2681|13825|1246|4233|  
+| quartic function   |3283|11285|1498|2378|  
+
+#### Compare funCalls 3
 
 Number of runs = 500
 Length scale theta = **16** *sigma*sqrt(n)
@@ -66,40 +98,8 @@ Evaluate and choose centroid as parent for each itertation
 
 **Observation: the length scale factor does not seem to make a difference.**
 
-#### Compare funCalls (2/2,5)-ES 
 
-Number of runs = 500
-Length scale theta = 8*sigma*sqrt(n)
-(2/2,5)-ES
-Evaluate and choose centroid as parent for each itertation
-**Note**: plot and data stored in folder plot_cmp_result2
-
-| Test function       |mml-ES withGP|mml-ES noGP|(1+1)-ES withGP|(1+1)-ES noGP|mml-speed-up|(1+1)-speed-up|mml-(1+1)-GP-ratio| mml-(1+1)-ratio|
-| :-------------------|------------:| ---------:|--------------:|------------:|-----------:|-------------:|-----------------:|---------------:|
-| linear sphere      |1097|4470|507|1271|      
-| quadratic sphere   | 485|2340|213|678|   
-| cubic sphere       | 385|1660|202|480|
-| Schwefel’s function|2681|13825|1246|4233|  
-| quartic function   |3283|11285|1498|2378|  
-
-#### Compare funCalls (3/3,10)-ES
-
-Number of runs = 400
-Length scale: theta = 8*sigma*sqrt(n)
-(3/3,10)-ES
-Evaluate and choose centroid as parent for each itertation 
-**Note**: plot and data stored in folder plot_cmp_result1
-
-| Test function       |mml-ES withGP|mml-ES noGP|(1+1)-ES withGP|(1+1)-ES noGP|mml-speed-up|(1+1)-speed-up|mml-(1+1)-GP-ratio| mml-(1+1)-ratio|
-| :-------------------|------------:| ---------:|--------------:|------------:|-----------:|-------------:|-----------------:|---------------:|
-| linear sphere       |734|2700|505|1275| 3.68|2.52|0.688|0.472|
-| quadratic sphere    |301|1400|214|681|  4.65|3.18|0.711|0.486|  
-| cubic sphere        |267|960 |202|481|  3.60|2.38|0.756|0.501|
-| Schwefel’s function|2599|5490|1490|2381|2.11|1.60|0.573|0.434|
-| quartic function   |1024|6250|1259|4218|6.10|3.35|1.229|0.675| 
-
-
-#### Compare funCalls (4/4,15)-ES
+#### Compare funCalls 4
 
 Number of runs = 500
 Length scale theta = 8 *sigma*sqrt(n)
@@ -183,6 +183,8 @@ Evaluate and choose centroid as parent for each itertation
 
 #### a. Original 
 	
+
+	
 ```
 while not terminate() do{
 	for j = 1,...,lambda{
@@ -196,33 +198,11 @@ while not terminate() do{
 	update step size sigma
 }
 ```
-- Result for averaging 5 runs
 
-	|mu     | lambda|  linear   |  quadratic|    cubic  |   Schwefel |  quartic  |
-	| :---  | -----:| --------: |----------:| ---------:|----------: |--------:  |
-	|2.00 	| 10.00 |	 697.00 |	 308.00 |	 267.00 |	 2848.00 |	 1084.00 |	
-	|2.00 	| 20.00 |	 608.00 |	 219.00 |	 285.00 |	 3040.00 |	 748.00	 |
-	|2.00 	| 30.00 |	 569.00 |	 208.00 |	 281.00 |	 3040.00 |	 762.00  |
-	|2.00 	| 40.00 |	 580.00 |	 198.00 |	 364.00 |	 3040.00 |	 846.00  |
-	|2.00 	| 50.00 |	 587.00 |	 195.00 |	 318.00 |	 3040.00 |	 3040.00 |
-	|3.00 	| 10.00 |	 743.00 |	 272.00 |	 296.00 |	 2844.00 |	 969.00  | 
-	|3.00 	| 20.00 |	 606.00 |	 216.00 |	 250.00 |	 3040.00 |	 715.00  |
-	|3.00 	| 30.00 |	 606.00 |	 198.00 |	 269.00 |	 3040.00 |	 623.00  |
-	|3.00 	| 40.00 |	 592.00 |	 197.00 |	 285.00 |	 3040.00 |	 3040.00 |
-	|3.00 	| 50.00 |	 607.00 |	 195.00 |	 3040.00|	 3040.00 |	 3040.00 | 
-	|4.00 	| 10.00 |	 785.00 |	 308.00 |	 270.00 |	 2654.00 |	 1100.00 |
-	|4.00 	| 20.00 |	 641.00 |	 211.00 |	 264.00 |	 3040.00 |	 674.00  | 
-	|4.00 	| 30.00 |	 609.00 |	 196.00 |	 269.00 |	 3040.00 |	 686.00  |
-	|4.00 	| 40.00 |	 650.00 |	 191.00 |	 291.00 |	 3040.00 |	 3040.00 |
-	|4.00 	| 50.00 |	 677.00 |	 190.00 |	 408.00 |	 3040.00 |	 3040.00 |
-	|5.00 	| 10.00 |	 860.00 |	 329.00 |	 327.00 |	 2429.00 |	 1352.00 | 
-	|5.00 	| 20.00 |	 654.00 |	 207.00 |	 274.00 |	 3040.00 |	 736.00  | 
-	|5.00 	| 30.00 |	 656.00 |	 204.00 |	 273.00 |	 3040.00 |	 607.00  |  
-	|5.00 	| 40.00 |	 695.00 |	 186.00 |	 315.00 |	 3040.00 |	 3040.00 | 
 
-#### b. choose the best centrod so far as parent 
+#### a. choose the best centrod so far as parent 
 
-‘’‘
+```
 while not terminate() do{
 	for j = 1,...,lambda{
 		z(j) = randn(N,1)
@@ -239,9 +219,8 @@ while not terminate() do{
 }
 	update step size sigma
 }
-’‘’
+```
 - Result for averaging 5 runs
-
 	|mu     | lambda|  linear   |  quadratic|    cubic  |   Schwefel |  quartic  |
 	| :---  | -----:| --------: |----------:| ---------:|----------: |--------:  |
 	|2.00   | 8.00 	|	791.00 	| 	 342.00 |	 399.00 |	 1794.00 |	 1147.00 |
@@ -269,7 +248,8 @@ while not terminate() do{
 	|4.00 	| 14.00 |	 805.00 |	 312.00 |	 945.00 |	 1315.00 |	 1028.00 |
 	|4.00 	| 15.00 |	 724.00 |	 300.00 |	 810.00 |	 1316.00 |	 1000.00 |
 
-
+- Observation 
+	- Increase mu decrease the performance of the sphere function and quartic function but increase the performance of Schwefel function .
 ---
 
 ## Different noise level
@@ -303,6 +283,7 @@ while not terminate() do{
 	sigma = sigma*exp((norm(s)-N)/(2*D*N)
 }
 ```
+
 Three approaches are used for CSA: 
 1. Average each dim of N-dimensional Z
    z(j) = randn(N,1)
