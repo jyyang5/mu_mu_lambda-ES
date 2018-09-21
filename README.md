@@ -183,8 +183,6 @@ Evaluate and choose centroid as parent for each itertation
 
 #### a. Original 
 	
-
-	
 ```
 while not terminate() do{
 	for j = 1,...,lambda{
@@ -198,7 +196,7 @@ while not terminate() do{
 	update step size sigma
 }
 ```
-
+- Result for averaging 5 runs
 
 	|mu     | lambda|  linear   |  quadratic|    cubic  |   Schwefel |  quartic  |
 	| :---  | -----:| --------: |----------:| ---------:|----------: |--------:  |
