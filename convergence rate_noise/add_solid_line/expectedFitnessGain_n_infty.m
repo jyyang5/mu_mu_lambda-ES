@@ -1,4 +1,5 @@
 % C_{mu/mu,lambda}
+% calculate the expected fitness gain for n->\infty 
 % for C_{3/3,10}=1.065389626877247
 lambda = 10;
 mu = 3;
