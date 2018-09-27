@@ -177,7 +177,10 @@ Evaluate and choose centroid as parent for each itertation
 - [ ]Avoid the increase in objective function value by comparing the objective function value of the current centroid and the last one.
 	- **Problem**: may easily trapped in a local minima E.G. a saddle point. 
 	
-
+- [ ] Weight using the GP model and the true objective function
+	- For large lambda parameter setting: https://arxiv.org/pdf/1604.00772.pdf 
+	- Ensure the surrogate model can be trusted: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.448.9371&rep=rep1&type=pdf
+	- Balance the surroagte model and the true objective function: https://arxiv.org/pdf/1204.2356.pdf
 
 ### 8. Alternative strategy 
 
