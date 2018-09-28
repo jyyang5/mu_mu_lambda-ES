@@ -21,11 +21,11 @@ f3 = @(x) (x'*x)^(3/2);  % cubic sphere
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % x0 for mml-ES
-f = f1;
+f = f2;
 n = 10;
 
-mu = 4;
-lambda = 15;
+mu = 2;
+lambda = 40;
 % x0 for mml-ES
 x0 = randn(n,mu);
 % x1 for (1+1)-ES
