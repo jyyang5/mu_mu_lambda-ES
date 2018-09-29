@@ -21,11 +21,12 @@ f3 = @(x) (x'*x)^(3/2);  % cubic sphere
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % x0 for mml-ES
-f = f3;
+f = @f5;
 n = 10;
 
-lambda = 10;
-mu = floor(0.27*lambda)+1;
+lambda = 20;
+mu = floor(0.26*lambda)+1;
+TRAINING_FACTOR = 3;
 % x0 for mml-ES
 x0 = randn(n,mu);
 % x1 for (1+1)-ES
@@ -37,7 +38,7 @@ NUM_OF_RUNS = 10;
 
 NUM_OF_ITERATIONS = 5000;
 % mml-ES with GP
-a = mml_sigmaStar_GP(f,x0,sigma_satr,lambda,NUM_OF_ITERATIONS);
+a = mml_sigmaStar_GP_TrainSize(f,x0,sigma_satr,lambda,NUM_OF_ITERATIONS,TRAINING_FACTOR);
 t = cell2mat(a(1));
 centroid = cell2mat(a(2));
 f_centroid = cell2mat(a(3));
@@ -48,8 +49,8 @@ convergence_rate = cell2mat(a(7));
 GP_error_array = cell2mat(a(12));
 GP_error_med = cell2mat(a(8));
 sigma_star_array = cell2mat(a(9));
-success_rate = cell2mat(a(10));
-fep_centroid = cell2mat(a(11));
+success_rate = cell2mat(a(11));
+fep_centroid_array = cell2mat(a(10));
 % % (1+1)-ES with GP
 % b = withGP(f1,x1,sigma0,NUM_OF_ITERATIONS);
 % t1 = cell2mat(b(1));
@@ -105,16 +106,43 @@ disp(GP_error_med);
 % disp(convergence_rate1);
 
 % T = t;
-figure(10);
+% figure(10);
+% hold on;
+% x_axis = 41:1:t-1;
+% plot(x_axis,fcentroid_array(41:t-1));
+% plot(x_axis,fep_centroid_array(41:t-1));
+% set(gca, 'YScale', 'log');
+% ylabel('logarithmic value','FontSize',15);%
+% xlabel('number of objective function calls','FontSize',15); 
+% legend({'f(x)','fep(x)'},'FontSize',10); %
+% hold off;
+
+
+
+
+a_range1 = 1:lambda+1:(lambda+1)*(TRAINING_SIZE/lambda)+1;
+a_range2 = (lambda+1)*(TRAINING_SIZE/lambda)+2:T;
+b_range1 = fcentroid_array(1:(TRAINING_SIZE/lambda)+1);
+b_range2 = fcentroid_array((TRAINING_SIZE/lambda)+2:t);
+
+
+t = t -1;
+T = T-1;
+figure(11);
 hold on;
-x_axis = 41:1:t-1;
-plot(x_axis,fcentroid_array(41:t-1));
-plot(x_axis,fepcentroid_array(41:t-1));
-set(gca, 'YScale', 'log');
+t_range1 = 1:lambda+1:(lambda+1)*TRAINING_FACTOR+1;
+t_range2 = (lambda+1)*TRAINING_FACTOR+2:T;
+f_x_range1 = fcentroid_array(1:TRAINING_FACTOR+1);
+f_x_range2 = fcentroid_array(TRAINING_FACTOR+2:t);
+plot([t_range1 t_range2], [f_x_range1 f_x_range2]);
+fep_x_med_range2 = fep_centroid_array(TRAINING_FACTOR+2:t);
+plot([ t_range2], [fep_x_med_range2]);
 ylabel('logarithmic value','FontSize',15);%
 xlabel('number of objective function calls','FontSize',15); 
 legend({'f(x)','fep(x)'},'FontSize',10); %
+set(gca, 'YScale', 'log')
 hold off;
+
 % 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Schwefel?s Problem 1.2

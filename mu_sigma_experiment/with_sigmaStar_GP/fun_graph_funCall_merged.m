@@ -19,7 +19,7 @@ function val = fun_graph_funCall_merged(f,name,NUM_OF_RUNS,sigma_star_array,lamb
 %Return:
 %    iteration number for [mmlWithGP,mmlNoGP,1+1WithGP,1+1NoGP]  
   
-TRAINING_SIZE = 40;
+%TRAINING_SIZE = 4*lambda;
 
 [index ,SIGMA_LENGTH] = size(sigma_star_array);
 [index ,LAMBDA_LENGTH] = size(lambda_array);

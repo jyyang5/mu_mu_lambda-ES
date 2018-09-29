@@ -10,8 +10,8 @@ f3 = @(x) (x'*x)^(3/2);
 
 NUM_OF_RUNS = 10;
 sigma_star_start = 1;
-sigma_star_end = 2;
-sigma_increment = 1;
+sigma_star_end = 5;
+sigma_increment = 2;
 lambda_start = 5;
 lambda_end = 35;
 lambda_increment = 10;

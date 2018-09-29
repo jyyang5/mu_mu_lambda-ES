@@ -24,7 +24,8 @@ function val = mml_sigmaStar_GP(f,x0,sigma_star,lambda,NUM_OF_ITERATIONS)
 % 8.median GP_error:    median of GP error
 % 9.GP_error_array:     f_centroid(t)-fep_centroid(t))/(f_centroid(t)-f_centroid(t-1)
 %                       effective SIZE = t-6
-% 10.success_rate       # of centroid superior to its predecessors
+% 10.fep_centroid
+% 11.success_rate       # of centroid superior to its predecessors
 
 % OPTIMAL:            global optima
 % example input:      f = @(x) x' * x
@@ -32,7 +33,7 @@ function val = mml_sigmaStar_GP(f,x0,sigma_star,lambda,NUM_OF_ITERATIONS)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 [n, mu] = size(x0);
 
-TRAINING_SIZE = 40;
+TRAINING_SIZE = lambda*4;
 xTrain = zeros(n,10000);                    % training data for GP size 4*mu
 fTrain = zeros(1,10000);
 
@@ -92,8 +93,7 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
             % offspring = mean(parent) + stepsize*z
             z(:,i) = randn(n,1);
             y(:,i) = centroid + sigma*z(:,i);
-            fyep(i) = gp(xTrain(:,T-40:T-1), fTrain(T-40:T-1), y(:,i), theta);
-            
+            fyep(i) = gp(xTrain(:,T-TRAINING_SIZE:T-1), fTrain(T-TRAINING_SIZE:T-1), y(:,i), theta);
         end
         % for simple calculation 
         fy = fyep;
@@ -108,7 +108,7 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     centroid = centroid + sigma*z;
     f_centroid = f(centroid);
     if(T>TRAINING_SIZE)
-        fep_centroid(t) = gp(xTrain(:,T-40:T-1), fTrain(T-40:T-1), y(:,i), theta);
+        fep_centroid(t) = gp(xTrain(:,T-TRAINING_SIZE:T-1), fTrain(T-TRAINING_SIZE:T-1), y(:,i), theta);
     end  
     xTrain(:, T) = centroid;                
     fTrain(T) = f_centroid;
