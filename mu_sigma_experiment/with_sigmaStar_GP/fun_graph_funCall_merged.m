@@ -73,7 +73,9 @@ t_med = median(t_array,3);
 t_max = max(t_array,[],3);
 t_min = min(t_array,[],3);
 f_x_med = median(f_x_matrix,3);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % graph
+
 figure(name);
 
 i = 1;
@@ -102,7 +104,25 @@ end
     xlabel('number of function evaluations','fontsize',15);
     ylabel('objective function value f(x)','fontsize',15);
     set(gca,'yscale','log','fontsize',15);
-    title('convergence plot','fontsize',20);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Plot title seperately and save fig
+if name == 6
+    title('linear sphere: convergence plot ','fontsize',20);
+    saveas(gcf,'linear_sphere.fig');
+elseif name == 7
+    title('quadratic sphere: convergence plot ','fontsize',20);
+    saveas(gcf,'quadratic_sphere.fig');
+elseif name == 8
+    title('cubic sphere: convergence plot ','fontsize',20);
+    saveas(gcf,'cubic_sphere.fig');
+elseif name == 9
+    title('schwefel function: convergence plot ','fontsize',20);
+    saveas(gcf,'schwefel_function.fig');
+elseif name == 10
+    title('quartic function: convergence plot ','fontsize',20);
+    saveas(gcf,'quartic_function.fig');
+end
     
 %     if name == 6
 %        save('T_linear_sphere.mat','sigma_star_start','lambda_increment','lambda_end','TRAINING_SIZE','t_max','t_med','f_x_med','name');
