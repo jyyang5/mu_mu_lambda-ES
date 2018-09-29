@@ -19,17 +19,17 @@ f3 = @(x) (x'*x)^(3/2);  % cubic sphere
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % initialization
 n = 10;
-NUM_OF_RUNS = 1;
+NUM_OF_RUNS = 10;
 sigma0 = 1;
 
-mu_start = 2;
+mu_start = 4;
 mu_end = 4;
-mu_increment = 2;
+mu_increment = 1;
 
-lambda_start = 10;
-lambda_end = 14;
+lambda_start = 15;
+lambda_end = 15;
 % lambda_end = 50;
-lambda_increment = 4;
+lambda_increment = 10;
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -67,15 +67,21 @@ T_array5 = zeros(mu_length,lambda_length,1);                                % qu
 i = 1;
 j = 1;
 for mu_temp = mu_start:mu_increment:mu_end
+    disp('mu_temp');
+    disp(mu_temp);
     for lambda_temp = lambda_start:lambda_increment:lambda_end
         x0 = randn(n,mu_temp);
         % (mu/mu,lambda)-ES with GP
         a = fun_multiRun_strategy(f1, mu_temp, lambda_temp, NUM_OF_RUNS, n, sigma0);
+        disp('a done');
         b = fun_multiRun_strategy(f2, mu_temp, lambda_temp, NUM_OF_RUNS, n, sigma0);
+        disp('b done');
         c = fun_multiRun_strategy(f3, mu_temp, lambda_temp, NUM_OF_RUNS, n, sigma0);
+        disp('c done');
         d = fun_multiRun_strategy(@f4, mu_temp, lambda_temp, NUM_OF_RUNS, n, sigma0);
+        disp('d done');
         e = fun_multiRun_strategy(@f5, mu_temp, lambda_temp, NUM_OF_RUNS, n, sigma0);
-        
+        disp('e done');
         T_array1(i,j) = cell2mat(a(1));
         T_array2(i,j) = cell2mat(b(1));
         T_array3(i,j) = cell2mat(c(1));
@@ -83,7 +89,7 @@ for mu_temp = mu_start:mu_increment:mu_end
         T_array5(i,j) = cell2mat(e(1));
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         % Print result
-        d = sprintf('(%d/%d,%d)-ES with GP, T_array[%d,%d]numOfFunCalls = %d',mu_temp,mu_temp,lambda_temp,i,j,T_array(i,j));
+        d = sprintf('(%d/%d,%d)-ES with GP, T_array[%d,%d]numOfFunCalls = %d %d %d %d %d',mu_temp,mu_temp,lambda_temp,i,j,T_array1(i,j),T_array2(i,j),T_array3(i,j),T_array4(i,j),T_array5(i,j));
         disp(d);
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         % Write data 
@@ -164,7 +170,7 @@ save('test_mu_lambda_data.mat','a','b','c','d','e','T_array1','T_array2','T_arra
     
     
 % Save data    
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%33444444445 
 %     if name == 6
 %        save('T_linear_sphere.mat','T_array','f_x_med','sigma_med','sigma_star_med','t','GP_error_med');
 %        saveas(gcf,'linear_sphere.fig');
