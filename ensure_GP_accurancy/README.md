@@ -35,6 +35,40 @@ E.G. Quadratic Sphere
 | mml-ES accurateGP| 52|1887| 
 
 
+##### 1.3 Solution 
+
+
+1. Try different mu and lambda using sigma* for step update. Only evaluate  
+
+mu = lambda/4
+
+convergence rate per function evaluations for differnet combination of lambda and sigma_star.
+
+lambda 3 different values (things flaten out)
+
+f(x) linear first iterations skip -> slope = convergence rate 
+
+**Dynamicly show lengend when plot in a loop**
+
+```
+legend('-DynamicLegend');
+for 
+	d = sprintf('%d',x);
+	plot(x,y,'DisplayName',d);hold on;
+	legend('-DynamicLegend');
+    legend('show');
+    drawnow;
+end
+hold off;
+```
+
+
+
+2. Fix n_init 
+
+Bound the number of iterations in 
+
+
 ### 2. Method II
 
 Paper Source:  https://arxiv.org/pdf/1204.2356.pdf
