@@ -52,32 +52,10 @@ f_x_med = zeros(SIGMA_LENGTH,LAMBDA_LENGTH,10000);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Open the file to write data 
-if name == 6
-    fileID = fopen('linear_sphere_funCalls.txt','a');
-    d = sprintf('The file is obtained by taking the median of %d runs of mml-ES with GP (dim(data)=%d)\n \n',NUM_OF_RUNS,n);
-    fprintf(fileID,d);
-    fprintf(fileID,'%10s %5s %4s %9s\n','(mu/mu,lambda)','\sigma^*','F','linear'); 
-elseif name == 7
-    fileID = fopen('quadratic_sphere_funCalls.txt','a');
-    d = sprintf('The file is obtained by taking the median of %d runs of mml-ES with GP (dim(data)=%d)\n \n',NUM_OF_RUNS,n);
-    fprintf(fileID,d);
-    fprintf(fileID,'%10s %5s %5s %6s\n','(mu/mu,lambda)','\sigma^*','F','quadratic'); 
-elseif name == 8
-    fileID = fopen('cubic_sphere_funCalls.txt','a');
-    d = sprintf('The file is obtained by taking the median of %d runs of mml-ES with GP (dim(data)=%d)\n \n',NUM_OF_RUNS,n);
-    fprintf(fileID,d);
-    fprintf(fileID,'%10s %5s %5s %6s\n','(mu/mu,lambda)','\sigma^*','F','cubic'); 
-elseif name == 9
-    fileID = fopen('Schwefel_funCalls.txt','a');
-    d = sprintf('The file is obtained by taking the median of %d runs of mml-ES with GP (dim(data)=%d)\n \n',NUM_OF_RUNS,n);
-    fprintf(fileID,d);
-    fprintf(fileID,'%10s %5s %5s %6s\n','(mu/mu,lambda)','\sigma^*','F','Schwefel'); 
-elseif name == 10
-    fileID = fopen('quartic_funCalls.txt','a');
-    d = sprintf('The file is obtained by taking the median of %d runs of mml-ES with GP (dim(data)=%d)\n \n',NUM_OF_RUNS,n);
-    fprintf(fileID,d);
-    fprintf(fileID,'%10s %5s %5s %6s\n','(mu/mu,lambda)','\sigma^*','F','quartic'); 
-end
+fileID = fopen('linear_sphere_tune.txt','a');
+d = sprintf('The file is obtained by taking the median of %d runs of mml-ES with GP (dim(data)=%d)\n \n',NUM_OF_RUNS,n);
+fprintf(fileID,d);
+fprintf(fileID,'%5s %5s %5s %5s %5s %12s %10s %12s %11s\n','\mu','\sigma','\sigma^*','TRAIN_FACTOR F','linear','quadratic','cubic', 'Schwefel', 'quartic');
 d = sprintf('------------------------------------------------------------------------\n');
 fprintf(fileID,d);
 
@@ -128,9 +106,6 @@ for sigma_star_temp = sigma_star_start:sigma_increment:sigma_star_end
         % add legend    
         d =sprintf('(%d/%d,%d) %d,%d',mu,mu,lambda_temp,sigma_star_temp,TRAINING_FACTOR);
         plot([t_range1 t_range2], [f_x_med_range1' f_x_med_range2'],'DisplayName',d);hold on;
-        % write file
-        d1 =sprintf('(%d/%d,%d)  \t  %d  \t  %d \t %d\n',mu,mu,lambda_temp,sigma_star_temp,TRAINING_FACTOR,T_med(i,j));
-        fprintf(fileID,d1); 
         j = j+1;
     end
     i = i+1;
@@ -144,10 +119,7 @@ end
     xlabel('number of function evaluations','fontsize',15);
     ylabel('objective function value f(x)','fontsize',15);
     set(gca,'yscale','log','fontsize',15);
-    
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Close the file to put data
-fclose(fileID);
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Plot title seperately and save fig
 if name == 6
