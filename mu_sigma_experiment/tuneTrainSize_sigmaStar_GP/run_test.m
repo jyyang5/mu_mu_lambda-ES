@@ -73,13 +73,29 @@ disp(T);
 disp('# GP error');
 disp(GP_error_med);
 
+% 
+% t = t -1;
+% T = T-1;
+% figure(11);
+% hold on;
+% t_range1 = 1:lambda+1:(lambda+1)*TRAINING_FACTOR+1;
+% t_range2 = (lambda+1)*TRAINING_FACTOR+2:T;
+% f_x_range1 = fcentroid_array(1:TRAINING_FACTOR+1);
+% f_x_range2 = fcentroid_array(TRAINING_FACTOR+2:t);
+% plot([t_range1 t_range2], [f_x_range1 f_x_range2]);
+% fep_x_med_range2 = fep_centroid_array(TRAINING_FACTOR+2:t);
+% plot( t_range2, fep_x_med_range2);
+% ylabel('logarithmic value','FontSize',15);%
+% xlabel('number of objective function calls','FontSize',15); 
+% legend({'f(x)','fep(x)'},'FontSize',10); %
+% set(gca, 'YScale', 'log')
+% hold off;
 
-t = t -1;
-T = T-1;
+% No T
 figure(11);
 hold on;
 t_range1 = 1:lambda+1:(lambda+1)*TRAINING_FACTOR+1;
-t_range2 = (lambda+1)*TRAINING_FACTOR+2:T;
+t_range2 = (lambda+1)*TRAINING_FACTOR+2:t+lambda*TRAINING_FACTOR;
 f_x_range1 = fcentroid_array(1:TRAINING_FACTOR+1);
 f_x_range2 = fcentroid_array(TRAINING_FACTOR+2:t);
 plot([t_range1 t_range2], [f_x_range1 f_x_range2]);
