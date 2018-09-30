@@ -8,12 +8,12 @@ f2 = @(x) (x'*x);
 f3 = @(x) (x'*x)^(3/2);
 
 
-NUM_OF_RUNS = 2;
+NUM_OF_RUNS = 10;
 sigma_star_start = 1;
 sigma_star_end = 2;
 sigma_increment = 1;
 lambda_start = 10;
-lambda_end = 30;
+lambda_end = 50;
 lambda_increment = 20;
 sigma_star_array = sigma_star_start:sigma_increment:sigma_star_end;
 lambda_array = lambda_start:lambda_increment:lambda_end;
