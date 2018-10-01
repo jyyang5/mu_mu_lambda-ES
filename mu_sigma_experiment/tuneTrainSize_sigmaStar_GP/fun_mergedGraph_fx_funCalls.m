@@ -1,13 +1,16 @@
+% Refactored simplify sigma_star and lambda array input
 % plot objective function value over funCalls
 % For a combination of sigma* and lambda
 % 
-% save objective function calls data & plot into files
+% save objective function calls data & convergence plot
 %
 % difficulty: 
 %            first several iterations lambda objective function calls
 %            add one legned when doing a plot
 %            use a 4-dim matrix to save the data for different lambda and
 %            plot replaced in the first loop
+%            enable adding new plot using different TRAINING_FACTOR to
+%            original
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function val = fun_mergedGraph_fx_funCalls(f,name,NUM_OF_RUNS,sigma_star_array,lambda_array,TRAINING_FACTOR)
 %Input:
@@ -16,6 +19,7 @@ function val = fun_mergedGraph_fx_funCalls(f,name,NUM_OF_RUNS,sigma_star_array,l
 %    NUM_OF_RUNS        # of runs to average
 %    sigma_star_array   an array of sigma_star's
 %    lambda_array       an array of lambda's
+%    TRAINING_FACTOR    number of iterations needed to build the GP model 
 %Return:
 %    iteration number for [mmlWithGP,mmlNoGP,1+1WithGP,1+1NoGP]  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -27,21 +31,6 @@ n = 10;
 
 [index ,SIGMA_LENGTH] = size(sigma_star_array);
 [index ,LAMBDA_LENGTH] = size(lambda_array);
-sigma_star_start = sigma_star_array(1);
-sigma_star_end = sigma_star_array(SIGMA_LENGTH);
-% Boundary for start=end
-if SIGMA_LENGTH == 1
-    sigma_increment = 1;
-else 
-    sigma_increment = (sigma_star_end-sigma_star_start)/(SIGMA_LENGTH-1);
-end
-lambda_start = lambda_array(1);
-lambda_end = lambda_array(LAMBDA_LENGTH);
-if LAMBDA_LENGTH == 1
-    lambda_increment = 1;
-else
-    lambda_increment = (lambda_end - lambda_start)/(LAMBDA_LENGTH-1);
-end
 
 t_array = zeros(SIGMA_LENGTH, LAMBDA_LENGTH,NUM_OF_RUNS,1);                 % # of iterations 
 T_array = zeros(SIGMA_LENGTH, LAMBDA_LENGTH,NUM_OF_RUNS,1);                 % # of objective function calls
@@ -83,10 +72,10 @@ fprintf(fileID,d);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Compute statics and save
-i = 1;
-for sigma_star_temp = sigma_star_start:sigma_increment:sigma_star_end
-    j = 1;
-    for lambda_temp = lambda_start:lambda_increment:lambda_end
+for i = 1:1:SIGMA_LENGTH
+    sigma_star_temp = sigma_star_array(i);
+    for j = 1:1:LAMBDA_LENGTH
+        lambda_temp = lambda_array(j);
         for k = 1:NUM_OF_RUNS
             mu = ceil(0.27*lambda_temp);
             x0 = randn(n,mu);
@@ -96,9 +85,7 @@ for sigma_star_temp = sigma_star_start:sigma_increment:sigma_star_end
             T_array(i,j,k) = cell2mat(a(5));
             f_x_matrix(i,j,k,:) = cell2mat(a(6));
         end
-        j = j+1;
     end
-    i = i+1;
 end
 
 T_med = median(T_array,3);
@@ -111,13 +98,14 @@ f_x_med = median(f_x_matrix,3);
 
 figure(name);
 legend('-DynamicLegend'); 
-i = 1;
 hold on;
-for sigma_star_temp = sigma_star_start:sigma_increment:sigma_star_end
-    j = 1;
+for i = 1:1:SIGMA_LENGTH
+    sigma_star_temp = sigma_star_array(i);
+    
     figure(name);
     hold on;
-    for lambda_temp = lambda_start:lambda_increment:lambda_end
+    for j = 1:1:LAMBDA_LENGTH
+        lambda_temp = lambda_array(j);
         mu = ceil(0.27*lambda_temp);
         % plot first ceil(TRAINING_SIZE/lambda_temp) iterations seperately
         t_range1 = 1:lambda_temp:(lambda_temp+1)*TRAINING_FACTOR+1;
@@ -131,9 +119,7 @@ for sigma_star_temp = sigma_star_start:sigma_increment:sigma_star_end
         % write file
         d1 =sprintf('(%d/%d,%d)  \t  %d  \t  %d \t %d\n',mu,mu,lambda_temp,sigma_star_temp,TRAINING_FACTOR,T_med(i,j));
         fprintf(fileID,d1); 
-        j = j+1;
     end
-    i = i+1;
 end
     legend('-DynamicLegend'); 
     legend('show');
@@ -166,24 +152,6 @@ elseif name == 10
     title('quartic function: convergence plot ','fontsize',20);
     saveas(gcf,'quartic_function.fig');
 end
-    
-%     if name == 6
-%        save('T_linear_sphere.mat','sigma_star_start','lambda_increment','lambda_end','TRAINING_SIZE','t_max','t_med','f_x_med','name');
-%        saveas(gcf,'linear_sphere.fig');
-%     elseif name == 7
-%        save('T_quadratic_sphere.mat','sigma_star_start','lambda_increment','lambda_end','TRAINING_SIZE','t_max','t_med','f_x_med','name');
-%        saveas(gcf,'quadratic_sphere.fig');
-%     elseif name == 8
-%        save('T_cubic_sphere.mat','sigma_star_start','lambda_increment','lambda_end','TRAINING_SIZE','t_max','t_med','f_x_med','name');
-%        saveas(gcf,'cubic_sphere.fig');
-%     elseif name == 9
-%        save('T_schwefel_function.mat','sigma_star_start','lambda_increment','lambda_end','TRAINING_SIZE','t_max','t_med','f_x_med','name');
-%        saveas(gcf,'schwefel_function.fig');
-%     elseif name == 10
-%        save('T_quartic_function.mat','sigma_star_start','lambda_increment','lambda_end','TRAINING_SIZE','t_max','t_med','f_x_med','name');
-%        saveas(gcf,'quartic_function.fig');
-%     end
-    
     
     val = T_med;
 
