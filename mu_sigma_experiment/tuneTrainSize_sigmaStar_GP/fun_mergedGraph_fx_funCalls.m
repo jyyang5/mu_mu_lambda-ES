@@ -25,7 +25,7 @@ function val = fun_mergedGraph_fx_funCalls(f,name,NUM_OF_RUNS,sigma_star_array,l
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-NUM_OF_ITERATIONS = 10000;
+NUM_OF_ITERATIONS = 1000;
 n = 10;
 
 

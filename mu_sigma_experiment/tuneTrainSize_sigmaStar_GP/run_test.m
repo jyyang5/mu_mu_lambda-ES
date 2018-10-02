@@ -21,10 +21,10 @@ f3 = @(x) (x'*x)^(3/2);  % cubic sphere
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % x0 for mml-ES
-f = f1;
+f = @f5;
 n = 10;
 
-lambda = 40;
+lambda = 30;
 mu = floor(0.2*lambda)+1;
 TRAINING_FACTOR = 3;
 % x0 for mml-ES
