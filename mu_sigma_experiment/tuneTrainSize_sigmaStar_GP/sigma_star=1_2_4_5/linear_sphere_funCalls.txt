@@ -2,10 +2,6 @@ The file is obtained by taking the median of 10 runs of mml-ES with GP (dim(data
  
 (mu/mu,lambda) \sigma^*    F    linear
 ------------------------------------------------------------------------
-The file is obtained by taking the median of 10 runs of mml-ES with GP (dim(data)=10)
- 
-(mu/mu,lambda) \sigma^*    F    linear
-------------------------------------------------------------------------
 (3/3,10)  	  1  	  3 	 296
 (9/9,30)  	  1  	  3 	 2.975000e+02
 (14/14,50)  	  1  	  3 	 338
