@@ -186,6 +186,13 @@ Analyzed
 | (19/19             | 70     | 2          | 4 | 436                           | 350       | 404   | 1.15     | 0.61      | 0.49  | 2.26  |
 | (19/19             | 70     | 4          | 4 | 559                           | 355       | infty | 0.90     | 0.60      | 0.00  | 1.50  |
 
+- Analysis 
+
+The sbest case speed up compared with baseline are 1.7, 1.3 and 1.1 for linear, quadratic and cubic sphere respectively for (3/3,10)-ES with TRAINING_FACTOR F=3. But I suspect that the performance may degrade as more complicated test problem is introduced.   
+
+Although we should take the true objective function calls into account when building the GP model. But if the evaluation metric for speed up is defined as the number of iterations after the GP is made i.e. the slope of the convergence plot after the GP model is built then those with larger GP training size get more advantage. Examples are (9/9,30)-ES F=3 obtaining 2.24, 1.49, 1.37 and (14/14,50)-ES F=3 2.46, 1.6, 1.41 for linear, quadratic and cubic sphere while (3/3,10)-ES with F=4 1.75, 1.24, 1.01(similar result for (3/3,10)-ES with F=3).
+
+
 
 
 ### 3. Training size for GP model with CSA (folder tuneTrainSize_CSA_GP)
