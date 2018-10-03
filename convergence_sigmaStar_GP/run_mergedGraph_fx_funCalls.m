@@ -23,20 +23,20 @@ lambda_array = [5 10 30 50 70];
 % sigma_star_array = [0.1 0.2 0.5 1 2 4 5 10];
 
 
-disp("===========================================================");
-disp("linear sphere");
-disp("---------------");
-%graph_fun(f1,1);
-TRAINING_FACTOR = 3;
-T_f11=fun_mergedGraph_fx_funCalls(f1,6,NUM_OF_RUNS,sigma_star_array,lambda_array,TRAINING_FACTOR);
-% TRAINING_FACTOR = 4;
-% T_f12=fun_mergedGraph_fx_funCalls(f1,6,NUM_OF_RUNS,sigma_star_array,lambda_array,TRAINING_FACTOR);
-% 
-disp("===========================================================");
-disp("quadratic sphere");
-disp("---------------");
-TRAINING_FACTOR = 3;
-T_f21=fun_mergedGraph_fx_funCalls(f2,7,NUM_OF_RUNS,sigma_star_array,lambda_array,TRAINING_FACTOR);
+% disp("===========================================================");
+% disp("linear sphere");
+% disp("---------------");
+% %graph_fun(f1,1);
+% TRAINING_FACTOR = 3;
+% T_f11=fun_mergedGraph_fx_funCalls(f1,6,NUM_OF_RUNS,sigma_star_array,lambda_array,TRAINING_FACTOR);
+% % TRAINING_FACTOR = 4;
+% % T_f12=fun_mergedGraph_fx_funCalls(f1,6,NUM_OF_RUNS,sigma_star_array,lambda_array,TRAINING_FACTOR);
+% % 
+% disp("===========================================================");
+% disp("quadratic sphere");
+% disp("---------------");
+% TRAINING_FACTOR = 3;
+% T_f21=fun_mergedGraph_fx_funCalls(f2,7,NUM_OF_RUNS,sigma_star_array,lambda_array,TRAINING_FACTOR);
 % TRAINING_FACTOR = 4;
 % T_f22=fun_mergedGraph_fx_funCalls(f2,7,NUM_OF_RUNS,sigma_star_array,lambda_array,TRAINING_FACTOR);
 
