@@ -24,8 +24,8 @@ f3 = @(x) (x'*x)^(3/2);  % cubic sphere
 f = f1;
 n = 10;
 
-ADD_TRAIN_POINTS= 2;
-lambda = 20;
+ADD_TRAIN_POINTS= 0;
+lambda = 30;
 mu = floor(lambda/4);
 % x0 for mml-ES
 %x0 = randn(n,mu);
@@ -38,7 +38,7 @@ NUM_OF_RUNS = 10;
 
 NUM_OF_ITERATIONS = 5000;
 % mml-ES with GP
-a = mml_sigmaStarGP_centroid_addTrain(f,x0,sigma_satr,lambda,NUM_OF_ITERATIONS,ADD_TRAIN_POINTS);
+a = mml_sigmaStarGP_bestOfMu(f,x0,sigma_satr,lambda,NUM_OF_ITERATIONS,ADD_TRAIN_POINTS);
 t = cell2mat(a(1));
 centroid = cell2mat(a(2));
 f_centroid = cell2mat(a(3));
