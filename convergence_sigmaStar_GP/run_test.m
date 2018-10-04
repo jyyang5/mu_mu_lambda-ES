@@ -21,7 +21,7 @@ f3 = @(x) (x'*x)^(3/2);  % cubic sphere
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % x0 for mml-ES
-f = f2;
+f = f1;
 n = 10;
 
 lambda = 20;
@@ -38,7 +38,7 @@ NUM_OF_RUNS = 10;
 
 NUM_OF_ITERATIONS = 5000;
 % mml-ES with GP
-a = mml_sigmaStarGP_bestSoFar(f,x0,sigma_satr,lambda,NUM_OF_ITERATIONS,TRAINING_FACTOR);
+a = mml_sigmaStarGP_bestOfMu(f,x0,sigma_satr,lambda,NUM_OF_ITERATIONS,TRAINING_FACTOR);
 t = cell2mat(a(1));
 centroid = cell2mat(a(2));
 f_centroid = cell2mat(a(3));
