@@ -38,7 +38,7 @@ NUM_OF_RUNS = 10;
 
 NUM_OF_ITERATIONS = 5000;
 % mml-ES with GP
-a = mml_sigmaStarGP_bestOfMu(f,x0,sigma_satr,lambda,NUM_OF_ITERATIONS,TRAINING_FACTOR);
+a = mml_sigmaStar_GP_centroidBest(f,x0,sigma_satr,lambda,NUM_OF_ITERATIONS,TRAINING_FACTOR);
 t = cell2mat(a(1));
 centroid = cell2mat(a(2));
 f_centroid = cell2mat(a(3));
@@ -64,6 +64,8 @@ fep_centroid_array = cell2mat(a(10));
 
 
 disp('convergence_rate');
+disp(success_rate);
+disp('success_rate');
 disp(convergence_rate)
 % disp(GP_error);
 % disp(GP_error1);

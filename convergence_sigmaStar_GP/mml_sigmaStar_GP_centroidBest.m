@@ -5,7 +5,7 @@
 % function evaluation for lambda offsprings with GP estimate 
 % In each iteration only the centroid is evaluated
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function val = mml_sigmaStar_GP_bestAsParent(f,x0,sigma_star,lambda,NUM_OF_ITERATIONS,TRAINING_FACTOR)
+function val = mml_sigmaStar_GP_centroidBest(f,x0,sigma_star,lambda,NUM_OF_ITERATIONS,TRAINING_FACTOR)
 % initialization
 % f:                  objective function value
 % x0:                 mu initial point size [n, mu]
@@ -111,10 +111,14 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     % sort fyep (smaller first)
     [index, sorted_order] = sort(fy);
     z = z(:,sorted_order);
-    % choose the best mu candidate solutions as parent
-    % z = mean(z(:,1:mu),2);
-    % Choose best as parent for next iteration 
-    z = z(:,1);                         
+    % parent as centroid and best every other iteration
+    if(T < TRAINING_SIZE || rem(T,2)==1)
+        % choose the best mu candidate solutions as parent
+        z = mean(z(:,1:mu),2);      
+    else
+        % Choose best as parent for next iteration 
+        z = z(:,1);                         
+    end
     centroid = centroid + sigma*z;
     f_centroid = f(centroid);
     if(T>TRAINING_SIZE)
@@ -132,8 +136,8 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     sigma_array(t) = sigma;
     t = t + 1;
 %     disp(t);
-     disp(T);
-     disp(f_centroid);
+%      disp(T);
+%      disp(f_centroid);
     % update normalized step size array 
     
 end
@@ -142,10 +146,14 @@ end
     % convergence rate
     convergence_rate = -n/2*sum(log(fcentroid_array(2:t)./fcentroid_array(1:t-1)))/(t-1);
     % relative error for GP |f(y)-fep(y)|/ |f(y)-f(x)|
-    GP_error(1:t-5) = abs(fep_centroid(6:t)-fcentroid_array(6:t))./abs(fcentroid_array(5:t-1)-fcentroid_array(6:t));
-    success_rate = sum(fcentroid_array(4:t-1)>fcentroid_array(5:t))/(t-3);
+    temp = ceil(TRAINING_SIZE/lambda);
+    GP_error(1:t-temp) = abs(fep_centroid(temp+1:t)-fcentroid_array(temp+1:t))./abs(fcentroid_array(temp:t-1)-fcentroid_array(temp+1:t));
+    GP_temp = GP_error(1:t-temp);
+    GP_temp = GP_temp(~isnan(GP_temp));
+    GP_temp = GP_temp(~isinf(GP_temp));
+    success_rate = sum(fcentroid_array(temp:t-1)>fcentroid_array(temp+1:t))/(t-temp);
 
-    val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,median(GP_error(1:t-5)),1,fep_centroid, success_rate,GP_error};
+    val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,median(GP_temp),1,fep_centroid, success_rate,GP_error};
 %val = {t,centroid,f_centroid,sigma_array, 1, 1,convergence_rate};
 
 end
