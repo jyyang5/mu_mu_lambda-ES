@@ -24,11 +24,11 @@ f3 = @(x) (x'*x)^(3/2);  % cubic sphere
 f = f1;
 n = 10;
 
+ADD_TRAIN_POINTS= 2;
 lambda = 20;
 mu = floor(lambda/4);
-TRAINING_FACTOR = 2;
 % x0 for mml-ES
-x0 = randn(n,mu);
+%x0 = randn(n,mu);
 % x1 for (1+1)-ES
 x1 = randn(n,1);
 
@@ -38,7 +38,7 @@ NUM_OF_RUNS = 10;
 
 NUM_OF_ITERATIONS = 5000;
 % mml-ES with GP
-a = mml_sigmaStar_GP_centroidBest(f,x0,sigma_satr,lambda,NUM_OF_ITERATIONS,TRAINING_FACTOR);
+a = mml_sigmaStarGP_centroid_addTrain(f,x0,sigma_satr,lambda,NUM_OF_ITERATIONS,ADD_TRAIN_POINTS);
 t = cell2mat(a(1));
 centroid = cell2mat(a(2));
 f_centroid = cell2mat(a(3));
@@ -94,15 +94,16 @@ disp(GP_error_med);
 % set(gca, 'YScale', 'log')
 % hold off;
 
-% No T
+% [add ADD_TRAIN_POINTS points to training set] convergence plot over number of function evaluations 
+temp = 40/lambda;
 figure(11);
 hold on;
-t_range1 = 1:lambda+1:(lambda+1)*TRAINING_FACTOR+1;
-t_range2 = (lambda+1)*TRAINING_FACTOR+2:t+lambda*TRAINING_FACTOR;
-f_x_range1 = fcentroid_array(1:TRAINING_FACTOR+1);
-f_x_range2 = fcentroid_array(TRAINING_FACTOR+2:t);
+t_range1 = 1:lambda+1:(lambda+1)*temp+1;
+t_range2 = (lambda+1)*temp+1+(1+ADD_TRAIN_POINTS):(1+ADD_TRAIN_POINTS):(lambda+1)*temp+1+(1+ADD_TRAIN_POINTS)*(t-temp-1);
+f_x_range1 = fcentroid_array(1:temp+1);
+f_x_range2 = fcentroid_array(temp+2:t);
 plot([t_range1 t_range2], [f_x_range1 f_x_range2]);
-fep_x_med_range2 = fep_centroid_array(TRAINING_FACTOR+2:t);
+fep_x_med_range2 = fep_centroid_array(temp+2:t);
 plot( t_range2, fep_x_med_range2);
 ylabel('logarithmic value','FontSize',15);%
 xlabel('number of objective function calls','FontSize',15); 
@@ -110,6 +111,20 @@ legend({'f(x)','fep(x)'},'FontSize',10); %
 set(gca, 'YScale', 'log')
 hold off;
 
+% % convergence plot over number of function evaluations
+% hold on;
+% t_range1 = 1:lambda+1:(lambda+1)*TRAINING_FACTOR+1;
+% t_range2 = (lambda+1)*TRAINING_FACTOR+2:t+lambda*TRAINING_FACTOR;
+% f_x_range1 = fcentroid_array(1:TRAINING_FACTOR+1);
+% f_x_range2 = fcentroid_array(TRAINING_FACTOR+2:t);
+% plot([t_range1 t_range2], [f_x_range1 f_x_range2]);
+% fep_x_med_range2 = fep_centroid_array(TRAINING_FACTOR+2:t);
+% plot( t_range2, fep_x_med_range2);
+% ylabel('logarithmic value','FontSize',15);%
+% xlabel('number of objective function calls','FontSize',15); 
+% legend({'f(x)','fep(x)'},'FontSize',10); %
+% set(gca, 'YScale', 'log')
+% hold off;
 
 % disp(t1);
 % 

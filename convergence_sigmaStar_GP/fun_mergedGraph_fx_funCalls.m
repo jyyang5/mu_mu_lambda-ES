@@ -24,7 +24,7 @@ function val = fun_mergedGraph_fx_funCalls(f,name,NUM_OF_RUNS,sigma_star_array,l
 %    iteration number for [mmlWithGP,mmlNoGP,1+1WithGP,1+1NoGP]  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+TRAINING_FACTOR = 1;
 NUM_OF_ITERATIONS = 1500;
 n = 10;
 
@@ -86,7 +86,7 @@ for i = 1:1:LAMBDA_LENGTH
             mu = floor(lambda_temp/4);
             x0 = randn(n,mu);
             % (mu/mu,lambda)-ES with GP
-            a = mml_sigmaStar_GP_centroidBest(f,x0,sigma_star_temp,lambda_temp,NUM_OF_ITERATIONS,TRAINING_FACTOR);
+            a = mml_sigmaStarGP_centroid_addTrain(f,x0,sigma_star_temp,lambda_temp,NUM_OF_ITERATIONS,TRAINING_FACTOR);
             c_array(i,j,k) = cell2mat(a(7));                                % convergence rate
             s_array(i,j,k) = cell2mat(a(11));                               % success rate
             

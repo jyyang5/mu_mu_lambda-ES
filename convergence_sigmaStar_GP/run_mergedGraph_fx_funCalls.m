@@ -18,7 +18,7 @@ sigma_star_start = 0.2;
 sigma_star_end = 12.2;
 sigma_increment = 0.4;
 sigma_star_array = sigma_star_start:sigma_increment:sigma_star_end;
-lambda_array = [5 10 30 50 70];
+lambda_array = [5 10 30 50];
 % NUM_OF_RUNS = 2;
 % sigma_star_array = [0.1 0.2 0.5 1 2 4 5 10];
 

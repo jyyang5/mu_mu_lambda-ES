@@ -1,10 +1,11 @@
+% Add another ADD_TRAIN_POINTS points to the training set per iteration
 % TRAING_SIZE = 40 fixed
 % Add TRAINING_FACTOR to tune training size
 % Use normalized step size for step size update
 % function evaluation for lambda offsprings with GP estimate 
 % In each iteration only the centroid is evaluated
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function val = mml_sigmaStarGP_centroid(f,x0,sigma_star,lambda,NUM_OF_ITERATIONS,TRAINING_FACTOR)
+function val = mml_sigmaStarGP_centroid_addTrain(f,x0,sigma_star,lambda,NUM_OF_ITERATIONS,ADD_TRAIN_POINTS)
 % initialization
 % f:                  objective function value
 % x0:                 mu initial point size [n, mu]
@@ -110,10 +111,19 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     % sort fyep (smaller first)
     [index, sorted_order] = sort(fy);
     z = z(:,sorted_order);
+    if(T >= TRAINING_SIZE && ADD_TRAIN_POINTS~=0)
+        % add ADD_TRAIN_POINTS best points to training set
+        for i=1:1:ADD_TRAIN_POINTS
+            xTrain(:, T) = centroid + sigma*z(:,i);
+            fTrain(T) = f(centroid + sigma*z(:,i));
+            T = T + 1;
+        end
+    end
     % choose the best mu candidate solutions as parent
     z = mean(z(:,1:mu),2);
     centroid = centroid + sigma*z;
     f_centroid = f(centroid);
+    
     if(T>TRAINING_SIZE)
         fep_centroid(t) = gp(xTrain(:,T-TRAINING_SIZE:T-1), fTrain(T-TRAINING_SIZE:T-1), y(:,i), theta);
     end  
@@ -136,7 +146,7 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
 end
     t = t-1;
     T = T-1;
-    % # of iterations to build GP model
+     % # of iterations to build GP model
     temp = ceil(TRAINING_SIZE/lambda);
     % convergence rate (overall)
     convergence_rate = -n/2*sum(log(fcentroid_array(2:t)./fcentroid_array(1:t-1)))/(t-1);
@@ -147,12 +157,9 @@ end
     GP_temp = GP_temp(~isinf(GP_temp));
     % success rate (# of offspring better than parent)/(# total iteartions) 
     success_rate = sum(fcentroid_array(temp:t-1)>fcentroid_array(temp+1:t))/(t-temp);
-
     val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,median(GP_temp),1,fep_centroid, success_rate,GP_error};
-%val = {t,centroid,f_centroid,sigma_array, 1, 1,convergence_rate};
 
 end
-
 
 
 function fTest = gp(xTrain, fTrain, xTest, theta)

@@ -74,6 +74,7 @@ length_scale_factor = 8;
 while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     
     if(f_centroid > 10)
+        temp = ceil(TRAINING_SIZE/lambda);
         val = {9999999,mean(x0, 2),99999,sigma_array, 9999999, fcentroid_array,0,median(GP_error(1:t-5)),1,fep_centroid, 0,GP_error}; 
         return 
     end
@@ -143,19 +144,19 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
 end
     t = t-1;
     T = T-1;
-    % convergence rate
+    % # of iterations to build GP model
+    temp = ceil(TRAINING_SIZE/lambda);
+    % convergence rate (overall)
     convergence_rate = -n/2*sum(log(fcentroid_array(2:t)./fcentroid_array(1:t-1)))/(t-1);
     % relative error for GP |f(y)-fep(y)|/ |f(y)-f(x)|
-    temp = ceil(TRAINING_SIZE/lambda);
     GP_error(1:t-temp) = abs(fep_centroid(temp+1:t)-fcentroid_array(temp+1:t))./abs(fcentroid_array(temp:t-1)-fcentroid_array(temp+1:t));
     GP_temp = GP_error(1:t-temp);
     GP_temp = GP_temp(~isnan(GP_temp));
     GP_temp = GP_temp(~isinf(GP_temp));
+    % success rate (# of offspring better than parent)/(# total iteartions) 
     success_rate = sum(fcentroid_array(temp:t-1)>fcentroid_array(temp+1:t))/(t-temp);
 
     val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,median(GP_temp),1,fep_centroid, success_rate,GP_error};
-%val = {t,centroid,f_centroid,sigma_array, 1, 1,convergence_rate};
-
 end
 
 
