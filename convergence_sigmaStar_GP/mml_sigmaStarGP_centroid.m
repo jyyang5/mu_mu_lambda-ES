@@ -148,7 +148,7 @@ end
     % success rate (# of offspring better than parent)/(# total iteartions) 
     success_rate = sum(fcentroid_array(temp:t-1)>fcentroid_array(temp+1:t))/(t-temp);
 
-    val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,median(GP_temp),1,fep_centroid, success_rate,GP_error};
+    val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate/(TRAINING_FACTOR+1),median(GP_temp),1,fep_centroid, success_rate,GP_error};
 %val = {t,centroid,f_centroid,sigma_array, 1, 1,convergence_rate};
 
 end

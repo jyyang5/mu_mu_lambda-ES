@@ -16,10 +16,48 @@ Evalauate the best centroid of the best mu offsprings ranked by GP so far as par
 
 - mml_sigmaStarGP_centroid_addTrain
 Evalauate the centroid of the best mu offsprings ranked by GP as parent, add ADD_TRAIN_POINTS points evaluated by f(x) to GP training set in each iteration. 
+**Then convegence should be divided by number of objective function call per iteration**
+
+---
+
+### Conclusion 
+
+Taking the centroid is the best.
+
+
+
+### What to do next
+
+- Adaptation of TRAINING_SIZE should scale with dimension n.
+
+- Build a quadratic model for the centroid. 
+
+- Adapt the training set according to the model accurancy E.G. (f(x) -fep(x))/std(y) 
+
+
+## Optimize centroid quadratic model
+
+- Use GP estimate to evaluate the points (positive and negative directions) to fit the quadratic model
+	- The convergence rate is relative small compared to just take the centroid as parent for offspring generation.
+	- Very sensitive to GP estimation. Cases with a large lambda (lambda>40), the strategy is likely to diverge given a completely wrong lowerest point. Possibility would be:
+		1. The GP estimate for the two points sampled using positive and negative directions are completely inaccurate.
+		2. Large lambda may give offsprings that is beyond the trust region of GP model. So that the model cannot be trusted anymore.  
+	
+- Use true objective function to evaluate the points (positive and negative directions) to fit the quadratic model
+	- The Gaussian noise is even larger then the one using GP estimates for fitting the quadratic model. 
+    - More interestingly, even if the centroid is optimized by fitting a quadratic model with true objective function evaluation, the strategy converges with a large lambda(E.G. lambda > 25).
 
 
 
 ---
+
+
+- Add new points to training set 
+	
+	GP relative error does not decrease -> larger convergence rate
+	Centroid more invariant to sigma??? large range of sigmaStar. 
+
+
 
 ## Trade-off surrogate (GP) model accurancy and objective function call saving
 

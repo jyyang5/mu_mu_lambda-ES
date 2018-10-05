@@ -1,11 +1,11 @@
-% choose the best offspings so far as parent after the GP training set is built 
+% Optimize the centroid by fit a quadratic model
 % TRAING_SIZE = 40 fixed
 % Add TRAINING_FACTOR to tune training size
 % Use normalized step size for step size update
 % function evaluation for lambda offsprings with GP estimate 
 % In each iteration only the centroid is evaluated
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function val = mml_sigmaStarGP_bestSoFar(f,x0,sigma_star,lambda,NUM_OF_ITERATIONS,TRAINING_FACTOR)
+function val = mml_sigmaStarGP_centroidQuadratic(f,x0,sigma_star,lambda,NUM_OF_ITERATIONS,TRAINING_FACTOR)
 % initialization
 % f:                  objective function value
 % x0:                 mu initial point size [n, mu]
@@ -82,7 +82,7 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     theta = sigma*length_scale_factor*sqrt(n);          % length scale for GP
     
     % (mu/mu, lambda)-ES 4 times to obtain GP traning set
-    if T < TRAINING_SIZE
+    if (T < TRAINING_SIZE)
         % offspring genneration 
         for i = 1:1:lambda
             % offspring = mean(parent) + stepsize*z
@@ -111,25 +111,43 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     % sort fyep (smaller first)
     [index, sorted_order] = sort(fy);
     z = z(:,sorted_order);
+    % choose the best mu candidate solutions as parent
+    z = mean(z(:,1:mu),2);
+    % optimiza using a quadratic model
     if(T < TRAINING_SIZE)
-        % choose the best mu candidate solutions as parent
-        z = mean(z(:,1:mu),2);
+        centroid = centroid + sigma*z;
     else
-        % Choose best as parent for next iteration
-        z = z(:,1);
-    end                   
-    centroid_temp = centroid + sigma*z;
-    f_centroid_temp = f(centroid_temp);
-    % update iff. better than previous centroid
-    if(f_centroid_temp < f_centroid)
-        centroid = centroid_temp;
-        f_centroid = f_centroid_temp;
+        y_plus = centroid + sigma*z;               % offspring with possitive direction
+        y_minus = centroid - sigma*z;              % offspring with negative direction
+        fy_plus_ep = gp(xTrain(:, T-TRAINING_SIZE:T-1), fTrain(T-TRAINING_SIZE:T-1), y_plus, theta);       % fitness of + offspring(use GP) 
+        fy_minus_ep = gp(xTrain(:, T-TRAINING_SIZE:T-1), fTrain(T-TRAINING_SIZE:T-1), y_minus, theta);     % fitness of - offspring(use GP)
+%         fy_plus_ep = f(y_plus);
+%         fy_minus_ep = f(y_minus);
+%         xTrain(:, T) = y_plus;                
+%         fTrain(T) = fy_plus_ep;
+%         T = T+1;
+%         xTrain(:, T) = y_minus;                
+%         fTrain(T) = fy_minus_ep;
+%         T = T+1;
+        
+        input = [-1, 0, 1];
+        output = [fy_minus_ep,f_centroid,fy_plus_ep];          
+        para = polyfit(input, output, 2);                                      % parameters of the quadratic model  
+        w_min = -para(2)/2/para(1);                                            % variable corespond to the mean of the model
+        
+        disp(T);
+        disp(f(centroid + sigma*z));
+        disp(f(centroid + w_min*sigma*z));
+        centroid = centroid + w_min*sigma*z;     
     end
+    
+    
+    f_centroid = f(centroid);
     if(T>TRAINING_SIZE)
-        fep_centroid(t) = gp(xTrain(:,T-TRAINING_SIZE:T-1), fTrain(T-TRAINING_SIZE:T-1), centroid, theta);
+        fep_centroid(t) = gp(xTrain(:,T-TRAINING_SIZE:T-1), fTrain(T-TRAINING_SIZE:T-1), y(:,i), theta);
     end  
-    xTrain(:, T) = centroid_temp;                
-    fTrain(T) = f_centroid_temp;
+    xTrain(:, T) = centroid;                
+    fTrain(T) = f_centroid;
     T = T + 1;
       
     
@@ -159,7 +177,8 @@ end
     % success rate (# of offspring better than parent)/(# total iteartions) 
     success_rate = sum(fcentroid_array(temp:t-1)>fcentroid_array(temp+1:t))/(t-temp);
 
-    val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate/(TRAINING_FACTOR+1),median(GP_temp),1,fep_centroid, success_rate,GP_error};
+    val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,median(GP_temp),1,fep_centroid, success_rate,GP_error};
+%val = {t,centroid,f_centroid,sigma_array, 1, 1,convergence_rate};
 
 end
 

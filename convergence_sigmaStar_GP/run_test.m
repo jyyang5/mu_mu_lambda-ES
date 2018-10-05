@@ -25,10 +25,10 @@ f = f1;
 n = 10;
 
 ADD_TRAIN_POINTS= 0;
-lambda = 30;
+lambda = 40;
 mu = floor(lambda/4);
 % x0 for mml-ES
-%x0 = randn(n,mu);
+x0 = randn(n,mu);
 % x1 for (1+1)-ES
 x1 = randn(n,1);
 
@@ -38,7 +38,7 @@ NUM_OF_RUNS = 10;
 
 NUM_OF_ITERATIONS = 5000;
 % mml-ES with GP
-a = mml_sigmaStarGP_bestOfMu(f,x0,sigma_satr,lambda,NUM_OF_ITERATIONS,ADD_TRAIN_POINTS);
+a = mml_sigmaStarGP_centroid_quadratic(f,x0,sigma_satr,lambda,NUM_OF_ITERATIONS,ADD_TRAIN_POINTS);
 t = cell2mat(a(1));
 centroid = cell2mat(a(2));
 f_centroid = cell2mat(a(3));
@@ -95,7 +95,7 @@ disp(GP_error_med);
 % hold off;
 
 % [add ADD_TRAIN_POINTS points to training set] convergence plot over number of function evaluations 
-temp = 40/lambda;
+temp = ceil(40/lambda);
 figure(11);
 hold on;
 t_range1 = 1:lambda+1:(lambda+1)*temp+1;

@@ -12,22 +12,22 @@
 %            enable adding new plot using different TRAINING_FACTOR to
 %            original
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function val = fun_mergedGraph_fx_funCalls(f,name,NUM_OF_RUNS,sigma_star_array,lambda_array,TRAINING_FACTOR)
+function val = fun_mergedGraph_fx_funCalls(f,name,NUM_OF_RUNS,sigma_star_array,lambda_array,TRAINING_FACTOR,strategy_name)
 %Input:
 %    f:                 objective function 
 %    name:              a number specify f  
 %    NUM_OF_RUNS        # of runs to average
 %    sigma_star_array   an array of sigma_star's
 %    lambda_array       an array of lambda's
-%    TRAINING_FACTOR    number of iterations needed to build the GP model 
+%    TRAINING_FACTOR    number of iterations needed to build the GP model
+%    strategy_name      a string name of strategy 
 %Return:
 %    iteration number for [mmlWithGP,mmlNoGP,1+1WithGP,1+1NoGP]  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-TRAINING_FACTOR = 1;
+TRAINING_FACTOR = 0;
 NUM_OF_ITERATIONS = 1500;
 n = 10;
-
 
 [index ,SIGMA_LENGTH] = size(sigma_star_array);
 [index ,LAMBDA_LENGTH] = size(lambda_array);
@@ -86,7 +86,7 @@ for i = 1:1:LAMBDA_LENGTH
             mu = floor(lambda_temp/4);
             x0 = randn(n,mu);
             % (mu/mu,lambda)-ES with GP
-            a = mml_sigmaStarGP_centroid_addTrain(f,x0,sigma_star_temp,lambda_temp,NUM_OF_ITERATIONS,TRAINING_FACTOR);
+            a = mml_sigmaStarGP_centroidQuadratic(f,x0,sigma_star_temp,lambda_temp,NUM_OF_ITERATIONS,TRAINING_FACTOR);
             c_array(i,j,k) = cell2mat(a(7));                                % convergence rate
             s_array(i,j,k) = cell2mat(a(11));                               % success rate
             
@@ -131,6 +131,10 @@ for i = 1:1:LAMBDA_LENGTH
         d1 =sprintf('%.4f  \t ',c_med(i,j));
         fprintf(fileID,d1); 
     end
+    for j = 1:1:SIGMA_LENGTH
+        d1 =sprintf('%.4f  \t ',c_med(i,j));
+        fprintf(fileID,d1); 
+    end
     % change line 
     fprintf(fileID,'\n'); 
 %     
@@ -169,23 +173,35 @@ fclose(fileID);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Plot title seperately and save fig
 if name == 6
-    title('linear sphere: convergence rate','fontsize',20);
-    saveas(gcf,'linear_sphere_convergence_sigmaStar.fig');
-    save('linear sphere_convergence rate','c_array','s_array','T_array','c_med','sigma_star_array','lambda_array','TRAINING_FACTOR','f');
+    p1 = sprintf('linear sphere_convergence rate%s',strategy_name);
+    title(p1,'fontsize',20);
+    p2 = sprintf('linear_sphere_convergence_sigmaStar%s.fig',strategy_name);
+    saveas(gcf,p2);
+    save(p1,'c_array','s_array','T_array','c_med','sigma_star_array','lambda_array','TRAINING_FACTOR','f');
 elseif name == 7
-    title('quadratic sphere: convergence rate','fontsize',20);
-    saveas(gcf,'quadratic_sphere_convergence_sigmaStar.fig');
-    save('quadratic sphere_convergence rate','c_array','s_array','T_array','c_med','sigma_star_array','lambda_array','TRAINING_FACTOR','f');
+    p1 = sprintf('quadratic sphere_convergence rate%s',strategy_name);
+    title(p1,'fontsize',20);
+    p2 = sprintf('quadratic_sphere_convergence_sigmaStar%s.fig',strategy_name);
+    saveas(gcf,p2);
+    save(p1,'c_array','s_array','T_array','c_med','sigma_star_array','lambda_array','TRAINING_FACTOR','f');
 elseif name == 8
-    title('cubic sphere: convergence rate','fontsize',20);
-    saveas(gcf,'cubic_sphere_convergence_sigmaStar.fig');
-    save('cubic sphere_convergence rate','c_array','s_array','T_array','c_med','sigma_star_array','lambda_array','TRAINING_FACTOR','f');
+    p1 = sprintf('cubic sphere_convergence rate%s',strategy_name);
+    title(p1,'fontsize',20);
+    p2 = sprintf('cubic_sphere_convergence_sigmaStar%s.fig',strategy_name);
+    saveas(gcf,p2);
+    save(p1,'c_array','s_array','T_array','c_med','sigma_star_array','lambda_array','TRAINING_FACTOR','f');
 elseif name == 9
-    title('schwefel function: convergence rate','fontsize',20);
-    saveas(gcf,'schwefel_function_convergence_sigmaStar.fig');
+    p1 = sprintf('schwefel function_convergence rate%s',strategy_name);
+    title(p1,'fontsize',20);
+    p2 = sprintf('schwefel_function_convergence_sigmaStar%s.fig',strategy_name);
+    saveas(gcf,p2);
+    save(p1,'c_array','s_array','T_array','c_med','sigma_star_array','lambda_array','TRAINING_FACTOR','f');
 elseif name == 10
-    title('quartic function: convergence rate ','fontsize',20);
-    saveas(gcf,'quartic_function_convergence_sigmaStar.fig');
+    p1 = sprintf('quartic function_convergence rate%s',strategy_name);
+    title(p1,'fontsize',20);
+    p2 = sprintf('quartic_function_convergence_sigmaStar%s.fig',strategy_name);
+    saveas(gcf,p2);
+    save(p1,'c_array','s_array','T_array','c_med','sigma_star_array','lambda_array','TRAINING_FACTOR','f');
 end
     
     val = T_med;
