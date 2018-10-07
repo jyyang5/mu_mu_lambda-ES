@@ -1,11 +1,11 @@
-% Optimize the centroid by fit a quadratic model
+% Add length_scale_factor to tune theta and find the optimal theta  
 % TRAING_SIZE = 40 fixed
 % Add TRAINING_FACTOR to tune training size
 % Use normalized step size for step size update
 % function evaluation for lambda offsprings with GP estimate 
 % In each iteration only the centroid is evaluated
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function val = mml_sigmaStarGP_centroid_quadratic(f,x0,sigma_star,lambda,NUM_OF_ITERATIONS,TRAINING_FACTOR)
+function val = mml_sigmaStarGP_centroid(f,x0,sigma_star,lambda,NUM_OF_ITERATIONS,TRAINING_FACTOR,length_scale_factor)
 % initialization
 % f:                  objective function value
 % x0:                 mu initial point size [n, mu]
@@ -16,6 +16,7 @@ function val = mml_sigmaStarGP_centroid_quadratic(f,x0,sigma_star,lambda,NUM_OF_
 % sigma0:             initial muttaion strength
 % NUM_OF_ITERATIONS:  number of maximum iterations
 % TRAINING_FACTOR:    TRAINING_SIZE = TRAINING_FACTOR*lambda
+% length_scale_factor the length scale multiplied each time
 
 % Return 
 % 1.t:                  # of objective function calls                    
@@ -36,7 +37,7 @@ function val = mml_sigmaStarGP_centroid_quadratic(f,x0,sigma_star,lambda,NUM_OF_
 %                     mml(f,randn(n,mu),1,0,10,1,4000)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 [n, mu] = size(x0);
-TRAINING_SIZE = 50;
+TRAINING_SIZE = 40;
 %TRAINING_SIZE = lambda*TRAINING_FACTOR;
 xTrain = zeros(n,10000);                    % training data for GP size 4*mu
 fTrain = zeros(1,10000);
@@ -68,7 +69,6 @@ centroid_array(:,t) = centroid;
 fcentroid_array(t) = f_centroid;
 
 
-length_scale_factor = 8;
 
 
 while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
@@ -82,7 +82,7 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     theta = sigma*length_scale_factor*sqrt(n);          % length scale for GP
     
     % (mu/mu, lambda)-ES 4 times to obtain GP traning set
-    if (T < TRAINING_SIZE)
+    if T < TRAINING_SIZE
         % offspring genneration 
         for i = 1:1:lambda
             % offspring = mean(parent) + stepsize*z
@@ -113,26 +113,7 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     z = z(:,sorted_order);
     % choose the best mu candidate solutions as parent
     z = mean(z(:,1:mu),2);
-    % optimiza use a quadratic model
-    if(T < TRAINING_SIZE)
-        centroid = centroid + sigma*z;
-    else
-        y_plus = centroid + sigma*z;               % offspring with possitive direction
-        y_minus = centroid - sigma*z;              % offspring with negative direction
-        fy_plus_ep = gp(xTrain(:, T-TRAINING_SIZE:T-1), fTrain(T-TRAINING_SIZE:T-1), y_plus, theta);       % fitness of + offspring(use GP) 
-        fy_minus_ep = gp(xTrain(:, T-TRAINING_SIZE:T-1), fTrain(T-TRAINING_SIZE:T-1), y_minus, theta);     % fitness of - offspring(use GP)
-        input = [-1, 0, 1];
-        output = [fy_minus_ep,f_centroid,fy_plus_ep];          
-        para = polyfit(input, output, 2);                                      % parameters of the quadratic model  
-        w_min = -para(2)/2/para(1);                                            % variable corespond to the mean of the model
-        
-        disp(T);
-        disp(f(centroid + sigma*z));
-        disp(f(centroid + w_min*sigma*z));
-        centroid = centroid + w_min*sigma*z;     
-    end
-    
-    
+    centroid = centroid + sigma*z;
     f_centroid = f(centroid);
     if(T>TRAINING_SIZE)
         fep_centroid(t) = gp(xTrain(:,T-TRAINING_SIZE:T-1), fTrain(T-TRAINING_SIZE:T-1), y(:,i), theta);
@@ -168,7 +149,7 @@ end
     % success rate (# of offspring better than parent)/(# total iteartions) 
     success_rate = sum(fcentroid_array(temp:t-1)>fcentroid_array(temp+1:t))/(t-temp);
 
-    val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,median(GP_temp),1,fep_centroid, success_rate,GP_error};
+    val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate/(TRAINING_FACTOR+1),median(GP_temp),1,fep_centroid, success_rate,GP_error};
 %val = {t,centroid,f_centroid,sigma_array, 1, 1,convergence_rate};
 
 end
