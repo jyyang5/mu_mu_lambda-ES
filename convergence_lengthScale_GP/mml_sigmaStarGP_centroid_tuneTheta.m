@@ -172,7 +172,7 @@ function fTest = gp(xTrain, fTrain, xTest, theta)
     deltas = vecnorm(xTrain-repelem(xTest, 1, m));               %|x_ij = train_i-test_j| euclidean distance
     Ks = exp(-(deltas/theta).^2/2)';                             % K_star             
 
-    deltass = vecnorm(repmat(xTest, 1, m)-repelem(xTest, 1, m));
+%     deltass = vecnorm(repmat(xTest, 1, m)-repelem(xTest, 1, m));
     % Kss = reshape((exp(-deltass.^2/theta^2/2)), m , m);
     
     %Kinv = inv(K);       
