@@ -1,5 +1,6 @@
 ## Overview
 
+### Different Strategies
 All below use sigma_star fixed and GP estimate with GP TRAINING_SIZE=40
 
 - mml_sigmaStarGP_centroid
@@ -18,11 +19,44 @@ Evalauate the best centroid of the best mu offsprings ranked by GP so far as par
 Evalauate the centroid of the best mu offsprings ranked by GP as parent, add ADD_TRAIN_POINTS points evaluated by f(x) to GP training set in each iteration. 
 **Then convegence should be divided by number of objective function call per iteration**
 
+<<<<<<< HEAD
+=======
+- mml_sigmaStarGP_centroidQuadratic
+Evaluate the centroid optimized by a quadratic model as parent for offspring generation. Choose the best direction vector by averaging the best mu offspring ranked by GP, then pick two points taking the positive and negative of the best direction (evaluated by GP) together with the previous centroid to form a quadratic model picking the lowest point referred to as the optimized centroid. 
+
+### Plots and data for convergence rate over normalized step size 
+
+- centroid_TRAINING_SIZE=40
+Use mml_sigmaStarGP_centroid.m
+
+- bestOfmu_TRAIN_SIZE=40
+Use mml_sigmaStarGP_bestOfMu.m
+
+- bestSoFar_TRAIN_SIZE=40
+Use mml_sigmaStarGP_bestSoFar.m
+
+- centroidBest_TRAIN_SIZE=40
+Use mml_sigmaStar_GP_centroidBest.m
+
+- centroidAddTrain=1_TRAIN_SIZE=40
+Use mml_sigmaStarGP_centroid_addTrain.m
+**NOTE**: two objective function calls (centroid and the best offspring ranked by GP) per iteration after GP model is built. 
+
+- centroidQuadratic_withGP
+Use mml_sigmaStarGP_centroidQuadratic.m
+
+- centroidQuadratic_trueObjFun
+Use mml_sigmaStarGP_centroidQuadratic.m
+**NOTE**: three objective function calls (optimized centroid, points take the positive and negative direction) per iteration after GP model is built. 
+
+
+
+---
+>>>>>>> master
 
 ### Conclusion 
 
 Taking the centroid is the best.
-
 
 
 ### What to do next
@@ -46,7 +80,16 @@ Taking the centroid is the best.
 	- The Gaussian noise is even larger then the one using GP estimates for fitting the quadratic model. 
     - More interestingly, even if the centroid is optimized by fitting a quadratic model with true objective function evaluation, the strategy converges with a large lambda(E.G. lambda > 25).
 
+<<<<<<< HEAD
 ## Adapt length scale in GP (in progress)
+=======
+## Kernel and length scale for GP  
+
+- Kernel function
+- Length scale 
+	- The square exponential works best for the quadratic sphere
+	- Try change length scale (two smllaer two larger) for linear and cubic sphere see if it could match the performance of quadratic sphere. 
+>>>>>>> master
 
 The length scale factor 8 is the most appropriate for the quadratic sphere where the large convergence rate for quadratic sphere with two relative convergence rate for linear and cubic sphere can be expalained.
 

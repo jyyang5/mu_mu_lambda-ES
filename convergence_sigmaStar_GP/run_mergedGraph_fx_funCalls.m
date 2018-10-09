@@ -8,7 +8,7 @@ f2 = @(x) (x'*x);
 f3 = @(x) (x'*x)^(3/2);
 
 
-strategy_name = '[centroidQuadratic]';
+strategy_name = '[centroidQuadratic_trueObj]';
 lambda_start = 1;
 lambda_end = 50;
 lambda_increment = 20;
@@ -18,8 +18,8 @@ sigma_star_start = 0.2;
 sigma_star_end = 12.2;
 sigma_increment = 0.4;
 sigma_star_array = sigma_star_start:sigma_increment:sigma_star_end;
-% lambda_array = [5 10 30 50];
-lambda_array = [5 10 ];
+lambda_array = [5 10 30 50];
+% lambda_array = [5 10 ];
 % NUM_OF_RUNS = 2;
 % sigma_star_array = [0.1 0.2 0.5 1 2 4 5 10];
 
