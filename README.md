@@ -3,6 +3,7 @@
 ## Overview
 - Folders
     - [CSA](https://github.com/jyyang5/mu_mu_lambda-ES/tree/master/CSA)
+    
    	    Implement a CSA for small lambda
    	    - Step size adaptation: CSA
    	    - Offspring evaluation: GP
