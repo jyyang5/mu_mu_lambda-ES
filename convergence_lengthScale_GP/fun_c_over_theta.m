@@ -169,19 +169,19 @@ if name == 6
     title(p1,'fontsize',20);
     p2 = sprintf('linear_convergence_sigmaStar%s.fig',strategy_name);
     saveas(gcf,p2);
-    save(p1,'c_array','s_array','T_array','c_med','sigma_star_array','lambda','theta_array','TRAINING_FACTOR','f');
+    save(p1,'c_array','s_array','T_array','c_med','sigma_star_array','lambda','theta_array','TRAINING_FACTOR','f','subplot_index','strategy_name');
 elseif name == 7
     p1 = sprintf('quadratic_%s lambda= %d',strategy_name,lambda);
     title(p1,'fontsize',20);
     p2 = sprintf('quadratic_convergence_sigmaStar%s.fig',strategy_name);
     saveas(gcf,p2);
-    save(p1,'c_array','s_array','T_array','c_med','sigma_star_array','lambda','theta_array','TRAINING_FACTOR','f');
+    save(p1,'c_array','s_array','T_array','c_med','sigma_star_array','lambda','theta_array','TRAINING_FACTOR','f','subplot_index','strategy_name');
 elseif name == 8
     p1 = sprintf('cubic_%s lambda= %d',strategy_name,lambda);
     title(p1,'fontsize',20);
     p2 = sprintf('cubic_sphere_convergence_sigmaStar%s.fig',strategy_name);
     saveas(gcf,p2);
-    save(p1,'c_array','s_array','T_array','c_med','sigma_star_array','lambda','theta_array','TRAINING_FACTOR','f');
+    save(p1,'c_array','s_array','T_array','c_med','sigma_star_array','lambda','theta_array','TRAINING_FACTOR','f','subplot_index','strategy_name');
 elseif name == 9
     p1 = sprintf('schwefel function_convergence rate%s',strategy_name);
     title(p1,'fontsize',20);
