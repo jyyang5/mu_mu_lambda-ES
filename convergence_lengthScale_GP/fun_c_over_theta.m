@@ -48,27 +48,27 @@ if name == 6
     fileID = fopen('linear_sphere_convergence_sigmaStar.txt','a');
     d = sprintf('The file is obtained by taking the median of %d runs of mml-ES with GP (dim(data)=%d)\n \n',NUM_OF_RUNS,n);
     fprintf(fileID,d);
-    fprintf(fileID,'%10s \t','(mu/mu,lambda)'); 
+    fprintf(fileID,'%8s \t sigmaStar \t','(mu/mu,lambda)');
 elseif name == 7
     fileID = fopen('quadratic_sphere_convergence_sigmaStar.txt','a');
     d = sprintf('The file is obtained by taking the median of %d runs of mml-ES with GP (dim(data)=%d)\n \n',NUM_OF_RUNS,n);
     fprintf(fileID,d);
-    fprintf(fileID,'%10s \t','(mu/mu,lambda)'); 
+    fprintf(fileID,'%8s \t sigmaStar \t','(mu/mu,lambda)'); 
 elseif name == 8
     fileID = fopen('cubic_sphere_convergence_sigmaStar.txt','a');
     d = sprintf('The file is obtained by taking the median of %d runs of mml-ES with GP (dim(data)=%d)\n \n',NUM_OF_RUNS,n);
     fprintf(fileID,d);
-    fprintf(fileID,'%10s \t','(mu/mu,lambda)');
+    fprintf(fileID,'%8s \t sigmaStar \t','(mu/mu,lambda)');
 elseif name == 9
     fileID = fopen('Schwefel_convergence_sigmaStar.txt','a');
     d = sprintf('The file is obtained by taking the median of %d runs of mml-ES with GP (dim(data)=%d)\n \n',NUM_OF_RUNS,n);
     fprintf(fileID,d);
-    fprintf(fileID,'%10s \t','(mu/mu,lambda)');
+    fprintf(fileID,'%8s \t sigmaStar \t','(mu/mu,lambda)');
 elseif name == 10
     fileID = fopen('quartic_convergence_sigmaStar.txt','a');
     d = sprintf('The file is obtained by taking the median of %d runs of mml-ES with GP (dim(data)=%d)\n \n',NUM_OF_RUNS,n);
     fprintf(fileID,d);
-    fprintf(fileID,'%10s \t','(mu/mu,lambda)');
+    fprintf(fileID,'%8s \t sigmaStar \t','(mu/mu,lambda)');
 end
 for i = 1:1:SIGMA_LENGTH
     d = sprintf('%.2f \t \t',sigma_star_array(i));
@@ -120,7 +120,7 @@ for i = 1:1:SIGMA_LENGTH
     sigma_star_temp = sigma_star_array(i);
     mu = floor(lambda/4);
     
-    d1 =sprintf('(%d/%d,%d)  \t',mu,mu,lambda);
+    d1 =sprintf('(%d/%d,%d) \t %.1f \t',mu,mu,lambda,sigma_star_temp);
     fprintf(fileID,d1); 
     % plot convergece rate of sigma_star over theta
     hold on;
@@ -145,7 +145,7 @@ end
     legend('-DynamicLegend'); 
     legend('show');
     leg = legend();
-    title(leg,'(\mu/\mu,\lambda) \theta \lambda');
+    title(leg,'(\mu/\mu,\lambda) \sigma* \lambda');
     hold off;
     
     xlabel('\theta','fontsize',15);

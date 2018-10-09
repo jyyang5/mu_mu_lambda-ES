@@ -20,49 +20,12 @@ sigma_increment = 0.5;
 
 % sigma_star_array = sigma_star_start:sigma_increment:sigma_star_end;
 sigma_star_array = 1:0.5:3.0;
-theta_array = 2:2:32;
-lambda_array = [30 50 70];
-[temp cols] = size(lambda_array);
-
-% NUM_OF_RUNS = 2;
-% sigma_star_array = [0.1 0.2 0.5 1 2 4 5 10];
-
-% disp("===========================================================");
-% disp("linear sphere");
-% disp("---------------");
-% TRAINING_FACTOR = 0;
-% lambda = 30;
-% subplotIndex = [1 cols 1];
-% T_f11=fun_c_over_theta(f1,6,NUM_OF_RUNS,sigma_star_array,lambda,theta_array,TRAINING_FACTOR,strategy_name,subplotIndex);
-% lambda = 50;
-% subplotIndex = [1 cols 2];
-% T_f12=fun_c_over_theta(f1,6,NUM_OF_RUNS,sigma_star_array,lambda,theta_array,TRAINING_FACTOR,strategy_name,subplotIndex);
-% lambda = 70;
-% subplotIndex = [1 cols 3];
-% T_f13=fun_c_over_theta(f1,6,NUM_OF_RUNS,sigma_star_array,lambda,theta_array,TRAINING_FACTOR,strategy_name,subplotIndex);
+theta_array = 1:2:64;
 
 
-disp("===========================================================");
-disp("quadratic sphere");
-disp("---------------");
-lambda = 30;
-subplotIndex = [1 cols 1];
-T_f21=fun_c_over_theta(f2,7,NUM_OF_RUNS,sigma_star_array,lambda,theta_array,TRAINING_FACTOR,strategy_name,subplotIndex);
-lambda = 50;
-subplotIndex = [1 cols 2];
-T_f22=fun_c_over_theta(f2,7,NUM_OF_RUNS,sigma_star_array,lambda,theta_array,TRAINING_FACTOR,strategy_name,subplotIndex);
-lambda = 70;
-subplotIndex = [1 cols 3];
-T_f23=fun_c_over_theta(f2,7,NUM_OF_RUNS,sigma_star_array,lambda,theta_array,TRAINING_FACTOR,strategy_name,subplotIndex);
 
 
-disp("===========================================================");
-disp("cubic sphere");
-disp("---------------");
-lambda = 30;
-subplotIndex = [1 cols 1];
-T_f31=fun_c_over_theta(f3,8,NUM_OF_RUNS,sigma_star_array,lambda,theta_array,TRAINING_FACTOR,strategy_name,subplotIndex);
-lambda = 50;
+
 subplotIndex = [1 cols 2];
 T_f32=fun_c_over_theta(f3,8,NUM_OF_RUNS,sigma_star_array,lambda,theta_array,TRAINING_FACTOR,strategy_name,subplotIndex);
 lambda = 70;

@@ -1,3 +1,87 @@
+# A surrogated-assisted(GP-beased) mu_mu_lambda-ES 
+
+## Overview
+- Folders
+   - CSA
+   	Implement a CSA for small lambda
+   	- Step size adaptation: CSA
+   	- Offspring evaluation: GP
+   	- Parent selection strategy: centroid of best mu offspring
+
+   - CSA_largeLambda
+   	Implement a CSA for large lambda **to be continued**
+   	- Step size adaptation: CSA
+   	- Offspring evaluation: GP
+   	- Parent selection strategy: centroid of best mu offspring
+
+   - GP
+    Plot fep(x) and f(x) over number of iterations
+   	- Step size adaptation: CSA
+   	- Offspring evaluation: GP
+   	- Parent selection strategy: centroid of best mu offspring
+
+   - choose_centroid_bestSoFar
+    Plot fep(x) and f(x) over number of iterations
+   	- Step size adaptation: CSA
+   	- Offspring evaluation: GP
+   	- Parent selection strategy: best centroid of all iterations
+
+   - compare_result
+    Use a combination of mu and lambda plot f(x), sigma and sigmaStar for 5 test functions 
+   	- Step size adaptation: CSA
+   	- Offspring evaluation: GP
+   	- Parent selection strategy: centroid of best mu offspring
+
+   - convergence rate_noise
+   	Plot convergence rate for different noise to signal ratio and dimensionality with expected convergence rate plotted
+   	Code to intergrate the expected convergence rate
+    - Step size adaptation: sigmaStar
+   	- Offspring evaluation: noise estimate 
+   	- Parent selection strategy: centroid of best mu offspring
+
+   - convergence_sigmaStar_GP
+    Use different strategies and plot convergence rate over sigmaStar
+    **Conclusion: Choose centroid is the bset esp. with large lambda**
+    - Step size adaptation: sigmaStar
+   	- Offspring evaluation: GP
+   	- Parent selection strategy: 
+   		1. centroid (centroid of the best mu offsprings ranked by GP)
+   		2. bestOfMu (best in the mu offspring ranked by GP)
+   		3. bestSoFar (bestOfMu in each iteration, replace y iff. f(current) < f(previous))
+   		4. bestCentroid (replace previous centroid iff. f(current) < f(previous))
+   		5. centroidAddTrain=1 (centroid as parent, add the best offspring ranked by GP to training set per iteration)
+   		6. centroidQuadratic_withGP (fit a quadratic model for z_centroid, choose lowest point, pos and neg evaluated by GP)
+   		7. centroidQuadratic_trueObjFun (fit a quadratic model for z_centroid, choose lowest point, pos and neg evaluated by true objective function)
+
+   - mu_sigma_experiment
+   	Tuned TRAINING_SIZE with sigmaStar/CSA and did a couple of result.
+   	**Possible solutions for better performance: 1. update GP model 2. tune training size of GP model**
+   	**Best result using (3/3,10)-ES with sigmaStar = 1,2 relative speed-up 1.7,1.3,1.11 for linear, quadratic and cubic sphere respectively (sigmaStar = 1).**
+   	Performance degrades as sigmaStar grows, but large sigame appears to be more invariant to the growth of sigmaStar
+   	- tuneTrainSize_sigmaStar_GP
+   	  - Step size adaptation: sigmaStar
+   	- tuneTrainSize_CSA_GP 
+   	  - Step size adaptation: CSA
+
+   - convergence_lengthScale_GP
+   	Plot convergence rate over theta (fun_c_over_theta.m and run_c_over_theta.m) for sigmaStar=1:0.5:3 lambda = [30,50,70]
+   	**max convergence rate relative the same for (7/7,30)-ES, relative 0.1 increment for (12/12,50)-ES and (17/17,70)-ES**
+| max convergence rate |theta  | linear(sigmaStar)  | quadratic(sigmaStar)  | cubic(sigmaStar)  |
+| :---------------------|---------------:| ---------:|--------------:|------------:|
+| **(7/7,30)**  		|**8**  |0.48    |1.02		 |0.811  
+|   (7/7,30)    		|  8    |0.52(1.5)|  |    
+|   (7/7,30)    		|  32   | |1.18(2.0)  |  
+|   (7/7,30)    		|  2   | ||0.89(1.5,2.0)  |  
+| **(12/12,50)**		|**8**  | 0.53   |1.10		 |0.808 
+|   (12/12,50)    		|  32   | 0.57(1.5) |||
+|   (12/12,50)    		|  26  | |1.2(2.0,2.5) ||
+|   (12/12,50)    		|  2  | ||0.96 (2.5)|
+| **(17/17,70)**		|**8**  | 0.54   |1.07		 |0.799
+|   (12/12,50)		    | 16      | 0.62(1.5)   |||
+|   (12/12,50)		    | 28      | |1.25(2.0)   ||
+|   (12/12,50)		    | 2      | ||0.96(3.0)   |
+
+
 # mu_mu_lambda-ES
 
 Implement a (mu/mu,lambda)-ES
