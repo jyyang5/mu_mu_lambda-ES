@@ -3,42 +3,48 @@
 ## Overview
 - Folders
     - [CSA](https://github.com/jyyang5/mu_mu_lambda-ES/tree/master/CSA)
-    
+
    	    Implement a CSA for small lambda
    	    - Step size adaptation: CSA
    	    - Offspring evaluation: GP
    	    - Parent selection strategy: centroid of best mu offspring
-    - CSA_largeLambda
+    - [CSA_largeLambda](https://github.com/jyyang5/mu_mu_lambda-ES/tree/master/CSA_largeLambda)
+
 	    Implement a CSA for large lambda **to be continued**
    	    - Step size adaptation: CSA
    	    - Offspring evaluation: GP
    	    - Parent selection strategy: centroid of best mu offspring
-    - GP
+    - [GP](https://github.com/jyyang5/mu_mu_lambda-ES/tree/master/GP)
+
         Plot fep(x) and f(x) over number of iterations
    	    - Step size adaptation: CSA
    	    - Offspring evaluation: GP
    	    - Parent selection strategy: centroid of best mu offspring
 
-    - choose_centroid_bestSoFar
+    - [choose_centroid_bestSoFar](https://github.com/jyyang5/mu_mu_lambda-ES/tree/master/choose_centroid_bestSoFar)
+
         Plot fep(x) and f(x) over number of iterations
    	    - Step size adaptation: CSA
    	    - Offspring evaluation: GP
    	    - Parent selection strategy: best centroid of all iterations
 
-    - compare_result
+    - [compare_result](https://github.com/jyyang5/mu_mu_lambda-ES/tree/master/compare_result)
+
         Use a combination of mu and lambda plot f(x), sigma and sigmaStar for 5 test functions 
    	    - Step size adaptation: CSA
    	    - Offspring evaluation: GP
    	    - Parent selection strategy: centroid of best mu offspring
 
-    - convergence rate_noise
+    - [convergence rate_noise](https://github.com/jyyang5/mu_mu_lambda-ES/tree/master/convergence%20rate_noise)
+
    	    Plot convergence rate for different noise to signal ratio and dimensionality with expected convergence rate plotted
    	    Code to intergrate the expected convergence rate
         - Step size adaptation: sigmaStar
    	    - Offspring evaluation: noise estimate 
    	    - Parent selection strategy: centroid of best mu offspring
 
-    - convergence_sigmaStar_GP
+    - [convergence_sigmaStar_GP](https://github.com/jyyang5/mu_mu_lambda-ES/tree/master/convergence_sigmaStar_GP)
+
         Use different strategies and plot convergence rate over sigmaStar
         **Conclusion: Choose centroid is the bset esp. with large lambda**
         - Step size adaptation: sigmaStar
@@ -52,7 +58,8 @@
    		    6. centroidQuadratic_withGP (fit a quadratic model for z_centroid, choose lowest point, pos and neg evaluated by GP)
    		    7. centroidQuadratic_trueObjFun (fit a quadratic model for z_centroid, choose lowest point, pos and neg evaluated by true objective function)
 
-    - mu_sigma_experiment
+    - [mu_sigma_experiment](https://github.com/jyyang5/mu_mu_lambda-ES/tree/master/mu_sigma_experiment)
+
    	    Tuned TRAINING_SIZE with sigmaStar/CSA and did a couple of result.
    	    **Possible solutions for better performance: 1. update GP model 2. tune training size of GP model**
    	    **Best result using (3/3,10)-ES with sigmaStar = 1,2 relative speed-up 1.7,1.3,1.11 for linear, quadratic and cubic sphere respectively (sigmaStar = 1).**
@@ -62,7 +69,8 @@
    	    - tuneTrainSize_CSA_GP 
    	    - Step size adaptation: CSA
 
-   - convergence_lengthScale_GP
+   - [convergence_lengthScale_GP](https://github.com/jyyang5/mu_mu_lambda-ES/tree/master/convergence_lengthScale_GP)
+
    	    Plot convergence rate over theta (fun_c_over_theta.m and run_c_over_theta.m) for sigmaStar=1:0.5:3 lambda = [30,50,70]
    	    **max convergence rate relative the same for (7/7,30)-ES, relative 0.1 increment for (12/12,50)-ES and (17/17,70)-ES**
 
