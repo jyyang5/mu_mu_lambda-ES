@@ -30,24 +30,24 @@ disp("---------------");
 %graph_fun(f1,1);
 TRAINING_FACTOR = 3;
 T_f11=fun_mergedGraph_fx_funCalls(f1,6,NUM_OF_RUNS,sigma_star_array,lambda_array,TRAINING_FACTOR,strategy_name);
+% % % TRAINING_FACTOR = 4;
+% % % T_f12=fun_mergedGraph_fx_funCalls(f1,6,NUM_OF_RUNS,sigma_star_array,lambda_array,TRAINING_FACTOR);
+% % % 
+% disp("===========================================================");
+% disp("quadratic sphere");
+% disp("---------------");
+% TRAINING_FACTOR = 3;
+% T_f21=fun_mergedGraph_fx_funCalls(f2,7,NUM_OF_RUNS,sigma_star_array,lambda_array,TRAINING_FACTOR,strategy_name);
 % % TRAINING_FACTOR = 4;
-% % T_f12=fun_mergedGraph_fx_funCalls(f1,6,NUM_OF_RUNS,sigma_star_array,lambda_array,TRAINING_FACTOR);
-% % 
-disp("===========================================================");
-disp("quadratic sphere");
-disp("---------------");
-TRAINING_FACTOR = 3;
-T_f21=fun_mergedGraph_fx_funCalls(f2,7,NUM_OF_RUNS,sigma_star_array,lambda_array,TRAINING_FACTOR,strategy_name);
-% TRAINING_FACTOR = 4;
-% T_f22=fun_mergedGraph_fx_funCalls(f2,7,NUM_OF_RUNS,sigma_star_array,lambda_array,TRAINING_FACTOR);
-
-disp("===========================================================");
-disp("cubic sphere");
-disp("---------------");
-TRAINING_FACTOR = 3;
-T_f31=fun_mergedGraph_fx_funCalls(f3,8,NUM_OF_RUNS,sigma_star_array,lambda_array,TRAINING_FACTOR,strategy_name);
-% TRAINING_FACTOR = 4;
-% T_f32=fun_mergedGraph_fx_funCalls(f3,8,NUM_OF_RUNS,sigma_star_array,lambda_array,TRAINING_FACTOR);
+% % T_f22=fun_mergedGraph_fx_funCalls(f2,7,NUM_OF_RUNS,sigma_star_array,lambda_array,TRAINING_FACTOR);
+% 
+% disp("===========================================================");
+% disp("cubic sphere");
+% disp("---------------");
+% TRAINING_FACTOR = 3;
+% T_f31=fun_mergedGraph_fx_funCalls(f3,8,NUM_OF_RUNS,sigma_star_array,lambda_array,TRAINING_FACTOR,strategy_name);
+% % TRAINING_FACTOR = 4;
+% % T_f32=fun_mergedGraph_fx_funCalls(f3,8,NUM_OF_RUNS,sigma_star_array,lambda_array,TRAINING_FACTOR);
 
 % 
 % disp("===========================================================");

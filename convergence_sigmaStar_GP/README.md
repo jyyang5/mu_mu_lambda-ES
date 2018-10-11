@@ -68,7 +68,7 @@ Taking the centroid is the best.
 - Adapt the training set according to the model accurancy E.G. (f(x) -fep(x))/std(y) 
 
 
-## Optimize centroid quadratic model (fainled)
+## Optimize centroid quadratic model (failed)
 
 - Use GP estimate to evaluate the points (positive and negative directions) to fit the quadratic model
 	- The convergence rate is relative small compared to just take the centroid as parent for offspring generation.

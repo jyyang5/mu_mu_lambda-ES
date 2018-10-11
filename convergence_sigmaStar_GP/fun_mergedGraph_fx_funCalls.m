@@ -86,7 +86,7 @@ for i = 1:1:LAMBDA_LENGTH
             mu = floor(lambda_temp/4);
             x0 = randn(n,mu);
             % (mu/mu,lambda)-ES with GP
-            a = mml_sigmaStarGP_centroidQuadratic(f,x0,sigma_star_temp,lambda_temp,NUM_OF_ITERATIONS,TRAINING_FACTOR);
+            a = mml_sigmaStarGP_centroid(f,x0,sigma_star_temp,lambda_temp,NUM_OF_ITERATIONS,TRAINING_FACTOR);
             c_array(i,j,k) = cell2mat(a(7));                                % convergence rate
             s_array(i,j,k) = cell2mat(a(11));                               % success rate
             

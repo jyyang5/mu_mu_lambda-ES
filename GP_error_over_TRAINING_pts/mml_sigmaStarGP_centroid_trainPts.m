@@ -1,10 +1,12 @@
+% How adding new points change the GP relative error
+% Add length_scale_factor to tune theta and find the optimal theta  
 % TRAING_SIZE = 40 fixed
 % Add TRAINING_FACTOR to tune training size
 % Use normalized step size for step size update
 % function evaluation for lambda offsprings with GP estimate 
 % In each iteration only the centroid is evaluated
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function val = mml_sigmaStarGP_centroid(f,x0,sigma_star,lambda,NUM_OF_ITERATIONS,TRAINING_FACTOR)
+function val = mml_sigmaStarGP_centroid_trainPts(f,x0,sigma_star,lambda,NUM_OF_ITERATIONS,TRAINING_FACTOR,length_scale_factor)
 % initialization
 % f:                  objective function value
 % x0:                 mu initial point size [n, mu]
@@ -15,6 +17,7 @@ function val = mml_sigmaStarGP_centroid(f,x0,sigma_star,lambda,NUM_OF_ITERATIONS
 % sigma0:             initial muttaion strength
 % NUM_OF_ITERATIONS:  number of maximum iterations
 % TRAINING_FACTOR:    TRAINING_SIZE = TRAINING_FACTOR*lambda
+% length_scale_factor the length scale multiplied each time
 
 % Return 
 % 1.t:                  # of objective function calls                    
@@ -40,6 +43,8 @@ TRAINING_SIZE = 40;
 xTrain = zeros(n,10000);                    % training data for GP size 4*mu
 fTrain = zeros(1,10000);
 
+xTrainTest = zeros(n,10000);                    % training data for GP size 4*mu
+fTrainTest = zeros(1,10000);
 
 centroid_array = zeros(n,10000);
 fcentroid_array = zeros(1,10000);
@@ -61,13 +66,14 @@ convergence_rate = 0;
 
 t = 1;       
 T = 1;
+Ttest = 1;
+
 
 
 centroid_array(:,t) = centroid;
 fcentroid_array(t) = f_centroid;
 
 
-length_scale_factor = 8;
 
 
 while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
@@ -92,7 +98,13 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
         xTrain(:,T:T+lambda-1) = y;
         fTrain(T:T+lambda-1) = fy;
         T = T + lambda;
-            
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        xTrainTest(:,Ttest:TTtest+lambda-1) = y;
+        xTrainTest(TTtest:TTtest+lambda-1) = fy;
+        Ttest = Ttest + 1;
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
     % (mu/mu, lambda)-ES use GP estiate 
     else  
         % offspring_generation (lambda offspring) 
@@ -111,8 +123,8 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     [index, sorted_order] = sort(fy);
     z = z(:,sorted_order);
     % choose the best mu candidate solutions as parent
-    z = mean(z(:,1:mu),2);
-    centroid = centroid + sigma*z;
+    z_mean = mean(z(:,1:mu),2);
+    centroid = centroid + sigma*z_mean;
     f_centroid = f(centroid);
     if(T>TRAINING_SIZE)
         fep_centroid(t) = gp(xTrain(:,T-TRAINING_SIZE:T-1), fTrain(T-TRAINING_SIZE:T-1), y(:,i), theta);
@@ -120,7 +132,23 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     xTrain(:, T) = centroid;                
     fTrain(T) = f_centroid;
     T = T + 1;
-      
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    xTrainTest(:,Ttest) = y;
+    fTrainTest(TtestT) = fy;
+    Ttest = Ttest + 1;
+    % evaluate GP accurancy every 50 iteration
+    if(rem(Ttest,50)==0)
+        % add 1-40 data points to training set
+        fy_eval = zeros(1,TRAINING_SIZE);
+        for i=1:1:TRAINING_SIZE
+            y_temp = centroid + sigma*z(:,i);
+            xTrainTest(:,Ttest) = y_temp;
+            fTrainTest(TtestT) = f(y_temp);
+            Ttest = Ttest + 1;
+            fy_eval(i)=gp(xTrainTest(:,Ttest-TRAINING_SIZE:Ttest-1), fTrainTest(Ttest-TRAINING_SIZE:Ttest-1), centroid, theta);
+        end
+    end
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
     
     centroid_array(:,t) = centroid;
     fcentroid_array(t) = f_centroid;
@@ -132,6 +160,8 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
 %      disp(T);
 %      disp(f_centroid);
     % update normalized step size array 
+    % plot the relative GP error over 
+
     
 end
     t = t-1;
@@ -167,11 +197,11 @@ function fTest = gp(xTrain, fTrain, xTest, theta)
 
     delta = vecnorm(repmat(xTrain, 1, m)-repelem(xTrain, 1, m)); %|x_ij = train_i-train_j| 
     K = reshape(exp(-delta.^2/theta^2/2), m , m);                % K
-    % for linear sphere
+
     deltas = vecnorm(xTrain-repelem(xTest, 1, m));               %|x_ij = train_i-test_j| euclidean distance
     Ks = exp(-(deltas/theta).^2/2)';                             % K_star             
 
-    deltass = vecnorm(repmat(xTest, 1, m)-repelem(xTest, 1, m));
+%     deltass = vecnorm(repmat(xTest, 1, m)-repelem(xTest, 1, m));
     % Kss = reshape((exp(-deltass.^2/theta^2/2)), m , m);
     
     %Kinv = inv(K);       

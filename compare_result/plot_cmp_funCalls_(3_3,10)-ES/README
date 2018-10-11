@@ -5,5 +5,5 @@ Plot using the following setting.
 	NUM_OF_RUNS = 500;
 	sigma0 = 1;
 	Length scale: theta = 8*sigma*sqrt(n)  
-	(2/2,5)-ES 
+	(3/3,10)-ES 
 	Evaluate and choose centroid as parent for each iteration
