@@ -82,13 +82,13 @@ ylim([0 inf]);
 saveas(gcf,p2);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % noise-to-signal ratio
-v = 0.1:0.00001:10;
+v = 0.1:0.00001:20;
 
 % solve the plot by taking derivative
 % opt. step size
 figure(5);
 plot(v,c_mu_lambda*mu./(sqrt(1+v.*v)));
-xlabel('noise-to-signal ratio \upsilon','FontSize',15);%
+xlabel('noise-to-signal ratio \upsilon','FontSize',15);
 ylabel('opt. normalized step size \sigma^*','FontSize',15); 
 set(gca, 'XScale', 'log');
 set(gca,'FontSize',15);
@@ -103,7 +103,7 @@ figure(6);
 sigma_star = c_mu_lambda*mu./(sqrt(1+v.*v));
 plot(v,sigma_star*(c_mu_lambda)./sqrt(1+v.^2)-sigma_star.^2./(2*mu));
 ylabel('opt. expected fitness gain \eta','FontSize',15);
-xlabel('noise-to-signal-ratio \upsilon','FontSize',15); 
+xlabel('noise-to-signal ratio \upsilon','FontSize',15);
 set(gca, 'XScale', 'log');
 set(gca,'FontSize',15);
 p1 = sprintf('opt. expected fitness gain (%d/%d,%d)-ES',mu,mu,lambda);

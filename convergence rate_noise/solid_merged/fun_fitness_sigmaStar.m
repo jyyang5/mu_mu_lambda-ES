@@ -27,7 +27,7 @@ NUM_OF_RUNS = 100;
 % matrix for different sigma* matrix(sigma_i,median of NUM_OF_RUNS)
 s_start = 0.2;
 increment =0.2;
-s_end = 14.2;
+s_end = 32.2;
 temp_sigma_success_rate_array = zeros(1,NUM_OF_RUNS);
 temp_parent_not_lowest_of_quadratic_array = zeros(1,NUM_OF_RUNS);
 temp_sigma_T_array = zeros(1,NUM_OF_RUNS);

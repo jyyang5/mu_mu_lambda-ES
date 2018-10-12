@@ -1,3 +1,4 @@
+% final version
 % run fun_fitness_sigmaStar to plot convergence rate 
 % at noise-to-signal ratio 0,.25,1,4 respectively
 % also for data with dim = 10, 100
@@ -17,8 +18,9 @@
 %   scatter or scatter+curve
 
 %
-mu = 5;
-lambda = 20;
+NUM_OF_RUNS = 2;
+mu = 3;
+lambda = 10;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % For expected convergence rate 
@@ -41,68 +43,78 @@ legend('-DynamicLegend');
 % green
 ita = 4;
 %fun_fitness_sigmaStar(4,100000,'g','.',1);        
-fun_fitness_sigmaStar_multi(mu,lambda,ita,10,'g','x',1,c_mu_lambda);        
-fun_fitness_sigmaStar_multi(mu,lambda,ita,100,'g','o',0,c_mu_lambda);
+fun_fitness_sigmaStar_multi(NUM_OF_RUNS,mu,lambda,ita,100,'g','o',0,c_mu_lambda);
+fun_fitness_sigmaStar_multi(NUM_OF_RUNS,mu,lambda,ita,10,'g','x',1,c_mu_lambda);        
 disp('green done');
 
 
 % red
 ita = 1;
-fun_fitness_sigmaStar_multi(mu,lambda,ita,10,'r','x',1,c_mu_lambda);        
-fun_fitness_sigmaStar_multi(mu,lambda,ita,100,'r','o',0,c_mu_lambda);
+fun_fitness_sigmaStar_multi(NUM_OF_RUNS,mu,lambda,ita,100,'r','o',0,c_mu_lambda);
+fun_fitness_sigmaStar_multi(NUM_OF_RUNS,mu,lambda,ita,10,'r','x',1,c_mu_lambda);        
+
 
 disp('red done');
 % blue
 ita = 0.25;
-fun_fitness_sigmaStar_multi(mu,lambda,ita,10,'b','x',1,c_mu_lambda);        
-fun_fitness_sigmaStar_multi(mu,lambda,ita,100,'b','o',0,c_mu_lambda);
+fun_fitness_sigmaStar_multi(NUM_OF_RUNS,mu,lambda,ita,100,'b','o',0,c_mu_lambda);
+fun_fitness_sigmaStar_multi(NUM_OF_RUNS,mu,lambda,ita,10,'b','x',1,c_mu_lambda);        
+
 
 disp('blue done');
 
 
 % black
 ita = 0;
-fun_fitness_sigmaStar_multi(mu,lambda,ita,10,'k','x',1,c_mu_lambda);        
-fun_fitness_sigmaStar_multi(mu,lambda,ita,100,'k','o',0,c_mu_lambda);
+fun_fitness_sigmaStar_multi(NUM_OF_RUNS,mu,lambda,ita,100,'k','o',0,c_mu_lambda);
+fun_fitness_sigmaStar_multi(NUM_OF_RUNS,mu,lambda,ita,10,'k','x',1,c_mu_lambda);        
+
 
 disp('black done');
 
 % normal mml-ES
-fun_fitness_sigmaStar_multi(mu,lambda,ita,10,'k','.',0,c_mu_lambda);
+fun_fitness_sigmaStar_multi(NUM_OF_RUNS,mu,lambda,ita,10,'k','.',0,c_mu_lambda);
 
 disp('dotted black done')
 
-% % plot_dummies for legend
-% l1 = plot([NaN,NaN,NaN], 'color', 'g');
-% l2 = plot([NaN,NaN,NaN], 'color', 'r');
-% l3 = plot([NaN,NaN,NaN], 'color', 'b');
-% l4 = plot([NaN,NaN,NaN], 'color', 'k');
-% legend([l1, l2, l3, l4], {'\eta=4', '\eta=1', '\eta=0.25', '\eta=0'});
-% p1 = sprintf('(%d/%d,%d)-ES',mu,mu,lambda);
+
+
+% plot opt. fitness gain given v (n=10,100,infty)
+v_array = [0.1 0.25 0.4 1 2 4 8 16 32 64];                                  % plot n=10,100 dots
+v_curve_array = 0.1:0.00001:v_array(length(v_array));                       % plot curve n -> infty
+
+FIG_NUM = 5;                
+fun_optFitGain_over_v(NUM_OF_RUNS,mu,lambda,v_array,10,'r','x',FIG_NUM,c_mu_lambda,v_curve_array);    % plot n = 10 (x)
+disp('x done'); 
+fun_optFitGain_over_v(NUM_OF_RUNS,mu,lambda,v_array,100,'r','o',FIG_NUM,c_mu_lambda,v_curve_array);   % plot n = 100 (o)
+disp('o done');
+
+
+
+
+% p2 = sprintf('exp_fitGain_%d_%d_%d_ES.fig',mu,mu,lambda);
+% ylim([0 inf]);
+% saveas(gcf,p2);
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % noise-to-signal ratio
+% v = 0.1:0.00001:10;
+% 
+% % solve the plot by taking derivative
+% % opt. step size
+% figure(5);
+% plot(v,c_mu_lambda*mu./(sqrt(1+v.*v)));
+% xlabel('noise-to-signal ratio \upsilon','FontSize',15);%
+% ylabel('opt. normalized step size \sigma^*','FontSize',15); 
+% set(gca, 'XScale', 'log');
+% set(gca,'FontSize',15);
+% p1 = sprintf('opt. normalized step size (%d/%d,%d)-ES',mu,mu,lambda);
 % title(p1,'fontsize',20);
-
-p2 = sprintf('exp_fitGain_%d_%d_%d_ES.fig',mu,mu,lambda);
-ylim([0 inf]);
-saveas(gcf,p2);
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% noise-to-signal ratio
-v = 0.1:0.00001:10;
-
-% solve the plot by taking derivative
-% opt. step size
-figure(5);
-plot(v,c_mu_lambda*mu./(sqrt(1+v.*v)));
-xlabel('noise-to-signal ratio \upsilon','FontSize',15);%
-ylabel('opt. normalized step size \sigma^*','FontSize',15); 
-set(gca, 'XScale', 'log');
-set(gca,'FontSize',15);
-p1 = sprintf('opt. normalized step size (%d/%d,%d)-ES',mu,mu,lambda);
-title(p1,'fontsize',20);
-p2 = sprintf('opt_step_size_%d_%d_%d_ES.fig',mu,mu,lambda);
-saveas(gcf,p2);
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% p2 = sprintf('opt_step_size_%d_%d_%d_ES.fig',mu,mu,lambda);
+% saveas(gcf,p2);
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % opt. fitness gain given opt. step size
+v = 0.1:0.00001:20;                                                         % noise-to-signal ratio
 figure(6);
 sigma_star = c_mu_lambda*mu./(sqrt(1+v.*v));
 plot(v,sigma_star*(c_mu_lambda)./sqrt(1+v.^2)-sigma_star.^2./(2*mu));

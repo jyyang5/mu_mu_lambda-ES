@@ -2,7 +2,7 @@
 % plot convergence rate and success rate 
 % for different sigma* and v = sigma_ep*/sigma*
 
-function fun_fitness_sigmaStar_multi(mu,lambda,ita,n,scatterColour,typeDot,LINE_OR_NOT,c_mu_lambda)
+function fun_fitness_sigmaStar_multi(NUM_OF_RUNS,mu,lambda,ita,n,scatterColour,typeDot,LINE_OR_NOT,c_mu_lambda)
 %Input
 %   ita:                  % ita = sigma_ep_star /sigma_star
 %   n:                    dim of data
@@ -20,14 +20,14 @@ f = @(x) (x'*x);
 x0 = randn(n,mu); 
 
 NUM_OF_ITERATIONS = 2000;
-NUM_OF_RUNS = 2;
+% NUM_OF_RUNS = 2;
 
 
 
 
 % matrix for different sigma* matrix(sigma_i,median of NUM_OF_RUNS)
 s_start = 0.2;
-increment =0.4;
+increment =0.2;
 s_end = 8.2;
 temp_sigma_success_rate_array = zeros(1,NUM_OF_RUNS);
 temp_parent_not_lowest_of_quadratic_array = zeros(1,NUM_OF_RUNS);
@@ -107,6 +107,7 @@ end
 
 % convergence rate
 %figure(1)
+figure(4);
 legend('-DynamicLegend'); 
 hold on
 % dotted line (normal mml-ES)
@@ -140,11 +141,15 @@ ylabel('convergnece rate c','fontsize',20);
 xlabel('normalized step size \sigma^*','fontsize',20);
 %set(gca,'xscale','log')
 set(gca,'FontSize',15);
-
+ylim([0,inf])
 d = sprintf("convergence rate (%d/%d,%d)-ES",mu,mu,lambda);
 title(d,'FontSize', 25);
+p2 = sprintf('fitGain_%d_%d_%d_ES.fig',mu,mu,lambda);
+saveas(gcf,p2);
 
 end
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 

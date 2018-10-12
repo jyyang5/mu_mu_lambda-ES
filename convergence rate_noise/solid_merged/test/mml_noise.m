@@ -56,7 +56,12 @@ s = 0;
 
 
 while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
-    
+    % early stopping 
+    if(f_centroid > 50)
+        % if diverge -> convergence rate = 0
+        val = {9999999,mean(x0, 2),99999,sigma_array, centroid_array, fcentroid_array,-1,s_array}; 
+        return 
+    end
     dist = norm(centroid);                  % distance to optimal
     sigma = sigma_star/n*dist;              % mutation strength/step size(temp)  
     
