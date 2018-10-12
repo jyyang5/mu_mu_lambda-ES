@@ -19,7 +19,7 @@ f = @(x) (x'*x);
 x0 = randn(n,mu); 
 
 NUM_OF_ITERATIONS = 2000;
-NUM_OF_RUNS = 50;
+NUM_OF_RUNS = 100;
 
 
 
@@ -27,7 +27,7 @@ NUM_OF_RUNS = 50;
 % matrix for different sigma* matrix(sigma_i,median of NUM_OF_RUNS)
 s_start = 0.2;
 increment =0.2;
-s_end = 12;
+s_end = 14.2;
 temp_sigma_success_rate_array = zeros(1,NUM_OF_RUNS);
 temp_parent_not_lowest_of_quadratic_array = zeros(1,NUM_OF_RUNS);
 temp_sigma_T_array = zeros(1,NUM_OF_RUNS);
