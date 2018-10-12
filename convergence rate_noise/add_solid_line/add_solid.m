@@ -2,15 +2,18 @@
 % solid line in convergence rate graph
 
 % a = openfig('test.fig');
-
-mu = 3;
-lambda = 10;                            % not used but for computing c_mu_lambda
+%(3/3,10),(5/5,20), (10,40)
+mu = 10;
+lambda = 40;                            % not used but for computing c_mu_lambda
 
 step = 0.0000001;
 x = -10:step:10;
 % expected fitness gain for n->\infty  under mu and lambda
-%c_mu_lambda = (lambda-mu)/(2*pi)*nchoosek(lambda,mu)*sum(exp(-x.^2).*(normcdf(x)).^(lambda-mu-1).*(1-normcdf(x)).^(mu-1))*step;
-c_mu_lambda = 1.065389626877247;
+c_mu_lambda = (lambda-mu)/(2*pi)*nchoosek(lambda,mu)*sum(exp(-x.^2).*(normcdf(x)).^(lambda-mu-1).*(1-normcdf(x)).^(mu-1))*step;
+% c_mu_lambda = 1.065389626877247; % expected convergence rate for (3/3,10)-ES
+% c_mu_lambda = 1.214478382788638; % expected convergence rate for (5/5,20)-ES
+% c_mu_lambda = 1.242204493664515; % expected convergence rate for (10/10,40)-ES
+
 
 % range for sigma_satr
 s_start = 0.2;

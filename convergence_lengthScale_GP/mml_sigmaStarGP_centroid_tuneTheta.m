@@ -5,7 +5,7 @@
 % function evaluation for lambda offsprings with GP estimate 
 % In each iteration only the centroid is evaluated
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function val = mml_sigmaStarGP_centroid(f,x0,sigma_star,lambda,NUM_OF_ITERATIONS,TRAINING_FACTOR,length_scale_factor)
+function val = mml_sigmaStarGP_centroid_tuneTheta(f,x0,sigma_star,lambda,NUM_OF_ITERATIONS,TRAINING_FACTOR,length_scale_factor)
 % initialization
 % f:                  objective function value
 % x0:                 mu initial point size [n, mu]

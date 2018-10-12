@@ -58,7 +58,7 @@
    		    6. centroidQuadratic_withGP (fit a quadratic model for z_centroid, choose lowest point, pos and neg evaluated by GP)
    		    7. centroidQuadratic_trueObjFun (fit a quadratic model for z_centroid, choose lowest point, pos and neg evaluated by true objective function)
 
-   		Change the distance norm in GP use l-0.5 norm and l-3 norm failed
+   		Change the distance norm in GP use l-0.5 norm and l-3 norm **failed**
 
     - [mu_sigma_experiment](https://github.com/jyyang5/mu_mu_lambda-ES/tree/master/mu_sigma_experiment)
 
@@ -95,10 +95,14 @@
 
 - 20181011
 
-	- Use GP sigmaStar for (3/3,10),(7/7,20), (13,40) for the plots below 
+	 - Use GP sigmaStar for (3/3,10),(5/5,20), (10,40) for the plots below 
 	    1. expected fitness gain eta over normalied step size sigmaStar
 		2. opt. normalized step size over noise-to-signal ratio 
-		3. opt. expected fitness gain over noise-to-signal ratio 
+		3. opt. expected fitness gain over noise-to-signal ratio
+     - Thought 
+     	- Use sigmaStar test one sphere functions for optimal sigmaStar (largest convergence rate)
+     	- Adapt step size s.t. the normalized step size close to opt. sigmaStar previously 
+     	- Achieve appriximate similar convergence rate
 
 
 
