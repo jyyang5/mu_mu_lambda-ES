@@ -103,6 +103,24 @@
      	- Use sigmaStar test one sphere functions for optimal sigmaStar (largest convergence rate)
      	- Adapt step size s.t. the normalized step size close to opt. sigmaStar previously 
      	- Achieve appriximate similar convergence rate
+     - Comment
+     	1. scatter too close to each other 
+     	2. strage n=100 has larger fitness gain compared with n=10 (in opt. normalized step size)
+     	3. y-axies not correct
+
+
+- 20181012
+	
+	- Get better approximate of progress rate using formula in paper when n = infty 
+
+		- Use formula (11) from [paper](https://core.ac.uk/download/pdf/81976199.pdf) denoted n \approx \infty
+
+
+	- Replace Gaussin distributed noise with GP 
+
+
+
+
 
 
 
