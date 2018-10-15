@@ -19,8 +19,8 @@
 
 %
 NUM_OF_RUNS = 20;
-mu = 3;
-lambda = 10;
+mu = 10;
+lambda = 40;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % For expected convergence rate 
