@@ -97,13 +97,15 @@ if(typeDot == '.')
     plot(s_start:increment:s_end, sigma_counvergence_rate_array,':','DisplayName',d); hold on; 
 % need scatter plots (through experiemnt runs different noise-to signal ratio and dim)
 else
+    hold on;
     scatter_range=(1:5:(s_end-s_start)/increment+1);
     sigma_temp_array = s_start:increment:s_end;
-    d = sprintf('\\vartheta = %.2f',ita);
+    d = sprintf('\\vartheta = %.2f n=%d',ita,n);
     scatter(sigma_temp_array(scatter_range), sigma_counvergence_rate_array(scatter_range),typeDot,scatterColour,'DisplayName',d); hold on; 
 end
 % if n -> \infty plot the curve
 if LINE_OR_NOT==1
+    hold on;
     % first approximation n->infty
     sigma_star = s_start:increment:s_end;
     expected_cure = sigma_star*(c_mu_lambda)./sqrt(1+ita^2)-sigma_star.^2./(2*mu);
@@ -115,8 +117,10 @@ end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % plot precise expected progress rate with a specified dimension n 
-d1 = sprintf('\\vartheta = %.2f,n=%d',ita,n);
+d1 = sprintf('\\vartheta = %.2f n=%d',ita,n);
 v = ita;
+hold on;
+sigma_star = s_start:increment:s_end;
 precise_curve = c_mu_lambda*sigma_star.*(1+sigma_star.^2/2/mu/n)./(sqrt(1+sigma_star.^2/mu/n).*sqrt(1+v.^2+sigma_star.^2/2/n))-n*(sqrt(1+sigma_star.^2/mu/n)-1);
 if(n==10)
     plot(sigma_star,precise_curve,':x','Color',scatterColour,'DisplayName',d1);
