@@ -20,7 +20,7 @@ function val = mml_normal(f,x0,sigma_star,sigma_ep_star,lambda,NUM_OF_ITERATIONS
 %                     mml(f,randn(n,mu),1,0,10,1,4000)
 [n, mu] = size(x0);
 
-TRAINING_SIZE = 4*lambda;
+TRAINING_SIZE = 40;
 xtrain = zeros(n,TRAINING_SIZE);            % training data for GP size 4*mu
 fTrain = zeros(TRAINING_SIZE);
 

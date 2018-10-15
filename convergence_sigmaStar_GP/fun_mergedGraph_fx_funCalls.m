@@ -26,7 +26,7 @@ function val = fun_mergedGraph_fx_funCalls(f,name,NUM_OF_RUNS,sigma_star_array,l
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 TRAINING_FACTOR = 0;
-NUM_OF_ITERATIONS = 1500;
+NUM_OF_ITERATIONS = 20;
 n = 10;
 
 [index ,SIGMA_LENGTH] = size(sigma_star_array);
@@ -113,7 +113,7 @@ legend('-DynamicLegend');
 hold on;
 for i = 1:1:LAMBDA_LENGTH
     lambda_temp = lambda_array(i);
-    mu = floor(lambda_temp/4);
+    mu = ceil(lambda_temp/4);
     
     d1 =sprintf('(%d/%d,%d)  \t',mu,mu,lambda_temp);
     fprintf(fileID,d1); 
