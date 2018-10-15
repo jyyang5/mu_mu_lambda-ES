@@ -89,10 +89,13 @@ v = v_array;
 % opt. step size
 if(n==100)
     d =sprintf('n \\rightarrow \\infty');
-    plot(v,c_mu_lambda*mu./(sqrt(1+v.*v)),'Color','k','DisplayName',d);
-    
+    plot(v,c_mu_lambda*mu./(sqrt(1+v.*v),'Color',scatterColour,),'DisplayName',d);
+    % [more precise] n-> infty from eq. (11) https://core.ac.ukdownload/pdf/81976199.pdf
+%     d =sprintf('n \\approx \\infty');
+%     plot(v,c_mu_lambda*sigma_star.*(1+sigma_star.^2/2/mu/n)./(sqrt(1+sigma_star.^2/mu/n).*sqrt(1+v.^2+sigma_star.^2/2/n))-n*(sqrt(1+sigma_star.^2/mu/n)-1),'b','DisplayName',d);
     xlabel('noise-to-signal ratio \vartheta','FontSize',15);%
     ylabel('opt. normalized step size \sigma*','FontSize',15); 
+%     ylabel('opt. normalized step size \sigma*','FontSize',15); 
     set(gca, 'XScale', 'log');
     set(gca,'FontSize',15);
     p1 = sprintf('opt. normalized step size (%d/%d,%d)-ES',mu,mu,lambda);
@@ -115,7 +118,6 @@ for i = 1:1:length(s_index)
     max_sigma_array(i) = sigma_star(s_index(i));
 end
 d1 = sprintf('n = %d',n);                                                % legend specify dim 
-% estimation for specific n eq. (11) https://core.ac.uk/download/pdf/81976199.pdf
 if(n==10) 
     plot(v,max_sigma_array,'-','Color',scatterColour,'DisplayName',d1);
 elseif(n==100)

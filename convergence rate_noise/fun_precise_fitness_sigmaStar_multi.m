@@ -109,7 +109,8 @@ if LINE_OR_NOT==1
     % first approximation n->infty
     sigma_star = s_start:increment:s_end;
     expected_cure = sigma_star*(c_mu_lambda)./sqrt(1+ita^2)-sigma_star.^2./(2*mu);
-    plot(sigma_star,expected_cure,'Color',scatterColour,'DisplayName',d); hold on; 
+    d1 = sprintf('\\vartheta = %.2f n=\\infty',ita);
+    plot(sigma_star,expected_cure,'Color',scatterColour,'DisplayName',d1); hold on; 
     % https://core.ac.uk/download/pdf/81976199.pdf eq. (11)
     
 %     plot(s_start:increment:(s_end), sigma_counvergence_rate_array,scatterColour);
@@ -123,9 +124,9 @@ hold on;
 sigma_star = s_start:increment:s_end;
 precise_curve = c_mu_lambda*sigma_star.*(1+sigma_star.^2/2/mu/n)./(sqrt(1+sigma_star.^2/mu/n).*sqrt(1+v.^2+sigma_star.^2/2/n))-n*(sqrt(1+sigma_star.^2/mu/n)-1);
 if(n==10)
-    plot(sigma_star,precise_curve,':x','Color',scatterColour,'DisplayName',d1);
+    plot(sigma_star,precise_curve,'--','Color',scatterColour,'DisplayName',d1);
 elseif(n==100)
-    plot(sigma_star,precise_curve,':o','Color',scatterColour,'DisplayName',d1);
+    plot(sigma_star,precise_curve,':','Color',scatterColour,'DisplayName',d1);
 end
 % each ita plot theta = some n
 if n ==10
