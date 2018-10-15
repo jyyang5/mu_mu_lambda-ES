@@ -145,7 +145,7 @@ title(d,'FontSize', 20);
 
 
 % save all fig
-p2 = sprintf('opt_normalized_step_size_%d_%d_%d_ES.fig',mu,mu,lambda);
+p2 = sprintf('1opt_normalized_step_size_%d_%d_%d_ES.fig',mu,mu,lambda);
 saveas(gcf,p2);
 
 

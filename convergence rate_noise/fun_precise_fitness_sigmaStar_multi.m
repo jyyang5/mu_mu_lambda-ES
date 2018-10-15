@@ -148,7 +148,7 @@ set(gca,'FontSize',15);
 ylim([0,inf])
 d = sprintf("expected normalized step size (%d/%d,%d)-ES",mu,mu,lambda);
 title(d,'FontSize', 20);
-p2 = sprintf('fitGain_%d_%d_%d_ES.fig',mu,mu,lambda);
+p2 = sprintf('1fitGain_%d_%d_%d_ES.fig',mu,mu,lambda);
 saveas(gcf,p2);
 
 end

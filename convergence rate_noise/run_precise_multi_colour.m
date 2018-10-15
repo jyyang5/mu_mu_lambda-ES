@@ -19,7 +19,7 @@
 %   scatter or scatter+curve
 
 %
-NUM_OF_RUNS = 2;
+NUM_OF_RUNS = 20;
 mu = 3;
 lambda = 10;
 
@@ -81,7 +81,8 @@ disp('dotted black done')
 
 
 % plot opt. step size for (n=10,100,infty)
-v_array = [0.001 0.01 0.05 0.1 0.25 0.5 1 2 4 8 16 32 64];                                % plot n=10,100 dots
+v_array = 0.001*2.^(1:1:19);
+% v_array = [0.001 0.01 0.05 0.1 0.25 0.5 1 2 4 8 16 32 64 128 256];        % plot n=10,100 dots
 v_curve_array = 0.1:0.001:v_array(length(v_array));                       % plot curve n -> infty
 
 FIG_NUM = 5;                
@@ -89,12 +90,13 @@ fun_precise_optFitGain_over_v(NUM_OF_RUNS,mu,lambda,v_array,10,'r','x',FIG_NUM,c
 disp('* done'); 
 fun_precise_optFitGain_over_v(NUM_OF_RUNS,mu,lambda,v_array,100,'b','o',FIG_NUM,c_mu_lambda,v_curve_array);   % plot n = 100 (o)
 disp('s done');
-
+xlim([10^(-3) inf]);
+ylim([0 inf]);
 
 
 
 % p2 = sprintf('exp_fitGain_%d_%d_%d_ES.fig',mu,mu,lambda);
-ylim([0 inf]);
+
 % saveas(gcf,p2);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % noise-to-signal ratio
@@ -116,7 +118,7 @@ ylim([0 inf]);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % opt. fitness gain given opt. step size n= 10,100,infty
 sigma_star = 0.1:0.001:8;
-v_range = 0.001*2.^(1:1:18);
+v_range = 0.001/2*2.^(1:1:19);
 v_range_trans = transpose(v_range);
 % a matrix 
 % row: different noise-to-signal ratio v
@@ -144,7 +146,9 @@ ylabel('opt. expected fitness gain \eta','FontSize',15);
 xlabel('noise-to-signal-ratio \upsilon','FontSize',15); 
 set(gca, 'XScale', 'log');
 set(gca,'FontSize',15);
+xlim([10^(-3) inf]);
+ylim([0 inf]);
 p1 = sprintf('opt. expected fitness gain (%d/%d,%d)-ES',mu,mu,lambda);
 title(p1,'fontsize',20);
-p2 = sprintf('opt_fitGain_%d_%d_%d_ES.fig',mu,mu,lambda);
+p2 = sprintf('1opt_fitGain_%d_%d_%d_ES.fig',mu,mu,lambda);
 saveas(gcf,p2);
