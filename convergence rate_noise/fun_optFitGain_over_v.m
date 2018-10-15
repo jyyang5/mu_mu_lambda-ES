@@ -35,13 +35,11 @@ increment =0.2;
 s_end = 32.2;
 
 temp_sigma_success_rate_array = zeros(1,NUM_OF_RUNS);
-temp_parent_not_lowest_of_quadratic_array = zeros(1,NUM_OF_RUNS);
 temp_sigma_T_array = zeros(1,NUM_OF_RUNS);
 temp_sigma_f_x_array = zeros(NUM_OF_RUNS,6000);
 temp_sigma_counvergence_rate_array = zeros(1,NUM_OF_RUNS);
 
 sigma_success_rate_array = zeros(1,(s_end-s_start)/increment+1);
-parent_not_lowest_of_quadratic_array = zeros(1,(s_end-s_start)/increment+1);
 sigma_T_array = zeros(1,(s_end-s_start)/increment+1);
 sigma_f_x_array = zeros((s_end-s_start)/increment+1,6000);
 sigma_counvergence_rate_array = zeros(1,(s_end-s_start)/increment+1);
@@ -55,7 +53,6 @@ for k = 1:1:V_LENGTH
         for j = 1:1:NUM_OF_RUNS
             sigma_ep_star = v_temp*sigma_star;
             a = mml_noise(f,x0,sigma_star,sigma_ep_star,lambda,NUM_OF_ITERATIONS);
-            %temp_parent_not_lowest_of_quadratic_array(j) = cell2mat(a(6));
             %temp_sigma_counvergence_rate_array(j) = cell2mat(a(7));
             %temp_sigma_T_array(j) = cell2mat(a(1));
 %             temp_sigma_success_rate_array(j) = cell2mat(a(5));
@@ -92,8 +89,12 @@ v = v_curve_array;
 if(n==10)
     d =sprintf('n \\rightarrow \\infty');
     plot(v,c_mu_lambda*mu./(sqrt(1+v.*v)),'DisplayName',d);
-    xlabel('noise-to-signal ratio \upsilon','FontSize',15);%
-    ylabel('opt. normalized step size \sigma^*','FontSize',15); 
+    % [more precise] n-> infty from eq. (11) https://core.ac.uk/download/pdf/81976199.pdf
+    d =sprintf('n \\approx \\infty');
+    plot(v,c_mu_lambda*sigma_star.*(1+sigma_star.^2/2/mu/n)./(sqrt(1+sigma_star.^2/mu/n).*sqrt(1+v.^2+sigma_star.^2/2/n))-n*(sqrt(1+sigma_star.^2/mu/n)-1),'b','DisplayName',d);
+    xlabel('noise-to-signal ratio \vartheta','FontSize',15);%
+    ylabel('opt. normalized step size \sigma*','FontSize',15); 
+%     ylabel('opt. normalized step size \sigma*','FontSize',15); 
     set(gca, 'XScale', 'log');
     set(gca,'FontSize',15);
     p1 = sprintf('opt. normalized step size (%d/%d,%d)-ES',mu,mu,lambda);
@@ -113,17 +114,18 @@ leg = legend();
 leg.FontSize = 10;
 title(leg,'dimension of data');
 hold off
-ylabel('convergnece rate c','fontsize',20);
-xlabel('noise-to-signal ratio \upsilon','fontsize',20);
+% ylabel('convergnece rate c','fontsize',20);
+xlabel('noise-to-signal ratio \vartheta','fontsize',20);
+ylabel('opt. normalized step size \sigma*','FontSize',15); 
 %set(gca,'xscale','log')
 set(gca,'FontSize',15);
 ylim([0,inf])                                                               % y starts from 0
 d = sprintf("convergence rate (%d/%d,%d)-ES",mu,mu,lambda);
-title(d,'FontSize', 25);
+title(d,'FontSize', 20);
 
 
 % save all fig
-p2 = sprintf('opt_step_size_%d_%d_%d_ES.fig',mu,mu,lambda);
+p2 = sprintf('opt_normalized_step_size_%d_%d_%d_ES.fig',mu,mu,lambda);
 saveas(gcf,p2);
 
 end

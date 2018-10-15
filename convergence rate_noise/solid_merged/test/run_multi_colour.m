@@ -18,7 +18,7 @@
 %   scatter or scatter+curve
 
 %
-NUM_OF_RUNS = 2;
+NUM_OF_RUNS = 20;
 mu = 3;
 lambda = 10;
 
