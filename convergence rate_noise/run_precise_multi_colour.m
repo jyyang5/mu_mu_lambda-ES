@@ -21,9 +21,9 @@
 %
 f = @(x) (x'*x);
 
-NUM_OF_RUNS = 2;
-mu = 3;
-lambda = 10;
+NUM_OF_RUNS = 7;
+mu = 5;
+lambda = 20;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % For expected convergence rate 

@@ -119,8 +119,19 @@
 
 	- [] Replace Gaussin distributed noise with GP 
 
+- 20181018
 
+	- [] Gap between the expected progress rate and the one using GP
 
+		- TRAINING_SIZE
+		- length scale
+
+	- [] Twice almost twice for the the opt. step size for experimental result and expected value
+
+	- [] Performance for large dimensionality
+		- Expect at least linear to the increase of dim
+		
+ 
 
 
 
