@@ -19,8 +19,6 @@
 %   scatter or scatter+curve
 
 %
-f = @(x) (x'*x);
-
 NUM_OF_RUNS = 2;
 mu = 3;
 lambda = 10;
