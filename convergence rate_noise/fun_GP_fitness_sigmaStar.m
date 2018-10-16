@@ -1,7 +1,7 @@
 % plot mml-ES with GP over sigmaStar
 %
 
-function fun_GP_fitness_sigmaStar(NUM_OF_RUNS,mu,lambda,n,scatterColour,FIGURE_NUM)
+function fun_GP_fitness_sigmaStar(f,NUM_OF_RUNS,mu,lambda,n,scatterColour,FIGURE_NUM)
 %Input
 %   n:                    dim of data (n==10 dashed line, n==100 dotted line)
 %   scatterColour:        colour of the plots
@@ -11,7 +11,7 @@ function fun_GP_fitness_sigmaStar(NUM_OF_RUNS,mu,lambda,n,scatterColour,FIGURE_N
 %Return
 %   plot using GP
 
-f = @(x) (x'*x);
+% f = @(x) (x'*x);
 
 %n = 10;                 % dim of the data
 %ita = 4;     
@@ -46,6 +46,7 @@ sigma_counvergence_rate_array = zeros(1,uint8((s_end-s_start)/increment+1));
 i = 1;
 for sigma_star = s_start:increment:s_end
     for j = 1:1:NUM_OF_RUNS
+        x0 = randn(n,mu); 
         % GP mml-ES
         a = mml_GP(f,x0,sigma_star,TRAINING_SIZE,lambda,NUM_OF_ITERATIONS);    
         %temp_parent_not_lowest_of_quadratic_array(j) = cell2mat(a(6));

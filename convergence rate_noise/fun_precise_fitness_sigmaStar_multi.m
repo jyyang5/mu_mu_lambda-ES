@@ -3,7 +3,7 @@
 % plot convergence rate and success rate 
 % for different sigma* and v = sigma_ep*/sigma*
 
-function fun_precise_fitness_sigmaStar_multi(NUM_OF_RUNS,mu,lambda,ita,n,scatterColour,typeDot,LINE_OR_NOT,c_mu_lambda)
+function fun_precise_fitness_sigmaStar_multi(f,NUM_OF_RUNS,mu,lambda,ita,n,scatterColour,typeDot,LINE_OR_NOT,c_mu_lambda)
 %Input
 %   ita:                  noise-to-signal ratio: ita = sigma_ep_star /sigma_star
 %   n:                    dim of data
@@ -16,7 +16,7 @@ function fun_precise_fitness_sigmaStar_multi(NUM_OF_RUNS,mu,lambda,ita,n,scatter
 %Return
 %   scatter or scatter+curve
 
-f = @(x) (x'*x);
+% f = @(x) (x'*x);
 
 %n = 10;                 % dim of the data
 %ita = 4;     
@@ -50,6 +50,7 @@ sigma_counvergence_rate_array = zeros(1,uint8((s_end-s_start)/increment+1));
 i = 1;
 for sigma_star = s_start:increment:s_end
     for j = 1:1:NUM_OF_RUNS
+        x0 = randn(n,mu); 
         sigma_ep_star = ita*sigma_star;
         % normal mml-ES
         if(typeDot == '.')

@@ -1,7 +1,7 @@
 % add different curve for expected progress rate over dim n
 % plot opt. normalized step size & opt. expected fitness gain over v 
 
-function fun_precise_optFitGain_over_v(NUM_OF_RUNS,mu,lambda,v_array,n,scatterColour,typeDot,FIG_NUM,c_mu_lambda,v_curve_array)
+function fun_precise_optFitGain_over_v(f,NUM_OF_RUNS,mu,lambda,v_array,n,scatterColour,typeDot,FIG_NUM,c_mu_lambda,v_curve_array)
 %Input
 %   v_array:              array noise-to-signal ratio = sigma_ep_star /sigma_star
 %   n:                    dim of data 
@@ -19,11 +19,11 @@ V_LENGTH = length(v_array);
 
 
 
-f = @(x) (x'*x);
+% f = @(x) (x'*x);
 
 %n = 10;                 % dim of the data
 %ita = 4;     
-x0 = randn(n,mu); 
+% x0 = randn(n,mu); 
 
 NUM_OF_ITERATIONS = 2000;
 % NUM_OF_RUNS = 1;
@@ -52,6 +52,7 @@ for k = 1:1:V_LENGTH
     i = 1;
     for sigma_star = s_start:increment:s_end
         for j = 1:1:NUM_OF_RUNS
+            x0 = randn(n,mu); 
             sigma_ep_star = v_temp*sigma_star;
             a = mml_noise(f,x0,sigma_star,sigma_ep_star,lambda,NUM_OF_ITERATIONS);
             %temp_sigma_counvergence_rate_array(j) = cell2mat(a(7));
