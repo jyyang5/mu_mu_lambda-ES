@@ -9,6 +9,8 @@ function fun_precise_fitness_sigmaStar_multi(NUM_OF_RUNS,mu,lambda,ita,n,scatter
 %   n:                    dim of data
 %   scatterColour:        colour of the plots
 %   typeDot:              type of dot (+  Plus sign, o  Circle, *  Asterisk, x  Cross, . dotted line)
+%                         normal mml-ES = '.'
+%                         GP mml-ES = '-'  
 %   LINE_OR_NOT:          justScatter = 0, includeLine = 1
 %   c_mu_lambda:          a factor for computing n-> infty convergence rate
 %Return
@@ -49,6 +51,7 @@ i = 1;
 for sigma_star = s_start:increment:s_end
     for j = 1:1:NUM_OF_RUNS
         sigma_ep_star = ita*sigma_star;
+        % normal mml-ES
         if(typeDot == '.')
             a = mml_normal(f,x0,sigma_star,sigma_ep_star,lambda,NUM_OF_ITERATIONS);
         else 
@@ -93,7 +96,7 @@ legend('-DynamicLegend');
 hold on
 % dotted line (normal mml-ES)
 if(typeDot == '.')
-    d = sprintf('without GP');
+    d = sprintf('without GP n=%d',n);
     plot(s_start:increment:s_end, sigma_counvergence_rate_array,':','DisplayName',d); hold on; 
 % need scatter plots (through experiemnt runs different noise-to signal ratio and dim)
 else
@@ -123,9 +126,9 @@ v = ita;
 hold on;
 sigma_star = s_start:increment:s_end;
 precise_curve = c_mu_lambda*sigma_star.*(1+sigma_star.^2/2/mu/n)./(sqrt(1+sigma_star.^2/mu/n).*sqrt(1+v.^2+sigma_star.^2/2/n))-n*(sqrt(1+sigma_star.^2/mu/n)-1);
-if(n==10)
+if(n==10 && typeDot~='.')
     plot(sigma_star,precise_curve,'--','Color',scatterColour,'DisplayName',d1);
-elseif(n==100)
+elseif(n==100 && typeDot~='.')
     plot(sigma_star,precise_curve,':','Color',scatterColour,'DisplayName',d1);
 end
 % each ita plot theta = some n

@@ -1,4 +1,4 @@
-# A surrogated-assisted(GP-beased) mu_mu_lambda-ES 
+# A mu_mu_lambda-ES using comparision-based surrogate(GP) 
 
 ## Overview
 - Folders
@@ -95,7 +95,7 @@
 
 - 20181011
 
-	 - Use GP sigmaStar for (3/3,10),(5/5,20), (10,40) for the plots below 
+	 - [x] Use GP sigmaStar for (3/3,10),(5/5,20), (10,40) for the plots below 
 	    1. expected fitness gain eta over normalied step size sigmaStar
 		2. opt. normalized step size over noise-to-signal ratio 
 		3. opt. expected fitness gain over noise-to-signal ratio
@@ -107,16 +107,17 @@
      	1. scatter too close to each other 
      	2. strage n=100 has larger fitness gain compared with n=10 (in opt. normalized step size)
      	3. y-axies not correct
+     	4. problem if 
 
 
 - 20181012
 	
-	- Get better approximate of progress rate using formula in paper when n = infty 
+	- [x] Get better approximate of progress rate using formula in paper when n = infty 
 
 		- Use formula (11) from [paper](https://core.ac.uk/download/pdf/81976199.pdf) denoted n \approx \infty
 
 
-	- Replace Gaussin distributed noise with GP 
+	- [] Replace Gaussin distributed noise with GP 
 
 
 

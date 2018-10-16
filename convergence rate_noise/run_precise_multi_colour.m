@@ -20,8 +20,8 @@
 
 %
 NUM_OF_RUNS = 20;
-mu = 3;
-lambda = 10;
+mu = 10;
+lambda = 40;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % For expected convergence rate 
@@ -77,6 +77,8 @@ disp('black done');
 fun_precise_fitness_sigmaStar_multi(NUM_OF_RUNS,mu,lambda,ita,10,'k','.',0,c_mu_lambda);
 
 disp('dotted black done')
+% GP mml-ES 
+
 
 
 
@@ -146,7 +148,7 @@ ylabel('opt. expected fitness gain \eta','FontSize',15);
 xlabel('noise-to-signal-ratio \upsilon','FontSize',15); 
 set(gca, 'XScale', 'log');
 set(gca,'FontSize',15);
-xlim([10^(-3) inf]);
+xlim([10^(-3)/2 inf]);
 ylim([0 inf]);
 p1 = sprintf('opt. expected fitness gain (%d/%d,%d)-ES',mu,mu,lambda);
 title(p1,'fontsize',20);
