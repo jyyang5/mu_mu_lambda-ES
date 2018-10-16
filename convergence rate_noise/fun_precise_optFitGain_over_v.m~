@@ -145,10 +145,9 @@ d =sprintf('n = %.0f',n);
 temp_sStar_array = s_start:increment:s_end;
 sigma_max_exp = zeros(1,length(index_convergence_rate_array));
 for i = 1:1:length(index_convergence_rate_array)
-    sigma_max_exp(i) = temp_sStar_array(index_convergence_rate_array(i));
+    sigma_max_exp(i) = 
 end
-% scatter(v_array, v_convergence_rate_array,typeDot,scatterColour,'DisplayName',d); hold on; 
-scatter(v_array, sigma_max_exp,typeDot,scatterColour,'DisplayName',d); hold on; 
+scatter(v_array, v_convergence_rate_array,typeDot,scatterColour,'DisplayName',d); hold on; 
 
 legend('-DynamicLegend'); 
 legend('show');
