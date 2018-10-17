@@ -26,6 +26,7 @@ TRAINING_SIZE = 40;
 
 % matrix for different sigma* matrix(sigma_i,median of NUM_OF_RUNS)
 s_start = 0.2;
+% increment =0.25;
 increment =0.5;
 if(lambda<=10)
     s_end = 6.2;
@@ -92,7 +93,8 @@ end
 figure(FIGURE_NUM);
 legend('-DynamicLegend'); 
 hold on
-d = sprintf('with GP n=%d',n);
+d = sprintf('withGP n=%d',n);
+
 if(n==10)
     plot(s_start:increment:s_end, sigma_counvergence_rate_array,'--','Color',scatterColour,'DisplayName',d); hold on; 
 elseif(n==100)

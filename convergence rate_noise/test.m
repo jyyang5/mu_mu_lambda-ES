@@ -19,7 +19,8 @@
 %   scatter or scatter+curve
 
 %
-NUM_OF_RUNS = 2;
+f = @(x) (x'*x);
+NUM_OF_RUNS = 5;
 mu = 3;
 lambda = 10;
 
@@ -38,15 +39,31 @@ else
     c_mu_lambda = (lambda-mu)/(2*pi)*nchoosek(lambda,mu)*sum(exp(-x.^2).*(normcdf(x)).^(lambda-mu-1).*(1-normcdf(x)).^(mu-1))*step;
 end
 
+n = 10;
+
 mu = 10;
 lambda = 40;
 FIGURE_NUM = 1;
 figure(FIGURE_NUM);
 legend('-DynamicLegend'); 
-n = 10;
-fun_GP_fitness_sigmaStar(NUM_OF_RUNS,mu,lambda,n,'m',FIGURE_NUM);
-n = 100;
-fun_GP_fitness_sigmaStar(NUM_OF_RUNS,mu,lambda,n,'m',FIGURE_NUM);
+fun_GP_fitness_sigmaStar(f,NUM_OF_RUNS,mu,lambda,n,'r',FIGURE_NUM);
+mu = 5;
+lambda = 20;
+FIGURE_NUM = 1;
+figure(FIGURE_NUM);
+legend('-DynamicLegend'); 
+fun_GP_fitness_sigmaStar(f,NUM_OF_RUNS,mu,lambda,n,'k',FIGURE_NUM);
+mu = 3;
+lambda = 10;
+FIGURE_NUM = 1;
+figure(FIGURE_NUM);
+legend('-DynamicLegend'); 
+fun_GP_fitness_sigmaStar(f,NUM_OF_RUNS,mu,lambda,n,'b',FIGURE_NUM);
+
+
+
+% n = 100;
+% fun_GP_fitness_sigmaStar(NUM_OF_RUNS,mu,lambda,n,'m',FIGURE_NUM);
 % 
 % mu = 5;
 % lambda = 20;

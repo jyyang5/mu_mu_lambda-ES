@@ -21,7 +21,7 @@
 %
 f = @(x) (x'*x);
 
-NUM_OF_RUNS = 1;
+NUM_OF_RUNS = 10;
 mu = 5;
 lambda = 20;
 
@@ -40,53 +40,53 @@ else
     c_mu_lambda = (lambda-mu)/(2*pi)*nchoosek(lambda,mu)*sum(exp(-x.^2).*(normcdf(x)).^(lambda-mu-1).*(1-normcdf(x)).^(mu-1))*step;
 end
 
-% 
-% figure(4);
-% legend('-DynamicLegend'); 
-% % green
-% ita = 4;
-% %fun_fitness_sigmaStar(4,100000,'g','.',1);        
-% fun_precise_fitness_sigmaStar_multi(f,NUM_OF_RUNS,mu,lambda,ita,100,'g','o',0,c_mu_lambda);
-% fun_precise_fitness_sigmaStar_multi(f,NUM_OF_RUNS,mu,lambda,ita,10,'g','x',1,c_mu_lambda);        
-% disp('green done');
-% 
-% 
-% % red
-% ita = 1;
-% fun_precise_fitness_sigmaStar_multi(f,NUM_OF_RUNS,mu,lambda,ita,100,'r','o',0,c_mu_lambda);
-% fun_precise_fitness_sigmaStar_multi(f,NUM_OF_RUNS,mu,lambda,ita,10,'r','x',1,c_mu_lambda);        
-% 
-% 
-% disp('red done');
-% % blue
-% ita = 0.25;
-% fun_precise_fitness_sigmaStar_multi(f,NUM_OF_RUNS,mu,lambda,ita,100,'b','o',0,c_mu_lambda);
-% fun_precise_fitness_sigmaStar_multi(f,NUM_OF_RUNS,mu,lambda,ita,10,'b','x',1,c_mu_lambda);        
-% 
-% 
-% disp('blue done');
-% 
-% 
-% % black
-% ita = 0;
-% fun_precise_fitness_sigmaStar_multi(f,NUM_OF_RUNS,mu,lambda,ita,100,'k','o',0,c_mu_lambda);
-% fun_precise_fitness_sigmaStar_multi(f,NUM_OF_RUNS,mu,lambda,ita,10,'k','x',1,c_mu_lambda);        
-% 
-% 
-% disp('black done');
-% 
-% % normal mml-ES
-% fun_precise_fitness_sigmaStar_multi(f,NUM_OF_RUNS,mu,lambda,ita,10,'k','.',0,c_mu_lambda);
-% 
-% disp('dotted black done')
-% 
-% % GP mml-ES 
-% FIGURE_NUM = 4;
-% n = 10;
-% fun_GP_fitness_sigmaStar(f,NUM_OF_RUNS,mu,lambda,n,'m',FIGURE_NUM);
-% n = 100;
-% fun_GP_fitness_sigmaStar(f,NUM_OF_RUNS,mu,lambda,n,'m',FIGURE_NUM);
-% 
+
+figure(4);
+legend('-DynamicLegend'); 
+% green
+ita = 4;
+%fun_fitness_sigmaStar(4,100000,'g','.',1);        
+fun_precise_fitness_sigmaStar_multi(f,NUM_OF_RUNS,mu,lambda,ita,100,'g','o',0,c_mu_lambda);
+fun_precise_fitness_sigmaStar_multi(f,NUM_OF_RUNS,mu,lambda,ita,10,'g','x',1,c_mu_lambda);        
+disp('green done');
+
+
+% red
+ita = 1;
+fun_precise_fitness_sigmaStar_multi(f,NUM_OF_RUNS,mu,lambda,ita,100,'r','o',0,c_mu_lambda);
+fun_precise_fitness_sigmaStar_multi(f,NUM_OF_RUNS,mu,lambda,ita,10,'r','x',1,c_mu_lambda);        
+
+
+disp('red done');
+% blue
+ita = 0.25;
+fun_precise_fitness_sigmaStar_multi(f,NUM_OF_RUNS,mu,lambda,ita,100,'b','o',0,c_mu_lambda);
+fun_precise_fitness_sigmaStar_multi(f,NUM_OF_RUNS,mu,lambda,ita,10,'b','x',1,c_mu_lambda);        
+
+
+disp('blue done');
+
+
+% black
+ita = 0;
+fun_precise_fitness_sigmaStar_multi(f,NUM_OF_RUNS,mu,lambda,ita,100,'k','o',0,c_mu_lambda);
+fun_precise_fitness_sigmaStar_multi(f,NUM_OF_RUNS,mu,lambda,ita,10,'k','x',1,c_mu_lambda);        
+
+
+disp('black done');
+
+% normal mml-ES
+fun_precise_fitness_sigmaStar_multi(f,NUM_OF_RUNS,mu,lambda,ita,10,'k','.',0,c_mu_lambda);
+
+disp('dotted black done')
+
+% GP mml-ES 
+FIGURE_NUM = 4;
+n = 10;
+fun_GP_fitness_sigmaStar(f,NUM_OF_RUNS,mu,lambda,n,'m',FIGURE_NUM);
+n = 100;
+fun_GP_fitness_sigmaStar(f,NUM_OF_RUNS,mu,lambda,n,'m',FIGURE_NUM);
+
 
 
 % plot opt. step size for (n=10,100,infty)
