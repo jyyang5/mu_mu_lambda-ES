@@ -136,8 +136,20 @@
 - 20181019
 
 	- [] Thesis write-up
+                3. Plots 
+                        - Expected progress rate over \sigmaStar
+                        - opt. normalized step size and opt. expected fitness gain over noise-to-signal ratio 
+                        - step size 
+                4. Step size adaptation (use GP)
+                        - Normalized step size over iteration 
+                        - Noise to signal ratio (var(fep-fy)/var(fy) over iteration) should be a straight line
+                                
+                all lambda offspring evaluated by GP (fep) and true objective function value (fy)
+                
+                calculate the noise-to signal ratio per iteration as var(fep,fy)/var(fy)
+                
 
-	- [] TRAINING_SIZE
+	- [] TRAINING_SIZE 
 
 		- Try TRAINING_SIZE = 4*n (round up to k*lambda)???
 
