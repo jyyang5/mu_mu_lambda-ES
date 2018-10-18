@@ -119,17 +119,32 @@
 
 	- [] Replace Gaussin distributed noise with GP 
 
-- 20181018
+- 20181016
 
 	- [] Gap between the expected progress rate and the one using GP
 
 		- TRAINING_SIZE
 		- length scale
 
-	- [] Twice almost twice for the the opt. step size for experimental result and expected value
+	- [x] Twice almost twice for the the opt. step size for experimental result and expected value
+
+		- Fixed problem lies in the sigmaStar used for ploting
 
 	- [] Performance for large dimensionality
 		- Expect at least linear to the increase of dim
+
+- 20181019
+
+	- [] Thesis write-up
+
+	- [] TRAINING_SIZE
+
+		- Try TRAINING_SIZE = 4*n (round up to k*lambda)???
+
+		
+
+
+
 		
  
 

@@ -19,8 +19,8 @@
 %   scatter or scatter+curve
 
 %
-f = @(x) (x'*x);
-NUM_OF_RUNS = 5;
+f = @(x) (x'*x)^(1/2);
+NUM_OF_RUNS = 10;
 mu = 3;
 lambda = 10;
 
@@ -44,21 +44,34 @@ n = 10;
 mu = 10;
 lambda = 40;
 FIGURE_NUM = 1;
-figure(FIGURE_NUM);
-legend('-DynamicLegend'); 
-fun_GP_fitness_sigmaStar(f,NUM_OF_RUNS,mu,lambda,n,'r',FIGURE_NUM);
-mu = 5;
-lambda = 20;
-FIGURE_NUM = 1;
-figure(FIGURE_NUM);
-legend('-DynamicLegend'); 
-fun_GP_fitness_sigmaStar(f,NUM_OF_RUNS,mu,lambda,n,'k',FIGURE_NUM);
-mu = 3;
-lambda = 10;
-FIGURE_NUM = 1;
-figure(FIGURE_NUM);
-legend('-DynamicLegend'); 
-fun_GP_fitness_sigmaStar(f,NUM_OF_RUNS,mu,lambda,n,'b',FIGURE_NUM);
+% figure(FIGURE_NUM);
+% legend('-DynamicLegend'); 
+% fun_GP_fitness_sigmaStar(f,NUM_OF_RUNS,mu,lambda,n,'r',FIGURE_NUM);
+x0 = randn(n,mu);
+sigma_star = 4;
+TRAINING_SIZE = 40;
+NUM_OF_ITERATIONS = 2000;
+a = mml_GP(f,x0,sigma_star,TRAINING_SIZE,lambda,NUM_OF_ITERATIONS);
+f_x_array = cell2mat(a(6));
+t = cell2mat(a(1));
+figure(6);
+plot(1:1:t,f_x_array(1:t));
+set(gca, 'YScale', 'log');
+ylabel('objective function value of centroid','FontSize',15);
+xlabel('number of interation','FontSize',15); 
+
+% mu = 5;
+% lambda = 20;
+% FIGURE_NUM = 1;
+% figure(FIGURE_NUM);
+% legend('-DynamicLegend'); 
+% fun_GP_fitness_sigmaStar(f,NUM_OF_RUNS,mu,lambda,n,'k',FIGURE_NUM);
+% mu = 3;
+% lambda = 10;
+% FIGURE_NUM = 1;
+% figure(FIGURE_NUM);
+% legend('-DynamicLegend'); 
+% fun_GP_fitness_sigmaStar(f,NUM_OF_RUNS,mu,lambda,n,'b',FIGURE_NUM);
 
 
 

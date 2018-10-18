@@ -1,35 +1,31 @@
 % Use GP estimate 
 % function evaluation for lambda offsprings with GP estimate 
-% In each iteration only the centroid is evaluated
-
+% In each iteration only centroid is evaluated use true objective Function
 
 function val = mml_GP(f,x0,sigma_star,TRAINING_SIZE,lambda,NUM_OF_ITERATIONS)
 % initialization
 % f:                  objective function value
 % x0:                 mu initial point size [n, mu]
 % sigma_star:         normalized step size
-% sigma_ep_star:      normalized noise-to-signal ratio 
+% TRAINING_SIZE:      size of GP training set
 % lambda:             # of offsprings genenerated in each itertaion  
 % mu:                 parent size
-% sigma0:             initial muttaion strength
 % NUM_OF_ITERATIONS:  number of maximum iterations
-
 
 
 % OPTIMAL:            global optima
 % example input:      f = @(x) x' * x
-%                     mml(f,randn(n,mu),1,0,10,1,4000)
+%                     mml(f,randn(n,mu),1,40,10,1,4000)
 [n, mu] = size(x0);
 
 % TRAINING_SIZE = 4*lambda;
-xtrain = zeros(n,TRAINING_SIZE);            % training data for GP size 4*mu
-fTrain = zeros(1,TRAINING_SIZE);
+xTrain = zeros(n,10000);            % training data for GP size 4*mu
+fTrain = zeros(1,10000);
 
 
 centroid_array = zeros(n,10000);
 fcentroid_array = zeros(1,10000);
 sigma_array = zeros(1,10000);
-s_array = zeros(1,10000);
 
 y = zeros(n,lambda);                        % lambda offspring solution with dim n
 z = zeros(n,lambda);                        % random directions added for lambda offsprings dim n
@@ -43,14 +39,14 @@ convergence_rate = 0;
 t = 1;       
 T = 1;
 
-
 centroid_array(:,t) = centroid;
 fcentroid_array(t) = f_centroid;
 
-% parameters for CSA
-c = 1/sqrt(n);
-D = sqrt(n);
-s = 0;
+% % parameters for CSA
+s_array = zeros(1,10000);
+% c = 1/sqrt(n);
+% D = sqrt(n);
+% s = 0;
 
 length_scale_factor = 8;
 
@@ -104,8 +100,9 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     centroid = centroid + sigma*z;
     f_centroid = f(centroid);
         
-    % CSA
-    s = (1-c)*s + sqrt(mu*c*(2-c))*z;
+%     % CSA
+%     s = (1-c)*s + sqrt(mu*c*(2-c))*z;
+%     s_array(t) = norm(s)^2-n;
         
     centroid_array(:,t) = centroid;
     fcentroid_array(t) = f_centroid;
@@ -113,7 +110,6 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     fTrain(T) = f_centroid;
     T = T + 1;
     sigma_array(t) = sigma;
-    s_array(t) = norm(s)^2-n;
     
     t = t + 1;
     
@@ -126,12 +122,10 @@ end
     T = T - 1; 
 
     % convergence rate (overall)
-    convergence_rate = -n/2*sum(log(fcentroid_array(2:t)./fcentroid_array(1:t-1)))/(t-1);
-    
-    %plot(1:1:t-1,s_array(1:t-1));
+    t_start = ceil(TRAINING_SIZE/lambda);
+    convergence_rate = -n/2*sum(log(fcentroid_array(t_start+2:t)./fcentroid_array(t_start+1:t-1)))/(t-t_start-1);
     
     val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,s_array};
-%val = {t,centroid,f_centroid,sigma_array, 1, 1,convergence_rate};
 
 end
 
@@ -142,7 +136,7 @@ function fTest = gp(xTrain, fTrain, xTest, theta)
 %       xTrain(40 training pts)
 %       fTrain(true objective function value)
 %       xTest(1 test pt)   
-%       theta mutation length     
+%       theta length scale of GP    
 % return: the prediction of input test data
 
     [n, m] = size(xTrain);                                       % m:  # of training data
@@ -156,8 +150,10 @@ function fTest = gp(xTrain, fTrain, xTest, theta)
 %     deltass = vecnorm(repmat(xTest, 1, m)-repelem(xTest, 1, m));
 %     Kss = reshape((exp(-deltass.^2/theta^2/2)), m , m);
 %     Kinv = inv(K);       
-
-    mu = min(fTrain);                                            % estimated mean of GP
+      mu = fTrain(40);
+%     mu = min(fTrain);                                            % estimated mean of GP
+    
+%     fTest = min(fTrain) + Ks'*(K\(fTrain'-min(fTrain)));
     fTest = mu + Ks'*(K\(fTrain'-mu));
 
 end

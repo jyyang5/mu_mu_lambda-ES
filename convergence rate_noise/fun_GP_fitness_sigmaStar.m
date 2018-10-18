@@ -26,8 +26,7 @@ TRAINING_SIZE = 40;
 
 % matrix for different sigma* matrix(sigma_i,median of NUM_OF_RUNS)
 s_start = 0.2;
-% increment =0.25;
-increment =0.5;
+% increment =0.5;
 if(lambda<=10)
     s_end = 6.2;
 elseif(lambda<=20)
@@ -35,6 +34,8 @@ elseif(lambda<=20)
 else 
     s_end = 10.2;
 end
+increment =0.2;
+s_end = 7.2;
 % s_start = 1;
 % increment =1;
 % s_end = 8;

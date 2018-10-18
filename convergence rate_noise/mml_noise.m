@@ -88,6 +88,7 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
         for i = 1:1:lambda
             % offspring = mean(parent) + stepsize*z
             z(:,i) = randn(n,1);
+            
             y(:,i) = centroid + sigma*z(:,i);
             fyep(i) = f(y(:,i)) + sigma_ep * randn();
         end
