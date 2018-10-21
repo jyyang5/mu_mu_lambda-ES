@@ -136,6 +136,7 @@
 - 20181018/20181019
 
 	- [] Thesis write-up
+<<<<<<< HEAD
                 3. Plots 
                         - Expected progress rate over \sigmaStar
                         - opt. normalized step size and opt. expected fitness gain over noise-to-signal ratio 
@@ -156,6 +157,31 @@
     - Compare with opt. normalized step size using sigmaStar
 
 	- [] TRAINING_SIZE (minor)
+=======
+        3. Plots 
+            - Expected progress rate over \sigmaStar (lambda=10,20,40 n=10 include expected and (1+1)-ES)
+            - opt. normalized step size and opt. expected fitness gain over noise-to-signal ratio 
+            - step size 
+        4. Step size adaptation (use GP)
+            - Normalized step size over iteration (plot)
+            - Noise to signal ratio (var(fep-fy)/var(fy) over iteration) should be a straight line
+                                
+                <all lambda offspring evaluated by GP (fep) and true objective function value (fy)>
+                
+                <calculate the noise-to signal ratio per iteration as var(fep,fy)/var(fy)>
+                
+                <20,40,80 plot same -> 40 is the best (stick to n =10) too much information> 
+
+                <focus on the same plot include the (1+1)-ES with GP>
+
+                <variance (noise-to-signal ratio) over iteration> 
+
+                <var(fye-fy)/var(fy) fitness in the population> 
+
+
+
+	- [] TRAINING_SIZE 
+>>>>>>> step_size_adaptation
 
 		- Try TRAINING_SIZE = 4*n (round up to k*lambda)???
 
