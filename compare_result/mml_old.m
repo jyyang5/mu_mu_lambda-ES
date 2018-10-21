@@ -17,7 +17,7 @@ function val = mml(f,x0,sigma0,lambda,NUM_OF_ITERATIONS)
 % 2.centroid:           last parent x(centroid)
 % 3.f_centroid:         last objective function value
 % 4.sigma_array:        simage arrary over # of objective function calls  
-% 5.centroid_array:     parent set(centroids)
+% 5.T:                  # of objective function calls
 % 6.fcentroid_array:    objective function values for parents(centroids)
 % 7.convergence_rate:   rate of convergence
 % 8.1:                  no GP estimate
@@ -146,7 +146,7 @@ end
     convergence_rate = -n/2*sum(log(fcentroid_array(2:t)./fcentroid_array(1:t-1)))/(t-1);
     %plot(1:1:t-1,s_array(1:t-1));
     
-    val = {t,centroid,f_centroid,sigma_array, centroid_array, fcentroid_array, convergence_rate,-1,sigma_star_array};
+    val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array, convergence_rate,-1,sigma_star_array};
 
 end
 

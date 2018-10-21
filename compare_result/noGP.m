@@ -10,11 +10,12 @@ function val = noGP(f,x0,sigma0,NUM_OF_ITERATIONS)
 % 2.x_array(:,t):       last x
 % 3.fx:                 last objective function value
 % 4.sigma:              simage arrary over # of objective function calls  
-% 5.x:                  parent set for x
+% 5.T:                  # of objective function calls
 % 6.f_x:                objective function values for parents
 % 7.convergence_rate:   rate of convergence
 % 8.-1:                 no GP error
 % 9.sigma_star_array:   normalized step size
+% 10. success_rate      success_rate
 
 
 % OPTIMAL:            global optima
@@ -71,9 +72,10 @@ while((t < NUM_OF_ITERATIONS) && f(x(:,t)) > 10^(-8))
     
     
 end 
-
+t = t-1;
 convergence_rate = -n/2*sum(log(f_x(2:t)./f_x(1:t-1)))/(t-1);
+success_rate = sum(fcentroid_array(2:t)<fcentroid_array(1:t-1))/(t-1);
 
-val = {t, x(:,t), fx, sigma, x, f_x, convergence_rate, -1, sigma_star_array};
+val = {t, x(:,t), fx, sigma, t, f_x, convergence_rate, -1, sigma_star_array,success_rate};
 
 end

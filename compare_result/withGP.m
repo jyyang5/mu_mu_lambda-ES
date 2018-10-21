@@ -11,11 +11,13 @@ function val = withGP(f,x0,sigma0,NUM_OF_ITERATIONS)%, OPTIMAL, TARGET_DISTANCE)
 % 2.x_array(:,T):       last x
 % 3.fx:                 last objective function value
 % 4.sigma_funEva_array: simage arrary over # of objective function calls  
-% 5.x_array:            parent set for x
+% 5.T:                  # of objective function calls
 % 6.f_x:                objective function values for parents
 % 7.convergence_rate:   rate of convergence
 % 8.GP error:           relative GP error (after GP is built) SIZE = T-41
 % 9.sigma_star_array:   normalized step size
+% 10. success_rate      success_rate
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % initialization
@@ -60,7 +62,7 @@ T = 1;                                    % # of distinct parent solution
 dist = norm(x);
 sigma_star = sigma*n/dist;
 sigma_star_array(T) = sigma_star;
-
+TRAINING_SIZE = 40;
 
 while(t < NUM_OF_ITERATIONS && f(x_array(:,T))>10^(-8))%(norm(x_array(:,T)-OPTIMAL(:,1)) > TARGET_DISTANCE))
 
@@ -69,7 +71,7 @@ while(t < NUM_OF_ITERATIONS && f(x_array(:,T))>10^(-8))%(norm(x_array(:,T)-OPTIM
     
     
     % update GP iff. there is 40 candiate solutions
-    if T > 40
+    if T > TRAINING_SIZE
         theta = sigma*8*sqrt(n);                                         % NOtE: need to be updated every time
         fy_ep = gp(xTrain(:, T-40:T-1), fTrain(T-40:T-1), y, theta);     % fitness of offspring(use GP)
         % update GP estimate for parent
@@ -80,6 +82,8 @@ while(t < NUM_OF_ITERATIONS && f(x_array(:,T))>10^(-8))%(norm(x_array(:,T)-OPTIM
     % if GP already built compare
     if(T > 40 && fy_ep >= fx)             % bad offspring
         sigma = sigma * exp(-c1/D);
+        % relative GP error
+        y_temp = f(y);
         
     % GP not built || offspring inferior
     else
@@ -87,8 +91,10 @@ while(t < NUM_OF_ITERATIONS && f(x_array(:,T))>10^(-8))%(norm(x_array(:,T)-OPTIM
         xTrain(:, T) = y;                
         fTrain(T) = fy;
         T = T + 1;
-        if(T>41)
-            GP_error(T-41) = abs(fy_ep-fy)./abs(fy-fx);
+        % GP error
+        if(T>TRAINING_SIZE+1)
+            GP_error(T) = abs(fy_ep-fy)./abs(fy-f(x));
+%             GP_error(T-41) = abs(fy_ep-fy)./abs(fy-fx);                     % relative error of GP |f(y)-fep(y)|/ |f(y)-f(x)| after GP built
         end
         if(fy >= fx)                      % bad offspring                      
             sigma = sigma * exp(-c2/D);   % reduce step size
@@ -115,14 +121,16 @@ while(t < NUM_OF_ITERATIONS && f(x_array(:,T))>10^(-8))%(norm(x_array(:,T)-OPTIM
     
     
 end 
-    % last fep
-    fep_x(T) = gp(xTrain(:, T-40:T-1), fTrain(T-40:T-1), x, theta);
-    % store convergence rate
-    convergence_rate = -n/2*sum(log(f_x(2:T)./f_x(1:T-1)))/(T-1);
+
+
+    % convergence rate
+    convergence_rate = -n/2*sum(log(f_x(TRAINING_SIZE+2:T)./f_x(TRAINING_SIZE+1:T-1)))/length(f_x(TRAINING_SIZE+2:T));
+    % success rate
+    success_rate = sum(f_x(TRAINING_SIZE:T-1)>f_x(TRAINING_SIZE+1:T))/length(f_x(TRAINING_SIZE:T-1));
+%     convergence_rate = -n/2*sum(log(f_x(2:T)./f_x(1:T-1)))/(T-1);
     
-    % relative error of GP |f(y)-fep(y)|/ |f(y)-f(x)| after GP built
-    GP_error_final = GP_error(42:T);
-    
+   
+%     GP_error_final = GP_error(42:T);
 %     temp = abs(fep_x(42:T)-f_x(42:T))./abs(f_x(41:T-1)-f_x(42:T));
 %     notInf = ~isinf(temp);
 %     temp = temp(notInf);
@@ -130,7 +138,7 @@ end
 %     GP_error = mean(temp(notNan));
     %GP_error = abs(fep_x(42:T)-f_x(42:T))./abs(f_x(41:T-1)-f_x(42:T));
     
-val = {T, x_array(:,T), fx, sigma_funEva_array, x_array, f_x, convergence_rate,GP_error,sigma_star_array};
+val = {t, x_array(:,T), fx, sigma_funEva_array, T, f_x, convergence_rate,GP_error,sigma_star_array,success_rate};
 
 
 
