@@ -26,11 +26,11 @@ f = f2;
 n = 10;
 x0 = randn(n,mu);
 
-lambda = 10;
+lambda = 40;
 mu = ceil(lambda/4);
 sigma0 = 1;
 NUM_OF_ITERATIONS = 2000;
-TRAINING_SIZE = 2*n;
+TRAINING_SIZE = 4*n;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 a = mml_GP_CSA(f,x0,sigma0,TRAINING_SIZE,lambda,NUM_OF_ITERATIONS);
@@ -43,7 +43,7 @@ fcentroid_array = cell2mat(a(6));
 convergence_rate = cell2mat(a(7));
 error_array = cell2mat(a(8));
 s_array = cell2mat(a(9));
-
+sigma_satr_array = cell2mat(a(10));
 % b = mml(f1,x0,sigma0,lambda,NUM_OF_ITERATIONS);
 % 
 % t1 = cell2mat(b(1));
@@ -92,11 +92,11 @@ title('relative error','fontsize',20);
 xlabel('number of iterations','fontsize',15);
 % sigmaStar
 subplot(1,4,4)
-plot(1:t,error_array(1:t));
+plot(1:t,sigma_satr_array(1:t));
 xlabel('number of iterations','fontsize',15);
-ylabel('relative error','fontsize',15);
+ylabel('normalized step size \sigma*','fontsize',15);
 set(gca,'yscale','log')
-title('relative error','fontsize',20);
+title('normalized step size \sigma*','fontsize',20);
 xlabel('number of iterations','fontsize',15);
 
 

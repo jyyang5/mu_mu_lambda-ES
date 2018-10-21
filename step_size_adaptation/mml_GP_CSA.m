@@ -132,10 +132,8 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     fTrain(T) = f_centroid;
     T = T + 1;
     sigma_array(t) = sigma;
-    
+    sigma_star_array(t) = sigma*n/norm(centroid);
     t = t + 1;
-    
-    
     
     
 end
@@ -147,7 +145,7 @@ end
     t_start = ceil(TRAINING_SIZE/lambda);
     convergence_rate = -n/2*sum(log(fcentroid_array(t_start+2:t)./fcentroid_array(t_start+1:t-1)))/(t-t_start-1);
     
-    val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,error_array,s_array};
+    val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,error_array,s_array,sigma_star_array};
 
 end
 
