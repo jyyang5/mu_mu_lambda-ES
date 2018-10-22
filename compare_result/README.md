@@ -1,10 +1,10 @@
 ## Compare result of different ES
 #### Files
 - Strategies
-    - (1+1)-ES (noGP.m)
+    - (1+1)-ES (noGP.m) **CSA from Dirk's slides**
     - Surrogate-assisted (1+1)-ES (withGP.m)
     - (mu/mu,lambda)-ES (mml_CSA.m)
-    - Surrogate-assisted (mu/mu,lambda)-ES (mml_GP_CSA.m)
+    - Surrogate-assisted (mu/mu,lambda)-ES (mml_GP_CSA.m) **CSA from Dirk's slides**
 - Plots
     - fun_graph_funCall_NEW.m
 
@@ -26,8 +26,8 @@
         - Run 5 test functions
         - Output the median of objective function evaluations, convergence rate, success rate
 
-
-#### Result
+ 
+#### Result (Use CSA from Dirk's slides)
 
 The (10/10,40)-ES achieve better performance in a sense the sucess rate is higher than that of (1+1)-ES
 

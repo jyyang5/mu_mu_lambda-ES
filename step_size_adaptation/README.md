@@ -1,5 +1,9 @@
 ## Step size adaptation
 
+
+**PROBLEM**: not the one desired should use that of [Niko's CMA tutorial](http://www.cmap.polytechnique.fr/~nikolaus.hansen/handout2006.pdf) 
+
+
 ### CSA(Nico's method)
 
 - Weighted recombination is used 
@@ -29,7 +33,11 @@ s(t+1) = (1-c)*s(t) + sqrt(c*(2-c)*mu)*(m(t+1)-m(t))/sigma(t)    % s(t+1) = (1-c
 
 ```
 
-### Observation 
+### Observation (From Niko's CMA tutorial)
+
+
+
+### Observation (From Dirk's slides)
 
 - Configurations
     - quadratic sphere

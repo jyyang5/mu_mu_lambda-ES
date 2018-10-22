@@ -8,7 +8,7 @@ f2 = @(x) (x'*x);
 f3 = @(x) (x'*x)^(3/2);
 
 
-NUM_OF_RUNS = 10;
+NUM_OF_RUNS = 100;
 TRAINING_SIZE = 40;
 mu = 10;
 lambda = 40;
@@ -49,7 +49,7 @@ result_f3=fun_graph_funCall_NEW(f3,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
 % name = 10;
 % result_f5=fun_graph_funCall_NEW(@f5,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
 % disp("===========================================================");
-% 
+
 % 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Display statics
