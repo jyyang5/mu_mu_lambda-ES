@@ -8,7 +8,7 @@
 %            mml-ES without GP each iteration 10 objective function calls
 %            save t data for different strategy over each objective function
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function val = fun_graph_funCall_merged(f,name,NUM_OF_RUNS,mu,lambda)
+function val = fun_graph_funCall_NEW(f,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE)
 %Input:
 %       f:          objective function 
 %    name:          a number specify f  
@@ -28,7 +28,9 @@ f_x_matrix = zeros(NUM_OF_RUNS,10000);             % store all fx
 sigma_matrix = zeros(NUM_OF_RUNS,10000);           % store all sigma
 sigma_final = zeros(NUM_OF_RUNS,1);                % the last sigma
 x_final = zeros(NUM_OF_RUNS,n);                    % last x
-sigma_star_matrix = zeros(NUM_OF_RUNS,10000);      % normalized step size           
+sigma_star_matrix = zeros(NUM_OF_RUNS,10000);      % normalized step size 
+error_matrix = zeros(NUM_OF_RUNS,10000);            % store similar to noise-to-signal ratio
+
 
 % (mu/mu,lambda)-ES usual 
 T_array1 = zeros(NUM_OF_RUNS,1);                   % # of iterations for the stop creteria
@@ -40,12 +42,13 @@ sigma_star_matrix1 = zeros(NUM_OF_RUNS,10000);     % normalized step size
 
 
 % (1+1)-ES with GP
-T_array2 = zeros(NUM_OF_RUNS,1);                   % # of iterations for the stop creteria
+T_array2 = zeros(NUM_OF_RUNS,1);                   % # of objective function calls for the stop creteria
 f_x_matrix2 = zeros(NUM_OF_RUNS,10000);            % store all fx
 sigma_matrix2 = zeros(NUM_OF_RUNS,10000);          % store all sigma
 sigma_final2 = zeros(NUM_OF_RUNS,1);               % the last sigma
 x_final2 = zeros(NUM_OF_RUNS,n);                   % last x
 sigma_star_matrix2 = zeros(NUM_OF_RUNS,10000);     % normalized step size           
+error_matrix2 = zeros(NUM_OF_RUNS,10000);           % store similar to noise-to-signal ratio
 
 
 % (1+1)-ES 
@@ -54,7 +57,7 @@ f_x_matrix3 = zeros(NUM_OF_RUNS,10000);            % store all fx
 sigma_matrix3 = zeros(NUM_OF_RUNS,10000);          % store all sigma
 sigma_final3 = zeros(NUM_OF_RUNS,1);               % the last sigma
 x_final3 = zeros(NUM_OF_RUNS,n);                   % last x
-sigma_star_matrix4 = zeros(NUM_OF_RUNS,10000);     % normalized step size           
+sigma_star_matrix3 = zeros(NUM_OF_RUNS,10000);     % normalized step size           
 
 
 for i = 1:NUM_OF_RUNS
@@ -71,9 +74,10 @@ for i = 1:NUM_OF_RUNS
     temp = cell2mat(a(2));
     x_final(i,:) = temp';
     sigma_star_matrix(i,:) = cell2mat(a(9));
+    error_matrix(i) = cell2mat(a(10));
     
     % (mu/mu,lambda)-ES usual 
-    b = mml(f,x0,sigma0,lambda,NUM_OF_ITERATIONS);
+    b = mml_CSA(f,x0,sigma0,lambda,NUM_OF_ITERATIONS);
     T_array1(i) = cell2mat(b(1));
     f_x_matrix1(i,:) = cell2mat(b(6));
     sigma_matrix1(i,:) = cell2mat(b(4));        % last sigma
@@ -87,7 +91,7 @@ for i = 1:NUM_OF_RUNS
     
     % (1+1)-ES with GP
     c = withGP(f,x0,sigma0,NUM_OF_ITERATIONS);
-    T_array2(i) = cell2mat(c(1));
+    T_array2(i) = cell2mat(c(5));
     f_x_matrix2(i,:) = cell2mat(c(6));
     sigma_matrix2(i,:) = cell2mat(c(4));        % last sigma
     temp = cell2mat(c(4));
@@ -95,6 +99,7 @@ for i = 1:NUM_OF_RUNS
     temp = cell2mat(c(2));
     x_final2(i,:) = temp';                      
     sigma_star_matrix2(i,:) = cell2mat(c(9));
+    error_matrix2(i) = cell2mat(c(10));
     
     % (1+1)-ES 
     d = noGP(f,x0,sigma0,NUM_OF_ITERATIONS);
@@ -119,6 +124,7 @@ end
     sigma_final_med = median(sigma_final);
     x_final_med = median(x_final);
     sigma_star_med = median(sigma_star_matrix);
+    error_med = median(error_matrix);
     
     T_med1 = median(T_array1);
     T_max1 = max(T_array1);
@@ -137,7 +143,8 @@ end
     sigma_final_med2 = median(sigma_final2);
     x_final_med2 = median(x_final2);
     sigma_star_med2 = median(sigma_star_matrix2);
-    
+    error_med2 = median(error_matrix2);
+
     T_med3 = median(T_array3);
     T_max3 = max(T_array3);
     T_min3 = min(T_array3);
@@ -154,10 +161,11 @@ end
    
     hold on;
     % plot first 40 iterations seperately
-    t_range1 = 1:10:40;
-    t_range2 = 5:T_max;
-    sigma_med_range1 = sigma_med(1:4);
-    sigma_med_range2 = sigma_med(5:T_max);
+    t_start = ceil(TRAINING_SIZE/lambda);
+    t_range1 = 1:lambda:lambda*t_start;
+    t_range2 = lambda*t_start+1:T_max;
+    sigma_med_range1 = sigma_med(1:lambda*t_start);
+    sigma_med_range2 = sigma_med(lambda*t_start+1:T_max);
     
     semilogy([t_range1 t_range2], [sigma_med_range1 sigma_med_range2]);% mml with GP
     semilogy(1:10:10*T_max1, sigma_med1(1:T_max1));  % MML

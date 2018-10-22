@@ -36,7 +36,7 @@ NUM_OF_RUNS = 10;
 
 NUM_OF_ITERATIONS = 10000;
 % mml-ES with GP
-a = mml_GP_CSA(f,x0,sigma0,lambda,NUM_OF_ITERATIONS);
+a = mml_GP_CSA(f1,x0,sigma0,lambda,NUM_OF_ITERATIONS);
 t = cell2mat(a(1));
 centroid = cell2mat(a(2));
 f_centroid = cell2mat(a(3));
@@ -49,7 +49,7 @@ sigma_star_array = cell2mat(a(9));
 success_rate = cell2mat(a(10));
 
 % (1+1)-ES with GP
-b = withGP(f,x1,sigma0,NUM_OF_ITERATIONS);
+b = mml_CSA(f,x1,sigma0,lambda,NUM_OF_ITERATIONS);
 t1 = cell2mat(b(1));
 centroid1 = cell2mat(b(2));
 f_centroid1 = cell2mat(b(3));
@@ -77,8 +77,8 @@ disp(success_rate1);
 
 figure(10);
 subplot(1,3,1);
-plot(GP_error);hold on;
-plot(GP_error1(1:t1));
+plot(1:t,GP_error(1:t));hold on;
+% plot(GP_error1(1:t1));
 ylabel('relative GP error','FontSize',15);%
 xlabel('number of objective function calls','FontSize',15); 
 set(gca, 'YScale', 'log');
@@ -95,7 +95,13 @@ legend({'mml-ES','(1+1)-ES'},'FontSize',10); %
 hold off;
 
 subplot(1,3,2);
-plot([lambda lambda+1:T-lambda-1],[fcentroid_array(1) fcentroid_array(2:t)]);hold on;
+t_start = ceil(TRAINING_SIZE/lambda);
+t_range1 = 1:lambda:lambda*t_start;
+t_range2 = lambda*t_start+1:t+lambda*t_start-1;
+sigma_med_range1 = fcentroid_array(1:t_start);
+sigma_med_range2 = fcentroid_array(t_start+1:t);
+semilogy([t_range1 t_range2], [sigma_med_range1 sigma_med_range2]);hold on;% mml with GP
+% plot([lambda lambda+1:T-lambda-1],[fcentroid_array(1) fcentroid_array(2:t)]);hold on;
 plot(1:1:T1,fcentroid_array1(1:T1));
 ylabel('normalized step size \sigma*','FontSize',15);%
 xlabel('number of objective function calls','FontSize',15); 

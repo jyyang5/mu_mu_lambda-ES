@@ -7,39 +7,39 @@ f1 = @(x) (x'*x)^(1/2);
 f2 = @(x) (x'*x);
 f3 = @(x) (x'*x)^(3/2);
 
-
-NUM_OF_RUNS = 500;
-mu = 4;
-lambda = 15;
+TRAINING_SIZE = 40;
+NUM_OF_RUNS = 2;
+mu = 10;
+lambda = 40;
 
 disp("===========================================================");
 disp("linear sphere");
 disp("---------------");
 %graph_fun(f1,1);
-T_f1=fun_graph_funCall_merged(f1,6,NUM_OF_RUNS,mu,lambda);
+T_f1=fun_graph_funCall_NEW(f1,6,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
 
 disp("===========================================================");
 disp("quadratic sphere");
 disp("---------------");
-T_f2=fun_graph_funCall_merged(f2,7,NUM_OF_RUNS,mu,lambda);
+T_f2=fun_graph_funCall_NEW(f2,7,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
 
 disp("===========================================================");
 disp("cubic sphere");
 disp("---------------");
-T_f3=fun_graph_funCall_merged(f3,8,NUM_OF_RUNS,mu,lambda);
+T_f3=fun_graph_funCall_NEW(f3,8,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
 
-disp("===========================================================");
-disp("schwefel's function");
-disp("---------------");
-T_f4=fun_graph_funCall_merged(@f4,9,NUM_OF_RUNS,mu,lambda);
-
-disp("===========================================================");
-disp("quartic function");
-disp("---------------");
-T_f5=fun_graph_funCall_merged(@f5,10,NUM_OF_RUNS,mu,lambda);
-disp("===========================================================");
-
-
+% disp("===========================================================");
+% disp("schwefel's function");
+% disp("---------------");
+% T_f4=fun_graph_funCall_NEW(@f4,9,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
+% 
+% disp("===========================================================");
+% disp("quartic function");
+% disp("---------------");
+% T_f5=fun_graph_funCall_NEW(@f5,10,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
+% disp("===========================================================");
+% 
+% 
 
 function [val] = f4(x)
 

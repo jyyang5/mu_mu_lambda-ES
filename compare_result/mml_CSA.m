@@ -128,7 +128,7 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     fTrain(T) = f_centroid;
     
     %fep_centroid(t) = gp(xTrain, fTrain, centroid, theta);
-    theta_array(t) = theta;
+%     theta_array(t) = theta;
     
     sigma_array(t) = sigma;
     
