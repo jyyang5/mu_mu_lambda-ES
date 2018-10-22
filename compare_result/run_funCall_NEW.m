@@ -58,7 +58,7 @@ plotValue(result_f2,7);
 plotValue(result_f3,8);
 % plotValue(result_f4,9);
 % plotValue(result_f5,10);
-
+save('final_result.mat','result_f1','result_f2','result_f3','NUM_OF_RUNS','TRAINING_SIZE','mu','lambda');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [val] = f4(x)

@@ -29,11 +29,23 @@
    	    - Parent selection strategy: best centroid of all iterations
 
     - [compare_result](https://github.com/jyyang5/mu_mu_lambda-ES/tree/master/compare_result)
+        - Plot the following over objective function evaluations 
+          - objective function value
+          - step size
+          - normalized step size
+          - relative model error
 
-        Use a combination of mu and lambda plot f(x), sigma and sigmaStar for 5 test functions 
-   	    - Step size adaptation: CSA
-   	    - Offspring evaluation: GP
-   	    - Parent selection strategy: centroid of best mu offspring
+        - Plot histogram for the following 
+          - objective function evaluations
+          - convergence rate
+          - success rate 
+
+        - Previous attempts
+          
+          Use a combination of mu and lambda plot f(x), sigma and sigmaStar for 5 test functions 
+   	      - Step size adaptation: CSA
+   	      - Offspring evaluation: GP
+   	      - Parent selection strategy: centroid of best mu offspring
 
     - [convergence rate_noise](https://github.com/jyyang5/mu_mu_lambda-ES/tree/master/convergence%20rate_noise)
 
@@ -136,7 +148,6 @@
 - 20181018/20181019
 
 	- [] Thesis write-up
-<<<<<<< HEAD
                 3. Plots 
                         - Expected progress rate over \sigmaStar
                         - opt. normalized step size and opt. expected fitness gain over noise-to-signal ratio 
@@ -153,11 +164,11 @@
     - Little text 
 
   - [] Step size adaptation 
-    - Use the standard [Niko's]
+    - Use the standard [Niko's](http://www.cmap.polytechnique.fr/~nikolaus.hansen/handout2006.pdf)
     - Compare with opt. normalized step size using sigmaStar
 
 	- [] TRAINING_SIZE (minor)
-=======
+
         3. Plots 
             - Expected progress rate over \sigmaStar (lambda=10,20,40 n=10 include expected and (1+1)-ES)
             - opt. normalized step size and opt. expected fitness gain over noise-to-signal ratio 
@@ -181,9 +192,22 @@
 
 
 	- [] TRAINING_SIZE 
->>>>>>> step_size_adaptation
+    step_size_adaptation
 
 		- Try TRAINING_SIZE = 4*n (round up to k*lambda)???
+
+- 20181022
+    - [] Step size adaptation 
+       - Use the standard [Niko's](http://www.cmap.polytechnique.fr/~nikolaus.hansen/handout2006.pdf)
+
+    - [x] Plot both histogram and lines
+        
+    - Obserations (Use CSA from Dirk's lecture slides **wrong**)
+      1. mml-ES seems to help avoid the potential poor direction resulted from an inaccurate GP model. Since the success rate is always around 0.48 as is expected while the success rate for  (1+1)-ES varies among test functions (from hist_xxx_sphere.fig)
+
+      2. it is likely that mml-ES is more sensitive to relative model error which has a direct impact on the convergence rate. We can achieve similar performance to (1+1)-ES if the relative model of mml-ES is at least half smaller than that of (1+1)-ES (see xxx_sphere_funCalls.fig in linear sphere the model error for mml-ES is larger which potentially leads to the small convergence rate and therefore more objective evaluations).  
+
+      3. one potential way out is to adapt the length scale factor (probably a length scale adaptation mechanism).The length scale factor 8 seems to be highly biased on quadratic sphere.  But from previous experiment I have no idea what the relation might be. I thought it could be related to the complexity of the test function. 
 
 		
 
