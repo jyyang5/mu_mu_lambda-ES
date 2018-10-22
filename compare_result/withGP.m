@@ -37,7 +37,7 @@ sigma_iterate_array(1) = sigma0;
 sigma_star_array = zeros(1,10000);        % store normalized step size
 fep_x = zeros(1,10000);                   % store GP estimate of parent
 GP_error = zeros(1,10000);                % relative error for GP
-GP_error_final = zeros
+GP_error_final = zeros(1);
 
 c1 = 0.05;                                % 1/5 rule
 c2 = 0.2;

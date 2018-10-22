@@ -7,41 +7,60 @@ f1 = @(x) (x'*x)^(1/2);
 f2 = @(x) (x'*x);
 f3 = @(x) (x'*x)^(3/2);
 
+
+NUM_OF_RUNS = 10;
 TRAINING_SIZE = 40;
-NUM_OF_RUNS = 20;
 mu = 10;
 lambda = 40;
-% 
-% disp("===========================================================");
-% disp("linear sphere");
-% disp("---------------");
-% %graph_fun(f1,1);
-% T_f1=fun_graph_funCall_NEW(f1,6,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
 
+% close all figures
+close all;
+
+% linear sphere
+disp("===========================================================");
+disp("linear sphere");
+disp("---------------");
+name = 6;
+result_f1=fun_graph_funCall_NEW(f1,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
+
+% quadratic sphere
 disp("===========================================================");
 disp("quadratic sphere");
 disp("---------------");
-result = fun_graph_funCall_NEW(f2,7,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
-plotvalue(result);
+name = 7;
+result_f2 = fun_graph_funCall_NEW(f2,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
 
-% disp("===========================================================");
-% disp("cubic sphere");
-% disp("---------------");
-% T_f3=fun_graph_funCall_NEW(f3,8,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
+% cubic sphere
+disp("===========================================================");
+disp("cubic sphere");
+disp("---------------");
+name = 8;
+result_f3=fun_graph_funCall_NEW(f3,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
 
 % disp("===========================================================");
 % disp("schwefel's function");
 % disp("---------------");
-% T_f4=fun_graph_funCall_NEW(@f4,9,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
+% name = 9;
+% result_f4=fun_graph_funCall_NEW(@f4,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
 % 
 % disp("===========================================================");
 % disp("quartic function");
 % disp("---------------");
-% T_f5=fun_graph_funCall_NEW(@f5,10,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
+% name = 10;
+% result_f5=fun_graph_funCall_NEW(@f5,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
 % disp("===========================================================");
 % 
 % 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Display statics
+plotValue(result_f1,6);
+plotValue(result_f2,7);
+plotValue(result_f3,8);
+% plotValue(result_f4,9);
+% plotValue(result_f5,10);
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [val] = f4(x)
     val = 0;
     for i = 1:length(x)
@@ -61,7 +80,26 @@ function [val] = f5(x)
     end
 end
 
-function plotvalue(temp)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function plotValue(temp,name)
+    if name == 6
+        disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
+        disp('Linear sphere');
+    elseif name == 7
+        disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
+        disp('Quadratic sphere');    
+    elseif name == 8
+        disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
+        disp('Cubic sphere'); 
+    elseif name == 9 
+        disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
+        disp('Schwefel function');    
+    elseif name == 10
+        disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
+        disp('Quartic function');
+    end
+        
+        
     T = cell2mat(temp(1));
     T1 = cell2mat(temp(2));
     convergence = cell2mat(temp(3));
@@ -74,14 +112,14 @@ function plotvalue(temp)
     d = sprintf('(1+1)-ES: %d',T1);
     disp(d);
     disp('Convergence rate (with model assistance)');
-    d = sprintf('mml-ES: %d',convergence);
+    d = sprintf('mml-ES: %.3f',convergence);
     disp(d);
-    d = sprintf('(1+1)-ES: %d',convergence1);
+    d = sprintf('(1+1)-ES: %.3f',convergence1);
     disp(d);
     disp('Success rate (with model assistance)');
-    d = sprintf('mml-ES: %d',success);
+    d = sprintf('mml-ES: %.3f',success);
     disp(d);
-    d = sprintf('(1+1)-ES: %d',success1);
+    d = sprintf('(1+1)-ES: %.3f',success1);
     disp(d);
 
 end
