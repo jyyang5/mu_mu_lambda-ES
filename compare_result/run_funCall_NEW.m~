@@ -8,21 +8,20 @@ f2 = @(x) (x'*x);
 f3 = @(x) (x'*x)^(3/2);
 
 TRAINING_SIZE = 40;
-NUM_OF_RUNS = 20;
+NUM_OF_RUNS = 2;
 mu = 10;
 lambda = 40;
-% 
-% disp("===========================================================");
-% disp("linear sphere");
-% disp("---------------");
-% %graph_fun(f1,1);
-% T_f1=fun_graph_funCall_NEW(f1,6,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
+
+disp("===========================================================");
+disp("linear sphere");
+disp("---------------");
+%graph_fun(f1,1);
+T_f1=fun_graph_funCall_NEW(f1,6,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
 
 disp("===========================================================");
 disp("quadratic sphere");
 disp("---------------");
-result = fun_graph_funCall_NEW(f2,7,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
-plotvalue(result);
+T_f2=fun_graph_funCall_NEW(f2,7,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
 
 % disp("===========================================================");
 % disp("cubic sphere");
@@ -68,20 +67,7 @@ function plotvalue(temp)
     convergence1 = cell2mat(temp(4));
     success = cell2mat(temp(5));
     success1 = cell2mat(temp(6));
-    disp('# objective function evaluations (with model assistance)');
-    d = sprintf('mml-ES: %d',T);
-    disp(d);
-    d = sprintf('(1+1)-ES: %d',T1);
-    disp(d);
-    disp('Convergence rate (with model assistance)');
-    d = sprintf('mml-ES: %d',convergence);
-    disp(d);
-    d = sprintf('(1+1)-ES: %d',convergence1);
-    disp(d);
-    disp('Success rate (with model assistance)');
-    d = sprintf('mml-ES: %d',success);
-    disp(d);
-    d = sprintf('(1+1)-ES: %d',success1);
-    disp(d);
+    disp('# objective function evaluations');
+    d = sprintf('mml-ES: %d')
 
 end

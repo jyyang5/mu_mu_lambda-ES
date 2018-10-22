@@ -88,10 +88,9 @@ semilogy([t_range1 t_range2], [fx_range1 fx_range2]);hold on;% mml with GP
 % plot([lambda lambda+1:T-lambda-1],[fcentroid_array(1) fcentroid_array(2:t)]);hold on;
 plot(1:1:t1,fcentroid_array1(1:t1));
 ylabel('objective function value f(y)','FontSize',15);%
-xlabel('objective function evaluations','FontSize',15); 
+xlabel('number of objective function calls','FontSize',15); 
 set(gca, 'YScale', 'log');
 legend({'mml-ES','(1+1)-ES'},'FontSize',10); %
-title('objective function value','FontSize',20);
 hold off;
 
 
@@ -102,10 +101,10 @@ plot([t_range1 t_range2], [sigma_range1 sigma_range2]);hold on;
 % plot(1:1:t,sigma_star_array(1:t));hold on;
 plot(1:1:t1,sigma_array1(1:t1));
 ylabel('step size \sigma','FontSize',15);%
-xlabel('objective function evaluations','FontSize',15); 
+xlabel('number of objective function calls','FontSize',15); 
 set(gca, 'YScale', 'log');
 legend({'mml-ES','(1+1)-ES'},'FontSize',10); %
-title('step size \sigma','FontSize',20);
+title('step size \sigma');
 hold off;
 
 subplot(1,4,3);
@@ -115,10 +114,10 @@ plot([t_range1 t_range2], [sigma_star_range1 sigma_star_range2]);hold on;
 % plot(1:1:t,sigma_star_array(1:t));hold on;
 plot(1:1:t1,sigma_star_array1(1:t1));
 ylabel('normalized step size \sigma*','FontSize',15);%
-xlabel('objective function evaluations','FontSize',15); 
+xlabel('number of objective function calls','FontSize',15); 
 set(gca, 'YScale', 'log');
 legend({'mml-ES','(1+1)-ES'},'FontSize',10); %
-title('normalized step size \sigma*','FontSize',20);
+title('normalized step size \sigma*');
 hold off;
 
 subplot(1,4,4);
@@ -128,10 +127,9 @@ plot([t_range1 t_range2], [GP_error_range1 GP_error_range2]);hold on;
 % plot(1:t,GP_error(1:t));hold on;
 plot(1:t1,GP_error1(1:t1));
 ylabel('relative model error','FontSize',15);%
-xlabel('objective function evaluations','FontSize',15); 
+xlabel('number of objective function calls','FontSize',15); 
 set(gca, 'YScale', 'log');
 legend({'mml-ES','(1+1)-ES'},'FontSize',10); %
-title('relative model error','FontSize',20);
 hold off;
 
 
