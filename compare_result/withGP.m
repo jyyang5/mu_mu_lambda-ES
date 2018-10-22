@@ -1,10 +1,11 @@
 
-function val = withGP(f,x0,sigma0,NUM_OF_ITERATIONS)%, OPTIMAL, TARGET_DISTANCE)
+function val = withGP(f,x0,sigma0,NUM_OF_ITERATIONS,TRAINING_SIZE)%, OPTIMAL, TARGET_DISTANCE)
 % initialization
 % f:                  objective function value
 % x0:                 initial point
 % sigma0:             initial muttaion strength
 % NUM_OF_ITERATIONS:  number of maximum iterations
+% TRAINING_SIZE:      surrogate training size
 
 % Return 
 % 1.T:                  # of objective function calls                    
@@ -24,6 +25,7 @@ function val = withGP(f,x0,sigma0,NUM_OF_ITERATIONS)%, OPTIMAL, TARGET_DISTANCE)
 [n,m] = size(x0);                         % dim of the data
 xTrain = zeros(n, 10000);                 % parent solution with dim n               
 sigma = sigma0;                           % mutation strength(temp)
+% TRAINING_SIZE = 40;
 
 % for graphing
 sigma_funEva_array = zeros(1,10000);      % store all sigma over function evaluations
@@ -62,7 +64,6 @@ T = 1;                                    % # of distinct parent solution
 dist = norm(x);
 sigma_star = sigma*n/dist;
 sigma_star_array(T) = sigma_star;
-TRAINING_SIZE = 40;
 
 while(t < NUM_OF_ITERATIONS && f(x_array(:,T))>10^(-8))%(norm(x_array(:,T)-OPTIMAL(:,1)) > TARGET_DISTANCE))
 
@@ -80,7 +81,7 @@ while(t < NUM_OF_ITERATIONS && f(x_array(:,T))>10^(-8))%(norm(x_array(:,T)-OPTIM
     
     % update mutation & assign new offspring
     % if GP already built compare
-    if(T > 40 && fy_ep >= fx)             % bad offspring
+    if(T > TRAINING_SIZE && fy_ep >= fx)             % bad offspring
         sigma = sigma * exp(-c1/D);
         % relative GP error
         y_temp = f(y);

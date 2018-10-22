@@ -8,47 +8,47 @@ f2 = @(x) (x'*x);
 f3 = @(x) (x'*x)^(3/2);
 
 
-NUM_OF_RUNS = 100;
+NUM_OF_RUNS = 5;
 TRAINING_SIZE = 40;
-mu = 10;
-lambda = 40;
+mu = 7;
+lambda = 30;
 
 % close all figures
 close all;
-
-% linear sphere
-disp("===========================================================");
-disp("linear sphere");
-disp("---------------");
-name = 6;
-result_f1=fun_graph_funCall_NEW(f1,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
-
-% quadratic sphere
-disp("===========================================================");
-disp("quadratic sphere");
-disp("---------------");
-name = 7;
-result_f2 = fun_graph_funCall_NEW(f2,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
-
-% cubic sphere
-disp("===========================================================");
-disp("cubic sphere");
-disp("---------------");
-name = 8;
-result_f3=fun_graph_funCall_NEW(f3,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
-
-% disp("===========================================================");
-% disp("schwefel's function");
-% disp("---------------");
-% name = 9;
-% result_f4=fun_graph_funCall_NEW(@f4,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
 % 
+% % linear sphere
 % disp("===========================================================");
-% disp("quartic function");
+% disp("linear sphere");
 % disp("---------------");
-% name = 10;
-% result_f5=fun_graph_funCall_NEW(@f5,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
+% name = 6;
+% result_f1=fun_graph_funCall_NEW(f1,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
+% 
+% % quadratic sphere
 % disp("===========================================================");
+% disp("quadratic sphere");
+% disp("---------------");
+% name = 7;
+% result_f2 = fun_graph_funCall_NEW(f2,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
+% 
+% % cubic sphere
+% disp("===========================================================");
+% disp("cubic sphere");
+% disp("---------------");
+% name = 8;
+% result_f3=fun_graph_funCall_NEW(f3,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
+
+disp("===========================================================");
+disp("schwefel's function");
+disp("---------------");
+name = 9;
+result_f4=fun_graph_funCall_NEW(@f4,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
+
+disp("===========================================================");
+disp("quartic function");
+disp("---------------");
+name = 10;
+result_f5=fun_graph_funCall_NEW(@f5,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
+disp("===========================================================");
 
 % 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -56,9 +56,10 @@ result_f3=fun_graph_funCall_NEW(f3,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
 plotValue(result_f1,6);
 plotValue(result_f2,7);
 plotValue(result_f3,8);
-% plotValue(result_f4,9);
-% plotValue(result_f5,10);
-save('final_result.mat','result_f1','result_f2','result_f3','NUM_OF_RUNS','TRAINING_SIZE','mu','lambda');
+plotValue(result_f4,9);
+plotValue(result_f5,10);
+% save('final_result.mat','result_f1','result_f2','result_f3','NUM_OF_RUNS','TRAINING_SIZE','mu','lambda');
+save('final_result.mat','result_f1','result_f2','result_f3','result_f4','result_f5','NUM_OF_RUNS','TRAINING_SIZE','mu','lambda');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [val] = f4(x)

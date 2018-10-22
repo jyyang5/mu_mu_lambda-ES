@@ -56,7 +56,7 @@ for i = 1:NUM_OF_RUNS
     x0 = randn(n,mu);
     
     % (mu/mu,lambda)-ES with GP
-    a = mml_GP_CSA(f,x0,sigma0,lambda,NUM_OF_ITERATIONS);
+    a = mml_GP_CSA(f,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE);
     t_array(i) = cell2mat(a(1));
     sigma_matrix(i,:) = cell2mat(a(4));
     T_array(i) = cell2mat(a(5));
@@ -70,7 +70,8 @@ for i = 1:NUM_OF_RUNS
     x0 = randn(n,1);
     
     % (1+1)-ES with GP
-    b = withGP(f,x0,sigma0,NUM_OF_ITERATIONS);
+    TRAINING_SIZE = 40;
+    b = withGP(f,x0,sigma0,NUM_OF_ITERATIONS,TRAINING_SIZE);
     t_array1(i) = cell2mat(b(1));
     sigma_matrix1(i,:) = cell2mat(b(4));
     T_array1(i) = cell2mat(b(5));

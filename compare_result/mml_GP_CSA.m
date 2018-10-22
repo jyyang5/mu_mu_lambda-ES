@@ -2,7 +2,7 @@
 % function evaluation for lambda offsprings with GP estimate 
 % In each iteration only centroid is evaluated use true objective Function
 
-function val = mml_GP_CSA(f,x0,sigma0,lambda,NUM_OF_ITERATIONS)
+function val = mml_GP_CSA(f,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE)
 % initialization
 % f:                  objective function value
 % x0:                 mu initial point size [n, mu]
@@ -10,6 +10,7 @@ function val = mml_GP_CSA(f,x0,sigma0,lambda,NUM_OF_ITERATIONS)
 % lambda:             # of offsprings genenerated in each itertaion  
 % mu:                 parent size
 % NUM_OF_ITERATIONS:  number of maximum iterations
+% TRAINING_SIZE:      surrogate training size
 
 % Return 
 % 1.t:                  # of objective function calls                    
@@ -27,7 +28,7 @@ function val = mml_GP_CSA(f,x0,sigma0,lambda,NUM_OF_ITERATIONS)
 % example input:      f = @(x) x' * x
 %                     mml(f,randn(n,mu),1,40,10,1,4000)
 [n, mu] = size(x0);
-TRAINING_SIZE = 40;
+% TRAINING_SIZE = 40;
 % TRAINING_SIZE = 4*lambda;
 xTrain = zeros(n,10000);            % training data for GP size 4*mu
 fTrain = zeros(1,10000);
@@ -77,9 +78,10 @@ sigma = sigma0;
 
 while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     % early stopping 
-    if(f_centroid > 500)
-        % if diverge -> convergence rate = 0
-        val = {999999,mean(x0, 2),99999,sigma_array, 9999999, fcentroid_array,-1,error_array,sigma_star_array,error_array}; 
+    if(f_centroid > 50000)
+        % if diverge -> convergence rate = 0 success rate = 0
+        success_rate = 0;
+        val = {9999,mean(x0, 2),9999,sigma_array, 9999, fcentroid_array,-1,error_array,sigma_star_array,success_rate}; 
         return 
     end
 %     dist = norm(centroid);                                                 % distance to optimal

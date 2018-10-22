@@ -21,11 +21,11 @@ f3 = @(x) (x'*x)^(3/2);  % cubic sphere
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % x0 for mml-ES
-f = @(x) (x'*x);
+f = f3;
 TRAINING_SIZE = 40;
 n = 10;
-mu = 10;
-lambda = 40;
+mu = 7;
+lambda = 30;
 % x0 for mml-ES
 x0 = randn(n,mu);
 % x1 for (1+1)-ES
@@ -37,7 +37,7 @@ NUM_OF_RUNS = 10;
 
 NUM_OF_ITERATIONS = 10000;
 % mml-ES with GP
-a = mml_GP_CSA(f,x0,sigma0,lambda,NUM_OF_ITERATIONS);
+a = mml_GP_CSA(f,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE);
 t = cell2mat(a(1));
 centroid = cell2mat(a(2));
 f_centroid = cell2mat(a(3));
@@ -50,7 +50,7 @@ sigma_star_array = cell2mat(a(9));
 success_rate = cell2mat(a(10));
 
 % (1+1)-ES with GP
-b = withGP(f,x1,sigma0,NUM_OF_ITERATIONS);
+b = withGP(f,x1,sigma0,NUM_OF_ITERATIONS,TRAINING_SIZE);
 t1 = cell2mat(b(1));
 centroid1 = cell2mat(b(2));
 f_centroid1 = cell2mat(b(3));
@@ -135,7 +135,6 @@ title('relative model error','FontSize',20);
 hold off;
 
 
-
 % b = mml(@f5,x0,sigma0,lambda,NUM_OF_ITERATIONS);
 % 
 % t1 = cell2mat(b(1));
@@ -171,13 +170,20 @@ hold off;
 function val = f4(x)
     val = 0;
     for i = 1:1:length(x)
-        temp = 0;
-        for j = 1:1:i
-            temp = temp + x(j);
-        end
-        val = val + temp^2;
+        val = val + sum(x(1:i))^2;
     end
 end
+% function val = f4(x)
+%     val = 0;
+%     for i = 1:1:length(x)
+%         temp = 0;
+%         for j = 1:1:i
+%             temp = temp + x(j);
+%         end
+%         val = val + temp^2;
+%     end
+% end
+
 % quartic function
 function val = f5(x)
     beta = 1;

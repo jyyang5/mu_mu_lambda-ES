@@ -52,6 +52,11 @@ Another interesting thing is that the performance is closely related to the rela
     - Convergence rate is inferior (0.533 vs. 0.636)
     - Better success rate (0.481 vs. 0.334)
     - 10% inferior than (1+1)-ES (218 vs. 197)
+    
+- Schwefel's Problem 1.2
+    - Fails
+- Quartic Function 
+    - Better performance 
  
 
 **Conclude**: mml-ES is more sensitive to model error (invariant to test functions in terms of approximately 0.5 success rate), for improvement seek tuning for theta for different test function may be a way out.
