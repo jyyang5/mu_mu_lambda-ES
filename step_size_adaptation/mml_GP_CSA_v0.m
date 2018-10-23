@@ -1,9 +1,9 @@
-% Use CSA Niko's CMA tutorial
+% Use CSA from Dirk's lecture slides
 % Use GP estimate and cummulative step size adaptation
 % function evaluation for lambda offsprings with GP estimate 
 % In each iteration only centroid is evaluated use true objective Function
 
-function val = mml_GP_CSA(f,x0,sigma0,TRAINING_SIZE,lambda,NUM_OF_ITERATIONS,LENGTH_SCALE)
+function val = mml_GP_CSA_v0(f,x0,sigma0,TRAINING_SIZE,lambda,NUM_OF_ITERATIONS)
 % initialization
 % f:                  objective function value
 % x0:                 mu initial point size [n, mu]
@@ -45,9 +45,9 @@ centroid_array(:,t) = centroid;
 fcentroid_array(t) = f_centroid;
 
 % parameters for CSA
-c = 4/n;
-D = 1+sqrt(mu/n);
-p = 0;
+c = 1/sqrt(n);
+D = sqrt(n);
+s = 0;
 %%%%%%%%%%%%%%%%%%%%%%
 % nico's NOT WORK
 % mu_eff = mu;
@@ -62,6 +62,7 @@ p = 0;
 % D = sqrt(n);
 % s = 0;
 
+length_scale_factor = 8;
 sigma = sigma0;
 
 while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
@@ -90,7 +91,7 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     % (mu/mu, lambda)-ES use GP estiate 
     else  
         % update theta  
-        theta = sigma*LENGTH_SCALE*sqrt(n);                          % length scale for GP
+        theta = sigma*length_scale_factor*sqrt(n);                          % length scale for GP
         fy_true = zeros(lambda,1);                                          % for calculating the noise 
         % offspring_generation (lambda offspring) 
         for i = 1:1:lambda
@@ -117,11 +118,14 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     f_centroid = f(centroid);
         
     % CSA
-    p = (1-c)*p+sqrt(c*(2-c)*mu)*z;
-    sigma = sigma*exp(c*(norm(p)-n)/D/n);
-%     sigma = sigma*exp((norm(s)^2-n)/2/D/n);
+    s = (1-c)*s+sqrt(mu*c*(2-c))*z;
+    sigma = sigma*exp((norm(s)^2-n)/2/D/n);
+    %%%%%%%%%%%%%%%%%%%%%%
+    % nico's NOT WORK
+%     s = (1-c)*s + sqrt(c*(2-c)*mu)*z;
+%     sigma = sigma*exp(c/d*(norm(s)-1)/sqrt(n));
 
-    s_array(t) = exp(c*(norm(p)-n)/D/n);
+    s_array(t) = (norm(s)^2-n)/2/D/n;
         
     centroid_array(:,t) = centroid;
     fcentroid_array(t) = f_centroid;

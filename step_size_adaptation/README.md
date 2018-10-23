@@ -34,7 +34,15 @@ s(t+1) = (1-c)*s(t) + sqrt(c*(2-c)*mu)*(m(t+1)-m(t))/sigma(t)    % s(t+1) = (1-c
 ```
 
 ### Observation (From Niko's CMA tutorial)
-
+- Configurations
+    - quadratic sphere
+    - sigma0=1
+    - (10/10,40)-ES
+- Result   
+    - Impressing
+    - Linear sphere: 230  
+    - Quadratic sphere: 150 
+    - Cubic sphere: does not work pleatues after 200 iterations (fx=10^-6)
 
 
 ### Observation (From Dirk's slides)

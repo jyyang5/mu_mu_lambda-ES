@@ -22,18 +22,20 @@ f3 = @(x) (x'*x)^(3/2);  % cubic sphere
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-f = f2;
+f = f3;
 n = 10;
-x0 = randn(n,mu);
 
 lambda = 40;
 mu = ceil(lambda/4);
 sigma0 = 1;
 NUM_OF_ITERATIONS = 2000;
-TRAINING_SIZE = 4*n;
+TRAINING_SIZE = 40;
+LENGTH_SCALE = 8;
+x0 = randn(n,mu);
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-a = mml_GP_CSA(f,x0,sigma0,TRAINING_SIZE,lambda,NUM_OF_ITERATIONS);
+a = mml_GP_CSA(f,x0,sigma0,TRAINING_SIZE,lambda,NUM_OF_ITERATIONS,LENGTH_SCALE);
 t = cell2mat(a(1));
 centroid = cell2mat(a(2));
 f_centroid = cell2mat(a(3));
@@ -105,11 +107,7 @@ xlabel('number of iterations','fontsize',15);
 function val = f4(x)
     val = 0;
     for i = 1:1:length(x)
-        temp = 0;
-        for j = 1:1:i
-            temp = temp + x(j);
-        end
-        val = val + temp^2;
+        val = val + sum(x(1:i))^2;
     end
 end
 % quartic function

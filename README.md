@@ -200,7 +200,9 @@
     - [] Step size adaptation 
        - Use the standard [Niko's](http://www.cmap.polytechnique.fr/~nikolaus.hansen/handout2006.pdf)
 
-    - [x] Plot both histogram and lines
+    - [x] compare result for plot 
+       - Histogram 
+       -  
         
     - Obserations (Use CSA from Dirk's lecture slides **wrong**)
       1. mml-ES seems to help avoid the potential poor direction resulted from an inaccurate GP model. Since the success rate is always around 0.48 as is expected while the success rate for  (1+1)-ES varies among test functions (from hist_xxx_sphere.fig)
