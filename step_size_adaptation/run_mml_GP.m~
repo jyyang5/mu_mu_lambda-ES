@@ -45,10 +45,10 @@ T = cell2mat(a(5));
 fcentroid_array = cell2mat(a(6));
 convergence_rate = cell2mat(a(7));
 error_array = cell2mat(a(8));
-sigma_satr_array = cell2mat(a(9));
-success_rate = cell2mat(a(10));
+success_rate = cell2mat(a(9));
+sigma_satr_array = cell2mat(a(10));
 factor_array = cell2mat(a(11));
-% p_array = cell2mat(a(12));
+p_array = cell2mat(a(12));
 % b = mml(f1,x0,sigma0,lambda,NUM_OF_ITERATIONS);
 % 
 % t1 = cell2mat(b(1));

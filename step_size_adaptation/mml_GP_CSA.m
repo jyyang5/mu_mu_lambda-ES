@@ -13,6 +13,19 @@ function val = mml_GP_CSA(f,x0,sigma0,TRAINING_SIZE,lambda,NUM_OF_ITERATIONS,LEN
 % mu:                 parent size
 % NUM_OF_ITERATIONS:  number of maximum iterations
 
+% Return 
+% 1.t:                  # of objective function calls                    
+% 2.centroid:           last centroid
+% 3.f_centroid:         last objective function value
+% 4.sigma_array:        simage arrary over # of objective function calls  
+% 5.T:                  # of objective function calls
+% 6.fcentroid_array:    objective function values for centroids
+% 7.convergence_rate:   rate of convergence
+% 8.error_array:        model error
+% 9.sigma_star_array:   normalized step size
+% 10.success_rate       success_rate
+% 11.factor_array       factor multiplied to sigma
+% 12.p_array            array for evolution path 
 
 % OPTIMAL:            global optima
 % example input:      f = @(x) x' * x
@@ -28,14 +41,15 @@ centroid_array = zeros(n,10000);
 fcentroid_array = zeros(1,10000);
 sigma_array = zeros(1,10000);
 error_array = zeros(1,10000);                                               % store similar to noise-to-signal ratio
-s_array = zeros(1,10000);
 y = zeros(n,lambda);                                                        % lambda offspring solution with dim n
 z = zeros(n,lambda);                                                        % random directions added for lambda offsprings dim n
 fy = zeros(lambda,1);                                                       % objective function value of y                                              
 centroid = mean(x0, 2);                                                     % centroid of parent set, size = [n, 1]
 f_centroid = f(centroid);                                                   % fx of centroid
 fyep = zeros(lambda,1);                                                     % GP estimate for offsprings
- 
+factor_array = zeros(1,10000);
+p_array = zeros(1,10000);
+
 convergence_rate = 0;
 
 t = 1;       
@@ -123,8 +137,8 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
 %     sigma = sigma*exp(c*(norm(p)-n)/D/n);
 %     sigma = sigma*exp((norm(s)^2-n)/2/D/n);
 
-    s_array(t) = exp(c*(norm(p)-n)/D/n);
-        
+    factor_array(t) = exp((norm(p)^2-n)/2/D/n);
+%     p_array(t) = p;    
     centroid_array(:,t) = centroid;
     fcentroid_array(t) = f_centroid;
     xTrain(:, T) = centroid;                
@@ -143,9 +157,22 @@ end
     % convergence rate (overall)
     t_start = ceil(TRAINING_SIZE/lambda);
     convergence_rate = -n/2*sum(log(fcentroid_array(t_start+2:t)./fcentroid_array(t_start+1:t-1)))/(t-t_start-1);
-    
-    val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,error_array,s_array,sigma_star_array};
+    success_rate = sum(fcentroid_array(t_start:T-1)>fcentroid_array(t_start+1:T))/length(fcentroid_array(t_start:T-1));
 
+    
+    val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,error_array,sigma_star_array,success_rate,factor_array};
+% 1.t:                  # of objective function calls                    
+% 2.centroid:           last centroid
+% 3.f_centroid:         last objective function value
+% 4.sigma_array:        simage arrary over # of objective function calls  
+% 5.T:                  # of objective function calls
+% 6.fcentroid_array:    objective function values for centroids
+% 7.convergence_rate:   rate of convergence
+% 8.error_array:        model error
+% 9.sigma_star_array:   normalized step size
+% 10.success_rate       success_rate
+% 11.factor_array       factor multiplied to sigma
+% 12.p_array            array for evolution path 
 end
 
 
