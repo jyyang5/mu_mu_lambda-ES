@@ -212,6 +212,45 @@
       3. one potential way out is to adapt the length scale factor (probably a length scale adaptation mechanism).The length scale factor 8 seems to be highly biased on quadratic sphere.  But from previous experiment I have no idea what the relation might be. I thought it could be related to the complexity of the test function. 
 
 		
+- 20181023
+    - Success rate (48% for mml-ES)
+        - Gnenerate one direction
+        - (1+1) generate one direction (take step only when good)
+        - mml generate the gradient (always make the step)
+        - Step is bad every other iteration 
+        - Reject the step
+    - Rejecting steps (cannot be slower how much gives)
+
+        - Every other step is bad
+        - Could try what Arash did in step size adaptation
+
+    - Impact of population(lambda) on noise-to-signal ratio(model error)
+
+        how error depends on lambda (how model error depend on lambda)
+        - Plot model error over lambda
+
+    - Success rate use plot Histogram improvement(pdf) 
+        Difference of current centroid compared with previous centroid 
+        divide by R* derivative (R is the distance to optimal)
+          - linear: R 
+          - quadratic: 2R^2 
+          - cubic: 3*R^3 
+
+    - CSA
+        - Just change the coefficients 
+        - Try the latest one see if improvements
+
+
+
+
+
+
+    
+
+
+
+
+
 
 
 

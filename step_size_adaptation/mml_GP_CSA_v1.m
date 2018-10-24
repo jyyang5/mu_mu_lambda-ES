@@ -1,4 +1,4 @@
-% Use CSA Niko's CMA paper 2016
+% Use CSA Niko's CMA tutorial
 % Use GP estimate and cummulative step size adaptation
 % function evaluation for lambda offsprings with GP estimate 
 % In each iteration only centroid is evaluated use true objective Function
@@ -45,8 +45,8 @@ centroid_array(:,t) = centroid;
 fcentroid_array(t) = f_centroid;
 
 % parameters for CSA
-c = (mu+2)/(n+mu+5);
-D = 1+2*max(0,sqrt((mu-1)/(n+1))-1)+c;
+c = 4/n;
+D = 1+sqrt(mu/n);
 p = 0;
 %%%%%%%%%%%%%%%%%%%%%%
 % nico's NOT WORK
@@ -118,9 +118,7 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
         
     % CSA
     p = (1-c)*p+sqrt(c*(2-c)*mu)*z;
-    sigma = sigma*exp((norm(p)^2-n)/2/D/n);
-
-%     sigma = sigma*exp(c*(norm(p)-n)/D/n);
+    sigma = sigma*exp(c*(norm(p)-n)/D/n);
 %     sigma = sigma*exp((norm(s)^2-n)/2/D/n);
 
     s_array(t) = exp(c*(norm(p)-n)/D/n);

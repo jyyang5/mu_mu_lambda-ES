@@ -22,7 +22,7 @@ f3 = @(x) (x'*x)^(3/2);  % cubic sphere
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-f = f3;
+f = f1;
 n = 10;
 
 lambda = 40;
@@ -30,8 +30,9 @@ mu = ceil(lambda/4);
 sigma0 = 1;
 NUM_OF_ITERATIONS = 2000;
 TRAINING_SIZE = 40;
-LENGTH_SCALE = 8;
+LENGTH_SCALE = 4;
 x0 = randn(n,mu);
+% 64 worked for quadratic
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
