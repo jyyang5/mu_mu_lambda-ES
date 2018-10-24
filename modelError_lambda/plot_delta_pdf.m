@@ -22,7 +22,7 @@ f3 = @(x) (x'*x)^(3/2);  % cubic sphere
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-f = f3;
+f = 3;
 n = 10;
 
 lambda = 40;
@@ -31,12 +31,12 @@ sigma0 = 1;
 NUM_OF_ITERATIONS = 2000;
 TRAINING_SIZE = 40;
 LENGTH_SCALE = 4;
-x0 = randn(n,mu);
+% x0 = randn(n,mu);
 % 64 worked for quadratic
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-a = mml_GP_CSA(f,x0,sigma0,TRAINING_SIZE,lambda,NUM_OF_ITERATIONS,LENGTH_SCALE);
+a = mml_GP_CSA(f,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE);
 t = cell2mat(a(1));
 centroid = cell2mat(a(2));
 f_centroid = cell2mat(a(3));
@@ -45,10 +45,10 @@ T = cell2mat(a(5));
 fcentroid_array = cell2mat(a(6));
 convergence_rate = cell2mat(a(7));
 error_array = cell2mat(a(8));
-success_rate = cell2mat(a(9));
-sigma_satr_array = cell2mat(a(10));
-factor_array = cell2mat(a(11));
-p_array = cell2mat(a(12));
+sigma_satr_array = cell2mat(a(9));
+success_rate = cell2mat(a(10));
+delta_array = cell2mat(a(11));
+% p_array = cell2mat(a(12));
 % b = mml(f1,x0,sigma0,lambda,NUM_OF_ITERATIONS);
 % 
 % t1 = cell2mat(b(1));
@@ -76,35 +76,44 @@ disp(T);
 % plot sigma, f(x), sigmaStar
 figure(10);
 % f(x)
-subplot(1,4,1)          
-semilogy(1:t, fcentroid_array(1:t));           % mml with GP
+subplot(2,3,1)          
+semilogy(1:t, fcentroid_array(1:t));hold on;           % mml with GP
 xlabel('number of iterations','fontsize',15);
 ylabel('log(f(x))','fontsize',15);
 set(gca,'yscale','log')
 title('f(centroid)','fontsize',20);
 % sigma    
-subplot(1,4,2)
-semilogy(1:t, sigma_array(1:t));               % mml with GP
+subplot(2,3,3)
+semilogy(1:t, sigma_array(1:t));hold on;               % mml with GP
 xlabel('number of iterations','fontsize',15);
 ylabel('log(\sigma)','fontsize',15);
 set(gca,'yscale','log')
 title('step size \sigma','fontsize',20);
+% sigmaStar
+subplot(2,3,4)
+plot(1:t,sigma_satr_array(1:t));
+xlabel('number of iterations','fontsize',15);hold on;
+ylabel('normalized step size \sigma*','fontsize',15);
+set(gca,'yscale','log')
+title('normalized step size \sigma*','fontsize',20);
+xlabel('number of iterations','fontsize',15);
 % GP error    
-subplot(1,4,3)
-plot(1:t,error_array(1:t));
+subplot(2,3,5)
+plot(1:t,error_array(1:t));hold on;
 xlabel('number of iterations','fontsize',15);
 ylabel('relative error','fontsize',15);
 set(gca,'yscale','log')
 title('relative error','fontsize',20);
 xlabel('number of iterations','fontsize',15);
-% sigmaStar
-subplot(1,4,4)
-plot(1:t,sigma_satr_array(1:t));
+% delta(fitness gain/iteration) pmf     
+subplot(2,3,6)
+histogram(delta_array(1:t),'Normalization','probability');hold on;
 xlabel('number of iterations','fontsize',15);
-ylabel('normalized step size \sigma*','fontsize',15);
-set(gca,'yscale','log')
-title('normalized step size \sigma*','fontsize',20);
-xlabel('number of iterations','fontsize',15);
+ylabel('prob','fontsize',15);
+% set(gca,'yscale','log')
+title('pdf of delta ','fontsize',20);
+% xlabel('number of iterations','fontsize',15);
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

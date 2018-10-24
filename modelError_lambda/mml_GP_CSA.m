@@ -2,15 +2,19 @@
 % function evaluation for lambda offsprings with GP estimate 
 % In each iteration only centroid is evaluated use true objective Function
 
-function val = mml_GP_CSA(f,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE)
+function val = mml_GP_CSA(fname,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE)
 % initialization
-% f:                  objective function value
+% f:                  objective function %
+%                     1 = linear
+%                     2 = quadratic
+%                     3 = cubic
 % x0:                 mu initial point size [n, mu]
 % sigma0:             initial step size
 % lambda:             # of offsprings genenerated in each itertaion  
 % mu:                 parent size
 % NUM_OF_ITERATIONS:  number of maximum iterations
 % TRAINING_SIZE:      surrogate training size
+% LENGTH_SCALE:       theta in GP
 
 % Return 
 % 1.t:                  # of objective function calls                    
@@ -27,11 +31,24 @@ function val = mml_GP_CSA(f,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE)
 %                       linear: factor = R
 %                       quadratic: factor = 2*R^2
 %                       cubic: factor = 3*R^3
-%                       where R=disd(centroid)
+%                       where R=dist(centroid)
 
 % OPTIMAL:            global optima
 % example input:      f = @(x) x' * x
 %                     mml(f,randn(n,mu),1,40,10,1,4000)
+
+% Test functions
+f1 = @(x) (x'*x)^(1/2);  % linear sphere
+f2 = @(x) (x'*x);        % quadratic sphere
+f3 = @(x) (x'*x)^(3/2);  % cubic sphere
+if(fname==1)
+    f=f1;
+elseif(fname==2)
+    f=f2;
+else
+    f=f3;
+end
+
 [n, mu] = size(x0);
 % TRAINING_SIZE = 40;
 % TRAINING_SIZE = 4*lambda;
@@ -80,7 +97,6 @@ s = 0;
 % D = sqrt(n);
 % s = 0;
 
-length_scale_factor = 8;
 sigma = sigma0;
 
 while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
@@ -110,7 +126,7 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     % (mu/mu, lambda)-ES use GP estiate 
     else  
         % update theta  
-        theta = sigma*length_scale_factor*sqrt(n);                          % length scale for GP
+        theta = sigma*LENGTH_SCALE*sqrt(n);                          % length scale for GP
         fy_true = zeros(lambda,1);                                          % for calculating the noise 
         % offspring_generation (lambda offspring) 
         for i = 1:1:lambda
@@ -155,7 +171,13 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     sigma_array(t) = sigma;
     sigma_star_array(t) = sigma*n/norm(centroid);
     if(t>=2)
-        delta_array(t) =(fcentroid_array(t)-fcentroid_array(t-1))/norm(centroid); 
+        if(fname==1)
+            delta_array(t) =(fcentroid_array(t)-fcentroid_array(t-1))/norm(centroid); 
+        elseif(fname==2)
+            delta_array(t) =(fcentroid_array(t)-fcentroid_array(t-1))/2/(norm(centroid))^2; 
+        else
+            delta_array(t) =(fcentroid_array(t)-fcentroid_array(t-1))/3/(norm(centroid))^3; 
+        end
     end
     t = t + 1;
     
@@ -171,7 +193,7 @@ end
     % success rate
     success_rate = sum(fcentroid_array(t_start:T-1)>fcentroid_array(t_start+1:T))/length(fcentroid_array(t_start:T-1));
 
-    val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,error_array,sigma_star_array,success_rate};
+    val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,error_array,sigma_star_array,success_rate,delta_array};
 
 end
 
