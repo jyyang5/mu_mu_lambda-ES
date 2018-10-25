@@ -99,7 +99,7 @@ mu_eff = mu;
 c = 4/n;
 D = 1 + sqrt(mu_eff/n); 
 s = 0;
-
+EN = n^0.5*(1-1/(4*n)+1/(21*n^2));
 %%%%%%%%%%%%%%%%%%%%%%
 % Dirk small lambda 
 % c = 0.63;
@@ -115,7 +115,6 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     if(f_centroid > 50000)
         % if diverge -> convergence rate = 0 success rate = 0
         success_rate = 0;
-        val = {9999,mean(x0, 2),9999,sigma_array, 9999, fcentroid_array,-1,error_array,sigma_star_array,success_rate,delta_array}; 
         val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,error_array,sigma_star_array,success_rate,delta_array};
 
         return 
@@ -172,7 +171,7 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     %%%%%%%%%%%%%%%%%%%%%%
     % nico's slides
 %     s = (1-c)*s + sqrt(c*(2-c)*mu)*z;
-    sigma = sigma*exp(c/D*(norm(s)^2/n-1));
+    sigma = sigma*exp(c/D*(norm(s)/EN-1));
 
     s_array(t) = (norm(s)^2-n)/2/D/n;
         

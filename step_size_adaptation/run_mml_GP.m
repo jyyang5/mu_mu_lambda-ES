@@ -22,7 +22,7 @@ f3 = @(x) (x'*x)^(3/2);  % cubic sphere
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-f = f2;
+f = f1;
 n = 10;
 
 lambda = 40;
@@ -36,7 +36,7 @@ x0 = randn(n,mu);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-a = mml_GP_CSA(f,x0,sigma0,TRAINING_SIZE,lambda,NUM_OF_ITERATIONS,LENGTH_SCALE);
+a = mml_GP_CSA_niko_paper(f,x0,sigma0,TRAINING_SIZE,lambda,NUM_OF_ITERATIONS,LENGTH_SCALE);
 t = cell2mat(a(1));
 centroid = cell2mat(a(2));
 f_centroid = cell2mat(a(3));
@@ -59,6 +59,18 @@ factor_array = cell2mat(a(11));
 % convergence_rate1 = cell2mat(b(7));
 % fep_centroid_array1 = cell2mat(b(8));
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+if(isequal(f,f1))
+    disp('linear')
+elseif(isequal(f,f2))
+    disp('quadratic')
+elseif(isequal(f,f3))
+    disp('cubic')
+elseif(isequal(f,@f4))
+    disp('Schwefel')
+elseif(isequal(f,@f5))
+    disp('quartic')
+end
+
 disp("number of iterations");
 disp(t);
 % disp(t1);
@@ -108,7 +120,7 @@ xlabel('number of iterations','fontsize',15);
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Schwefel?s Problem 1.2
+% Schwefel's Problem 1.2
 function val = f4(x)
     val = 0;
     for i = 1:1:length(x)

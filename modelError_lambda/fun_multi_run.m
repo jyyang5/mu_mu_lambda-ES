@@ -57,7 +57,7 @@ for i=1:1:LAMBDA_LENGTH
         x0 = randn(n,mu);
     
         % (mu/mu,lambda)-ES with GP
-        a = mml_GP_CSA(fname,x0,sigma0,lambda_temp,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE);
+        a = mml_GP_CSA_niko_paper(fname,x0,sigma0,lambda_temp,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE);
         t_array(i,j) = cell2mat(a(1));
         sigma_matrix(i,j,:) = cell2mat(a(4));
         T_array(i,j) = cell2mat(a(5));

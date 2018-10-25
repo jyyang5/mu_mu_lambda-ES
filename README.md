@@ -241,6 +241,11 @@
         - Try the latest one see if improvements
 
 
+- 20181025
+
+    - CSA 
+      - Porblem solved $E\| N(0,I)\| = n^0.5*(1-1/(4*n)+1/(21*n^2))$ 
+
 
 
 

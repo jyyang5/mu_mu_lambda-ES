@@ -16,39 +16,39 @@ lambda = 30;
 % close all figures
 close all;
 % 
-% % linear sphere
-% disp("===========================================================");
-% disp("linear sphere");
-% disp("---------------");
-% name = 6;
-% result_f1=fun_graph_funCall_NEW(f1,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
-% 
-% % quadratic sphere
-% disp("===========================================================");
-% disp("quadratic sphere");
-% disp("---------------");
-% name = 7;
-% result_f2 = fun_graph_funCall_NEW(f2,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
-% 
-% % cubic sphere
-% disp("===========================================================");
-% disp("cubic sphere");
-% disp("---------------");
-% name = 8;
-% result_f3=fun_graph_funCall_NEW(f3,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
-
+% linear sphere
 disp("===========================================================");
-disp("schwefel's function");
+disp("linear sphere");
 disp("---------------");
-name = 9;
-result_f4=fun_graph_funCall_NEW(@f4,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
+name = 6;
+result_f1=fun_graph_funCall_NEW(f1,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
 
+% quadratic sphere
 disp("===========================================================");
-disp("quartic function");
+disp("quadratic sphere");
 disp("---------------");
-name = 10;
-result_f5=fun_graph_funCall_NEW(@f5,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
+name = 7;
+result_f2 = fun_graph_funCall_NEW(f2,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
+
+% cubic sphere
 disp("===========================================================");
+disp("cubic sphere");
+disp("---------------");
+name = 8;
+result_f3=fun_graph_funCall_NEW(f3,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
+
+% disp("===========================================================");
+% disp("schwefel's function");
+% disp("---------------");
+% name = 9;
+% result_f4=fun_graph_funCall_NEW(@f4,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
+% 
+% disp("===========================================================");
+% disp("quartic function");
+% disp("---------------");
+% name = 10;
+% result_f5=fun_graph_funCall_NEW(@f5,name,NUM_OF_RUNS,mu,lambda,TRAINING_SIZE);
+% disp("===========================================================");
 
 % 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

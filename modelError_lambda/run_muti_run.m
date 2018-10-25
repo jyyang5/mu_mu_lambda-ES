@@ -8,12 +8,12 @@ f2 = @(x) (x'*x);
 f3 = @(x) (x'*x)^(3/2);
 
 
-NUM_OF_RUNS = 100;
+NUM_OF_RUNS = 20;
 % NUM_OF_RUNS = 2;
 TRAINING_SIZE = 40;
 LENGTH_SCALE = 8;
-% lambda_array = [5 10 15 20 25 40 50 60 80];
-lambda_array = [5 10 15 20 25 30 35 40 50 60 70 80 90 100];
+lambda_array = [5 10 15 20 25 40 50 60 80];
+% lambda_array = [5 10 15 20 25 30 35 40 50 60 70 80 90 100];
 
 fname = 1;
 temp1 = fun_multi_run(fname,NUM_OF_RUNS,lambda_array,TRAINING_SIZE,LENGTH_SCALE);
@@ -24,6 +24,63 @@ temp2 = fun_multi_run(fname,NUM_OF_RUNS,lambda_array,TRAINING_SIZE,LENGTH_SCALE)
 fname = 3;
 temp3 = fun_multi_run(fname,NUM_OF_RUNS,lambda_array,TRAINING_SIZE,LENGTH_SCALE);
 
+%Get data
+a = cell2mat(temp1);
+b = cell2mat(temp2);
+c = cell2mat(temp3);
+% d = cell2mat(temp4);
+% e = cell2mat(temp5);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Plot summary
+figure(100)
+
+% plot objective function evaluation
+subplot(3,1,3)
+hold on;
+plot(lambda_array,a(:,1));hold on;
+plot(lambda_array,b(:,1));hold on;
+plot(lambda_array,c(:,1));hold on;
+% plot(lambda_array,d(1));hold on;
+% plot(lambda_array,e(1));hold on;
+xlabel('Population size \lambda','fontsize',15);
+ylabel('Objective function evaluation','fontsize',15);
+legend('Linear sphere','Quadratic sphere','Cubic sphere');
+% legend('Linear sphere','Quadratic sphere','Cubic sphere','Schwefel?s function','Quartic function')
+d =sprintf('Objective function evaluation');
+title(d,'fontsize',20);
+
+% plot convergence rate
+subplot(3,1,1)
+hold on;
+plot(lambda_array,a(:,2));hold on;
+plot(lambda_array,b(:,2));hold on;
+plot(lambda_array,c(:,2));hold on;
+% plot(lambda_array,d(2));hold on;
+% plot(lambda_array,e(2));hold on;
+xlabel('Population size \lambda','fontsize',15);
+ylabel('Convergence rate','fontsize',15);
+legend('Linear sphere','Quadratic sphere','Cubic sphere');%,'Schwefel?s function','Quartic function')
+d =sprintf('Convergence rate');
+title(d,'fontsize',20);
+
+% plot success rate
+subplot(3,1,2)
+hold on;
+plot(lambda_array,a(:,3));hold on;
+plot(lambda_array,b(:,3));hold on;
+plot(lambda_array,c(:,3));hold on;
+% plot(lambda_array,d(3));hold on;
+% plot(lambda_array,e(3));hold on;
+xlabel('Population size \lambda','fontsize',15);
+ylabel('Objective function evaluation','fontsize',15);
+legend('Linear sphere','Quadratic sphere','Cubic sphere');
+% legend('Linear sphere','Quadratic sphere','Cubic sphere','Schwefel?s function','Quartic function')
+d =sprintf('Objective function evaluation');
+title(d,'fontsize',20);
+
+% Saves fig
+saves(gcf,'summary.fig');
 % 
 % % linear sphere
 % disp("===========================================================");
