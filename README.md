@@ -252,6 +252,10 @@
       - **Thesis write-up**
       - If fast, do it by all means
       - Could just compare why works better on quadratic sphere
+    - Convergence rate
+      - Linear = -n*log(f(x)/f(y)) 
+      - Quadratic = -n/2*log(f(x)/f(y)) 
+      - Cubic = -n/3*log(f(x)/f(y)) 
 
 
 

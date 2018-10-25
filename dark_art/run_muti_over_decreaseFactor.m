@@ -16,13 +16,13 @@ f2 = @(x) (x'*x);
 f3 = @(x) (x'*x)^(3/2);
 
 
-NUM_OF_RUNS = 1;
+NUM_OF_RUNS = 50;
 % NUM_OF_RUNS = 2;
 TRAINING_SIZE = 40;
 LENGTH_SCALE = 8;
 % lambda_array = [5 10 15 20 25 40 50 60 80];
 lambda=40;
-DECREASE_FACTOR_array = 0.6:0.025:0.9;
+DECREASE_FACTOR_array = 0.6:0.01:0.99;
 
 fname = 1;
 temp1 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array);
