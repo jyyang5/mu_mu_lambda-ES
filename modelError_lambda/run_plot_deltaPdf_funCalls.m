@@ -22,7 +22,7 @@ f3 = @(x) (x'*x)^(3/2);  % cubic sphere
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-f = 4;
+f = 1;
 n = 10;
 
 lambda = 40;
@@ -36,7 +36,7 @@ LENGTH_SCALE = 1;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-a = mml_GP_CSA(f,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE);
+a = mml_GP_CSA_nikoSlide(f,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE);
 t = cell2mat(a(1));
 centroid = cell2mat(a(2));
 f_centroid = cell2mat(a(3));
@@ -45,7 +45,7 @@ T = cell2mat(a(5));
 fcentroid_array = cell2mat(a(6));
 convergence_rate = cell2mat(a(7));
 error_array = cell2mat(a(8));
-sigma_satr_array = cell2mat(a(9));
+sigma_star_array = cell2mat(a(9));
 success_rate = cell2mat(a(10));
 delta_array = cell2mat(a(11));
 
@@ -91,6 +91,7 @@ disp(T);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % plot sigma, f(x), sigmaStar
 figure(10);
+
 % f(x)
 subplot(2,3,1)
 t_start = ceil(TRAINING_SIZE/lambda);
@@ -103,6 +104,7 @@ xlabel('number of iterations','fontsize',15);
 ylabel('log(f(x))','fontsize',15);
 set(gca,'yscale','log')
 title('f(centroid)','fontsize',20);
+
 % sigma    
 subplot(2,3,2)
 sigma_range1 = sigma_array(1:t_start);
@@ -112,16 +114,18 @@ xlabel('number of iterations','fontsize',15);
 ylabel('log(\sigma)','fontsize',15);
 set(gca,'yscale','log')
 title('step size \sigma','fontsize',20);
+
 % sigmaStar
 subplot(2,3,3)
-sigma_star_range1 = sigma_satr_array(1:t_start);
-sigma_star_range2 = sigma_satr_array(t_start+1:t);
+sigma_star_range1 = sigma_star_array(1:t_start);
+sigma_star_range2 = sigma_star_array(t_start+1:t);
 plot([t_range1 t_range2], [sigma_star_range1 sigma_star_range2]);hold on;    
 xlabel('number of iterations','fontsize',15);hold on;
 ylabel('normalized step size \sigma*','fontsize',15);
 set(gca,'yscale','log')
 title('normalized step size \sigma*','fontsize',20);
 xlabel('number of iterations','fontsize',15);
+
 % GP error    
 subplot(2,3,4)
 GP_error_range1 = error_array(1:t_start);
@@ -132,8 +136,10 @@ ylabel('relative error','fontsize',15);
 set(gca,'yscale','log')
 title('relative error','fontsize',20);
 xlabel('number of iterations','fontsize',15);
+
 % delta(fitness gain/iteration) pmf     
 subplot(2,3,5)
+rng default;  % For reproducibility
 histogram(delta_array(1:t),'Normalization','probability');hold on;
 % histogram(delta_array(1:t), 'normalization', 'pdf');hold on;
 % [D, PD] = allfitdist(delta_array(1:t), 'PDF')

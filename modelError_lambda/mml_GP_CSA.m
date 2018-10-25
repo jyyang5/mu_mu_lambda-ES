@@ -88,11 +88,18 @@ fcentroid_array(t) = f_centroid;
 % D = sqrt(n);
 % s = 0;
 %%%%%%%%%%%%%%%%%%%%%%
-% nico's NOT WORK
+% % nico's paper
+% mu_eff = mu;
+% c = (mu_eff+2)/(n+mu_eff+5);
+% D = 1 + 2*max(0,sqrt((mu_eff-1)/(n+1))-1)+c; 
+% s = 0;
+% %%%%%%%%%%%%%%%%%%%%%%
+% nico's tutorial
 mu_eff = mu;
-c = (mu_eff+2)/(n+mu_eff+5);
-D = 1 + 2*max(0,sqrt((mu_eff-1)/(n+1))-1)+c; 
+c = 4/n;
+D = 1 + dqrt(mu_eff/n); 
 s = 0;
+
 %%%%%%%%%%%%%%%%%%%%%%
 % Dirk small lambda 
 % c = 0.63;
@@ -159,12 +166,12 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     f_centroid = f(centroid);
         
     % CSA
-    s = (1-c)*s+sqrt(mu*c*(2-c))*z;
+    s = (1-c)*s+sqrt(mu*c*(2-c))*z;             % same
     sigma = sigma*exp((norm(s)^2-n)/2/D/n);
     %%%%%%%%%%%%%%%%%%%%%%
     % nico's NOT WORK
 %     s = (1-c)*s + sqrt(c*(2-c)*mu)*z;
-%     sigma = sigma*exp(c/d*(norm(s)-1)/sqrt(n));
+%     sigma = sigma*exp(c/d*(norm(s)/n-1));
 
     s_array(t) = (norm(s)^2-n)/2/D/n;
         

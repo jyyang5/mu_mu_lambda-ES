@@ -12,9 +12,8 @@ NUM_OF_RUNS = 100;
 % NUM_OF_RUNS = 2;
 TRAINING_SIZE = 40;
 LENGTH_SCALE = 8;
-lambda_array = [5 10 15 20 25 40 50 60 80];
-
-% close all figures
+% lambda_array = [5 10 15 20 25 40 50 60 80];
+lambda_array = [5 10 15 20 25 30 35 40 50 60 70 80 90 100];
 
 fname = 1;
 temp1 = fun_multi_run(fname,NUM_OF_RUNS,lambda_array,TRAINING_SIZE,LENGTH_SCALE);

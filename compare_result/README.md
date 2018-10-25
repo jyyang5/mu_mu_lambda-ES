@@ -37,7 +37,7 @@ Another interesting thing is that the performance is closely related to the rela
 
 - Linear sphere
     - The relative model error is relatively similar but the mml-ES has larger variance
-    - Gives 5% decrease in success rate (0.152, 0.208) for mml-ES and (1+1)-ES respectively
+    - Gives 5% decrease in convergence rate (0.152, 0.208) for mml-ES and (1+1)-ES respectively
     - Although success rate for mml-ES is greater (0.525 vs. 0.315)
     - Alomst a quarter more objective function evaluations (651 vs. 494)
 
