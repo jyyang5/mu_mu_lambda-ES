@@ -45,8 +45,12 @@ if(fname==1)
     f=f1;
 elseif(fname==2)
     f=f2;
-else
+elseif(fname==3)
     f=f3;
+elseif(fname==4)
+    f=@f4;
+elseif(fname==5)
+    f=@f5;
 end
 
 [n, mu] = size(x0);
@@ -80,15 +84,15 @@ centroid_array(:,t) = centroid;
 fcentroid_array(t) = f_centroid;
 
 % parameters for CSA
-c = 1/sqrt(n);
-D = sqrt(n);
-s = 0;
+% c = 1/sqrt(n);
+% D = sqrt(n);
+% s = 0;
 %%%%%%%%%%%%%%%%%%%%%%
 % nico's NOT WORK
-% mu_eff = mu;
-% c = (mu_eff+2)/(n+mu_eff+5);
-% d = 1 + 2*max(0,sqrt((mu_eff-1)/(n+1))-1)+c; 
-% s = 0;
+mu_eff = mu;
+c = (mu_eff+2)/(n+mu_eff+5);
+D = 1 + 2*max(0,sqrt((mu_eff-1)/(n+1))-1)+c; 
+s = 0;
 %%%%%%%%%%%%%%%%%%%%%%
 % Dirk small lambda 
 % c = 0.63;
@@ -104,7 +108,9 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     if(f_centroid > 50000)
         % if diverge -> convergence rate = 0 success rate = 0
         success_rate = 0;
-        val = {9999,mean(x0, 2),9999,sigma_array, 9999, fcentroid_array,-1,error_array,sigma_star_array,success_rate}; 
+        val = {9999,mean(x0, 2),9999,sigma_array, 9999, fcentroid_array,-1,error_array,sigma_star_array,success_rate,delta_array}; 
+        val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,error_array,sigma_star_array,success_rate,delta_array};
+
         return 
     end
 %     dist = norm(centroid);                                                 % distance to optimal
@@ -224,4 +230,21 @@ function fTest = gp(xTrain, fTrain, xTest, theta)
 %     fTest = min(fTrain) + Ks'*(K\(fTrain'-min(fTrain)));
     fTest = mu + Ks'*(K\(fTrain'-mu));
 
+end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Schwefel's Problem 1.2
+function val = f4(x)
+    val = 0;
+    for i = 1:1:length(x)
+        val = val + sum(x(1:i))^2;
+    end
+end
+% quartic function
+function val = f5(x)
+    beta = 1;
+    val = 0;
+    for i = 1:1:n-1
+        val = val + beta*(x(i+1)-x(i).^2)^2+(1-x(i))^2;
+    end
 end

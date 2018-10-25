@@ -8,18 +8,16 @@ f2 = @(x) (x'*x);
 f3 = @(x) (x'*x)^(3/2);
 
 
-NUM_OF_RUNS = 50;
+NUM_OF_RUNS = 100;
 % NUM_OF_RUNS = 2;
 TRAINING_SIZE = 40;
 LENGTH_SCALE = 8;
 lambda_array = [5 10 15 20 25 40 50 60 80];
 
 % close all figures
-close all;
 
 fname = 1;
 temp1 = fun_multi_run(fname,NUM_OF_RUNS,lambda_array,TRAINING_SIZE,LENGTH_SCALE);
-close all;
 
 fname = 2;
 temp2 = fun_multi_run(fname,NUM_OF_RUNS,lambda_array,TRAINING_SIZE,LENGTH_SCALE);

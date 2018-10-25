@@ -29,6 +29,10 @@ LAMBDA_LENGTH = length(lambda_array);
 % mu = 3;
 n = 10;
 
+% close all graph
+close all;
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Def of variables
 
@@ -71,7 +75,8 @@ for i=1:1:LAMBDA_LENGTH
         
     end 
     
-    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Save data
     if fname == 1
         f = @(x) (x'*x)^(1/2);
         save('linear_over_lambda.mat','fname','f','fname','NUM_OF_RUNS','lambda_array',...
@@ -93,30 +98,25 @@ for i=1:1:LAMBDA_LENGTH
         't_array','sigma_matrix','T_array','f_x_matrix','convergence_rate_array',...
             'GP_error_matrix','GP_error_matrix','sigma_star_matrix','success_rate_array',...
             'delta_matrix');
-%     elseif fname == 9
-%         f = @f4;
-%         save('schwefel_over_lambda.mat','f','NUM_OF_RUNS','mu','lambda','TRAINING_SIZE',...
-%         't_array','sigma_matrix','T_array','f_x_matrix','convergence_rate_array',...
-%         'GP_error_matrix','sigma_star_matrix','success_rate_array','t_array1',...
-%         'sigma_matrix1','T_array1','f_x_matrix1','convergence_rate_array1',...
-%         'GP_error_matrix1','sigma_star_matrix1','success_rate_array1');        
-%     elseif fname == 10
-%         f = @f5;
-%         save('quartic_over_lambda.mat','f','NUM_OF_RUNS','mu','lambda','TRAINING_SIZE',...
-%         't_array','sigma_matrix','T_array','f_x_matrix','convergence_rate_array',...
-%         'GP_error_matrix','sigma_star_matrix','success_rate_array','t_array1',...
-%         'sigma_matrix1','T_array1','f_x_matrix1','convergence_rate_array1',...
-%         'GP_error_matrix1','sigma_star_matrix1','success_rate_array1');        
+    elseif fname == 4
+        f = @f4;
+        save('schwefel_over_lambda.mat','fname','f','fname','NUM_OF_RUNS','lambda_array',...
+            'LENGTH_SCALE','TRAINING_SIZE',...
+        't_array','sigma_matrix','T_array','f_x_matrix','convergence_rate_array',...
+            'GP_error_matrix','GP_error_matrix','sigma_star_matrix','success_rate_array',...
+            'delta_matrix');  
+    elseif fname == 5
+        f = @f5;
+        save('quartic_over_lambda.mat','f','fname','f','fname','NUM_OF_RUNS','lambda_array',...
+            'LENGTH_SCALE','TRAINING_SIZE',...
+        't_array','sigma_matrix','T_array','f_x_matrix','convergence_rate_array',...
+            'GP_error_matrix','GP_error_matrix','sigma_star_matrix','success_rate_array',...
+            'delta_matrix');       
     end
 
 end
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Save data
     
-    
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Take median
 
@@ -132,6 +132,7 @@ end
     success_med = median(success_rate_array,2);
     delta_matrix_med = squeeze(median(delta_matrix,2));
         
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % graph
 
@@ -159,8 +160,6 @@ for i = 1:1:LAMBDA_LENGTH
     t_range1 = 1:lambda:lambda*t_start;
     t_range2 = lambda*t_start+1:lambda*t_start+length(fx_range2);
     semilogy([t_range1 t_range2], [fx_range1 fx_range2],'DisplayName',d);hold on;% mml with GP
-    % plot([lambda lambda+1:T-lambda-1],[fcentroid_array(1) fcentroid_array(2:t)]);hold on;
-%     plot(1:1:t_med1,f_x_med1(1:t_med1));
     ylabel('objective function value f(y)','FontSize',15);%
     xlabel('objective function evaluations','FontSize',15); 
     set(gca, 'YScale', 'log');
@@ -175,8 +174,6 @@ for i = 1:1:LAMBDA_LENGTH
     sigma_range1 = sigma_med(1:t_start);
     sigma_range2 = sigma_med(t_start+1:t_med(i));
     plot([t_range1 t_range2], [sigma_range1 sigma_range2],'DisplayName',d);hold on;
-    % plot(1:1:t,sigma_star_array(1:t));hold on;
-%     plot(1:1:t_med1,sigma_med1(1:t_med1));
     ylabel('step size \sigma','FontSize',15);%
     xlabel('objective function evaluations','FontSize',15); 
     set(gca, 'YScale', 'log');
@@ -191,8 +188,6 @@ for i = 1:1:LAMBDA_LENGTH
     sigma_star_range1 = sigma_star_med(1:t_start);
     sigma_star_range2 = sigma_star_med(t_start+1:t_med(i));
     plot([t_range1 t_range2], [sigma_star_range1 sigma_star_range2],'DisplayName',d);hold on;
-    % plot(1:1:t,sigma_star_array(1:t));hold on;
-%     plot(1:1:t_med1,sigma_star_med1(1:t_med(1)));
     ylabel('normalized step size \sigma*','FontSize',15);%
     xlabel('objective function evaluations','FontSize',15); 
     set(gca, 'YScale', 'log');
@@ -207,8 +202,6 @@ for i = 1:1:LAMBDA_LENGTH
     GP_error_range1 = GP_error_med(1:t_start);
     GP_error_range2 = GP_error_med(t_start+1:t_med(i));
     plot([t_range1 t_range2], [GP_error_range1 GP_error_range2],'DisplayName',d);hold on;
-%     % plot(1:t,GP_error(1:t));hold on;
-%     plot(1:t_med1,GP_error_med1(1:t_med1));
     ylabel('relative model error','FontSize',15);%
     xlabel('objective function evaluations','FontSize',15); 
     set(gca, 'YScale', 'log');
@@ -221,54 +214,56 @@ for i = 1:1:LAMBDA_LENGTH
     
     
 end
-    
-    
     hold off;
-
-if fname == 1
+    % svae plot    
+    if fname == 1
         saveas(gcf,'linear_sphere_funCall.fig');
-elseif fname == 2
+    elseif fname == 2
         saveas(gcf,'quadratic_sphere_funCall.fig');
-elseif fname == 3
+    elseif fname == 3
         saveas(gcf,'cubic_sphere_funCall.fig');
-elseif fname == 4 
+    elseif fname == 4 
         saveas(gcf,'schwefel_function_funCall.fig');
-elseif fname == 5
+    elseif fname == 5
         saveas(gcf,'quartic_function_funCall.fig');
-end
-    
-% For each lambda plot pmf fitness gain/iteration hitogram 
-% 
-% for i = 1:1:LAMBDA_LENGTH   
-%     figure(10+i+fname);
-%     lambda = lambda_array(i);
-%     mu = ceil(lambda/4);
-%     
-%     delta_array = delta_matrix_med(i,1:t_med(i));
-%     histogram(delta_array(1:t_med(i)),'Normalization','probability');
-%     xlabel('number of iterations','fontsize',15);
-%     ylabel('prob','fontsize',15);
-%     d =sprintf('Normalized fitGain pdf (%d/%d,%d)',mu,mu,lambda);
-%     title(d,'fontsize',20);
-% 
-%     
-%     if fname == 1
-%         d =sprintf('hist_linear_%d.fig',lambda);
-%     elseif fname == 2
-%         d =sprintf('hist_quadratic_%d.fig',lambda);
-%     elseif fname == 3
-%         d =sprintf('hist_cubic_%d.fig',lambda);
-%     elseif fname == 4 
-%         d =sprintf('hist_schwefel_%d.fig',lambda);
-%     elseif fname == 5
-%         d =sprintf('hist_quartic_%d.fig',lambda);
-%         saveas(gcf,'hist_quartic_function.fig');
-%     end
-%     saveas(gcf,d);
-% end    
+    end
     
 
-    % take the mean of relative model error in median run
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% For each lambda plot pmf fitness gain/iteration hitogram
+% assume 3 rows 
+    numOfCol = ceil(LAMBDA_LENGTH/3);
+    figure(10+i+fname);
+    for i = 1:1:LAMBDA_LENGTH     
+        subplot(3,numOfCol,i);
+        lambda = lambda_array(i);
+        mu = ceil(lambda/4);
+    
+        delta_array = delta_matrix_med(i,1:t_med(i));
+        histogram(delta_array(1:t_med(i)),'Normalization','probability');
+        xlabel('number of iterations','fontsize',15);
+        ylabel('prob','fontsize',15);
+        d =sprintf('Normalized fitGain pdf (%d/%d,%d)',mu,mu,lambda);
+        title(d,'fontsize',20);
+   
+    end    
+ 
+    if fname == 1
+        d =sprintf('hist_linear_%d.fig',lambda);
+    elseif fname == 2
+        d =sprintf('hist_quadratic_%d.fig',lambda);
+    elseif fname == 3
+        d =sprintf('hist_cubic_%d.fig',lambda);
+    elseif fname == 4 
+        d =sprintf('hist_schwefel_%d.fig',lambda);
+    elseif fname == 5
+        d =sprintf('hist_quartic_%d.fig',lambda);
+        saveas(gcf,'hist_quartic_function.fig');
+    end
+    saveas(gcf,d);
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% plot by taking the mean of relative model error in median run
     mean_GP_error_array = zeros(LAMBDA_LENGTH,1);
     for i = 1:1:LAMBDA_LENGTH   
         mean_GP_error_array(i) = mean(GP_error_matrix_med(i,1:t_med(i)));
@@ -278,21 +273,19 @@ end
     ylabel('mean of relative model error in median run','FontSize',15);%
     xlabel('\lambda','FontSize',15); 
     set(gca, 'YScale', 'log');
-    title('Logarithmic relative model error','FontSize',20);
+    title('Relative model error (mean)','FontSize',20);
     
-    
-    
-if fname == 1
-    d3 = sprintf('linear_modelError_lambda.fig');
-elseif fname == 2
-    d3 = sprintf('quadratic_modelError_lambda.fig');
-elseif fname == 3
-    d3 = sprintf('cubic_modelError_lambda.fig');
-elseif fname == 4 
-        saveas(gcf,'schwefel_function_funCall.fig');
-elseif fname == 5
-        saveas(gcf,'quartic_function_funCall.fig');
-end
+    if fname == 1
+        d3 = sprintf('linear_modelError_lambda.fig');
+    elseif fname == 2
+        d3 = sprintf('quadratic_modelError_lambda.fig');
+    elseif fname == 3
+        d3 = sprintf('cubic_modelError_lambda.fig');
+    elseif fname == 4 
+        d3 = sprintf('schwefel_function_funCall.fig');
+    elseif fname == 5
+        d3 = sprintf('quartic_function_funCall.fig');
+    end
     saveas(gcf,d3);
     
     

@@ -22,7 +22,7 @@ f3 = @(x) (x'*x)^(3/2);  % cubic sphere
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-f = 2;
+f = 4;
 n = 10;
 
 lambda = 40;
@@ -30,7 +30,7 @@ mu = ceil(lambda/4);
 sigma0 = 1;
 NUM_OF_ITERATIONS = 2000;
 TRAINING_SIZE = 40;
-LENGTH_SCALE = 4;
+LENGTH_SCALE = 1;
 % x0 = randn(n,mu);
 % 64 worked for quadratic
 
@@ -135,6 +135,8 @@ xlabel('number of iterations','fontsize',15);
 % delta(fitness gain/iteration) pmf     
 subplot(2,3,5)
 histogram(delta_array(1:t),'Normalization','probability');hold on;
+% histogram(delta_array(1:t), 'normalization', 'pdf');hold on;
+% [D, PD] = allfitdist(delta_array(1:t), 'PDF')
 xlabel('number of iterations','fontsize',15);
 ylabel('prob','fontsize',15);
 % set(gca,'yscale','log')
