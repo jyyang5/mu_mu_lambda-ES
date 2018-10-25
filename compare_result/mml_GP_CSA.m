@@ -23,6 +23,11 @@ function val = mml_GP_CSA(f,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE)
 % 8.-1:                 no GP error
 % 9.sigma_star_array:   normalized step size
 % 10. success_rate      success_rate
+% 11. normalized delta  (f_centroid(t)-f_centroid(t-1))/factor
+%                       linear: factor = R
+%                       quadratic: factor = 2*R^2
+%                       cubic: factor = 3*R^3
+%                       where R=disd(centroid)
 
 % OPTIMAL:            global optima
 % example input:      f = @(x) x' * x
@@ -40,13 +45,15 @@ sigma_array = zeros(1,10000);
 sigma_star_array = zeros(1,10000);                                          % store normalized step size 
 error_array = zeros(1,10000);                                               % store similar to noise-to-signal ratio
 s_array = zeros(1,10000);
+delta_array = zeros(1,10000);                                               % for pdf of fitness gain in each iteration
+
 y = zeros(n,lambda);                                                        % lambda offspring solution with dim n
 z = zeros(n,lambda);                                                        % random directions added for lambda offsprings dim n
 fy = zeros(lambda,1);                                                       % objective function value of y                                              
 centroid = mean(x0, 2);                                                     % centroid of parent set, size = [n, 1]
 f_centroid = f(centroid);                                                   % fx of centroid
 fyep = zeros(lambda,1);                                                     % GP estimate for offsprings
- 
+
 convergence_rate = 0;
 
 t = 1;       
@@ -141,11 +148,15 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
         
     centroid_array(:,t) = centroid;
     fcentroid_array(t) = f_centroid;
+    
     xTrain(:, T) = centroid;                
     fTrain(T) = f_centroid;
     T = T + 1;
     sigma_array(t) = sigma;
     sigma_star_array(t) = sigma*n/norm(centroid);
+    if(t>=2)
+        delta_array(t) =(fcentroid_array(t)-fcentroid_array(t-1))/norm(centroid); 
+    end
     t = t + 1;
     
     

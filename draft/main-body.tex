@@ -1,0 +1,228 @@
+\section{Introduction}
+
+\textit{Evolution strategies (ESs)} have been widely utilized to solve optimization problems with an exceptional good performance in continuous solution space \cite{Kramer2016}. While in the case where objective function evaluation is costly, the time needed to compute the fitness of each offspring can take a considerable amount of time. One remedy is to use the surrogate model, a substitution of the true objective function built based on the information of previous candidate solutions that are evaluated by the true objective function. The surrogate model can give a more computationally efficient inaccurate estimate of the offsprings' fitness, replacing the expensive true objective function evaluation. The estimate using surrogate model yields insight into potential avoidance of poor step size. The optimization of the candidate solutions in each iteration also gives a better convergence rate.  
+
+
+There are a range of surrogate models and a survey of the development can be found by Jin \cite{JIN201161} and Loshchilov \cite{ECJ2016_LMCMA}. The surrogate model can do a pre-selection of the candidate solutions generated in each iteration with no computational cost. The effectiveness of surrogate assisted model is that it can effectively filter those undesired candidate solutions (reduce the population size) so that the unnecessary objective function evaluations can be avoided. It is the reduction of the population size by filtering undesired candidate solutions rather than the surrogate mode that saves the computational cost directly \cite{ARASH}.
+
+
+By using a similar idea to surrogated model assisted EAs, we do not use a local surrogate model to do the pre-selection in each iteration. Instead, we use it to optimize the candidate solutions obtained in each iteration by fitting a quadratic model in one dimension. By taking the lowest point of the quadratic model as the offspring of this iteration, we hope the fitness of the offspring obtained by the quadratic model would be better compared with the candidate solution directly generated from the parent. For better interpretation, we study the behavior of the proposed surrogate model assisted EAs using simple test functions, allowing comparisons with established basslines. The contributions of this paper are as follows: in Section 2, we give a brief review of related background, in Section 3, we propose a local surrogate model assisted (1+1)-ES, in Section 4, the model is evaluated on quadratic sphere following the same framework proposed by Kayhani and Arnold \cite{ARASH}. 
+
+% \begin{figure*}
+% \includegraphics[height=2.6in, width=7in]{matlabcode}
+% \caption{MATLAB code for the proposed local surrogate model }
+% \end{figure*}
+
+
+
+
+
+\section{Related Work}
+
+Using an approximate model to reduce computational cost can be traced back to 1960s \cite{Dunham1963}. Some successful surrogated models include but are not limitted to Polynomial Regression (PR, response surface methodology) \cite{doi:10.1080/00401706.1966.10490404}, Gaussian Process (GP, Kriging models) \cite{sacks1989}, Artificial neural networks \cite{Smith:1993:NNS:583180}. There are two types of surrogate models, global surrogate model and local surrogate model. ES using global surrogate model based on Kring was examined by Ratle \cite{Ratle:2001:KSF:966173.966177}. Another ES using global surrogate model based on Artificial neural networks was constructed by Jin \cite{Jin02aframework} which gives an imperial criterion on using the true objective function or the surrogate model to evaluate the offspring. Ulmer et al \cite{Ulmer03evolutionstrategies} and Buche et al \cite{1424193} also applied GP as surrogate models in ES. But the performance of global surrogate models degrade as the dimension of the data increases, known as \textit{curse of dimensionality}. Online local surrogate models \cite{4033013} can be constructed using methods like radial basis function (RBF) \cite{GIANNAKOGLOU200243} to replace the global surrogate model, where the surrogate model is updated online, giving a more accurate estimation compared with the global surrogate model.
+
+
+Most recent works in surrogated assisted EAs uses a combination of different surrogate models to estimate the fitness strength of the candidate solutions. Zhou et al \cite{4033013} proposed a hierarchical surrogate-assisted ES where a global surrogate model and a local surrogate model are integrated. The Global surrogate model uses GP and PR to estimate the global fitness of ES's search space, filtering the unpromising candidate solutions. Then, a local surrogate-assisted Lamarckian learning based on RBF is performed to search the promising candidate solutions. 
+
+
+There are various surrogate-assisted EAs integrating global and local surrogate models or using a combination of heuristics. These methods tend to be sophisticated for good performance, while few literatures have investigated the surrogated-assisted 1+1-ES. One exception is what Chen and Zou \cite{10.1007/978-3-319-09333-8_4} proposed but yet incomplete in terms of two aspects. Firstly, it uses a linear surrogate that cannot give a precise estimate when coordinate transform is applied, the precondition to solve a generalized optimization problem \cite{ARASH}. Secondly, it does not include a step size adaptation mechanism. Besides that, Ulmer et al \cite{Ulmer2005} proposed a Model Assisted Steady-State Evolution Strategy (MASS-ES), which is a ($\mu+\lambda$)-ES that is a (1+1)-ES when we set $\mu=\lambda=1$. But the behavior of step size adaptation is unclear given the proposed conditions.
+
+
+There is a wealth of literatures on solving black box optimization using (1+1)-ES on solving unimodal test problems for evaluation and the convergence property of convex functions. Arash et al \cite{ARASH} proposed a surrogated-assisted (1+1)-ES that investigates the acceleration and the step size adaptation behavior of the algorithm using GP based online local surrogate. In this model, the local surrogate model filters the undesired candidate solutions by comparing the objective function value of the parent with the GP estimate of the offspring. The candidate solution is evaluated using the true objective function if and only if its fitness evaluated by GP is superior to its parent. The  surrogate model is updated whenever a new objective function call is made. The most recent offspring evaluated by true objective function is then added to the training set for Gaussian Process, replacing the oldest data point in the training set. The proposed GP based local surrogate gives a 3-time-speed-up compared with the usual (1+1)-ES on quadratic sphere. We want to construct a similar GP based local surrogate model and compare the result using the same test functions and analysis. 
+ 
+
+
+
+\section{Description}
+
+The first few steps of the proposed algorithm are essentially a usual (1+1)-ES where the step size of the parent is adapted using one-fifth rule. In each iteration the parent $x \in R^n$ is the best offspring (with the lowest objective function value) obtained so far. The offspring in this iteration $y$ is then generated by $y = x + \sigma z$ where $z$ is standard normally distributed n-dimensional random vector and $\sigma$ is the step size of the algorithm.
+
+
+After $K$ iterations using usual (1+1)-ES we can get the $K$ candidate solutions  $x_{train}$ and their corresponding objective function values $fx_{train}$, referred as the training data for the surrogate model. The training data can be used to build a Gaussian Process (GP) model that makes an estimation of the true objective function value of the next iteration at a much lower cost. In each iteration, $x_{train}$ and $fx_{train}$ are updated using the most recent $K$ candidate solutions and corresponding objective function values where the GP model is updated at the same time. 
+
+To get an offspring, we sample a standard normally distributed random vector $z \in R^n$ referred as a direction and the offspring generated in this iteration can be optimized in one dimension (the direction of $z$) by fitting a quadratic model using the value and the the corresponding objective function values of the parent, candidate solutions ($y_{\pm}$) taking the positive and negative directions $\pm z$) respectively. Then we choose the lowest point of the quadratic model as the offspring, the best candidate solution (lowest function evaluation for the quadratic model) in that direction. The basic MATLAB code is shown above (in Figure 1).
+
+Since the estimate of GP can be precise in the neighborhoods of the parent solution, we use the GP estimates($f_{\epsilon}(y \pm)$) of the two candidate solutions taking positive and negative directions to save 2 true objective function evaluations at the cost of a small precision loss. 
+The lowest point of the quadratic model is used as the offspring of this iteration, it is then evaluated with the true objective function where the offspring and its objective function value are added to $x_{train}$ and $fx_{train}$ respectively for GP model update. The next steps are the same as the usual (1+1)-ES where we choose the best of all candidate solutions as the parent for the next iteration. 
+
+
+
+
+
+\section{Analysis}
+
+% \begin{figure*}
+% \includegraphics[height=3in, width=6in]{successRate}
+% \caption{Expected signle step hehaviour of the surrogate model assisted (1+1)-ES with differnet level of Gaussian surrogate errors. The dots show balues observed experimentally for $n = 10$ (crosses) and $n = 100$ (circles). }
+% \end{figure*}
+
+To understand the potential implications of using surrogate models in EAs. The evaluation follows what Arash et al \cite{ARASH} did. In this section, we propose a simple model that, in each iteration, optimizes the candidate solution generated using the surrogate models. We first sample a random direction and generate two points $y_\pm$ by adding the positive and negative directions to the parent. The optimization is done by first fitting a quadratic model using the parent (evaluated by the true objective function) and the other two points (evaluated by the surrogate models where the inaccurate estimate can be achieved at vanishing cost), then choosing the lowest point of the quadratic model as the offspring of this iteration. For simplicity, we assume the error of using the GP estimate is a Gaussian random variable with mean coincides with the true objective function value of the candidate solution and some variance introduced as the nosie for the estimate. In this case, we can apply the analysis of evolution strategies with the presence of Gaussian noise (see \cite{Arnold02noisyoptimization} and references theorem). The analysis could be extended to biased surrogate models where the mean of the estimates' distribution is different from the exact objective function value. It is likely that analyzing the effect of non-Gaussian noise for the performance of ES could be achieved by using models with error distribution that is skew \cite{1665028}. 
+
+
+Considering the minimization of quadratic sphere $f: R^n \rightarrow R$ with $f(x)=x^Tx$ where the local surrogate model assisted (1+1)-ES is applied, this section will use the surrogate model described above to replace the candidate solution generated in each iteration. We first consider a simple iteration of the strategy. In each iteration the strategy generates a single candidate solution $y=x+\sigma z$ as is described in Section 3 where $\sigma$ is the step size parameter and $x$ the parent (best candidate solutions obtained so far).  Then we randomly sample standard normally distributed random vector $z \in R^n$ referred to as the direction vector and generate two points based on the direction vector $y_\pm = x\pm z$. We want to fit a quadratic model that optimizes $y$ in direction $z$ where the minimization of the quadratic model can be written as:
+
+$$\text{Given}\ x \in R^n,\ z \in R^n\ \text{find}\ \alpha_{opt} \in R\ s.t.\ min \{f(x+\alpha z) \}$$
+
+We denote the quadratic model $g(\alpha) = a\alpha^2 + b \alpha + c = f(x+\alpha z)$ where the surrogate step size $\alpha$ essentially illustrates the signed distance we added to the given candidate solution $y$ in direction $z$. For the three points described above, the strategy uses the surrogate model estimate $f_{\epsilon}(y_{\pm})$ to replace the true objective function value of $y_\pm$ that goes like the following:
+
+$$ \begin{cases}  g(1) = a+b+c= f_{\epsilon }(y_+)    \\ y(-1) = a-b+c = f_{\epsilon }(y_-)  \\ y(0)  = c = f(x)  \end{cases}$$
+
+Solving the above system gives $\alpha_{opt} = -\frac{b}{2a}  = -\frac{f_\epsilon(y_+) - f_\epsilon(y_-)}{f_\epsilon(y_+) - f_\epsilon(y_-) + 2f(x) } $ where $y = x + \alpha_{opt} z$ is the offspring obtained in this iteartion.
+ 
+
+By assumption, $f_\epsilon(y_\pm)$ is a random variable with mean $f(y_\pm)$ and some standard deviation $\sigma_\epsilon > 0$ that can be rewritten as $y_\epsilon(y_\pm) = f(y_\pm) + \sigma_\epsilon$. Better surrogate models with small value of $\sigma_\epsilon$ can result more precise estimation of the true objective function. In the case where $\sigma_\epsilon = 0$, we obtain the estimation without Gaussian noise, which is essentially the same as we evaluate using the true objective function.
+
+
+We use the decomposing of $z$ proposed by Rechenberg \cite{rechenberg1973evolutionsstrategie} to analyze the expected step size of the strategy. Vector $z$ could be decomposed as a vector sum $z = z_1+z_2$, where $z_1$ is in the direction of the negative gradient of $z$, while $z_2$ orthogonal  to $z_A$. We have $z_1$ standard normally distributed while $\Vert z_2\Vert^2$ $\chi$-distributed with $n-1$ degree of freedom and $\frac{\Vert z_2\Vert^2}{n} \overset{n \rightarrow \infty }{=} 0$. The estimate and optimal $\alpha_{opt}$ of this iteration using surrogate model results the following where $z_\epsilon^\pm$ is standard normally distributed.
+
+$$f_\epsilon(y_\pm) = (R \mp \sigma z_1)+\sigma \Vert z_2\Vert^2 + \sigma_\epsilon^\pm$$
+$$ \alpha_{opt} =   \frac{4 \sigma z_1 + \sigma_{\epsilon} (z_{\epsilon}^+  - z_{\epsilon}^-  )}{   2({2\sigma}^2 \Vert z\Vert^2 + \sigma_{\epsilon} (z_{\epsilon}^+  + z_{\epsilon}^- ) ) } $$ 
+
+The normalized fitness advantage of the offspring over its parent is denoted as $\delta = n(f(x)-f(y)) /(2R^2)$ where $R= \Vert x \Vert$ is referred to as the distance from the parent to the global minima. By introducing the normalized step size $\sigma^* = n \sigma /n$ and estimated normalized fitness advantage $\sigma_\epsilon^* = n \sigma_\epsilon /(2R^2)$(the normalized fitness advantage using the surrogate model) we can simplify $\alpha_{opt}$ 
+
+\begin{align*} 
+ \alpha_{opt} 
+ &= -\frac{ -2\sigma^* z_1 + \sigma_\epsilon^*(z_\epsilon^+ - z_\epsilon^-) }{2 (\sigma*)^2 \Vert z \Vert^2 /n   +  2\sigma_\epsilon^* (z_\epsilon^+ - z_\epsilon^-)  } \\
+ & \overset{n \rightarrow \infty }{=}      -\frac{ \sigma^* z_1  -  \sigma_\epsilon^*/2(z_\epsilon^+  - z_\epsilon^-) }{ (\sigma^*)^2 + \sigma_\epsilon^* (z_\epsilon^+ +z_\epsilon^-) }  
+ \end{align*}
+
+Simplify the expected fitness advantage of the offspring over its parent
+\begin{align*} 
+\delta 
+& = \frac{n}{2R^2} (x^Tx - (x+\alpha_{opt} \sigma z)^T (x - (x+\alpha_{opt} \sigma z) ) \\
+& \overset{n \rightarrow \infty }{=}  \alpha_{opt}  \sigma^* z_1 - \frac{ ( \alpha_{opt}\sigma^*)^2 }{2} 
+ \end{align*}
+
+
+where $z_1 = -x^T z$ is standard normally distributed random variable that coincides with $z$ in the negative gradient direction and $\overset{n \rightarrow \infty }{=}$ denotes the convergence of the distribution. The equation could be further written as 
+
+$$\delta(x,y)  \overset{n \rightarrow \infty }{=} x\sigma^* y - \frac{(x\sigma^*)^2}{2}  $$
+
+
+The probability desity of $\alpha_{opt}$ conditioned on $z_1$ obtained by Dirk is 
+\begin{align*} 
+ & p_{\alpha|z1}(x|y) \\ = & 2De^{\frac{-E^2}{2(1+D^2)} }  \frac{ \left [ ( \sigma_\epsilon^* +2y+2\theta \frac{E}{1+D^2})(1-2normcdf(\beta)) +4\theta \frac{De^{-\beta^2/2  }}{ \sqrt{2 \pi}  \sqrt{1+D^2}}   \right ]    }{                         (1-2x)^2 \theta  \sqrt{2 \pi}   \sqrt{1+D^2}   } 
+ \end{align*} 
+
+where we have the following 
+
+$$\begin{cases} 
+\theta = \frac{\sigma_\epsilon^*}{\sigma^*}  \\
+E =  \frac{-2(y+x \sigma_\epsilon^*  )}{1+2x} /\theta  \\
+D = \frac{1-2x}{1+2x}  \\
+\beta = \frac{  (  \sigma_\epsilon^*  /2+y)*\sqrt{1+D^2}+\theta E/\sqrt{1+D^2} }{D} \\
+normcdf(\beta): \text{cdf\ of\ N(0,1) evaluated\ at\ } \beta
+\end{cases}   $$
+
+
+In each iteration, one objective function call is made after the candidate solution is optimized using the quadratic model. The offspring $y$ replacing its parent $x$ if and only if $\delta >0$. We write $p_{step} = Prob[\delta > 0]$ for the probability of the offspring replacing its parent
+
+$$p_{step} = Prob[\delta > 0] = \int_{-\infty}^\infty p_{z_1}(y) \int_{-\infty}^\infty p_{\alpha|z1}(x|y)  dx dy $$
+
+Finally the expected value of the normalized change in objective function is 
+
+$$\Delta = \begin{cases}  \delta  &\text{if } \delta > 0 \\ 0 & \text{otherwise}  \end{cases}$$
+
+In each itertaion, it could be computed as
+
+$$  E[\Delta] = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^\infty\int_{-\infty}^\infty e^{-y^2/2} p_{\alpha|z1}(x|y) \delta(x, y) dx dy$$
+
+
+We define $\theta = \sigma_\epsilon^* / \sigma^*$ the noise-to-signal ratio to measure the quality of surrogate model relative to the algorithm's step size and the function to be integrated is denoted as
+
+$$g(x,y,\sigma_\epsilon^*, \sigma^*)= 1/ \sqrt{2 \pi} e^{-y^2/2} p_{\alpha|z1}(x|y) \delta(x, y)$$
+
+The expected fitness gain relative to normalized step size is plotted in figure 2. The dots show the corresponding values observed in experiments with unbiased Gaussian surrogate error for $n \in \{10, 100\}$ obtained by averaging 40 runs. We tried to compute the expected fitness gain ($n \rightarrow \infty$) over the normalized step size analytically, but feailed because the function to integrate does not seem to converge over $y$. We experimented with different values of $\sigma_\epsilon^*$ and $\theta$ for $g(x,y,\sigma_\epsilon^*, \sigma^*)$ but the value obtained is a negative constant along the y-axes when $y$ exceeds a certain value for a range of $x$. An example of the plot for $g(x,y,\sigma_\epsilon^*, \sigma^*)$ over $x$ and $y$ with $\sigma_\epsilon^*=1$ and $\sigma^*=1$ is shwon in Fig.3 where two half-cylinder-shape along y-axes can be observed. $n \rightarrow \infty$ can be intepreted as a large step size with small noise-to-signal ratio.  
+
+
+
+It can be seen from Fig.2 that for a small noise-to-signal ratio, the evaluation rate increases with an increasing step size. While for a large noise-to-signal ratio, evaluation rate decreases with an increasing step size. The strategy makes progress one out of two steps for very small step size. The strategy becomes more "wise" in generating offsprings with a large step size and a relative small noise-to-signal ratio in a sense that the candidate solution optimized in this iteration is more close to the true lowest point of the quadratic model with a relative large space for candidate generation. In the case of zero noise-to-signal ratio, the candidate solution is deemed superior to its parent by choosing the best candidate solution in the direction sampled. 
+
+The expected fitness gain decreases as the step size increases (observed in Fig. 2 $\theta = 4$ green dots) which is contrary to the case where $\theta = 0.25$ and $\theta = 1$. One intepretation is that the strategy samples one direction in each iteration and the candidate solution is optimized in that direction using a quadratic model. The fitness gain of the candidate solution largely depends on the direction sampled and the accurancy of the estimation for the points fitting the quadratic model. The noise-to-signal ratio $\theta$ controls the precision of the optimal candidate solution estimtaed in the quadratic model relative to step size. A large $\theta$ means the estimation of the optimal candidate solution in the direction sampled is less accurate and therefore the evaluation rate decreases as the step size increases (the increasing step size also adds inaccurancy to the estimation of the optimal candidate solution).  
+
+The direction sampled also affects the model performance. We would like to optimize the candidate solution in a direction with a potentially large fitness gain. But random sampling makes the process uncertain and according to experimental results, chances are that we do not sample a good direction in most cases i.e. the imporvement for the parent is limitted. So that a selection mechanism for the (direction of) candidate solutions in each iteration should be further considered. One possible approach is to consider the difference (distance) of the candidate solution before and after optimization using the quadratic model. Or we could possibly try unit vectors in each dimension, optimize using the quadratic model and choose the direction with the largest absolute $-2a/b$ (surrogate step size) in the optimization using the quadratic model.
+
+% \begin{figure}
+% \includegraphics[height=2in, width=3in]{IntXY}
+% \caption{The function to integrate over $x$ and $y$ with $\sigma_\epsilon^*=1$ and $\sigma^*=1$ i.e. $g(x,y,1,1)$ over $x$ and $y$. Notice the two half cylinders along y-axes where the function value for each $x$ is a negative constant. }
+% \end{figure}
+
+
+
+
+\section{Step size adaptation}
+
+
+
+
+
+
+
+
+\section{Conclusions}
+In this paper, We proposed a local surrogate-assisted (1+1)-ES on a quadratic sphere function. The strategy uses a lcoal surrogate model to optimize the candidate solution obtained in each iteration. The performance is analyzed by adding different levels of Gaussin noise in the strategy. 
+
+For future work, we will work on a selection mechanism for candidate solutions deciding what candidate solutions to choose based on the fitness gain it may bring. Further, a step size adaptation mechanism for the surrogate model assisted (1 + 1)-ES should be considered. 
+
+
+%\end{document}  % This is where a 'short' article might terminate
+
+
+
+
+% \appendix
+% %Appendix A
+% \section{Headings in Appendices}
+% The rules about hierarchical headings discussed above for
+% the body of the article are different in the appendices.
+% In the \textbf{appendix} environment, the command
+% \textbf{section} is used to
+% indicate the start of each Appendix, with alphabetic order
+% designation (i.e., the first is A, the second B, etc.) and
+% a title (if you include one).  So, if you need
+% hierarchical structure
+% \textit{within} an Appendix, start with \textbf{subsection} as the
+% highest level. Here is an outline of the body of this
+% document in Appendix-appropriate form:
+% \subsection{Introduction}
+% \subsection{The Body of the Paper}
+% \subsubsection{Type Changes and  Special Characters}
+% \subsubsection{Math Equations}
+% \paragraph{Inline (In-text) Equations}
+% \paragraph{Display Equations}
+% \subsubsection{Citations}
+% \subsubsection{Tables}
+% \subsubsection{Figures}
+% \subsubsection{Theorem-like Constructs}
+% \subsubsection*{A Caveat for the \TeX\ Expert}
+% \subsection{Conclusions}
+% \subsection{References}
+% Generated by bibtex from your \texttt{.bib} file.  Run latex,
+% then bibtex, then latex twice (to resolve references)
+% to create the \texttt{.bbl} file.  Insert that \texttt{.bbl}
+% file into the \texttt{.tex} source file and comment out
+% the command \texttt{{\char'134}thebibliography}.
+% % This next section command marks the start of
+% % Appendix B, and does not continue the present hierarchy
+% \section{More Help for the Hardy}
+
+% Of course, reading the source code is always useful.  The file
+% \path{acmart.pdf} contains both the user guide and the commented
+% code.
+
+% \begin{acks}
+%   The authors would like to thank Dr. Dirk V. Arnold for providing the
+%   MATLAB code of the \textit{BEPS} method.
+
+%   The authors would also like to thank the anonymous referees for
+%   their valuable comments and helpful suggestions. The work is
+%   supported by the \grantsponsor{GS501100001809}{National Natural
+%     Science Foundation of
+%     China}{http://dx.doi.org/10.13039/501100001809} under Grant
+%   No.:~\grantnum{GS501100001809}{61273304}
+%   and~\grantnum[http://www.nnsf.cn/youngscientists]{GS501100001809}{Young
+%     Scientists' Support Program}.
+
+% \end{acks}
+
+

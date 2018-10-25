@@ -32,6 +32,11 @@ function val = mml_GP_CSA(f,x0,sigma0,TRAINING_SIZE,lambda,NUM_OF_ITERATIONS,LEN
 %                     mml(f,randn(n,mu),1,40,10,1,4000)
 [n, mu] = size(x0);
 
+
+f1 = @(x) (x'*x)^(1/2);  % linear sphere
+f2 = @(x) (x'*x);        % quadratic sphere
+f3 = @(x) (x'*x)^(3/2);  % cubic sphere
+
 % TRAINING_SIZE = 4*lambda;
 xTrain = zeros(n,10000);            % training data for GP size 4*mu
 fTrain = zeros(1,10000);
@@ -158,7 +163,11 @@ end
     t_start = ceil(TRAINING_SIZE/lambda);
     convergence_rate = -n/2*sum(log(fcentroid_array(t_start+2:t)./fcentroid_array(t_start+1:t-1)))/(t-t_start-1);
     success_rate = sum(fcentroid_array(t_start:T-1)>fcentroid_array(t_start+1:T))/length(fcentroid_array(t_start:T-1));
-
+    if(isequal(f,f1))
+        disp(linear);
+    elseif(isequal(f,f2))
+        disp(quadratic);
+    end
     
     val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,error_array,sigma_star_array,success_rate,factor_array};
 % 1.t:                  # of objective function calls                    

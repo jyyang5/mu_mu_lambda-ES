@@ -129,7 +129,7 @@
 		- Use formula (11) from [paper](https://core.ac.uk/download/pdf/81976199.pdf) denoted n \approx \infty
 
 
-	- [] Replace Gaussin distributed noise with GP 
+	- [x] Replace Gaussin distributed noise with GP 
 
 - 20181016
 
