@@ -1,9 +1,11 @@
+% use niko's parametrs WRONG E[N(0,I)] and 1/5 rule decrease step whenn
+% porr
 % apply similar idea to Arash did to avoid potential poor step
 % Use GP estimate and cummulative step size adaptation
 % function evaluation for lambda offsprings with GP estimate 
 % In each iteration only centroid is evaluated use true objective Function
 
-function val = mml_GP_CSA_adapt(fname,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE)
+function val = mml_GP_CSA_v1(fname,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE)
 % initialization
 % f:                  objective function %
 %                     1 = linear

@@ -12,12 +12,12 @@
 %            error
 %            save file
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function val = fun_multi_run(fname,NUM_OF_RUNS,lambda_array,TRAINING_SIZE,LENGTH_SCALE)
+function val = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array)
 %Input:
 %       f:          an index 1 for linear, 2 for quadratic and 3 for cubic 
 %    name:          a number specify f  
 %    NUM_OF_RUNS    # of runs to average
-%    lambda_array   an array of lambda
+%    DECREASE_FACTOR_array   an array of lambda
 %    TRAINING_SIZE  GP training size
 %    LENGTH_SCALE   length scale factor for GP
 %Return:
@@ -29,7 +29,7 @@ function val = fun_multi_run(fname,NUM_OF_RUNS,lambda_array,TRAINING_SIZE,LENGTH
     
 sigma0 = 1;
 NUM_OF_ITERATIONS = 2000;
-LAMBDA_LENGTH = length(lambda_array);
+DECREASE_FATCOR_LENGTH = length(DECREASE_FACTOR_array);
 % lambda = 10;
 % mu = 3;
 n = 10;
@@ -42,27 +42,27 @@ close all;
 % Def of variables
 
 % (mu/mu,lambda)-ES with GP
-t_array = zeros(LAMBDA_LENGTH,NUM_OF_RUNS,1);                    % # of iterations for the stop creteria
-sigma_matrix = zeros(LAMBDA_LENGTH,NUM_OF_RUNS,10000);           % store all sigma
-T_array = zeros(LAMBDA_LENGTH,NUM_OF_RUNS,1);                    % # of objective function evaluations for the stop creteria
-f_x_matrix = zeros(LAMBDA_LENGTH,NUM_OF_RUNS,10000);             % store all fx
-convergence_rate_array = zeros(LAMBDA_LENGTH,NUM_OF_RUNS,1);     % convergence rate 
-GP_error_matrix = zeros(LAMBDA_LENGTH,NUM_OF_RUNS,10000);        % store similar to noise-to-signal ratio
-sigma_star_matrix = zeros(LAMBDA_LENGTH,NUM_OF_RUNS,10000);      % normalized step size 
-success_rate_array = zeros(LAMBDA_LENGTH,NUM_OF_RUNS,1);         % success rate 
-delta_matrix = zeros(LAMBDA_LENGTH,NUM_OF_RUNS,10000);           % each [i,j] stores a delta array 
+t_array = zeros(DECREASE_FATCOR_LENGTH,NUM_OF_RUNS,1);                    % # of iterations for the stop creteria
+sigma_matrix = zeros(DECREASE_FATCOR_LENGTH,NUM_OF_RUNS,10000);           % store all sigma
+T_array = zeros(DECREASE_FATCOR_LENGTH,NUM_OF_RUNS,1);                    % # of objective function evaluations for the stop creteria
+f_x_matrix = zeros(DECREASE_FATCOR_LENGTH,NUM_OF_RUNS,10000);             % store all fx
+convergence_rate_array = zeros(DECREASE_FATCOR_LENGTH,NUM_OF_RUNS,1);     % convergence rate 
+GP_error_matrix = zeros(DECREASE_FATCOR_LENGTH,NUM_OF_RUNS,10000);        % store similar to noise-to-signal ratio
+sigma_star_matrix = zeros(DECREASE_FATCOR_LENGTH,NUM_OF_RUNS,10000);      % normalized step size 
+success_rate_array = zeros(DECREASE_FATCOR_LENGTH,NUM_OF_RUNS,1);         % success rate 
+delta_matrix = zeros(DECREASE_FATCOR_LENGTH,NUM_OF_RUNS,10000);           % each [i,j] stores a delta array 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Iterate over lambda and replicate multiple runs
 
-for i=1:1:LAMBDA_LENGTH
-    lambda_temp = lambda_array(i);
-    mu = ceil(lambda_temp/4);
+for i=1:1:DECREASE_FATCOR_LENGTH
+    DECREASE_FACTOR_temp = DECREASE_FACTOR_array(i);
+    mu = ceil(lambda/4);
     for j = 1:NUM_OF_RUNS
         x0 = randn(n,mu);
     
         % (mu/mu,lambda)-ES with GP
-        a = mml_GP_CSA_adapt(fname,x0,sigma0,lambda_temp,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE);
+        a = mml_GP_CSA_Niko_hybrid(fname,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_temp);
         t_array(i,j) = cell2mat(a(1));
         sigma_matrix(i,j,:) = cell2mat(a(4));
         T_array(i,j) = cell2mat(a(5));
@@ -72,10 +72,6 @@ for i=1:1:LAMBDA_LENGTH
         sigma_star_matrix(i,j,:) = cell2mat(a(9));
         success_rate_array(i,j) = cell2mat(a(10));
         delta_matrix(i,j,:) = cell2mat(a(11));
-        
-        % counter
-        di = sprintf('%d/%d',i,LAMBDA_LENGTH);
-        disp(lambda_temp);
     
         
     end 
@@ -84,35 +80,35 @@ for i=1:1:LAMBDA_LENGTH
 % Save data
     if fname == 1
         f = @(x) (x'*x)^(1/2);
-        save('linear_over_lambda.mat','fname','f','fname','NUM_OF_RUNS','lambda_array',...
+        save('linear_over_lambda.mat','fname','f','fname','NUM_OF_RUNS','DECREASE_FACTOR_array',...
             'LENGTH_SCALE','TRAINING_SIZE',...
         't_array','sigma_matrix','T_array','f_x_matrix','convergence_rate_array',...
             'GP_error_matrix','GP_error_matrix','sigma_star_matrix','success_rate_array',...
             'delta_matrix');
     elseif fname == 2
         f = @(x) (x'*x);
-        save('quadratic_over_lambda.mat','fname','f','fname','NUM_OF_RUNS','lambda_array',...
+        save('quadratic_over_lambda.mat','fname','f','fname','NUM_OF_RUNS','DECREASE_FACTOR_array',...
             'LENGTH_SCALE','TRAINING_SIZE',...
         't_array','sigma_matrix','T_array','f_x_matrix','convergence_rate_array',...
             'GP_error_matrix','GP_error_matrix','sigma_star_matrix','success_rate_array',...
             'delta_matrix');
     elseif fname == 3
         f = @(x) (x'*x)^(3/2);
-        save('cubic_over_lambda.mat','fname','f','fname','NUM_OF_RUNS','lambda_array',...
+        save('cubic_over_lambda.mat','fname','f','fname','NUM_OF_RUNS','DECREASE_FACTOR_array',...
             'LENGTH_SCALE','TRAINING_SIZE',...
         't_array','sigma_matrix','T_array','f_x_matrix','convergence_rate_array',...
             'GP_error_matrix','GP_error_matrix','sigma_star_matrix','success_rate_array',...
             'delta_matrix');
     elseif fname == 4
         f = @f4;
-        save('schwefel_over_lambda.mat','fname','f','fname','NUM_OF_RUNS','lambda_array',...
+        save('schwefel_over_lambda.mat','fname','f','fname','NUM_OF_RUNS','DECREASE_FACTOR_array',...
             'LENGTH_SCALE','TRAINING_SIZE',...
         't_array','sigma_matrix','T_array','f_x_matrix','convergence_rate_array',...
             'GP_error_matrix','GP_error_matrix','sigma_star_matrix','success_rate_array',...
             'delta_matrix');  
     elseif fname == 5
         f = @f5;
-        save('quartic_over_lambda.mat','f','fname','f','fname','NUM_OF_RUNS','lambda_array',...
+        save('quartic_over_lambda.mat','f','fname','f','fname','NUM_OF_RUNS','DECREASE_FACTOR_array',...
             'LENGTH_SCALE','TRAINING_SIZE',...
         't_array','sigma_matrix','T_array','f_x_matrix','convergence_rate_array',...
             'GP_error_matrix','GP_error_matrix','sigma_star_matrix','success_rate_array',...
@@ -145,12 +141,12 @@ end
 figure(fname);
 legend('-DynamicLegend'); 
 hold on;
-for i = 1:1:LAMBDA_LENGTH
+for i = 1:1:DECREASE_FATCOR_LENGTH
     figure(fname);
     hold on;
-    lambda = lambda_array(i);
+    DECREASE_FACTOR_temp = DECREASE_FACTOR_array(i);
     mu = ceil(lambda/4);
-    d =sprintf('(%d/%d,%d)',mu,mu,lambda);
+    d =sprintf('DECREASE_FACTOR=%',DECREASE_FACTOR_temp);
     f_x_med_temp = f_x_med(i,:);
     sigma_med = sigma_matrix_med(i,:);
     sigma_star_med = sigma_star_matrix_med(i,:);
@@ -169,7 +165,7 @@ for i = 1:1:LAMBDA_LENGTH
     xlabel('objective function evaluations','FontSize',15); 
     set(gca, 'YScale', 'log');
     title('objective function value','FontSize',20);
-    if(i==LAMBDA_LENGTH)
+    if(i==DECREASE_FATCOR_LENGTH)
         legend('-DynamicLegend'); 
         legend('show');
     end
@@ -183,7 +179,7 @@ for i = 1:1:LAMBDA_LENGTH
     xlabel('objective function evaluations','FontSize',15); 
     set(gca, 'YScale', 'log');
     title('step size \sigma','FontSize',20);
-    if(i==LAMBDA_LENGTH)
+    if(i==DECREASE_FATCOR_LENGTH)
         legend('-DynamicLegend'); 
         legend('show');
     end
@@ -197,7 +193,7 @@ for i = 1:1:LAMBDA_LENGTH
     xlabel('objective function evaluations','FontSize',15); 
     set(gca, 'YScale', 'log');
     title('normalized step size \sigma*','FontSize',20);
-    if(i==LAMBDA_LENGTH)
+    if(i==DECREASE_FATCOR_LENGTH)
         legend('-DynamicLegend'); 
         legend('show');
     end
@@ -211,7 +207,7 @@ for i = 1:1:LAMBDA_LENGTH
     xlabel('objective function evaluations','FontSize',15); 
     set(gca, 'YScale', 'log');
     title('Logarithmic relative model error','FontSize',20);
-    if(i==LAMBDA_LENGTH)
+    if(i==DECREASE_FATCOR_LENGTH)
         legend('-DynamicLegend'); 
         legend('show');
     end
@@ -237,18 +233,18 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % For each lambda plot pmf fitness gain/iteration hitogram
 % assume 3 rows 
-    numOfCol = ceil(LAMBDA_LENGTH/3);
+    numOfCol = ceil(DECREASE_FATCOR_LENGTH/3);
     figure(10+i+fname);
-    for i = 1:1:LAMBDA_LENGTH     
+    for i = 1:1:DECREASE_FATCOR_LENGTH     
         subplot(3,numOfCol,i);
-        lambda = lambda_array(i);
+        DECREASE_FACTOR_temp = DECREASE_FACTOR_array(i);
         mu = ceil(lambda/4);
     
         delta_array = delta_matrix_med(i,1:t_med(i));
         histogram(delta_array(1:t_med(i)),'Normalization','probability');
         xlabel('number of iterations','fontsize',15);
         ylabel('prob','fontsize',15);
-        d =sprintf('Normalized fitGain pdf (%d/%d,%d)',mu,mu,lambda);
+        d =sprintf('Normalized fitGain pdf DECREASE_FACTOR=%d',DECREASE_FACTOR_temp);
         title(d,'fontsize',20);
    
     end    
@@ -269,14 +265,14 @@ end
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % plot by taking the mean of relative model error in median run
-    mean_GP_error_array = zeros(LAMBDA_LENGTH,1);
-    for i = 1:1:LAMBDA_LENGTH   
+    mean_GP_error_array = zeros(DECREASE_FATCOR_LENGTH,1);
+    for i = 1:1:DECREASE_FATCOR_LENGTH   
         mean_GP_error_array(i) = mean(GP_error_matrix_med(i,1:t_med(i)));
     end
     figure(50+fname)
-    plot(lambda_array,mean_GP_error_array);
+    plot(DECREASE_FACTOR_array,mean_GP_error_array);
     ylabel('mean of relative model error in median run','FontSize',15);%
-    xlabel('\lambda','FontSize',15); 
+    xlabel('DECREASE_FACTOR','FontSize',15); 
     set(gca, 'YScale', 'log');
     title('Relative model error (mean)','FontSize',20);
     

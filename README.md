@@ -245,6 +245,14 @@
 
     - CSA 
       - Porblem solved $E\| N(0,I)\| = n^0.5*(1-1/(4*n)+1/(21*n^2))$ 
+    - Result
+      - Niko's CSA did not bring much improvement compared with Dirk's
+      - The dark art by combining CSA and 1/5 rule did not seem to be affected by population siz
+    - **ADVICE** 
+      - **Thesis write-up**
+      - If fast, do it by all means
+      - Could just compare why works better on quadratic sphere
+
 
 
 

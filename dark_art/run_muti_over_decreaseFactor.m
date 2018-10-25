@@ -16,27 +16,28 @@ f2 = @(x) (x'*x);
 f3 = @(x) (x'*x)^(3/2);
 
 
-NUM_OF_RUNS = 100;
+NUM_OF_RUNS = 1;
 % NUM_OF_RUNS = 2;
 TRAINING_SIZE = 40;
 LENGTH_SCALE = 8;
 % lambda_array = [5 10 15 20 25 40 50 60 80];
-lambda_array = [5 10 15 20 25 30 35 40 50 60 70 80 90 100];
+lambda=40;
+DECREASE_FACTOR_array = 0.6:0.025:0.9;
 
 fname = 1;
-temp1 = fun_multi_run(fname,NUM_OF_RUNS,lambda_array,TRAINING_SIZE,LENGTH_SCALE);
+temp1 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array);
 
 fname = 2;
-temp2 = fun_multi_run(fname,NUM_OF_RUNS,lambda_array,TRAINING_SIZE,LENGTH_SCALE);
+temp2 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array);
 
 fname = 3;
-temp3 = fun_multi_run(fname,NUM_OF_RUNS,lambda_array,TRAINING_SIZE,LENGTH_SCALE);
+temp3 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array);
 
 fname = 4;
-temp4 = fun_multi_run(fname,NUM_OF_RUNS,lambda_array,TRAINING_SIZE,LENGTH_SCALE);
+temp4 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array);
 
 fname = 5;
-temp5 = fun_multi_run(fname,NUM_OF_RUNS,lambda_array,TRAINING_SIZE,LENGTH_SCALE);
+temp5 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Get data
@@ -53,12 +54,12 @@ figure(100)
 % plot objective function evaluation
 subplot(3,1,3)
 hold on;
-plot(lambda_array,a(:,1));hold on;
-plot(lambda_array,b(:,1));hold on;
-plot(lambda_array,c(:,1));hold on;
-plot(lambda_array,d(:,1));hold on;
-plot(lambda_array,e(:,1));hold on;
-xlabel('Population size \lambda','fontsize',15);
+plot(DECREASE_FACTOR_array,a(:,1));hold on;
+plot(DECREASE_FACTOR_array,b(:,1));hold on;
+plot(DECREASE_FACTOR_array,c(:,1));hold on;
+plot(DECREASE_FACTOR_array,d(:,1));hold on;
+plot(DECREASE_FACTOR_array,e(:,1));hold on;
+xlabel('DECREASE_FATOR (when inferior offspring)','fontsize',15);
 ylabel('Objective function evaluation','fontsize',15);
 legend('Linear sphere','Quadratic sphere','Cubic sphere','Schwefel?s function','Quartic function')
 d1 =sprintf('Objective function evaluation');
@@ -67,12 +68,12 @@ title(d1,'fontsize',20);
 % plot convergence rate
 subplot(3,1,1)
 hold on;
-plot(lambda_array,a(:,2));hold on;
-plot(lambda_array,b(:,2));hold on;
-plot(lambda_array,c(:,2));hold on;
-plot(lambda_array,d(:,2));hold on;
-plot(lambda_array,e(:,2));hold on;
-xlabel('Population size \lambda','fontsize',15);
+plot(DECREASE_FACTOR_array,a(:,2));hold on;
+plot(DECREASE_FACTOR_array,b(:,2));hold on;
+plot(DECREASE_FACTOR_array,c(:,2));hold on;
+plot(DECREASE_FACTOR_array,d(:,2));hold on;
+plot(DECREASE_FACTOR_array,e(:,2));hold on;
+xlabel('DECREASE_FATOR (when inferior offspring)','fontsize',15);
 ylabel('Convergence rate','fontsize',15);
 legend('Linear sphere','Quadratic sphere','Cubic sphere','Schwefel?s function','Quartic function')
 d1 =sprintf('Convergence rate');
@@ -81,12 +82,12 @@ title(d1,'fontsize',20);
 % plot success rate
 subplot(3,1,2)
 hold on;
-plot(lambda_array,a(:,3));hold on;
-plot(lambda_array,b(:,3));hold on;
-plot(lambda_array,c(:,3));hold on;
-plot(lambda_array,d(:,3));hold on;
-plot(lambda_array,e(:,3));hold on;
-xlabel('Population size \lambda','fontsize',15);
+plot(DECREASE_FACTOR_array,a(:,3));hold on;
+plot(DECREASE_FACTOR_array,b(:,3));hold on;
+plot(DECREASE_FACTOR_array,c(:,3));hold on;
+plot(DECREASE_FACTOR_array,d(:,3));hold on;
+plot(DECREASE_FACTOR_array,e(:,3));hold on;
+xlabel('DECREASE_FATOR (when inferior offspring)','fontsize',15);
 ylabel('Objective function evaluation','fontsize',15);
 legend('Linear sphere','Quadratic sphere','Cubic sphere','Schwefel?s function','Quartic function')
 d1 =sprintf('Success rate');
