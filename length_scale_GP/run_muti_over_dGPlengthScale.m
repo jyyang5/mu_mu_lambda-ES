@@ -16,7 +16,7 @@ f2 = @(x) (x'*x);
 f3 = @(x) (x'*x)^(3/2);
 
 
-NUM_OF_RUNS = 1;
+NUM_OF_RUNS = 50;
 % NUM_OF_RUNS = 2;
 TRAINING_SIZE = 40;
 % LENGTH_SCALE = 8;

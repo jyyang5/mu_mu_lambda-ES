@@ -2,6 +2,12 @@
 
 ## Overview
 - Folders
+    - [Dark Art](https://github.com/jyyang5/mu_mu_lambda-ES/tree/master/dark_art)
+
+        Establish a CSA with stopping in emergence
+        - Performance quite good 
+        - Thesis on this one
+
     - [CSA](https://github.com/jyyang5/mu_mu_lambda-ES/tree/master/CSA)
 
    	    Implement a CSA for small lambda
@@ -88,6 +94,8 @@
    	    Plot convergence rate over theta (fun_c_over_theta.m and run_c_over_theta.m) for sigmaStar=1:0.5:3 lambda = [30,50,70]
    	    **max convergence rate relative the same for (7/7,30)-ES, relative 0.1 increment for (12/12,50)-ES and (17/17,70)-ES**
 
+
+
 | max convergence rate  |theta   | linear(sigmaStar)  | quadratic(sigmaStar)  | cubic(sigmaStar)  |
 | :---------------------|-------:| ------------------:|--------------:|------------:|
 | **(7/7,30)**  		|**8**   |0.48                |1.02		 |0.811|  
@@ -105,12 +113,23 @@
 
 ## 	Schedule 
 
+Thesis write-up
+
+New step size adaptation mechinisum (decrease in emergency)
+
+Intuitive, figures
+
+
+
+
+---
+
 - 20181011
 
 	 - [x] Use GP sigmaStar for (3/3,10),(5/5,20), (10,40) for the plots below 
 	    1. expected fitness gain eta over normalied step size sigmaStar
-		2. opt. normalized step size over noise-to-signal ratio 
-		3. opt. expected fitness gain over noise-to-signal ratio
+		  2. opt. normalized step size over noise-to-signal ratio 
+		  3. opt. expected fitness gain over noise-to-signal ratio
      - Thought 
      	- Use sigmaStar test one sphere functions for optimal sigmaStar (largest convergence rate)
      	- Adapt step size s.t. the normalized step size close to opt. sigmaStar previously 
@@ -256,6 +275,20 @@
       - Linear = -n*log(f(x)/f(y)) 
       - Quadratic = -n/2*log(f(x)/f(y)) 
       - Cubic = -n/3*log(f(x)/f(y)) 
+
+
+- 20181025
+    
+    - Good result 
+    - Step size adaptation (story)
+
+        The CSA perform bad (in emergency) we decrease the step size 
+
+        Evolution path does not adapt in case of emergency 
+
+    
+
+
 
 
 

@@ -29,6 +29,7 @@ This paper intend to improve the understanding of the impact of population size 
 
 \section{Related Work}
 
+\subsection{Surrogate Model} 
 Using an approximate model to reduce computational cost can be traced back to 1960s \cite{Dunham1963}. Some successful surrogated models include but are not limitted to Polynomial Regression (PR, response surface methodology) \cite{doi:10.1080/00401706.1966.10490404}, Gaussian Process (GP, Kriging models) \cite{sacks1989}, Artificial neural networks \cite{Smith:1993:NNS:583180}. There are two types of surrogate models, global surrogate model and local surrogate model, . ES using global surrogate model based on Kring was examined by Ratle \cite{Ratle:2001:KSF:966173.966177}. Another ES using global surrogate model based on Artificial neural networks was constructed by Jin \cite{Jin02aframework} which gives an imperial criterion on using the true objective function or the surrogate model to evaluate the offspring. Ulmer et al \cite{Ulmer03evolutionstrategies} and Buche et al \cite{1424193} also applied GP as surrogate models in ES. But the performance of global surrogate models degrade as the dimension of the data increases, known as \textit{curse of dimensionality}. Online local surrogate models \cite{4033013} can be constructed using methods like radial basis function (RBF) \cite{GIANNAKOGLOU200243} to replace the global surrogate model, where the surrogate model is updated online, giving a more accurate estimation compared with the global surrogate model.
 
 
@@ -40,6 +41,7 @@ There are various surrogate-assisted EAs integrating global and local surrogate 
 
 There is a wealth of literatures on solving black box optimization using (1+1)-ES on solving unimodal test problems for evaluation and the convergence property of convex functions. Arash et al \cite{ARASH} proposed a surrogated-assisted (1+1)-ES that investigates the acceleration and the step size adaptation behavior of the algorithm using GP based online local surrogate. In this model, the local surrogate model filters the undesired candidate solutions by comparing the objective function value of the parent with the GP estimate of the offspring. The candidate solution is evaluated using the true objective function if and only if its fitness evaluated by GP is superior to its parent. The  surrogate model is updated whenever a new objective function call is made. The most recent offspring evaluated by true objective function is then added to the training set for Gaussian Process, replacing the oldest data point in the training set. The proposed GP based local surrogate gives a 3-time-speed-up compared with the usual (1+1)-ES on quadratic sphere. We want to construct a similar GP based local surrogate model and compare the result using the same test functions and analysis. 
  
+\subsection{Step size adaptation}
 
 
 
