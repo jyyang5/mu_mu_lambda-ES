@@ -1,11 +1,11 @@
 # Fdb version 3
-["biber main-sample"] 1539974924 "main-sample.bcf" "main-sample.bbl" "main-sample" 1540307528
-  "main-bibliography.bib" 1535040868 17648 ce08b2c23b8a0f4b4d573a539ea493fc ""
-  "main-sample.bcf" 1540307528 97064 f70009019cfe60474b49828b5770c94d ""
+["biber main-sample"] 1540535552 "main-sample.bcf" "main-sample.bbl" "main-sample" 1540535558
+  "main-bibliography.bib" 1540535531 19834 d138c2212c1a89b84f9ca99aea9d0808 ""
+  "main-sample.bcf" 1540535557 97132 0fe2aaf522aa825c6e643d02820e0507 ""
   (generated)
   "main-sample.blg"
   "main-sample.bbl"
-["pdflatex"] 1540307526 "main-sample.tex" "main-sample.pdf" "main-sample" 1540307528
+["pdflatex"] 1540535555 "main-sample.tex" "main-sample.pdf" "main-sample" 1540535558
   "/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc" 1480098666 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc" 1490133665 2921 8ca0eb0831f9bc5da080d3697cfe67bf ""
   "/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc" 1490133665 2933 9ad527ce78d7c5fa0a642dead095f172 ""
@@ -218,18 +218,18 @@
   "/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1495593472 2350277 a699055bee05bf8a40b0504752487295 ""
   "/usr/local/texlive/2017/texmf-var/web2c/pdftex/pdflatex.fmt" 1495593487 4129592 0e6cfee100d68e6d96b92c0258f2ff73 ""
   "/usr/local/texlive/2017/texmf.cnf" 1495593465 577 2b71d4d888f9e5560b2e99985915a9fa ""
-  "ACM-Reference-Format.bbx" 1508022752 18425 c755f24a02600e7dab3afb895bb9871a ""
-  "ACM-Reference-Format.cbx" 1506931944 100 022318c52dbfd268aba635ca65293b8e ""
-  "main-body.tex" 1540213180 24425 d5986b41124e84717b64682d0c7eb218 ""
-  "main-sample.aux" 1540307528 4894 ed4d473fed610b0888105138234ff673 ""
-  "main-sample.bbl" 1539974926 27521 9aadf6b73de9504f485b6e646b1a440d "biber main-sample"
-  "main-sample.out" 1540307528 799 c8f2a6af0ee0eebc272b128e6bebfafa ""
-  "main-sample.run.xml" 1540307528 2521 faabd12540979f7ba19c0e7e4199c936 ""
-  "main-sample.tex" 1540307526 4395 810adc497b671b6b5a9765a8ff500993 ""
+  "ACM-Reference-Format.bbx" 1540472225 18425 c755f24a02600e7dab3afb895bb9871a ""
+  "ACM-Reference-Format.cbx" 1540472225 100 022318c52dbfd268aba635ca65293b8e ""
+  "main-body.tex" 1540535546 27378 0d41b503bc212a3c6d55b652511b9d83 ""
+  "main-sample.aux" 1540535557 5190 418ec945a1acd7d0c22ec635ab37ea90 ""
+  "main-sample.bbl" 1540535553 29959 48394f8a3efec12b0b21b27665754295 "biber main-sample"
+  "main-sample.out" 1540535557 799 c8f2a6af0ee0eebc272b128e6bebfafa ""
+  "main-sample.run.xml" 1540535557 2521 faabd12540979f7ba19c0e7e4199c936 ""
+  "main-sample.tex" 1540535071 4395 810adc497b671b6b5a9765a8ff500993 ""
   (generated)
-  "main-sample.out"
-  "main-sample.aux"
   "main-sample.pdf"
+  "main-sample.out"
   "main-sample.bcf"
-  "main-sample.run.xml"
+  "main-sample.aux"
   "main-sample.log"
+  "main-sample.run.xml"

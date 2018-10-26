@@ -1,81 +1,83 @@
 [0] Config.pm:354> INFO - This is Biber 2.7
 [0] Config.pm:357> INFO - Logfile is 'main-sample.blg'
-[55] biber-darwin:303> INFO - === Fri Oct 19, 2018, 15:48:45
-[84] Biber.pm:359> INFO - Reading 'main-sample.bcf'
-[167] Biber.pm:835> INFO - Found 19 citekeys in bib section 0
-[181] Biber.pm:3670> INFO - Processing section 0
-[204] Biber.pm:3840> INFO - Looking for bibtex format file 'main-bibliography.bib' for section 0
-[207] bibtex.pm:1435> INFO - Decoding LaTeX character macros into UTF-8
-[215] bibtex.pm:1292> INFO - Found BibTeX data source 'main-bibliography.bib'
-[262] Utils.pm:164> WARN - month field 'Jan' in entry 'Dunham1963' is not an integer - this will probably not sort properly.
-[273] Utils.pm:164> WARN - month field 'May' in entry '1424193' is not an integer - this will probably not sort properly.
-[275] Utils.pm:164> WARN - month field 'Jan' in entry '4033013' is not an integer - this will probably not sort properly.
-[284] Utils.pm:164> WARN - month field 'Aug' in entry '1665028' is not an integer - this will probably not sort properly.
-[285] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 29, warning: overriding existing definition of macro "amstrans"
-[285] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 31, warning: overriding existing definition of macro "bullams"
-[285] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 33, warning: overriding existing definition of macro "procams"
-[285] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 35, warning: overriding existing definition of macro "transams"
-[285] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 39, warning: overriding existing definition of macro "cacm"
-[285] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 43, warning: overriding existing definition of macro "acmmathsoft"
-[285] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 45, warning: overriding existing definition of macro "signum"
-[286] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 49, warning: overriding existing definition of macro "amerstatassoc"
-[286] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 51, warning: overriding existing definition of macro "applmathcomp"
-[286] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 53, warning: overriding existing definition of macro "amermathmonthly"
-[286] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 57, warning: overriding existing definition of macro "britstatpsych"
-[286] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 59, warning: overriding existing definition of macro "canmathbull"
-[286] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 61, warning: overriding existing definition of macro "compapplmath"
-[286] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 63, warning: overriding existing definition of macro "compphys"
-[286] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 65, warning: overriding existing definition of macro "compstruct"
-[286] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 67, warning: overriding existing definition of macro "compjour"
-[286] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 69, warning: overriding existing definition of macro "compsyssci"
-[286] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 72, warning: overriding existing definition of macro "contempmath"
-[286] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 75, warning: overriding existing definition of macro "giornalemath"
-[286] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 80, warning: overriding existing definition of macro "ieeetranscomp"
-[286] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 82, warning: overriding existing definition of macro "ieeetransac"
-[287] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 85, warning: overriding existing definition of macro "procieee"
-[287] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 88, warning: overriding existing definition of macro "ieeetransaeroelec"
-[287] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 91, warning: overriding existing definition of macro "imanumerana"
-[287] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 93, warning: overriding existing definition of macro "infproclet"
-[287] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 96, warning: overriding existing definition of macro "instmathapp"
-[287] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 98, warning: overriding existing definition of macro "intcontrol"
-[287] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 101, warning: overriding existing definition of macro "intnumereng"
-[287] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 103, warning: overriding existing definition of macro "intsuper"
-[287] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 108, warning: overriding existing definition of macro "jresnatburstand"
-[287] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 110, warning: overriding existing definition of macro "linalgapp"
-[287] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 112, warning: overriding existing definition of macro "mathanaappl"
-[287] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 114, warning: overriding existing definition of macro "mathannalen"
-[287] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 116, warning: overriding existing definition of macro "mathphys"
-[287] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 118, warning: overriding existing definition of macro "mathcomp"
-[288] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 120, warning: overriding existing definition of macro "mathscand"
-[288] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 122, warning: overriding existing definition of macro "tablesaidscomp"
-[288] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 124, warning: overriding existing definition of macro "numermath"
-[288] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 126, warning: overriding existing definition of macro "pacificmath"
-[288] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 128, warning: overriding existing definition of macro "pardistcomp"
-[288] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 130, warning: overriding existing definition of macro "parcomputing"
-[288] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 132, warning: overriding existing definition of macro "philmag"
-[288] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 135, warning: overriding existing definition of macro "procnas"
-[288] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 138, warning: overriding existing definition of macro "quartmath"
-[288] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 140, warning: overriding existing definition of macro "quartapplmath"
-[288] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 142, warning: overriding existing definition of macro "revueinststat"
-[288] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 147, warning: overriding existing definition of macro "jsiam"
-[288] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 150, warning: overriding existing definition of macro "jsiamb"
-[288] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 152, warning: overriding existing definition of macro "siamalgmeth"
-[289] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 154, warning: overriding existing definition of macro "siamappmath"
-[289] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 156, warning: overriding existing definition of macro "siamcomp"
-[289] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 158, warning: overriding existing definition of macro "siammatrix"
-[289] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 160, warning: overriding existing definition of macro "siamnumanal"
-[289] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 162, warning: overriding existing definition of macro "siamreview"
-[289] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 165, warning: overriding existing definition of macro "siamscistat"
-[289] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 168, warning: overriding existing definition of macro "softpracexp"
-[289] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 170, warning: overriding existing definition of macro "statscience"
-[289] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 174, warning: overriding existing definition of macro "ussrcompmathphys"
-[289] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 176, warning: overriding existing definition of macro "vlsicompsys"
-[289] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 179, warning: overriding existing definition of macro "zangewmathmech"
-[289] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/wdsrMb7idc/main-bibliography.bib_14424.utf8, line 181, warning: overriding existing definition of macro "zangewmathphys"
-[321] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[321] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[321] Biber.pm:3499> INFO - Sorting list 'nty/global/' of type 'entry' with scheme 'nty' and locale 'en-US'
-[321] Biber.pm:3505> INFO - No sort tailoring available for locale 'en-US'
-[338] bbl.pm:608> INFO - Writing 'main-sample.bbl' with encoding 'ascii'
-[342] bbl.pm:712> INFO - Output to main-sample.bbl
-[343] Biber.pm:109> INFO - WARNINGS: 65
+[34] biber-darwin:303> INFO - === Fri Oct 26, 2018, 03:32:33
+[54] Biber.pm:359> INFO - Reading 'main-sample.bcf'
+[134] Biber.pm:835> INFO - Found 21 citekeys in bib section 0
+[147] Biber.pm:3670> INFO - Processing section 0
+[161] Biber.pm:3840> INFO - Looking for bibtex format file 'main-bibliography.bib' for section 0
+[165] bibtex.pm:1435> INFO - Decoding LaTeX character macros into UTF-8
+[173] bibtex.pm:1292> INFO - Found BibTeX data source 'main-bibliography.bib'
+[211] Utils.pm:164> WARN - month field 'Jan' in entry 'Dunham1963' is not an integer - this will probably not sort properly.
+[219] Utils.pm:164> WARN - month field 'May' in entry '1424193' is not an integer - this will probably not sort properly.
+[221] Utils.pm:164> WARN - month field 'Jan' in entry '4033013' is not an integer - this will probably not sort properly.
+[227] Utils.pm:164> WARN - month field 'Aug' in entry '1665028' is not an integer - this will probably not sort properly.
+[229] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 29, warning: overriding existing definition of macro "amstrans"
+[229] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 31, warning: overriding existing definition of macro "bullams"
+[229] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 33, warning: overriding existing definition of macro "procams"
+[229] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 35, warning: overriding existing definition of macro "transams"
+[229] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 39, warning: overriding existing definition of macro "cacm"
+[229] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 43, warning: overriding existing definition of macro "acmmathsoft"
+[229] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 45, warning: overriding existing definition of macro "signum"
+[229] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 49, warning: overriding existing definition of macro "amerstatassoc"
+[229] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 51, warning: overriding existing definition of macro "applmathcomp"
+[229] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 53, warning: overriding existing definition of macro "amermathmonthly"
+[229] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 57, warning: overriding existing definition of macro "britstatpsych"
+[230] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 59, warning: overriding existing definition of macro "canmathbull"
+[230] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 61, warning: overriding existing definition of macro "compapplmath"
+[230] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 63, warning: overriding existing definition of macro "compphys"
+[230] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 65, warning: overriding existing definition of macro "compstruct"
+[230] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 67, warning: overriding existing definition of macro "compjour"
+[230] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 69, warning: overriding existing definition of macro "compsyssci"
+[230] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 72, warning: overriding existing definition of macro "contempmath"
+[230] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 75, warning: overriding existing definition of macro "giornalemath"
+[230] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 80, warning: overriding existing definition of macro "ieeetranscomp"
+[230] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 82, warning: overriding existing definition of macro "ieeetransac"
+[230] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 85, warning: overriding existing definition of macro "procieee"
+[230] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 88, warning: overriding existing definition of macro "ieeetransaeroelec"
+[230] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 91, warning: overriding existing definition of macro "imanumerana"
+[230] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 93, warning: overriding existing definition of macro "infproclet"
+[230] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 96, warning: overriding existing definition of macro "instmathapp"
+[230] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 98, warning: overriding existing definition of macro "intcontrol"
+[231] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 101, warning: overriding existing definition of macro "intnumereng"
+[231] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 103, warning: overriding existing definition of macro "intsuper"
+[231] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 108, warning: overriding existing definition of macro "jresnatburstand"
+[231] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 110, warning: overriding existing definition of macro "linalgapp"
+[231] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 112, warning: overriding existing definition of macro "mathanaappl"
+[231] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 114, warning: overriding existing definition of macro "mathannalen"
+[231] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 116, warning: overriding existing definition of macro "mathphys"
+[231] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 118, warning: overriding existing definition of macro "mathcomp"
+[231] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 120, warning: overriding existing definition of macro "mathscand"
+[231] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 122, warning: overriding existing definition of macro "tablesaidscomp"
+[231] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 124, warning: overriding existing definition of macro "numermath"
+[231] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 126, warning: overriding existing definition of macro "pacificmath"
+[232] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 128, warning: overriding existing definition of macro "pardistcomp"
+[232] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 130, warning: overriding existing definition of macro "parcomputing"
+[232] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 132, warning: overriding existing definition of macro "philmag"
+[232] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 135, warning: overriding existing definition of macro "procnas"
+[232] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 138, warning: overriding existing definition of macro "quartmath"
+[232] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 140, warning: overriding existing definition of macro "quartapplmath"
+[232] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 142, warning: overriding existing definition of macro "revueinststat"
+[232] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 147, warning: overriding existing definition of macro "jsiam"
+[232] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 150, warning: overriding existing definition of macro "jsiamb"
+[232] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 152, warning: overriding existing definition of macro "siamalgmeth"
+[232] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 154, warning: overriding existing definition of macro "siamappmath"
+[232] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 156, warning: overriding existing definition of macro "siamcomp"
+[232] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 158, warning: overriding existing definition of macro "siammatrix"
+[232] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 160, warning: overriding existing definition of macro "siamnumanal"
+[232] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 162, warning: overriding existing definition of macro "siamreview"
+[233] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 165, warning: overriding existing definition of macro "siamscistat"
+[233] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 168, warning: overriding existing definition of macro "softpracexp"
+[233] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 170, warning: overriding existing definition of macro "statscience"
+[233] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 174, warning: overriding existing definition of macro "ussrcompmathphys"
+[233] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 176, warning: overriding existing definition of macro "vlsicompsys"
+[233] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 179, warning: overriding existing definition of macro "zangewmathmech"
+[233] Utils.pm:164> WARN - BibTeX subsystem: /var/folders/xt/ydx_1zf50td0xvgb9bnz0l8w0000gn/T/4CoLeNDTLe/main-bibliography.bib_17972.utf8, line 181, warning: overriding existing definition of macro "zangewmathphys"
+[233] Utils.pm:164> WARN - I didn't find a database entry for 'ARASH' (section 0)
+[234] Utils.pm:164> WARN - I didn't find a database entry for crossref 'DBLP:conf/ppsn/2018-1' in entry 'DBLP:conf/ppsn/KayhaniA18' - ignoring (section 0)
+[257] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[257] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[257] Biber.pm:3499> INFO - Sorting list 'nty/global/' of type 'entry' with scheme 'nty' and locale 'en-US'
+[257] Biber.pm:3505> INFO - No sort tailoring available for locale 'en-US'
+[276] bbl.pm:608> INFO - Writing 'main-sample.bbl' with encoding 'ascii'
+[281] bbl.pm:712> INFO - Output to main-sample.bbl
+[281] Biber.pm:109> INFO - WARNINGS: 67

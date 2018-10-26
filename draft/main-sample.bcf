@@ -2143,11 +2143,11 @@
     <bcf:datasource type="file" datatype="bibtex">main-bibliography.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">Kramer2016</bcf:citekey>
-    <bcf:citekey order="2">JIN201161</bcf:citekey>
-    <bcf:citekey order="3">ECJ2016_LMCMA</bcf:citekey>
-    <bcf:citekey order="4">ARASH</bcf:citekey>
-    <bcf:citekey order="5">ARASH</bcf:citekey>
+    <bcf:citekey order="1">Ostermeier:1994:DAS:1326675.1326679</bcf:citekey>
+    <bcf:citekey order="2">Jin:2002:FAE:2955491.2955686</bcf:citekey>
+    <bcf:citekey order="3">JIN201161</bcf:citekey>
+    <bcf:citekey order="4">ECJ2016_LMCMA</bcf:citekey>
+    <bcf:citekey order="5">DBLP:conf/ppsn/KayhaniA18</bcf:citekey>
     <bcf:citekey order="6">Dunham1963</bcf:citekey>
     <bcf:citekey order="7">doi:10.1080/00401706.1966.10490404</bcf:citekey>
     <bcf:citekey order="8">sacks1989</bcf:citekey>

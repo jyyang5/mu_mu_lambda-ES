@@ -353,7 +353,45 @@
       \field{pages}{481\bibrangedash 494}
       \range{pages}{14}
     \endentry
-    \entry{ARASH}{article}{}
+    \entry{Jin:2002:FAE:2955491.2955686}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=c3da5be922b2509d740ae31f49229c23}{%
+           family={Jin},
+           familyi={J\bibinitperiod},
+           given={Yaochu},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=2bf4fe0d55970e86270a528542b5093d}{%
+           family={Sendhoff},
+           familyi={S\bibinitperiod},
+           given={Bernhard},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York City, New York}%
+      }
+      \list{publisher}{1}{%
+        {Morgan Kaufmann Publishers Inc.}%
+      }
+      \strng{namehash}{5239c362b93eb41cde5a543a3b6c4c77}
+      \strng{fullhash}{5239c362b93eb41cde5a543a3b6c4c77}
+      \strng{authornamehash}{5239c362b93eb41cde5a543a3b6c4c77}
+      \strng{authorfullhash}{5239c362b93eb41cde5a543a3b6c4c77}
+      \field{sortinit}{J}
+      \field{sortinithash}{c86bd6cced82a15683b396c2169909ef}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 4th Annual Conference on Genetic and Evolutionary Computation}
+      \field{isbn}{1-55860-878-8}
+      \field{series}{GECCO'02}
+      \field{title}{Fitness Approximation in Evolutionary Computation - a Survey}
+      \field{year}{2002}
+      \field{pages}{1105\bibrangedash 1112}
+      \range{pages}{8}
+      \verb{url}
+      \verb http://dl.acm.org/citation.cfm?id=2955491.2955686
+      \endverb
+    \endentry
+    \entry{DBLP:conf/ppsn/KayhaniA18}{inproceedings}{}
       \name{author}{2}{}{%
         {{hash=aa08f98decda6cf2464dbce91c533695}{%
            family={Kayhani},
@@ -374,43 +412,16 @@
       \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{title}{Design of a Surrogate Model Assisted (1 + 1)-ES}
+      \field{booktitle}{Parallel Problem Solving from Nature - {PPSN} {XV} - 15th International Conference, Coimbra, Portugal, September 8-12, 2018, Proceedings, Part {I}}
+      \field{title}{Design of a Surrogate Model Assisted {(1} + 1)-ES}
       \field{year}{2018}
-    \endentry
-    \entry{Kramer2016}{inbook}{}
-      \name{author}{1}{}{%
-        {{hash=e3c484f4645ee26b259ed57397784c05}{%
-           family={Kramer},
-           familyi={K\bibinitperiod},
-           given={Oliver},
-           giveni={O\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {Cham}%
-      }
-      \list{publisher}{1}{%
-        {Springer International Publishing}%
-      }
-      \strng{namehash}{e3c484f4645ee26b259ed57397784c05}
-      \strng{fullhash}{e3c484f4645ee26b259ed57397784c05}
-      \strng{authornamehash}{e3c484f4645ee26b259ed57397784c05}
-      \strng{authorfullhash}{e3c484f4645ee26b259ed57397784c05}
-      \field{sortinit}{K}
-      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{Many real-world problems have multiple local optima.}
-      \field{booktitle}{Machine Learning for Evolution Strategies}
-      \field{isbn}{978-3-319-33383-0}
-      \field{title}{Evolution Strategies}
-      \field{year}{2016}
-      \field{pages}{13\bibrangedash 21}
-      \range{pages}{9}
+      \field{pages}{16\bibrangedash 28}
+      \range{pages}{13}
       \verb{doi}
-      \verb 10.1007/978-3-319-33383-0_2
+      \verb 10.1007/978-3-319-99253-2\_2
       \endverb
       \verb{url}
-      \verb https://doi.org/10.1007/978-3-319-33383-0_2
+      \verb https://doi.org/10.1007/978-3-319-99253-2%5C_2
       \endverb
     \endentry
     \entry{ECJ2016_LMCMA}{article}{}
@@ -440,6 +451,55 @@
       \field{year}{2016}
       \field{pages}{to appear}
       \range{pages}{-1}
+    \endentry
+    \entry{Ostermeier:1994:DAS:1326675.1326679}{article}{}
+      \name{author}{3}{}{%
+        {{hash=baad0a55a3d382a5b55ac169579ee0c8}{%
+           family={Ostermeier},
+           familyi={O\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+        {{hash=f2ca6500c20cf8964e74c1e7954a42e0}{%
+           family={Gawelczyk},
+           familyi={G\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+        {{hash=71bc70e7c119a2151bf105823920cf83}{%
+           family={Hansen},
+           familyi={H\bibinitperiod},
+           given={Nikolaus},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cambridge, MA, USA}%
+      }
+      \list{publisher}{1}{%
+        {MIT Press}%
+      }
+      \strng{namehash}{bfbddf8e6b4344afba15aef69c39b8c3}
+      \strng{fullhash}{bfbddf8e6b4344afba15aef69c39b8c3}
+      \strng{authornamehash}{bfbddf8e6b4344afba15aef69c39b8c3}
+      \strng{authorfullhash}{bfbddf8e6b4344afba15aef69c39b8c3}
+      \field{sortinit}{O}
+      \field{sortinithash}{f5d80ef71b5b58852663ecfd775b175a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1063-6560}
+      \field{journaltitle}{Evol. Comput.}
+      \field{month}{12}
+      \field{number}{4}
+      \field{title}{A Derandomized Approach to Self-adaptation of Evolution Strategies}
+      \field{volume}{2}
+      \field{year}{1994}
+      \field{pages}{369\bibrangedash 380}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1162/evco.1994.2.4.369
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1162/evco.1994.2.4.369
+      \endverb
+      \keyw{adaptation,evolution strategy,individual step-size,mutative step-size control,scaling,self-adaptation,step-size}
     \endentry
     \entry{Ratle:2001:KSF:966173.966177}{article}{}
       \name{author}{1}{}{%
@@ -716,6 +776,7 @@
       \endverb
     \endentry
   \endsortlist
+  \missing{ARASH}
 \endrefsection
 \endinput
 

@@ -5,7 +5,7 @@
 % Input:
 %       NUM_OF_RUNS:        number of replicates
 %       TRAINING_SIZE:      GP training size
-%       LENGTH_SCALE:       length scale factor for GP
+%       LENGTH_SCALE:       length scale factor for GP 
 %       lambda_array:       store an array of lambda for plot
 %       fname:
 % Output:
