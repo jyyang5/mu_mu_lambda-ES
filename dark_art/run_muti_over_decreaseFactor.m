@@ -94,7 +94,7 @@ d1 =sprintf('Success rate');
 title(d1,'fontsize',20);
 
 % Saves fig
-saves(gcf,'summary.fig');
+saveas(gcf,'summary.fig');
 
 % 
 % % linear sphere

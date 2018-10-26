@@ -16,36 +16,36 @@ f2 = @(x) (x'*x);
 f3 = @(x) (x'*x)^(3/2);
 
 
-NUM_OF_RUNS = 50;
+NUM_OF_RUNS = 1;
 % NUM_OF_RUNS = 2;
 TRAINING_SIZE = 40;
-LENGTH_SCALE = 8;
+% LENGTH_SCALE = 8;
 % lambda_array = [5 10 15 20 25 40 50 60 80];
 lambda=40;
-DECREASE_FACTOR_array = 0.6:0.01:0.99;
+LENGTH_SCALE_array = [2 4 8 16 32 46 64 80 96 112 128 144 256];
 
 fname = 1;
-temp1 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array);
+temp1 = fun_multi_over_GPlengthScale(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE_array);
 
 fname = 2;
-temp2 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array);
+temp2 = fun_multi_over_GPlengthScale(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE_array);
 
 fname = 3;
-temp3 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array);
-
-fname = 4;
-temp4 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array);
-
-fname = 5;
-temp5 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array);
+temp3 = fun_multi_over_GPlengthScale(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE_array);
+% 
+% fname = 4;
+% temp4 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array);
+% 
+% fname = 5;
+% temp5 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Get data
 a = cell2mat(temp1);
 b = cell2mat(temp2);
 c = cell2mat(temp3);
-d = cell2mat(temp4);
-e = cell2mat(temp5);
+% d = cell2mat(temp4);
+% e = cell2mat(temp5);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Plot summary
@@ -54,47 +54,47 @@ figure(100)
 % plot objective function evaluation
 subplot(3,1,3)
 hold on;
-plot(DECREASE_FACTOR_array,a(:,1));hold on;
-plot(DECREASE_FACTOR_array,b(:,1));hold on;
-plot(DECREASE_FACTOR_array,c(:,1));hold on;
-plot(DECREASE_FACTOR_array,d(:,1));hold on;
-plot(DECREASE_FACTOR_array,e(:,1));hold on;
+plot(LENGTH_SCALE_array,a(:,1));hold on;
+plot(LENGTH_SCALE_array,b(:,1));hold on;
+plot(LENGTH_SCALE_array,c(:,1));hold on;
+% plot(DECREASE_FACTOR_array,d(:,1));hold on;
+% plot(DECREASE_FACTOR_array,e(:,1));hold on;
 xlabel('DECREASE_FATOR (when inferior offspring)','fontsize',15);
 ylabel('Objective function evaluation','fontsize',15);
-legend('Linear sphere','Quadratic sphere','Cubic sphere','Schwefel?s function','Quartic function')
+legend('Linear sphere','Quadratic sphere','Cubic sphere')%,'Schwefel?s function','Quartic function')
 d1 =sprintf('Objective function evaluation');
 title(d1,'fontsize',20);
 
 % plot convergence rate
 subplot(3,1,1)
 hold on;
-plot(DECREASE_FACTOR_array,a(:,2));hold on;
-plot(DECREASE_FACTOR_array,b(:,2));hold on;
-plot(DECREASE_FACTOR_array,c(:,2));hold on;
-plot(DECREASE_FACTOR_array,d(:,2));hold on;
-plot(DECREASE_FACTOR_array,e(:,2));hold on;
-xlabel('DECREASE_FATOR (when inferior offspring)','fontsize',15);
+plot(LENGTH_SCALE_array,a(:,2));hold on;
+plot(LENGTH_SCALE_array,b(:,2));hold on;
+plot(LENGTH_SCALE_array,c(:,2));hold on;
+% plot(DECREASE_FACTOR_array,d(:,2));hold on;
+% plot(DECREASE_FACTOR_array,e(:,2));hold on;
+xlabel('GP length scale factor','fontsize',15);
 ylabel('Convergence rate','fontsize',15);
-legend('Linear sphere','Quadratic sphere','Cubic sphere','Schwefel?s function','Quartic function')
+legend('Linear sphere','Quadratic sphere','Cubic sphere')%,'Schwefel?s function','Quartic function')
 d1 =sprintf('Convergence rate');
 title(d1,'fontsize',20);
 
 % plot success rate
 subplot(3,1,2)
 hold on;
-plot(DECREASE_FACTOR_array,a(:,3));hold on;
-plot(DECREASE_FACTOR_array,b(:,3));hold on;
-plot(DECREASE_FACTOR_array,c(:,3));hold on;
-plot(DECREASE_FACTOR_array,d(:,3));hold on;
-plot(DECREASE_FACTOR_array,e(:,3));hold on;
-xlabel('DECREASE_FATOR (when inferior offspring)','fontsize',15);
+plot(LENGTH_SCALE_array,a(:,3));hold on;
+plot(LENGTH_SCALE_array,b(:,3));hold on;
+plot(LENGTH_SCALE_array,c(:,3));hold on;
+% plot(DECREASE_FACTOR_array,d(:,3));hold on;
+% plot(DECREASE_FACTOR_array,e(:,3));hold on;
+xlabel('GP length scale factor','fontsize',15);
 ylabel('Objective function evaluation','fontsize',15);
-legend('Linear sphere','Quadratic sphere','Cubic sphere','Schwefel?s function','Quartic function')
+legend('Linear sphere','Quadratic sphere','Cubic sphere')%,'Schwefel?s function','Quartic function')
 d1 =sprintf('Success rate');
 title(d1,'fontsize',20);
 
 % Saves fig
-saves(gcf,'summary.fig');
+saveas(gcf,'summary.fig');
 
 % 
 % % linear sphere
