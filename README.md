@@ -8,6 +8,14 @@
         - Performance quite good 
         - Thesis on this one
 
+| strategy        |  linear          | quadratic | cubic | schwefel|quartic
+| :---------------|-------:| ------------------:|--------------:|------------:|--------:|
+
+| Baseline (Arash's) |  503  | 214       | 198   |1503|1236
+|CSA $\lambda=40$| 759|226|252 | $\infty$|668
+|Hybrid CSA $\lambda=40$ $0.7$ |332|160|192|1082|736
+|Hybrid CSA $\lambda=40$ $0.85$|385|164|200|1039|680
+
     - [CSA](https://github.com/jyyang5/mu_mu_lambda-ES/tree/master/CSA)
 
    	    Implement a CSA for small lambda
@@ -89,11 +97,20 @@
    	    - tuneTrainSize_CSA_GP 
    	    - Step size adaptation: CSA
 
-   - [convergence_lengthScale_GP](https://github.com/jyyang5/mu_mu_lambda-ES/tree/master/convergence_lengthScale_GP)
+    - [convergence_lengthScale_GP](https://github.com/jyyang5/mu_mu_lambda-ES/tree/master/convergence_lengthScale_GP)
 
    	    Plot convergence rate over theta (fun_c_over_theta.m and run_c_over_theta.m) for sigmaStar=1:0.5:3 lambda = [30,50,70]
    	    **max convergence rate relative the same for (7/7,30)-ES, relative 0.1 increment for (12/12,50)-ES and (17/17,70)-ES**
 
+    - [step_size_adaptation](https://github.com/jyyang5/mu_mu_lambda-ES/tree/master/step_size_adaptation)
+
+        Use various step size adapation mechinisums to adapt step size 
+        - CSA
+            - Dirk's parameter
+            - Niko's CMA tutorial slides
+            - Niko's CMA tutorial paper
+        - Result 
+            - E[N(0,I)] \approx n^0.5*(1-1/(4*n)+1/(21*n^2))
 
 
 | max convergence rate  |theta   | linear(sigmaStar)  | quadratic(sigmaStar)  | cubic(sigmaStar)  |
