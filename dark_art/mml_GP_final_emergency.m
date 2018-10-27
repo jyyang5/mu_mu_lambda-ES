@@ -37,6 +37,7 @@ function val = mml_GP_final_emergency(fname,x0,sigma0,lambda,NUM_OF_ITERATIONS,T
 %                       quadratic: factor = 2*R^2
 %                       cubic: factor = 3*R^3
 %                       where R=dist(centroid)
+% 12. emergency_count   # of emergencies
 
 % OPTIMAL:            global optima
 % example input:      f = @(x) x' * x
@@ -77,7 +78,7 @@ fy = zeros(lambda,1);                                                       % ob
 centroid = mean(x0, 2);                                                     % centroid of parent set, size = [n, 1]
 f_centroid = f(centroid);                                                   % fx of centroid
 fyep = zeros(lambda,1);                                                     % GP estimate for offsprings
-count_poor = 0;                                                             % emergency counter                                    
+emergency_count = 0;                                                             % emergency counter                                    
 convergence_rate = 0;                                                   
 sigma = sigma0;
 
@@ -156,7 +157,7 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
         sigma = sigma*DECREASE_FACTOR;          % decrease step size
         centroid = centroid_array(:,t-1);
         f_centroid = fcentroid_array(t-1);
-        count_poor = count_poor + 1;
+        emergency_count = emergency_count + 1;
     else % GP model not yet built || superior centroid 
         % Use CSA 
         s = (1-c)*s+sqrt(mu*c*(2-c))*z;
@@ -177,7 +178,7 @@ end
     T = T - 1; 
     
     % plot # of emergencey 
-    fprintf('Occurance of emergency: %d/%d\n',count_poor,t);
+    fprintf('Occurance of emergency: %d/%d\n',emergency_count,t);
     
     % convergence rate (overall)
     t_start = ceil(TRAINING_SIZE/lambda);                                   % first iteration when GP is built
@@ -201,8 +202,9 @@ end
     
     % success rate
     success_rate = sum(fcentroid_array(t_start:T-1)>fcentroid_array(t_start+1:T))/length(fcentroid_array(t_start:T-1));
-
-    val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,error_array,sigma_star_array,success_rate,delta_array};
+    % calculate the rate of emergency
+    emergency_rate = emergency_count/(t-t_start);
+    val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,error_array,sigma_star_array,success_rate,delta_array,emergency_rate};
 
 end
 

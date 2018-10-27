@@ -19,6 +19,7 @@ The below result uses lambda = 40, mu = ceil(lambda/4), sigma0=1
 - How is emergency rate affected by the DECREASE_FACTOR  
 
 ### Files 
+##### Strtegies
 - mml_GP_final_emergency.m
 
   Final version of the CSA with emergency (described in the MATLAB pesudo code below)
@@ -59,6 +60,24 @@ Just use CSA from Niko's CMA tutorial paper.
 ```
 
 Just use Niko's CSA from CMA tutorial paper 2016
+
+##### Run file
+- fun_multi_over_lambda.m
+  - Multiple runs take median 
+  - Save data for all runs 
+  - Plot 
+      - merged graph for f(x),sigma,sigmaStar,GP error over objective function calls
+      - histogram for cdf of fitness gain/iteration
+
+
+- run_muti_over_lambda.m
+  - Plot over decrease_factor (for step size when emergency)
+      - median objective function evaluation 
+      - emergency rate (# of emergency occurance/total # of iterations)
+      - convergence rate
+      - success rate
+
+
 
 ### Folders
 

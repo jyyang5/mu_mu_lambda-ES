@@ -15,8 +15,10 @@ f1 = @(x) (x'*x)^(1/2);
 f2 = @(x) (x'*x);
 f3 = @(x) (x'*x)^(3/2);
 
+DECREASE_FACTOR = 0.72;
+STRATEGY_NAME = @mml_GP_final_emergency;
 
-NUM_OF_RUNS = 50;
+NUM_OF_RUNS = 1;
 % NUM_OF_RUNS = 2;
 TRAINING_SIZE = 40;
 % LENGTH_SCALE = 8;
@@ -25,13 +27,13 @@ lambda=40;
 LENGTH_SCALE_array = [2 4 8 16 32 46 64 80 96 112 128 144 256];
 
 fname = 1;
-temp1 = fun_multi_over_GPlengthScale(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE_array);
+temp1 = fun_multi_over_GPlengthScale(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE_array,DECREASE_FACTOR,STRATEGY_NAME);
 
 fname = 2;
-temp2 = fun_multi_over_GPlengthScale(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE_array);
+temp2 = fun_multi_over_GPlengthScale(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE_array,DECREASE_FACTOR,STRATEGY_NAME);
 
 fname = 3;
-temp3 = fun_multi_over_GPlengthScale(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE_array);
+temp3 = fun_multi_over_GPlengthScale(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE_array,DECREASE_FACTOR,STRATEGY_NAME);
 % 
 % fname = 4;
 % temp4 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array);

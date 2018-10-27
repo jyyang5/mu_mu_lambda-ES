@@ -3,15 +3,18 @@
 % NOTE: DO NOT CHANGE fname each corespond to a test function
 % 
 % Input:
-%       NUM_OF_RUNS:        number of replicates
-%       TRAINING_SIZE:      GP training size
-%       LENGTH_SCALE:       length scale factor for GP 
-%       lambda_array:       store an array of lambda for plot
-%       fname:              1 = linear sphere
-%                           2 = quadratic sphere
-%                           3 = cubic sphere
-%                           4 = Schwefel function
-%                           5 = Quartic function
+%     1.fname:                   1 = linear sphere
+%                                2 = quadratic sphere
+%                                3 = cubic sphere
+%                                4 = Schwefel function
+%                                5 = Quartic function
+%     2.NUM_OF_RUNS:             number of replicates
+%     3.lambda                   # of offspring generated per iteration
+%     4.TRAINING_SIZE:           GP training size
+%     5.LENGTH_SCALE:            length scale factor for GP 
+%     6.DECREASE_FACTOR_array:   store an array of DECREASE_FACTOR(emergency
+%     7.strategyName:            name of strategy used
+
 % Output:
 %           
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -19,9 +22,11 @@ f1 = @(x) (x'*x)^(1/2);
 f2 = @(x) (x'*x);
 f3 = @(x) (x'*x)^(3/2);
 
+% strategy name
+strategyName = @mml_GP_final_emergency;
 
-NUM_OF_RUNS = 50;
-% NUM_OF_RUNS = 2;
+% NUM_OF_RUNS = 50;
+NUM_OF_RUNS = 1;
 TRAINING_SIZE = 40;
 LENGTH_SCALE = 8;
 % lambda_array = [5 10 15 20 25 40 50 60 80];
@@ -29,54 +34,69 @@ lambda=40;
 DECREASE_FACTOR_array = 0.20:0.04:0.984;
 
 fname = 1;
-temp1 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array);
+temp1 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array,strategyName);
 
 fname = 2;
-temp2 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array);
+temp2 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array,strategyName);
 
-fname = 3;
-temp3 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array);
-
-fname = 4;
-temp4 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array);
-
-fname = 5;
-temp5 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array);
+% fname = 3;
+% temp3 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array,strategyName);
+% 
+% fname = 4;
+% temp4 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array,strategyName);
+% 
+% fname = 5;
+% temp5 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array,strategyName);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Get data
 a = cell2mat(temp1);
 b = cell2mat(temp2);
-c = cell2mat(temp3);
-d = cell2mat(temp4);
-e = cell2mat(temp5);
+% c = cell2mat(temp3);
+% d = cell2mat(temp4);
+% e = cell2mat(temp5);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Plot summary
 figure(100)
 
 % plot objective function evaluation
-subplot(3,1,3)
+subplot(2,2,1)
 hold on;
-plot(DECREASE_FACTOR_array,a(:,1));hold on;
-plot(DECREASE_FACTOR_array,b(:,1));hold on;
-plot(DECREASE_FACTOR_array,c(:,1));hold on;
-plot(DECREASE_FACTOR_array,d(:,1));hold on;
-plot(DECREASE_FACTOR_array,e(:,1));hold on;
+plot(DECREASE_FACTOR_array,cell2mat(temp1(1)));hold on;
+plot(DECREASE_FACTOR_array,cell2mat(temp2(1)));hold on;
+plot(DECREASE_FACTOR_array,cell2mat(temp3(1)));hold on;
+plot(DECREASE_FACTOR_array,cell2mat(temp4(1)));hold on;
+plot(DECREASE_FACTOR_array,cell2mat(temp5(1)));hold on;
 xlabel('DECREASE FATOR (when inferior offspring)','fontsize',15);
 ylabel('Objective function evaluation','fontsize',15);
-legend('Linear sphere','Quadratic sphere','Cubic sphere','Schwefel?s function','Quartic function')
+legend('Linear sphere','Quadratic sphere','Cubic sphere')
+% legend('Linear sphere','Quadratic sphere','Cubic sphere','Schwefel?s function','Quartic function')
 d1 =sprintf('Objective function evaluation');
 title(d1,'fontsize',20);
 
-% plot convergence rate
-subplot(3,1,1)
+% plot percentage of emergency
+subplot(2,2,2)
 hold on;
-plot(DECREASE_FACTOR_array,a(:,2));hold on;
-plot(DECREASE_FACTOR_array,b(:,2));hold on;
-plot(DECREASE_FACTOR_array,c(:,2));hold on;
-plot(DECREASE_FACTOR_array,d(:,2));hold on;
-plot(DECREASE_FACTOR_array,e(:,2));hold on;
+plot(DECREASE_FACTOR_array,cell2mat(temp1(6)));hold on;
+plot(DECREASE_FACTOR_array,cell2mat(temp2(6)));hold on;
+plot(DECREASE_FACTOR_array,cell2mat(temp3(6)));hold on;
+plot(DECREASE_FACTOR_array,cell2mat(temp4(6)));hold on;
+plot(DECREASE_FACTOR_array,cell2mat(temp5(6)));hold on;
+xlabel('DECREASE FATOR (when inferior offspring)','fontsize',15);
+ylabel('Proportion of emergencies','fontsize',15);
+legend('Linear sphere','Quadratic sphere','Cubic sphere','Schwefel?s function','Quartic function')
+d1 =sprintf('Emergency rate');
+title(d1,'fontsize',20);
+
+% plot convergence rate
+subplot(2,2,3)
+hold on;
+plot(DECREASE_FACTOR_array,cell2mat(temp1(2)));hold on;
+plot(DECREASE_FACTOR_array,cell2mat(temp2(2)));hold on;
+plot(DECREASE_FACTOR_array,cell2mat(temp3(2)));hold on;
+plot(DECREASE_FACTOR_array,cell2mat(temp4(2)));hold on;
+plot(DECREASE_FACTOR_array,cell2mat(temp5(2)));hold on;
 xlabel('DECREASE FATOR (when inferior offspring)','fontsize',15);
 ylabel('Convergence rate','fontsize',15);
 legend('Linear sphere','Quadratic sphere','Cubic sphere','Schwefel?s function','Quartic function')
@@ -84,13 +104,13 @@ d1 =sprintf('Convergence rate');
 title(d1,'fontsize',20);
 
 % plot success rate
-subplot(3,1,2)
+subplot(2,2,4)
 hold on;
-plot(DECREASE_FACTOR_array,a(:,3));hold on;
-plot(DECREASE_FACTOR_array,b(:,3));hold on;
-plot(DECREASE_FACTOR_array,c(:,3));hold on;
-plot(DECREASE_FACTOR_array,d(:,3));hold on;
-plot(DECREASE_FACTOR_array,e(:,3));hold on;
+plot(DECREASE_FACTOR_array,cell2mat(temp1(3)));hold on;
+plot(DECREASE_FACTOR_array,cell2mat(temp2(3)));hold on;
+plot(DECREASE_FACTOR_array,cell2mat(temp3(3)));hold on;
+plot(DECREASE_FACTOR_array,cell2mat(temp4(3)));hold on;
+plot(DECREASE_FACTOR_array,cell2mat(temp5(3)));hold on;
 xlabel('DECREASE FATOR (when inferior offspring)','fontsize',15);
 ylabel('Success rate','fontsize',15);
 legend('Linear sphere','Quadratic sphere','Cubic sphere','Schwefel?s function','Quartic function')

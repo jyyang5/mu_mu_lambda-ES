@@ -12,7 +12,7 @@
 %            error
 %            save file
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function val = fun_multi_over_GPlengthScale(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE_array)
+function val = fun_multi_over_GPlengthScale(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE_array,DECREASE_FACTOR,STRATEGY_NAME)
 %Input:
 %       f:          an index 1 for linear, 2 for quadratic and 3 for cubic 
 %    name:          a number specify f  
@@ -61,8 +61,14 @@ for i=1:1:LENGTH_SCALE_LENGTH
     for j = 1:NUM_OF_RUNS
         x0 = randn(n,mu);
     
-        % (mu/mu,lambda)-ES with GP
-        a = mml_GP_CSA_Niko(fname,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE_temp);
+        
+        % CSA WITH emergency tigger
+        if(DECREASE_FACTOR~=0)
+            a = STRATEGY_NAME(fname,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE_temp,DECREASE_FACTOR);
+        % CSA WITHOUT emergency tigger
+        else      
+            a = STRATEGY_NAME(fname,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE_temp);
+        end
         t_array(i,j) = cell2mat(a(1));
         sigma_matrix(i,j,:) = cell2mat(a(4));
         T_array(i,j) = cell2mat(a(5));

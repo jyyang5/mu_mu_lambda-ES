@@ -22,7 +22,7 @@ f3 = @(x) (x'*x)^(3/2);  % cubic sphere
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-fname = 2;
+fname = 5;
 n = 10;
 
 lambda = 40;
@@ -39,148 +39,99 @@ x0 = randn(n,mu);
 % if wanna compare and plot different strategy with legends cmp_legend != 0
 % sigle plot cmp_legend = 1
 cmp_legend =0; 
-legendCell = {'CSA emergency','CSA'};
-strategy_list = {@mml_GP_final_emergency,@mml_GP_CSA_Niko};
-close all;
 
-for i = 1:length(strategy_list)
-%     strategy = string(strategy_list(i));
-    if(i==length(strategy_list))
-        cmp_legend = 1;
-    end
-    a = strategy_list{i}(fname,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR);
-    t = cell2mat(a(1));
-    centroid = cell2mat(a(2));
-    f_centroid = cell2mat(a(3));
-    sigma_array = cell2mat(a(4));
-    T = cell2mat(a(5));
-    fcentroid_array = cell2mat(a(6));
-    convergence_rate = cell2mat(a(7));
-    error_array = cell2mat(a(8));
-    sigma_satr_array = cell2mat(a(9));
-    success_rate = cell2mat(a(10));
-    delta_array = cell2mat(a(11));
+a = mml_GP_final_emergency(fname,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR);
+t = cell2mat(a(1));
+centroid = cell2mat(a(2));
+f_centroid = cell2mat(a(3));
+sigma_array = cell2mat(a(4));
+T = cell2mat(a(5));
+fcentroid_array = cell2mat(a(6));
+convergence_rate = cell2mat(a(7));
+error_array = cell2mat(a(8));
+sigma_satr_array = cell2mat(a(9));
+success_rate = cell2mat(a(10));
+delta_array = cell2mat(a(11));
+emergency_rate = cell2mat(a(12));
 
-
-    % p_array = cell2mat(a(12));
-    % b = mml(f1,x0,sigma0,lambda,NUM_OF_ITERATIONS);
-    % 
-    % t1 = cell2mat(b(1));
-    % centroid1 = cell2mat(b(2));
-    % f_centroid1 = cell2mat(b(3));
-    % sigma_array1 = cell2mat(b(4));
-    % fcentroid_array1 = cell2mat(b(6));
-    % convergence_rate1 = cell2mat(b(7));
-    % fep_centroid_array1 = cell2mat(b(8));
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    if(fname==1)
-        disp('linear')
-    elseif(fname==2)
-        disp('quadratic')
-    elseif(fname==3)
-        disp('cubic')
-    elseif(fname==4)
-        disp('Schwefel')
-    elseif(fname==5)
-        disp('quartic')
-    end
-
-    disp("number of iterations");
-    disp(t);
-    % disp(t1);
-
-    disp("convergence rate");
-    disp(convergence_rate);
-
-    disp("success rate");
-    disp(success_rate);
-
-    disp("number of objective function calls");
-    disp(T);
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    if(cmp_legend ==0)
-        % plot sigma, f(x), sigmaStar
-        figure(10);hold on;
-        % f(x)
-        subplot(1,4,1)          
-        semilogy(1:t, fcentroid_array(1:t));hold on;           % mml with GP
-        xlabel('number of iterations','fontsize',15);
-        ylabel('log(f(x))','fontsize',15);
-        set(gca,'yscale','log')
-        title('f(centroid)','fontsize',20);
-        % sigma    
-        subplot(1,4,2)
-        semilogy(1:t, sigma_array(1:t));hold on;               % mml with GP
-        xlabel('number of iterations','fontsize',15);
-        ylabel('log(\sigma)','fontsize',15);
-        set(gca,'yscale','log')
-        title('step size \sigma','fontsize',20);
-        % GP error    
-        subplot(1,4,3)
-        plot(1:t,error_array(1:t));hold on;
-        xlabel('number of iterations','fontsize',15);
-        ylabel('relative error','fontsize',15);
-        set(gca,'yscale','log')
-        title('relative error','fontsize',20);
-        xlabel('number of iterations','fontsize',15);
-        % sigmaStar
-        subplot(1,4,4)
-        plot(1:t,sigma_satr_array(1:t));hold on;
-        xlabel('number of iterations','fontsize',15);
-        ylabel('normalized step size \sigma*','fontsize',15);
-        set(gca,'yscale','log')
-        title('normalized step size \sigma*','fontsize',20);
-        xlabel('number of iterations','fontsize',15);
-
-        figure(11)
-        histogram(delta_array(1:t),'Normalization','probability');hold on;
-        title('Delta pdf','FontSize',20);
-    else
-        % plot sigma, f(x), sigmaStar
-        figure(10);hold on;
-        % f(x)
-        subplot(1,4,1)          
-        semilogy(1:t, fcentroid_array(1:t));hold on;           % mml with GP
-        xlabel('number of iterations','fontsize',15);
-        ylabel('log(f(x))','fontsize',15);
-        legend(legendCell);
-        set(gca,'yscale','log')
-        title('f(centroid)','fontsize',20);
-        % sigma    
-        subplot(1,4,2)
-        semilogy(1:t, sigma_array(1:t));hold on;               % mml with GP
-        xlabel('number of iterations','fontsize',15);
-        ylabel('log(\sigma)','fontsize',15);
-        legend(legendCell);
-        set(gca,'yscale','log')
-        title('step size \sigma','fontsize',20);
-        % GP error    
-        subplot(1,4,3)
-        plot(1:t,error_array(1:t));hold on;
-        xlabel('number of iterations','fontsize',15);
-        ylabel('relative error','fontsize',15);
-        legend(legendCell);
-        set(gca,'yscale','log')
-        title('relative error','fontsize',20);
-        xlabel('number of iterations','fontsize',15);
-        % sigmaStar
-        subplot(1,4,4)
-        plot(1:t,sigma_satr_array(1:t));hold on;
-        xlabel('number of iterations','fontsize',15);
-        ylabel('normalized step size \sigma*','fontsize',15);
-        set(gca,'yscale','log')
-        legend(legendCell);
-        title('normalized step size \sigma*','fontsize',20);
-        xlabel('number of iterations','fontsize',15);
-
-        figure(11)
-        histogram(delta_array(1:t),'Normalization','probability');hold on;
-        legend(legendCell);
-        title('Delta pdf','FontSize',20);
-
-
-    end
+% p_array = cell2mat(a(12));
+% b = mml(f1,x0,sigma0,lambda,NUM_OF_ITERATIONS);
+% 
+% t1 = cell2mat(b(1));
+% centroid1 = cell2mat(b(2));
+% f_centroid1 = cell2mat(b(3));
+% sigma_array1 = cell2mat(b(4));
+% fcentroid_array1 = cell2mat(b(6));
+% convergence_rate1 = cell2mat(b(7));
+% fep_centroid_array1 = cell2mat(b(8));
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+if(fname==1)
+    disp('linear')
+elseif(fname==2)
+    disp('quadratic')
+elseif(fname==3)
+    disp('cubic')
+elseif(fname==4)
+    disp('Schwefel')
+elseif(fname==5)
+    disp('quartic')
 end
+
+disp("number of iterations");
+disp(t);
+% disp(t1);
+
+disp("convergence rate");
+disp(convergence_rate);
+
+disp("success rate");
+disp(success_rate);
+
+disp("number of objective function calls");
+disp(T);
+
+disp("Emergency rate");
+disp(emergency_rate);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % plot sigma, f(x), sigmaStar
+    figure(10);hold on;
+    % f(x)
+    subplot(1,4,1)          
+    semilogy(1:t, fcentroid_array(1:t));hold on;           % mml with GP
+    xlabel('number of iterations','fontsize',15);
+    ylabel('log(f(x))','fontsize',15);
+    set(gca,'yscale','log')
+    title('f(centroid)','fontsize',20);
+    % sigma    
+    subplot(1,4,2)
+    semilogy(1:t, sigma_array(1:t));hold on;               % mml with GP
+    xlabel('number of iterations','fontsize',15);
+    ylabel('log(\sigma)','fontsize',15);
+    set(gca,'yscale','log')
+    title('step size \sigma','fontsize',20);
+    % GP error    
+    subplot(1,4,3)
+    plot(1:t,error_array(1:t));hold on;
+    xlabel('number of iterations','fontsize',15);
+    ylabel('relative error','fontsize',15);
+    set(gca,'yscale','log')
+    title('relative error','fontsize',20);
+    xlabel('number of iterations','fontsize',15);
+    % sigmaStar
+    subplot(1,4,4)
+    plot(1:t,sigma_satr_array(1:t));hold on;
+    xlabel('number of iterations','fontsize',15);
+    ylabel('normalized step size \sigma*','fontsize',15);
+    set(gca,'yscale','log')
+    title('normalized step size \sigma*','fontsize',20);
+    xlabel('number of iterations','fontsize',15);
+    
+    figure(11)
+    histogram(delta_array(1:t),'Normalization','probability');hold on;
+    title('Delta pdf','FontSize',20);
+    
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Schwefel's Problem 1.2
 function val = f4(x)
