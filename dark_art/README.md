@@ -13,6 +13,10 @@ The below result uses lambda = 40, mu = ceil(lambda/4), sigma0=1
 | CSA|               quadratic sphere|0.4907|0.5045 | 221|0
 |CSA with emergency| quadratic sphere|0.6496|0.2235 | 180|100/140
 
+- Is a larger convergence that importnat???
+- Is there a better way to balance the trade off between convergence rate and success rate 
+- Is 0.714 emergency cheating in the context of sphere funtions 
+- How is emergency rate affected by the DECREASE_FACTOR  
 
 ### Files 
 - mml_GP_final_emergency.m
