@@ -1,4 +1,4 @@
-% Hybrid using Niko's CSA(paper CMA tutorial) and 1/5 ruleS
+% Hybrid using Niko's CSA(paper CMA tutorial) and stop in emergency
 % If current centroid inferior to parent decrease step size by factor
 % else adapt step size by CSA
 % apply similar idea to Arash did to avoid potential poor step
@@ -118,7 +118,7 @@ count_poor = 0;
 
 while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     % early stopping 
-    if(f_centroid > 50000)
+    if(f_centroid > 500)
         % if diverge -> convergence rate = 0 success rate = 0
         success_rate = 0;
         val = {9999,mean(x0, 2),9999,sigma_array, 9999, fcentroid_array,-1,error_array,sigma_star_array,success_rate,delta_array}; 
@@ -173,7 +173,7 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     % update train set
     xTrain(:, T) = centroid;                
     fTrain(T) = f_centroid;
-    if(t <= TRAINING_SIZE)
+    if(T <= TRAINING_SIZE||t<2)                      % GP model not yet built
         s = (1-c)*s+sqrt(mu*c*(2-c))*z;
         sigma = sigma*exp(c/D*(norm(s)/EN-1));
     elseif(f_centroid > fcentroid_array(t-1))   % bad centroid 
@@ -240,7 +240,7 @@ end
     
     % success rate
     success_rate = sum(fcentroid_array(t_start:T-1)>fcentroid_array(t_start+1:T))/length(fcentroid_array(t_start:T-1));
-
+    delta_array = - delta_array;
     val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,error_array,sigma_star_array,success_rate,delta_array};
 
 end

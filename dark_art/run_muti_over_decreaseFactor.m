@@ -7,7 +7,11 @@
 %       TRAINING_SIZE:      GP training size
 %       LENGTH_SCALE:       length scale factor for GP 
 %       lambda_array:       store an array of lambda for plot
-%       fname:
+%       fname:              1 = linear sphere
+%                           2 = quadratic sphere
+%                           3 = cubic sphere
+%                           4 = Schwefel function
+%                           5 = Quartic function
 % Output:
 %           
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -22,7 +26,7 @@ TRAINING_SIZE = 40;
 LENGTH_SCALE = 8;
 % lambda_array = [5 10 15 20 25 40 50 60 80];
 lambda=40;
-DECREASE_FACTOR_array = 0.6:0.01:0.99;
+DECREASE_FACTOR_array = 0.20:0.04:0.984;
 
 fname = 1;
 temp1 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array);
@@ -59,7 +63,7 @@ plot(DECREASE_FACTOR_array,b(:,1));hold on;
 plot(DECREASE_FACTOR_array,c(:,1));hold on;
 plot(DECREASE_FACTOR_array,d(:,1));hold on;
 plot(DECREASE_FACTOR_array,e(:,1));hold on;
-xlabel('DECREASE_FATOR (when inferior offspring)','fontsize',15);
+xlabel('DECREASE FATOR (when inferior offspring)','fontsize',15);
 ylabel('Objective function evaluation','fontsize',15);
 legend('Linear sphere','Quadratic sphere','Cubic sphere','Schwefel?s function','Quartic function')
 d1 =sprintf('Objective function evaluation');
@@ -73,7 +77,7 @@ plot(DECREASE_FACTOR_array,b(:,2));hold on;
 plot(DECREASE_FACTOR_array,c(:,2));hold on;
 plot(DECREASE_FACTOR_array,d(:,2));hold on;
 plot(DECREASE_FACTOR_array,e(:,2));hold on;
-xlabel('DECREASE_FATOR (when inferior offspring)','fontsize',15);
+xlabel('DECREASE FATOR (when inferior offspring)','fontsize',15);
 ylabel('Convergence rate','fontsize',15);
 legend('Linear sphere','Quadratic sphere','Cubic sphere','Schwefel?s function','Quartic function')
 d1 =sprintf('Convergence rate');
@@ -87,8 +91,8 @@ plot(DECREASE_FACTOR_array,b(:,3));hold on;
 plot(DECREASE_FACTOR_array,c(:,3));hold on;
 plot(DECREASE_FACTOR_array,d(:,3));hold on;
 plot(DECREASE_FACTOR_array,e(:,3));hold on;
-xlabel('DECREASE_FATOR (when inferior offspring)','fontsize',15);
-ylabel('Objective function evaluation','fontsize',15);
+xlabel('DECREASE FATOR (when inferior offspring)','fontsize',15);
+ylabel('Success rate','fontsize',15);
 legend('Linear sphere','Quadratic sphere','Cubic sphere','Schwefel?s function','Quartic function')
 d1 =sprintf('Success rate');
 title(d1,'fontsize',20);

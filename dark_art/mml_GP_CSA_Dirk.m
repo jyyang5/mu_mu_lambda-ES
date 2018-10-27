@@ -88,16 +88,16 @@ centroid_array(:,t) = centroid;
 fcentroid_array(t) = f_centroid;
 
 % parameters for CSA
-% c = 1/sqrt(n);
-% D = sqrt(n);
-% s = 0;
+c = 1/sqrt(n);
+D = sqrt(n);
+s = 0;
 %%%%%%%%%%%%%%%%%%%%%%
 % % nico's paper
-mu_eff = mu;
-c = (mu_eff+2)/(n+mu_eff+5);
-D = 1 + 2*max(0,sqrt((mu_eff-1)/(n+1))-1)+c; 
-EN = n^0.5*(1-1/(4*n)+1/(21*n^2));
-s = 0;
+% mu_eff = mu;
+% c = (mu_eff+2)/(n+mu_eff+5);
+% D = 1 + 2*max(0,sqrt((mu_eff-1)/(n+1))-1)+c; 
+% EN = n^0.5*(1-1/(4*n)+1/(21*n^2));
+% s = 0;
 % %%%%%%%%%%%%%%%%%%%%%%
 % % nico's tutorial
 % mu_eff = mu;
@@ -176,10 +176,9 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     % Evolution path
     s = (1-c)*s+sqrt(mu*c*(2-c))*z;
     % CSA
-    sigma = sigma*exp(c/D*(norm(s)/EN-1));
+    sigma = sigma*exp((norm(s)^2-n)/2/D/n);
     centroid_array(:,t) = centroid;
     fcentroid_array(t) = f_centroid;
-    %     sigma = sigma*exp(c/D*(norm(s)/EN-1));
 
     s_array(t) = (norm(s)^2-n)/2/D/n;
         

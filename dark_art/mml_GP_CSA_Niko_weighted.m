@@ -98,8 +98,9 @@ c = (mu_eff+2)/(n+mu_eff+5);
 D = 1 + 2*max(0,sqrt((mu_eff-1)/(n+1))-1)+c; 
 EN = n^0.5*(1-1/(4*n)+1/(21*n^2));
 s = 0;
-wp = log((lambda+1)/2)-log(1:lambda);           % w'
-a_minus = 1 + 
+w = 1/mu;
+% wp = log((lambda+1)/2)-log(1:lambda);           % w'
+% a_minus = 1 + 
 % %%%%%%%%%%%%%%%%%%%%%%
 % % nico's tutorial
 % mu_eff = mu;
@@ -124,7 +125,6 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
         % if diverge -> convergence rate = 0 success rate = 0
         success_rate = 0;
         val = {9999,mean(x0, 2),9999,sigma_array, 9999, fcentroid_array,-1,error_array,sigma_star_array,success_rate,delta_array}; 
-        val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,error_array,sigma_star_array,success_rate,delta_array};
 
         return 
     end
@@ -169,7 +169,8 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     [index, sorted_order] = sort(fy);
     z = z(:,sorted_order);
     % choose the best mu candidate solutions as parent
-    z = mean(z(:,1:mu),2);
+%     z = mean(z(:,1:mu),2);
+    z = w.*z(:,1:mu);
     centroid = centroid + sigma*z;
     f_centroid = f(centroid);
     % update train set

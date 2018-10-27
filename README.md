@@ -10,7 +10,6 @@
 
 | strategy        |  linear          | quadratic | cubic | schwefel|quartic
 | :---------------|-------:| ------------------:|--------------:|------------:|--------:|
-
 | Baseline (Arash's) |  503  | 214       | 198   |1503|1236
 |CSA $\lambda=40$| 759|226|252 | $\infty$|668
 |Hybrid CSA $\lambda=40$ $0.7$ |332|160|192|1082|736
