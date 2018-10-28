@@ -26,6 +26,7 @@ function val = fun_multi_over_GPlengthScale(fname,NUM_OF_RUNS,lambda,TRAINING_SI
 %    3. success_med
 %    4. GP_error_matrix_med
 %    5. delta_matrix_med   
+%    6. emergency_rate_matrix
     
 sigma0 = 1;
 NUM_OF_ITERATIONS = 2000;
@@ -51,6 +52,7 @@ GP_error_matrix = zeros(LENGTH_SCALE_LENGTH,NUM_OF_RUNS,10000);        % store s
 sigma_star_matrix = zeros(LENGTH_SCALE_LENGTH,NUM_OF_RUNS,10000);      % normalized step size 
 success_rate_array = zeros(LENGTH_SCALE_LENGTH,NUM_OF_RUNS,1);         % success rate 
 delta_matrix = zeros(LENGTH_SCALE_LENGTH,NUM_OF_RUNS,10000);           % each [i,j] stores a delta array 
+emergency_rate_matrix = zeros(LENGTH_SCALE_LENGTH,NUM_OF_RUNS,1);      % count the occurance of emergencies 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Iterate over lambda and replicate multiple runs
@@ -78,6 +80,7 @@ for i=1:1:LENGTH_SCALE_LENGTH
         sigma_star_matrix(i,j,:) = cell2mat(a(9));
         success_rate_array(i,j) = cell2mat(a(10));
         delta_matrix(i,j,:) = cell2mat(a(11));
+        emergency_rate_matrix(i,j) = cell2mat(a(12));
     
         
     end 
@@ -87,38 +90,38 @@ for i=1:1:LENGTH_SCALE_LENGTH
     if fname == 1
         f = @(x) (x'*x)^(1/2);
         save('linear_over_lambda.mat','fname','f','fname','NUM_OF_RUNS','LENGTH_SCALE_array',...
-            'lambda','TRAINING_SIZE',...
+            'lambda','TRAINING_SIZE','DECREASE_FACTOR','sigma0','LENGTH_SCALE_LENGTH',...
         't_array','sigma_matrix','T_array','f_x_matrix','convergence_rate_array',...
             'GP_error_matrix','GP_error_matrix','sigma_star_matrix','success_rate_array',...
-            'delta_matrix');
+            'delta_matrix','emergency_rate_matrix');
     elseif fname == 2
         f = @(x) (x'*x);
         save('quadratic_over_lambda.mat','fname','f','fname','NUM_OF_RUNS','LENGTH_SCALE_array',...
-            'lambda','TRAINING_SIZE',...
+            'lambda','TRAINING_SIZE','DECREASE_FACTOR','sigma0','LENGTH_SCALE_LENGTH',...
         't_array','sigma_matrix','T_array','f_x_matrix','convergence_rate_array',...
             'GP_error_matrix','GP_error_matrix','sigma_star_matrix','success_rate_array',...
-            'delta_matrix');
+            'delta_matrix','emergency_rate_matrix');
     elseif fname == 3
         f = @(x) (x'*x)^(3/2);
         save('cubic_over_lambda.mat','fname','f','fname','NUM_OF_RUNS','LENGTH_SCALE_array',...
-            'lambda','TRAINING_SIZE',...
+            'lambda','TRAINING_SIZE','DECREASE_FACTOR','sigma0','LENGTH_SCALE_LENGTH',...
         't_array','sigma_matrix','T_array','f_x_matrix','convergence_rate_array',...
             'GP_error_matrix','GP_error_matrix','sigma_star_matrix','success_rate_array',...
-            'delta_matrix');
+            'delta_matrix','emergency_rate_matrix');
     elseif fname == 4
         f = @f4;
         save('schwefel_over_lambda.mat','fname','f','fname','NUM_OF_RUNS','LENGTH_SCALE_array',...
-            'lambda','TRAINING_SIZE',...
+            'lambda','TRAINING_SIZE','DECREASE_FACTOR','sigma0','LENGTH_SCALE_LENGTH',...
         't_array','sigma_matrix','T_array','f_x_matrix','convergence_rate_array',...
             'GP_error_matrix','GP_error_matrix','sigma_star_matrix','success_rate_array',...
-            'delta_matrix');  
+            'delta_matrix','emergency_rate_matrix');
     elseif fname == 5
         f = @f5;
         save('quartic_over_lambda.mat','f','fname','f','fname','NUM_OF_RUNS','LENGTH_SCALE_array',...
-            'lambda','TRAINING_SIZE',...
+            'lambda','TRAINING_SIZE','DECREASE_FACTOR','sigma0','LENGTH_SCALE_LENGTH',...
         't_array','sigma_matrix','T_array','f_x_matrix','convergence_rate_array',...
             'GP_error_matrix','GP_error_matrix','sigma_star_matrix','success_rate_array',...
-            'delta_matrix');       
+            'delta_matrix','emergency_rate_matrix');
     end
 
 end
@@ -138,7 +141,8 @@ end
     sigma_star_matrix_med = squeeze(median(sigma_star_matrix,2));
     success_med = median(success_rate_array,2);
     delta_matrix_med = squeeze(median(delta_matrix,2));
-        
+    emergency_rate_matrix_med = median(emergency_rate_matrix,2);
+ 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % graph
@@ -296,7 +300,7 @@ end
     saveas(gcf,d3);
     
     
-    val = {T_med,convergence_med,success_med,GP_error_matrix_med,delta_matrix_med};
+    val = {T_med,convergence_med,success_med,GP_error_matrix_med,delta_matrix_med,emergency_rate_matrix_med};
 
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

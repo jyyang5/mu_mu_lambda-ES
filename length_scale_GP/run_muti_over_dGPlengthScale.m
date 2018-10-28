@@ -35,11 +35,11 @@ temp2 = fun_multi_over_GPlengthScale(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENG
 fname = 3;
 temp3 = fun_multi_over_GPlengthScale(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE_array,DECREASE_FACTOR,STRATEGY_NAME);
 
-fname = 4;
-temp4 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array);
-
-fname = 5;
-temp5 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array);
+% fname = 4;
+% temp4 = fun_multi_over_GPlengthScale(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE_array,DECREASE_FACTOR,STRATEGY_NAME);
+% 
+% fname = 5;
+% temp5 = fun_multi_over_GPlengthScale(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE_array,DECREASE_FACTOR,STRATEGY_NAME);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Get data
