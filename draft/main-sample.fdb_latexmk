@@ -1,11 +1,11 @@
 # Fdb version 3
-["biber main-sample"] 1540535552 "main-sample.bcf" "main-sample.bbl" "main-sample" 1540678105
+["biber main-sample"] 1540689051 "main-sample.bcf" "main-sample.bbl" "main-sample" 1540693174
   "main-bibliography.bib" 1540668349 19834 d138c2212c1a89b84f9ca99aea9d0808 ""
-  "main-sample.bcf" 1540678104 97132 0fe2aaf522aa825c6e643d02820e0507 ""
+  "main-sample.bcf" 1540693173 97104 856078aec0982351711afda2b6e8b040 ""
   (generated)
-  "main-sample.blg"
   "main-sample.bbl"
-["pdflatex"] 1540678102 "main-sample.tex" "main-sample.pdf" "main-sample" 1540678105
+  "main-sample.blg"
+["pdflatex"] 1540693171 "main-sample.tex" "main-sample.pdf" "main-sample" 1540693174
   "/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc" 1480098666 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc" 1490133665 2921 8ca0eb0831f9bc5da080d3697cfe67bf ""
   "/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc" 1490133665 2933 9ad527ce78d7c5fa0a642dead095f172 ""
@@ -79,6 +79,7 @@
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/txfonts/txmi.tfm" 1480098718 1944 f854e259cb2839e49d4aa2949544a6e1 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/txfonts/txmia.tfm" 1480098718 1180 72784d0ee5a983fba99a0986b31b0493 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/txfonts/txr.tfm" 1480098718 2408 aec793a3c45e495f7ad15b227c91f508 ""
+  "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/txfonts/txsya.tfm" 1480098718 972 2c9ffac4bbd20f91c01aaef9bf3f8710 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/txfonts/txsyb.tfm" 1480098718 988 098ca7e8cc5647b9ac21b82dbdce1f01 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/txfonts/txsyc.tfm" 1480098718 1084 75e807e9e71f7a312e4e1187dce5e93b ""
   "/usr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinBiolinumTB.pfb" 1480098742 687959 b99c9f5a9b28f3dba077d1c078bceb3f ""
@@ -94,6 +95,7 @@
   "/usr/local/texlive/2017/texmf-dist/fonts/type1/public/newtx/zxlri.pfb" 1480098744 40013 67a11da0841a4dae850a6a0203896baf ""
   "/usr/local/texlive/2017/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb" 1480098746 13806 49b888f4605a088e66b9eb4fee320a6e ""
   "/usr/local/texlive/2017/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb" 1480098746 6339 e2b78706efdc360ee6aec9b6e20211a7 ""
+  "/usr/local/texlive/2017/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb" 1480098746 24244 ffc0312cbd155e940e16287bb7cbb16c ""
   "/usr/local/texlive/2017/texmf-dist/fonts/vf/public/libertine/LinBiolinumTB-tlf-t1.vf" 1480098768 1728 4ae633ddccb76ba8d0a0906a5e2e8fdf ""
   "/usr/local/texlive/2017/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-ot1.vf" 1490133671 968 b4daf26f130460f16d670da7f3f6963f ""
   "/usr/local/texlive/2017/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-t1.vf" 1480098768 1728 b078a050f24d7649619baa987d7216d8 ""
@@ -104,6 +106,7 @@
   "/usr/local/texlive/2017/texmf-dist/fonts/vf/public/newtx/ntxsy.vf" 1487030465 1640 8cb60d6b635e665cf29a221d9b175dfb ""
   "/usr/local/texlive/2017/texmf-dist/fonts/vf/public/newtx/ntxsy5.vf" 1487030465 1636 851606ca46c1cd1ad3ef953749928e67 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/vf/public/newtx/ntxsy7.vf" 1487030465 1756 39693091dad9b57a2da4594a91ad3dff ""
+  "/usr/local/texlive/2017/texmf-dist/fonts/vf/public/newtx/ntxsym.vf" 1480098768 2000 d7a42ca292ca5e46d4e61f1dc11fba7e ""
   "/usr/local/texlive/2017/texmf-dist/fonts/vf/public/newtx/nxlmi.vf" 1480098768 1820 46c9670ba7c8d768f74e21f846ebed04 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/vf/public/newtx/nxlmi5.vf" 1480098768 1824 55abee80f420f4db795fba46bc8729f5 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/vf/public/newtx/nxlmi7.vf" 1480098768 1848 70921cfcd19ef65f920f98d59a12003d ""
@@ -220,16 +223,16 @@
   "/usr/local/texlive/2017/texmf.cnf" 1495593465 577 2b71d4d888f9e5560b2e99985915a9fa ""
   "ACM-Reference-Format.bbx" 1540472225 18425 c755f24a02600e7dab3afb895bb9871a ""
   "ACM-Reference-Format.cbx" 1540472225 100 022318c52dbfd268aba635ca65293b8e ""
-  "main-body.tex" 1540668349 27439 7e18f5a1a2292ffe04edddf207302372 ""
-  "main-sample.aux" 1540678104 5502 8c33c0a0d6e823744bc26b0783aea011 ""
-  "main-sample.bbl" 1540668349 29959 48394f8a3efec12b0b21b27665754295 "biber main-sample"
-  "main-sample.out" 1540678104 1143 1cb50c97b780d0898e2399d811bed898 ""
-  "main-sample.run.xml" 1540678104 2521 faabd12540979f7ba19c0e7e4199c936 ""
+  "main-body.tex" 1540693166 29509 45bedbd47d561da0169961684d4c50c9 ""
+  "main-sample.aux" 1540693173 5359 e86a6e5923d65570dc401cf21fd313d5 ""
+  "main-sample.bbl" 1540689052 29959 48394f8a3efec12b0b21b27665754295 "biber main-sample"
+  "main-sample.out" 1540693173 1032 cd59920445e76ff7604a001f093cdcf8 ""
+  "main-sample.run.xml" 1540693173 2521 faabd12540979f7ba19c0e7e4199c936 ""
   "main-sample.tex" 1540678099 4501 eb28eedc620a095e3cff7bf18188cdec ""
   (generated)
   "main-sample.bcf"
-  "main-sample.pdf"
   "main-sample.out"
-  "main-sample.aux"
   "main-sample.log"
+  "main-sample.pdf"
   "main-sample.run.xml"
+  "main-sample.aux"

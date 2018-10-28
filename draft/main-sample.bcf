@@ -2162,11 +2162,10 @@
     <bcf:citekey order="17">10.1007/978-3-319-09333-8_4</bcf:citekey>
     <bcf:citekey order="18">ARASH</bcf:citekey>
     <bcf:citekey order="19">Ulmer2005</bcf:citekey>
-    <bcf:citekey order="20">ARASH</bcf:citekey>
-    <bcf:citekey order="21">ARASH</bcf:citekey>
-    <bcf:citekey order="22">Arnold02noisyoptimization</bcf:citekey>
-    <bcf:citekey order="23">1665028</bcf:citekey>
-    <bcf:citekey order="24">rechenberg1973evolutionsstrategie</bcf:citekey>
+    <bcf:citekey order="20">DBLP:conf/ppsn/KayhaniA18</bcf:citekey>
+    <bcf:citekey order="21">Arnold02noisyoptimization</bcf:citekey>
+    <bcf:citekey order="22">1665028</bcf:citekey>
+    <bcf:citekey order="23">rechenberg1973evolutionsstrategie</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="nty/global/" type="entry" sortscheme="nty" sortnamekeyscheme="global" labelprefix="">
   <bcf:sorting>

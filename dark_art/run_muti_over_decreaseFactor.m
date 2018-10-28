@@ -26,35 +26,35 @@ f3 = @(x) (x'*x)^(3/2);
 strategyName = @mml_GP_final_emergency;
 
 % NUM_OF_RUNS = 50;
-NUM_OF_RUNS = 1;
+NUM_OF_RUNS = 50;
 TRAINING_SIZE = 40;
 LENGTH_SCALE = 8;
 % lambda_array = [5 10 15 20 25 40 50 60 80];
 lambda=40;
 DECREASE_FACTOR_array = 0.20:0.04:0.984;
 
-fname = 1;
-temp1 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array,strategyName);
-
-fname = 2;
-temp2 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array,strategyName);
-
-% fname = 3;
-% temp3 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array,strategyName);
+% fname = 1;
+% temp1 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array,strategyName);
 % 
-% fname = 4;
-% temp4 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array,strategyName);
-% 
-% fname = 5;
-% temp5 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array,strategyName);
+% fname = 2;
+% temp2 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array,strategyName);
+
+fname = 3;
+temp3 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array,strategyName);
+
+fname = 4;
+temp4 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array,strategyName);
+
+fname = 5;
+temp5 = fun_multi_over_decreaseFactor(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR_array,strategyName);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Get data
 a = cell2mat(temp1);
 b = cell2mat(temp2);
-% c = cell2mat(temp3);
-% d = cell2mat(temp4);
-% e = cell2mat(temp5);
+c = cell2mat(temp3);
+d = cell2mat(temp4);
+e = cell2mat(temp5);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Plot summary
