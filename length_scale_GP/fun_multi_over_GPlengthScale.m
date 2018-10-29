@@ -269,7 +269,6 @@ end
         d =sprintf('hist_schwefel_%d.fig',lambda);
     elseif fname == 5
         d =sprintf('hist_quartic_%d.fig',lambda);
-        saveas(gcf,'hist_quartic_function.fig');
     end
     saveas(gcf,d);
     
@@ -293,9 +292,9 @@ end
     elseif fname == 3
         d3 = sprintf('cubic_modelError_lambda.fig');
     elseif fname == 4 
-        d3 = sprintf('schwefel_function_funCall.fig');
+        d3 = sprintf('schwefel_modelError_lambda.fig');
     elseif fname == 5
-        d3 = sprintf('quartic_function_funCall.fig');
+        d3 = sprintf('quartic_modelError_lambda.fig');
     end
     saveas(gcf,d3);
     
