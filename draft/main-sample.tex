@@ -16,8 +16,12 @@
 \renewcommand{\bibfont}{\Small}
 
 
-\usepackage{booktabs} % For formal tables
-\usepackage{lwarp-algorithmicx}
+\usepackage{booktabs}   % For formal tables
+\usepackage{algorithm}  % for Pesudo code 
+\usepackage{algorithmic}
+
+
+
 
 % Copyright
 %\setcopyright{none}
@@ -45,7 +49,7 @@
 
 
 \begin{document}
-\title{Design of a Surrogate Model Assisted $((\mu/\mu,\lambda)-(\mu/\mu,\lambda))$-ES}
+\title{Design of a Surrogate Model Assisted $((\mu/\mu,\lambda)+(\mu/\mu,\lambda))$-ES}
 %\titlenote{Produces the permission block, and copyright information}
 %\subtitle{}
 %\subtitlenote{The full version of the author's guide is available as
@@ -82,7 +86,7 @@
 
 
 \begin{abstract}
-Surrogate models have been widely used to assist evolutionary algorithms (EAs) to avoid unnecessary objective function evaluations. The cost is reduced by substituting the true objective function evaluation with a cheap but inaccurate estimate using the surrogate model. The surrogate model is built on th knowledge gained in previous iterations. Using surrogate assised (1+1)-ES for simple model and single steps have been studied, but the effect of actual inferior parent resulted from an inaccurate surrogate estimation and the corresponding poor step size are not well understood. We study the behaviour using a surrogate model assisted $((\mu/\mu,\lambda)-(\mu/\mu,\lambda))$-ES using a population instead of a single offspring with the hope to possible address the issue. By comparing the bahaviour of the two, we propose a step size adaptation mechinisum with an emergency tigger and systematically evaluate the strategy for several test functiions.
+Surrogate models have been widely used to assist evolutionary algorithms (EAs) to avoid unnecessary objective function evaluations. The cost is reduced by substituting the true objective function evaluation with a cheap but inaccurate estimate using the surrogate model. The surrogate model is built on th knowledge gained in previous iterations. Using surrogate assised (1+1)-ES for simple model and single steps have been studied, but the effect of actual inferior parent resulted from an inaccurate surrogate estimation and the corresponding poor step size are not well understood. We study the behaviour using a surrogate model assisted $((\mu/\mu,\lambda)+(\mu/\mu,\lambda))$-ES using a population instead of a single offspring with the hope to possible address the issue. By comparing the bahaviour of the two, we propose a step size adaptation mechinisum with an emergency tigger and systematically evaluate the strategy for several test functiions.
 \end{abstract}
 
 %
