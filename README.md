@@ -132,11 +132,22 @@ Where D is the decrease factor for step size in occurance of emergency
 
 ## 	Schedule 
 
-Thesis write-up
+- Thesis write-up
+
+Surrogate-assisted $(\mu/\mu,\lambda)$-ES
+
+Just in last section. Say could do...
+
+Plot just n-> \infty, remove precise approximation for n=10,100
+
+- Paper write-up
+
+Still call it (1+1)-ES
 
 New step size adaptation mechinisum (decrease in emergency)
 
-Intuitive, figures
+
+
 
 
 

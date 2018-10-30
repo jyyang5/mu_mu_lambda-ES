@@ -19,37 +19,6 @@
 
 \refsection{0}
   \sortlist[entry]{nty/global/}
-    \entry{1665028}{article}{}
-      \name{author}{2}{}{%
-        {{hash=ab78d001d3d468606aff3105d3c7d855}{%
-           family={Arnold},
-           familyi={A\bibinitperiod},
-           given={D.\bibnamedelimi V.},
-           giveni={D\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
-        {{hash=3b66e9555e0f134e447437d70336ee94}{%
-           family={Beyer},
-           familyi={B\bibinitperiod},
-           given={H.\bibnamedelimi -.},
-           giveni={H\bibinitperiod\bibinitdelim \bibinithyphendelim \bibinithyphendelim .\bibinitperiod}}}%
-      }
-      \strng{namehash}{840b36bab1e6e4a1d7ac590248bfe561}
-      \strng{fullhash}{840b36bab1e6e4a1d7ac590248bfe561}
-      \strng{authornamehash}{840b36bab1e6e4a1d7ac590248bfe561}
-      \strng{authorfullhash}{840b36bab1e6e4a1d7ac590248bfe561}
-      \field{sortinit}{A}
-      \field{sortinithash}{3248043b5fe8d0a34dab5ab6b8d4309b}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{1089-778X}
-      \field{journaltitle}{IEEE Transactions on Evolutionary Computation}
-      \field{month}{8}
-      \field{number}{4}
-      \field{title}{A general noise model and its effects on evolution strategy performance}
-      \field{volume}{10}
-      \field{year}{2006}
-      \field{pages}{380\bibrangedash 391}
-      \range{pages}{12}
-    \endentry
     \entry{1284729}{article}{}
       \name{author}{2}{}{%
         {{hash=ab78d001d3d468606aff3105d3c7d855}{%
@@ -121,34 +90,6 @@
       \verb http://www.sciencedirect.com/science/article/pii/S030439750100384X
       \endverb
       \keyw{Evolution strategies,Darwinian evolution,Noise,Optimization}
-    \endentry
-    \entry{Arnold02noisyoptimization}{report}{}
-      \name{author}{2}{}{%
-        {{hash=aeb1a96d80910b7f23835b99398a0e07}{%
-           family={Arnold},
-           familyi={A\bibinitperiod},
-           given={Dirk\bibnamedelima V.},
-           giveni={D\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
-        {{hash=ca7d075f8c40cc45c6cf495bb0656136}{%
-           family={Beyer},
-           familyi={B\bibinitperiod},
-           given={Hans-georg},
-           giveni={H\bibinithyphendelim g\bibinitperiod}}}%
-      }
-      \list{institution}{1}{%
-        {SIAM Journal on Optimization}%
-      }
-      \strng{namehash}{4b74f965de2c627df9c5de7a4d6d8cb2}
-      \strng{fullhash}{4b74f965de2c627df9c5de7a4d6d8cb2}
-      \strng{authornamehash}{4b74f965de2c627df9c5de7a4d6d8cb2}
-      \strng{authorfullhash}{4b74f965de2c627df9c5de7a4d6d8cb2}
-      \field{sortinit}{A}
-      \field{sortinithash}{3248043b5fe8d0a34dab5ab6b8d4309b}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Noisy Optimization with Evolution Strategies}
-      \field{type}{techreport}
-      \field{year}{2002}
     \endentry
     \entry{1424193}{article}{}
       \name{author}{3}{}{%
@@ -660,33 +601,6 @@
       \verb http://dx.doi.org/10.1017/S0890060401151024
       \endverb
       \keyw{Evolutionary optimization,Fitness landscape,Function approximation}
-    \endentry
-    \entry{rechenberg1973evolutionsstrategie}{inbook}{}
-      \name{author}{1}{}{%
-        {{hash=45fb24e8e1dc73e4b8b8b59d4cb85697}{%
-           family={Rechenberg},
-           familyi={R\bibinitperiod},
-           given={I.},
-           giveni={I\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Frommann-Holzboog}%
-      }
-      \strng{namehash}{45fb24e8e1dc73e4b8b8b59d4cb85697}
-      \strng{fullhash}{45fb24e8e1dc73e4b8b8b59d4cb85697}
-      \strng{authornamehash}{45fb24e8e1dc73e4b8b8b59d4cb85697}
-      \strng{authorfullhash}{45fb24e8e1dc73e4b8b8b59d4cb85697}
-      \field{sortinit}{R}
-      \field{sortinithash}{c15bc8eb6936bc6b3c8baa9e8575af53}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{isbn}{9783772803734}
-      \field{series}{Problemata, 15}
-      \field{title}{Evolutionsstrategie: Optimierung technischer Systeme nach Prinzipien der biologischen Evolution}
-      \field{year}{1973}
-      \verb{url}
-      \verb https://books.google.ca/books?id=-WAQAQAAMAAJ
-      \endverb
     \endentry
     \entry{sacks1989}{article}{}
       \name{author}{4}{}{%
