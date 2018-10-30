@@ -235,13 +235,12 @@ The step size of $(\mu/\mu,\lambda)$-ES is commonly adapated using Cumulative st
 % $\sigma \leftarrow \sigma \text{exp}  (\frac{c}{d}  ( \frac{\| p\|}{ E\| \mathscr{N} (0,I) \|} -1 )  )$
 
 \begin{algorithm}
-\caption{A Surrogate Assisted $( (\mu/\mu,\lambda)+(\mu/\mu,\lambda) )$-ES}
+\caption{A Surrogate Assisted $(\mu/\mu,\lambda)$-ES}
 \label{alg}
 \begin{algorithmic}[1]
 \STATE $c \leftarrow  \frac{\mu +2}{n+\mu+5}$ 
 \STATE $d \leftarrow 1 + 2 \text{max}(0, \sqrt{\frac{\mu - 1}{n+1} } - 1 ) $
 \STATE $p \leftarrow 0$
-\STATE $D \leftarrow 0.68$
 
 \WHILE{not terminate()} 
 	\FOR{$i=1,2,...,\lambda$}
@@ -253,14 +252,9 @@ The step size of $(\mu/\mu,\lambda)$-ES is commonly adapated using Cumulative st
 	\STATE $y = x + \sigma x$
 	\STATE Evaluate $y$ using true objective function, yieding $f(y)$
 	\STATE Update surrogate modle 
-	\IF{$f(x) < f(y)$ (Emergency)}
-		\STATE $\sigma \leftarrow \sigma D$
+	\STATE $s \leftarrow (1-c)s + \sqrt{ c(2-c) \mu z}$
+	\STATE $\sigma \leftarrow \sigma \times \text{exp} \left(\frac{c}{d} \frac{\left\lVert X \right\rVert} { E \left\lVert N(0,I) \right\rVert} -1 \right )$
 		
-	\ELSE
-		\STATE $s \leftarrow (1-c)s + \sqrt{ c(2-c) \mu z}$
-		\STATE $\sigma \leftarrow \sigma \times \text{exp} \left(\frac{c}{d} \frac{\left\lVert X \right\rVert} { E \left\lVert N(0,I) \right\rVert} -1 \right )$
-		
-	\ENDIF
 
 \ENDWHILE
 
