@@ -86,8 +86,9 @@ There is a wealth of literatures for solving black box optimization using (1+1)-
 
 To understand the potential implications of using surrogate models in EAs with varying population size. 
 % The evaluation follows what Arash et al \cite{ARASH} did. 
-In this section, we use a simple model that applis a surrogate on a population. Specifically, we propose an EA that, in each iteration, a population size of $\lambda$ new candidate solutions $y_i \in \mathbb{R}^N,i = 1,...,\lambda $ are generated from $\mu$ parents $x_i \in \mathbb{R}^N, i=1,...,\mu$, where $\lambda>\mu$. The parental population are replaced by the best $\mu$ candidate solutions $y_{i;\lambda},i = 1,2,...,\mu$ evaluated by the surrogate model with fitness estimate $\hat f(y_{i;\lambda}) \leq \hat f(y_{j,\lambda}), 1 \leq i < j \leq \lambda$. For each of the $\lambda$ candidate solution $y_i=x_{\text{opt}}+\sigma z$, $x_{\text{opt}}$ is the best centroid of the  parental population so far referred to as the parent, . $x = \sum_{i=1}^n x_i/\mu$ are the. This step is referred to as intermediate recombination.  
-candidate solutions are ranked according to the fitness estimated by the surrogate with vanishing cost, follow.  
+In this section, we use a simple model that applis a surrogate on a population. Specifically, we propose an EA that, in each iteration, a population size of $\lambda$ new candidate solutions $y_i \in \mathbb{R}^N,i = 1,...,\lambda $ are generated from $\mu$ parents $x_i \in \mathbb{R}^N, i=1,...,\mu$, where $\lambda>\mu$. In each iteration, the parental population with size $\mu$ are replaced by the best $\mu$ candidate solutions $y_{i;\lambda},i = 1,2,...,\mu$ evaluated by the surrogate model with fitness estimate $\hat f(y_{i;\lambda}) \leq \hat f(y_{j,\lambda}), 1 \leq i < j \leq \lambda$ at vanishing cost. For each of the $\lambda$ candidate solution $y_i=x + \sigma z$, $x = \sum_{i=1}^n x_i/\mu$ is the centroid of the parental population, referred to as the parent in each iteration. 
+
+ are the. This step is referred to as intermediate recombination.  
 
 the each iteration either in emergency, discard the offspring generated iteration 
 in  each iteration, a complete population of size $\lambda$ is evaluated by the surrogate. Then a size of $\mu$ candidate solutions ranking 
@@ -199,6 +200,9 @@ $$
 $$
 
 \section{Step size adaptation}
+
+
+Use CSA tune some parameters -> show that the step size is reasonable
 
 In this section we propose a step size mechanism for the surroagted model assisted $((\mu/\mu,\lambda)+(\mu/\mu,\lambda))$-ES.  The strategy is evaluated by using a Gaussian Process based surrogate model replacing the simple model that simulates the surrogate behaviour in Section 3. Several test functions are used for testing the strategy.
 
