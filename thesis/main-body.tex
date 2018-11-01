@@ -63,6 +63,7 @@ There is a wealth of literatures for solving black box optimization using (1+1)-
 \subsection{Step size adaptation}
 % CSA
 
+The step size of $(\mu/\mu,\lambda)$-ES is commonly adapated using cumulative step size adaptation (CSA) \cite{Ostermeier:1994:DAS:1326675.1326679} and Covariance Matrix Adaptation (CMA) \cite{Hansen:2003:RTC:772374.772376}. The former uses an evolution path and a trial path 
 
 % 1/5 rule
 
@@ -169,14 +170,19 @@ $$
 \eta \approx \frac{c_{\mu/\mu,\lambda} \sigma^* (1+{\sigma^*}^2 /2\mu N)}{\sqrt{ 1+{\sigma^*}^2 /2\mu N) } \sqrt{ 1+ \vartheta^2 +{\sigma^*}^2 /2N }} - N \left [ \sqrt{1+ \frac{ {\sigma^*}^2 }{\mu N} - 1} \right ] 
 $$
 
+
+
+
 \section{Step size adaptation}
 
 
-Use CSA tune some parameters -> show that the step size is reasonable
 
-In this section we propose a step size mechanism for the surroagted model assisted $((\mu/\mu,\lambda)+(\mu/\mu,\lambda))$-ES.  The strategy is evaluated by using a Gaussian Process based surrogate model replacing the simple model that simulates the surrogate behaviour in Section 3. Several test functions are used for testing the strategy.
+Even though the analysis in Section 3 suggests potential better performance for the surrogate-assisted $(\mu/\mu,\lambda)$-ES. There is no gaurantee the step size of the strategy can be properly adapted and further the analysis is very inaccurate in terms of finite dimension. In this section we experiemnt the surroagted model assisted $((\mu/\mu,\lambda)+(\mu/\mu,\lambda))$-ES using the cumulative step size adaptation (CSA)\cite{Ostermeier:1994:DAS:1326675.1326679}, commonly used in $(\mu/\mu,\lambda)$-ES and exploit the potential insight that it may offer. The strategy is evaluated by using a Gaussian Process based surrogate model replacing the simple model that simulates the surrogate behaviour in Section 3. Several test functions are used for testing the strategy.
 
-The step size of $(\mu/\mu,\lambda)$-ES is commonly adapated using Cumulative step size adaptation (CSA) \cite{Ostermeier:1994:DAS:1326675.1326679} and Covariance Matrix Adaptation (CMA) \cite{Hansen:2003:RTC:772374.772376}. The former uses an evolution path and a trial path 
+
+
+
+
 
 
 % \begin{algorithmic}
@@ -234,6 +240,11 @@ The step size of $(\mu/\mu,\lambda)$-ES is commonly adapated using Cumulative st
 
 \end{algorithmic}
 \end{algorithm}
+
+
+
+\section{}
+
 
 
 
