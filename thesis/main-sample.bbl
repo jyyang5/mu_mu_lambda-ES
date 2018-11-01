@@ -54,6 +54,34 @@
       \endverb
       \keyw{evolutionary computation;optimisation;iterative methods;continuous time systems;noise;performance analysis;evolutionary optimization;cumulative step length adaptation;iterative algorithms;continuous numerical optimization;interfering noise;mutation strength;Performance analysis;Computer science;Job shop scheduling;Evolutionary computation;Filtering;Dynamic scheduling;History;Stochastic resonance;Simulated annealing;Stochastic processes}
     \endentry
+    \entry{arnold2002noisy}{book}{}
+      \name{author}{2}{}{%
+        {{hash=7431cd17c83a5766177e40a92b04a488}{%
+           family={Arnold},
+           familyi={A\bibinitperiod},
+           given={Dirk\bibnamedelima V},
+           giveni={D\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=695e551c7bda7f41c62840003f872fdb}{%
+           family={Beyer},
+           familyi={B\bibinitperiod},
+           given={Hans-Georg},
+           giveni={H\bibinithyphendelim G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer Science \& Business Media}%
+      }
+      \strng{namehash}{42ccae9c7dbfb64df2775f184af76de1}
+      \strng{fullhash}{42ccae9c7dbfb64df2775f184af76de1}
+      \strng{authornamehash}{42ccae9c7dbfb64df2775f184af76de1}
+      \strng{authorfullhash}{42ccae9c7dbfb64df2775f184af76de1}
+      \field{sortinit}{A}
+      \field{sortinithash}{3248043b5fe8d0a34dab5ab6b8d4309b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Noisy optimization with evolution strategies}
+      \field{volume}{8}
+      \field{year}{2002}
+    \endentry
     \entry{ARNOLD2002629}{article}{}
       \name{author}{2}{}{%
         {{hash=aeb1a96d80910b7f23835b99398a0e07}{%
@@ -601,6 +629,28 @@
       \verb http://dx.doi.org/10.1017/S0890060401151024
       \endverb
       \keyw{Evolutionary optimization,Fitness landscape,Function approximation}
+    \endentry
+    \entry{rechenberg1973evolutionsstrategie}{article}{}
+      \name{author}{1}{}{%
+        {{hash=b58e12d54f5d5bc1ab10d52d28863dce}{%
+           family={Rechenberg},
+           familyi={R\bibinitperiod},
+           given={Ingo},
+           giveni={I\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Frommann-Holzboog}%
+      }
+      \strng{namehash}{b58e12d54f5d5bc1ab10d52d28863dce}
+      \strng{fullhash}{b58e12d54f5d5bc1ab10d52d28863dce}
+      \strng{authornamehash}{b58e12d54f5d5bc1ab10d52d28863dce}
+      \strng{authorfullhash}{b58e12d54f5d5bc1ab10d52d28863dce}
+      \field{sortinit}{R}
+      \field{sortinithash}{c15bc8eb6936bc6b3c8baa9e8575af53}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Evolutionsstrategie--Optimierung technisher Systeme nach Prinzipien der biologischen Evolution}
+      \field{year}{1973}
     \endentry
     \entry{sacks1989}{article}{}
       \name{author}{4}{}{%

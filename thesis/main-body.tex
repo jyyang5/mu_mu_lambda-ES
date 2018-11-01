@@ -34,6 +34,11 @@ This paper intend to improve the understanding of the impact of population size 
 Using an approximate model to reduce computational cost can be traced back to 1960s \cite{Dunham1963}. Some successful surrogated models include but are not limitted to Polynomial Regression (PR, response surface methodology) \cite{doi:10.1080/00401706.1966.10490404}, Gaussian Process (GP, Kriging models) \cite{sacks1989}, Artificial neural networks \cite{Smith:1993:NNS:583180}. There are two types of surrogate models, global surrogate model and local surrogate model, . ES using global surrogate model based on Kring was examined by Ratle \cite{Ratle:2001:KSF:966173.966177}. Another ES using global surrogate model based on Artificial neural networks was constructed by Jin \cite{Jin02aframework} which gives an imperial criterion on using the true objective function or the surrogate model to evaluate the offspring. Ulmer et al \cite{Ulmer03evolutionstrategies} and Buche et al \cite{1424193} also applied GP as surrogate models in ES. But the performance of global surrogate models degrade as the dimension of the data increases, known as \textit{curse of dimensionality}. Online local surrogate models \cite{4033013} can be constructed using methods like radial basis function (RBF) \cite{GIANNAKOGLOU200243} to replace the global surrogate model, where the surrogate model is updated online, giving a more accurate estimation compared with the global surrogate model.
 
 
+%comparision based surrogate
+
+%surroagte-assisted
+
+
 Recent works in surrogated assisted EAs uses a combination of different surrogate models to estimate the fitness strength of the candidate solutions. Zhou et al \cite{4033013} proposed a hierarchical surrogate-assisted ES where a global surrogate model and a local surrogate model are integrated. The Global surrogate model uses GP and PR to estimate the global fitness of ES's search space, filtering the unpromising candidate solutions. Then, a local surrogate-assisted Lamarckian learning based on RBF is performed to search the promising candidate solutions. 
 
 
@@ -84,87 +89,40 @@ There is a wealth of literatures for solving black box optimization using (1+1)-
 % \caption{Expected signle step hehaviour of the surrogate model assisted (1+1)-ES with differnet level of Gaussian surrogate errors. The dots show balues observed experimentally for $n = 10$ (crosses) and $n = 100$ (circles). }
 % \end{figure*}
 
-To understand the potential implications of using surrogate models in EAs with varying population size. 
-% The evaluation follows what Arash et al \cite{ARASH} did. 
-In this section, we use a simple model that applis a surrogate on a population. Specifically, we propose an EA that, in each iteration, a population size of $\lambda$ new candidate solutions $y_i \in \mathbb{R}^N,i = 1,...,\lambda $ are generated from $\mu$ parents $x_i \in \mathbb{R}^N, i=1,...,\mu$, where $\lambda>\mu$. In each iteration, the parental population with size $\mu$ are replaced by the best $\mu$ candidate solutions $y_{i;\lambda},i = 1,2,...,\mu$ evaluated by the surrogate model with fitness estimate $\hat f(y_{i;\lambda}) \leq \hat f(y_{j,\lambda}), 1 \leq i < j \leq \lambda$ at vanishing cost. For each of the $\lambda$ candidate solution $y_i=x + \sigma z$, $x = \sum_{i=1}^n x_i/\mu$ is the centroid of the parental population, referred to as the parent in each iteration. 
-
- are the. This step is referred to as intermediate recombination.  
-
-the each iteration either in emergency, discard the offspring generated iteration 
-in  each iteration, a complete population of size $\lambda$ is evaluated by the surrogate. Then a size of $\mu$ candidate solutions ranking 
-
-%  offsprings generate $\lambda$ candidate solutions that are evaluated by the surrogate model. the candidate solution generated using the surrogate models. We first sample a random direction and generate two points $y_\pm$ by adding the positive and negative directions to the parent. The optimization is done by first fitting a quadratic model using the parent (evaluated by the true objective function) and the other two points (evaluated by the surrogate models where the inaccurate estimate can be achieved at vanishing cost), then choosing the lowest point of the quadratic model as the offspring of this iteration. 
-
-%  For simplicity, we assume the error of using the GP estimate is a Gaussian random variable with mean coincides with the true objective function value of the candidate solution and some variance introduced as the nosie for the estimate. In this case, we can apply the analysis of evolution strategies with the presence of Gaussian noise (see \cite{Arnold02noisyoptimization} and references theorem). The analysis could be extended to biased surrogate models where the mean of the estimates' distribution is different from the exact objective function value. It is likely that analyzing the effect of non-Gaussian noise for the performance of ES could be achieved by using models with error distribution that is skew \cite{1665028}. 
+To understand the potential implications of using surrogate models in EAs with varying population size, in this section, we use a simple model that applis a surrogate on the population. Specifically, we propose an EA that, in each iteration, a population of new $\lambda$ candidate solutions are generated and then evaluated by the surrogate instead of true obejctive function calls and a selection based on the inaccurate surrogate estimate is done followed by a true objective function evaluation for the centroid of the selected referred to as the parent for next iteration. We assume that the inaccurate estimate of the surrogate model is a Gaussin random variable with mean equals the true objective function value of the candidate solution with some variance that describes the accuracy of the surrogate model. So, we can apply the technique of analyzing ESs's behaviours in the presence of Gaussian noise \cite{arnold2002noisy}. The analysis could be extend to biased surrogate modlels  where the distribution mean is different from the exact objective function value\cite{DBLP:conf/ppsn/KayhaniA18}.....
 
 
-% Considering the minimization of quadratic sphere $f: R^n \rightarrow R$ with $f(x)=x^Tx$ where the local surrogate model assisted (1+1)-ES is applied, this section will use the surrogate model described above to replace the candidate solution generated in each iteration. We first consider a simple iteration of the strategy. In each iteration the strategy generates a single candidate solution $y=x+\sigma z$ as is described in Section 3 where $\sigma$ is the step size parameter and $x$ the parent (best candidate solutions obtained so far).  Then we randomly sample standard normally distributed random vector $z \in R^n$ referred to as the direction vector and generate two points based on the direction vector $y_\pm = x\pm z$. We want to fit a quadratic model that optimizes $y$ in direction $z$ where the minimization of the quadratic model can be written as:
-
-% $$\text{Given}\ x \in R^n,\ z \in R^n\ \text{find}\ \alpha_{opt} \in R\ s.t.\ min \{f(x+\alpha z) \}$$
-
-% We denote the quadratic model $g(\alpha) = a\alpha^2 + b \alpha + c = f(x+\alpha z)$ where the surrogate step size $\alpha$ essentially illustrates the signed distance we added to the given candidate solution $y$ in direction $z$. For the three points described above, the strategy uses the surrogate model estimate $f_{\epsilon}(y_{\pm})$ to replace the true objective function value of $y_\pm$ that goes like the following:
-
-% $$ \begin{cases}  g(1) = a+b+c= f_{\epsilon }(y_+)    \\ y(-1) = a-b+c = f_{\epsilon }(y_-)  \\ y(0)  = c = f(x)  \end{cases}$$
-
-% Solving the above system gives $\alpha_{opt} = -\frac{b}{2a}  = -\frac{f_\epsilon(y_+) - f_\epsilon(y_-)}{f_\epsilon(y_+) - f_\epsilon(y_-) + 2f(x) } $ where $y = x + \alpha_{opt} z$ is the offspring obtained in this iteartion.
- 
-
-% By assumption, $f_\epsilon(y_\pm)$ is a random variable with mean $f(y_\pm)$ and some standard deviation $\sigma_\epsilon > 0$ that can be rewritten as $y_\epsilon(y_\pm) = f(y_\pm) + \sigma_\epsilon$. Better surrogate models with small value of $\sigma_\epsilon$ can result more precise estimation of the true objective function. In the case where $\sigma_\epsilon = 0$, we obtain the estimation without Gaussian noise, which is essentially the same as we evaluate using the true objective function.
+Comparision based surrogate model 
 
 
-% We use the decomposing of $z$ proposed by Rechenberg \cite{rechenberg1973evolutionsstrategie} to analyze the expected step size of the strategy. Vector $z$ could be decomposed as a vector sum $z = z_1+z_2$, where $z_1$ is in the direction of the negative gradient of $z$, while $z_2$ orthogonal  to $z_A$. We have $z_1$ standard normally distributed while $\Vert z_2\Vert^2$ $\chi$-distributed with $n-1$ degree of freedom and $\frac{\Vert z_2\Vert^2}{n} \overset{n \rightarrow \infty }{=} 0$. The estimate and optimal $\alpha_{opt}$ of this iteration using surrogate model results the following where $z_\epsilon^\pm$ is standard normally distributed.
-
-% $$f_\epsilon(y_\pm) = (R \mp \sigma z_1)+\sigma \Vert z_2\Vert^2 + \sigma_\epsilon^\pm$$
-% $$ \alpha_{opt} =   \frac{4 \sigma z_1 + \sigma_{\epsilon} (z_{\epsilon}^+  - z_{\epsilon}^-  )}{   2({2\sigma}^2 \Vert z\Vert^2 + \sigma_{\epsilon} (z_{\epsilon}^+  + z_{\epsilon}^- ) ) } $$ 
-
-% The normalized fitness advantage of the offspring over its parent is denoted as $\delta = n(f(x)-f(y)) /(2R^2)$ where $R= \Vert x \Vert$ is referred to as the distance from the parent to the global minima. By introducing the normalized step size $\sigma^* = n \sigma /n$ and estimated normalized fitness advantage $\sigma_\epsilon^* = n \sigma_\epsilon /(2R^2)$(the normalized fitness advantage using the surrogate model) we can simplify $\alpha_{opt}$ 
-
-% \begin{align*} 
-%  \alpha_{opt} 
-%  &= -\frac{ -2\sigma^* z_1 + \sigma_\epsilon^*(z_\epsilon^+ - z_\epsilon^-) }{2 (\sigma*)^2 \Vert z \Vert^2 /n   +  2\sigma_\epsilon^* (z_\epsilon^+ - z_\epsilon^-)  } \\
-%  & \overset{n \rightarrow \infty }{=}      -\frac{ \sigma^* z_1  -  \sigma_\epsilon^*/2(z_\epsilon^+  - z_\epsilon^-) }{ (\sigma^*)^2 + \sigma_\epsilon^* (z_\epsilon^+ +z_\epsilon^-) }  
-%  \end{align*}
-
-% Simplify the expected fitness advantage of the offspring over its parent
-% \begin{align*} 
-% \delta 
-% & = \frac{n}{2R^2} (x^Tx - (x+\alpha_{opt} \sigma z)^T (x - (x+\alpha_{opt} \sigma z) ) \\
-% & \overset{n \rightarrow \infty }{=}  \alpha_{opt}  \sigma^* z_1 - \frac{ ( \alpha_{opt}\sigma^*)^2 }{2} 
-%  \end{align*}
+Consider the minimization of the quadratic sphere $f: \mathbb R^N \rightarrow \mathbb R$ with $f(x)=x^Tx$ where the surrogate model assisted $(\mu/\mu.\lambda)$-ES is applied. This section will use the surrogate model described above to replace the true objective function calls of candidate solutions in each iteration, inaccurate but at vanishing cost. We first consider a simple iteration of the strategy. 
 
 
-% where $z_1 = -x^T z$ is standard normally distributed random variable that coincides with $z$ in the negative gradient direction and $\overset{n \rightarrow \infty }{=}$ denotes the convergence of the distribution. The equation could be further written as 
+In each iteration, a population size of $\lambda$ new candidate solutions $y_i \in \mathbb{R}^N,i = 1,...,\lambda $ are generated from $\mu$ parents $x_i \in \mathbb{R}^N, i=1,...,\mu$, where $\lambda>\mu$. The parental population with size $\mu$ are replaced by the best $\mu$ candidate solutions $y_{i;\lambda},i = 1,2,...,\mu$ evaluated by the surrogate model with fitness estimate $f_{\epsilon}(y_{i;\lambda}) \leq f_{\epsilon}(y_{j,\lambda}), 1 \leq i < j \leq \lambda$ at vanishing cost. For each of the $\lambda$ candidate solutions $y_i=x + \sigma z$ where the parent $x = \sum_{i=1}^n x_i/\mu$, the centroid of the parental population is obtained through intermediate recombination, $z \in  \mathbb R^N$ is a standard normally distributed random vector, $\sigma > 0$ is the step size of the strategy that the adaptation is discussed in Section 4. The strategy uses the surrogate model to obtain a fitness estimate of the candidate solution $f_{\epsilon} (y_i), 1 \leq i \geq \lambda$ and by the assumption the estimate has mean $f(y_i)$ with some standard deviation $\sigma_\epsilon > 0$ (\textit{surroagte model error} also as \textit{fitness noise} \cite{1284729}). Better surrogate model results in smaller model error $\sigma_\epsilon$. For the $\lambda$ new candidate solutions $f_\epsilon (y_i) < f_\epsilon (y_j), 1 \leq i < j \leq \lambda$ indiccates the estimated objective function value of $y_i$ is superior to $y_j$ and therefore the best $\mu$ candidate solutions are selected,replacing the old parental population of size $\mu$ (used for offspring generation in next iteration), while the other inferior candidate solutions are discarded. Therefore, in each iteration only one objective function call is made in evaluating the fitness of the parent (centroid of parental population). The surrogate essentially does a pre-selection for $(\mu/\mu,\lambda)$-ES over candidate solutions, avoiding the unecessary objective function calls determined by the surroagte model.  
 
-% $$\delta(x,y)  \overset{n \rightarrow \infty }{=} x\sigma^* y - \frac{(x\sigma^*)^2}{2}  $$
+Decomposition of $z$, first proposed by Rechenberg \cite{rechenberg1973evolutionsstrategie} can be used to study the expected step size of the strategy. We can decompose the vector $z$ as a vector sum $z = z_1 + z_2$, where $z_1$ is in the direction of the negative gradient of the objecive function $\nabla f(x)$, while $z_2$ orthogonal to $z_1$. We have $z_1$ standard normally distributed, while $\Vert z_2\Vert^2$ $\chi$-distributed with $N-1$ degree of freedom and $ \Vert z_2\Vert^2 /n \overset{N \rightarrow \infty }{=} 0$ (see reference theorem [$\color{red}{dirk's slides }$]). Denote $\delta = N (f(x) - f(y))/(2R^2)$ where $R = \Vert x \Vert$ is the distance to the optimal, we further introduce normalized step size $\sigma^* = n \sigma/R$ and $z_{\text{step}} = \sum_{i=1}^\mu z_{i;\lambda}$ (the averaged $z$ taken by the best $mu$ candidate solutions). The normalized fitness advantage of $y$ over $x$ follows
 
-
-% The probability desity of $\alpha_{opt}$ conditioned on $z_1$ obtained by Dirk is 
-% \begin{align*} 
-%  & p_{\alpha|z1}(x|y) \\ = & 2De^{\frac{-E^2}{2(1+D^2)} }  \frac{ \left [ ( \sigma_\epsilon^* +2y+2\theta \frac{E}{1+D^2})(1-2normcdf(\beta)) +4\theta \frac{De^{-\beta^2/2  }}{ \sqrt{2 \pi}  \sqrt{1+D^2}}   \right ]    }{                         (1-2x)^2 \theta  \sqrt{2 \pi}   \sqrt{1+D^2}   } 
-%  \end{align*} 
-
-% where we have the following 
-
-% $$\begin{cases} 
-% \theta = \frac{\sigma_\epsilon^*}{\sigma^*}  \\
-% E =  \frac{-2(y+x \sigma_\epsilon^*  )}{1+2x} /\theta  \\
-% D = \frac{1-2x}{1+2x}  \\
-% \beta = \frac{  (  \sigma_\epsilon^*  /2+y)*\sqrt{1+D^2}+\theta E/\sqrt{1+D^2} }{D} \\
-% normcdf(\beta): \text{cdf\ of\ N(0,1) evaluated\ at\ } \beta
-% \end{cases}   $$
+$$
+\begin{aligned}
+\delta & = \frac{N}{2R^2} (x^Tx - (x+\sigma z_{\text{step}})^T (x+\sigma z_{\text{step}})) \\
+& = \frac{N}{2R^2} (-2 \sigma x^Tz_{\text{step}} - \sigma^2 \Vert z_{\text{step}}\Vert^2 ) \\
+& \overset{N \rightarrow \infty}{=} \sigma^* z_{\text{step},1} - \frac{{\sigma^*} ^2}{2},
+\end{aligned}
+$$
 
 
-% In each iteration, one objective function call is made after the candidate solution is optimized using the quadratic model. The offspring $y$ replacing its parent $x$ if and only if $\delta >0$. We write $p_{step} = Prob[\delta > 0]$ for the probability of the offspring replacing its parent
+where $z_{\text{step},1} $, the component of $z_{\text{step}}$ pointing to the negative graident of $f(x)$, is normally distributed and $\overset{N \rightarrow \infty}{=}$ denotes the convergence of the distribution. We further indtroudce $\sigma_\epsilon^* = N \sigma_\epsilon / (2R^2)$, the normalized surrogate model error also referred to as the normalized fitness noise from Arnold and Beyer \cite{1284729}. The estimate of true objective function value of $y_i$ is $f_\epsilon (y_i) = f(y_i) + \sigma_\epsilon z_\epsilon, z_\epsilon \in \mathbb{R}$ is standard normally distributed.
 
-% % Finally the expected value of the normalized change in objective function is 
-% % $$\Delta = \begin{cases}  \delta  &\text{if } \delta > 0 \\ 0 & \text{otherwise}  \end{cases}$$
+The actual normalized fitness advantage of $y$ using the surrogate model is 
 
-% In each itertaion, it could be computed as
-
-% $$  E[\Delta] = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^\infty\int_{-\infty}^\infty e^{-y^2/2} p_{\alpha|z1}(x|y) \delta(x, y) dx dy$$
+$$\delta_\epsilon = \delta+\sigma_\epsilon^* z_\epsilon$$
 
 
-% We define $\theta = \sigma_\epsilon^* / \sigma^*$ the noise-to-signal ratio to measure the quality of surrogate model relative to the algorithm's step size and the function to be integrated is denoted as
+
+
+
+
+We define $\theta = \sigma_\epsilon^* / \sigma^*$ the noise-to-signal ratio to measure the quality of surrogate model relative to the algorithm's step size, the expected fitness gian of against the normalized step size is plotted in Fig. 1. The line shows the result obtained from equation (xx) (xx) (xx). The dots represent the experimental result for unbiased Gaussin surroagte error for $n \in \{10,100 \}$ obtained by averaging 100 runs.
 
 % $$g(x,y,\sigma_\epsilon^*, \sigma^*)= 1/ \sqrt{2 \pi} e^{-y^2/2} p_{\alpha|z1}(x|y) \delta(x, y)$$
 
@@ -250,7 +208,7 @@ The step size of $(\mu/\mu,\lambda)$-ES is commonly adapated using Cumulative st
 	\FOR{$i=1,2,...,\lambda$}
 		\STATE Generate standard normally distributed $z_i \in \mathbb{R}^N $
 		\STATE $y_i \leftarrow x + \sigma z_i$
-		\STATE Evaluate $y_i$ using the surrogate model, yieding $\hat{f}(y_i)$
+		\STATE Evaluate $y_i$ using the surrogate model, yieding $f_{\epsilon}(y_i)$
 	\ENDFOR
 	\STATE $z = \frac{1}{\mu} \sum_{i=1}^{\mu} z_{i;\lambda}$
 	\STATE $y = x + \sigma x$
@@ -266,42 +224,6 @@ The step size of $(\mu/\mu,\lambda)$-ES is commonly adapated using Cumulative st
 \end{algorithm}
 
 
-% % Include building the surrogate model 
-% \begin{algorithm}
-% \caption{A Surrogate Assisted $( (\mu/\mu,\lambda)+(\mu/\mu,\lambda) )$-ES}
-% \label{alg}
-% \begin{algorithmic}
-% \STATE $c \leftarrow  \frac{\mu +2}{n+\mu+5}$ 
-% \STATE $d \leftarrow 1 + 2 \text{max}(0, \sqrt{\frac{\mu - 1}{n+1} } - 1 ) $
-% \STATE $p \leftarrow 0$
-% \STATE $D \leftarrow 0.68$
-
-% \WHILE{not terminate()} 
-% 	\FOR{$i=1,2,...,\lambda$}
-% 		\STATE Generate standard normally distributed $z_i \in \mathbb{R}^N $
-% 		\STATE $y_i \leftarrow x + \sigma z_i$
-% 		\STATE Evaluate $y_i$ using the surrogate model, yieding $\hat{f}(y_i)$
-% 	\ENDFOR
-% 	\STATE $z = \frac{1}{\mu} \sum_{i=1}^{\mu} z_{i;\lambda}$
-% 	\STATE $y = x + \sigma x$
-% 	\STATE Evaluate $y$ using true objective function, yieding $f(y)$
-% 	\STATE Update surrogate modle 
-% 	\IF{$f(x) < f(y)$ (Emergency)}
-% 		\STATE $\sigma \leftarrow \sigma D$
-		
-% 	\ELSE
-% 		\STATE $s \leftarrow (1-c)s + \sqrt{ c(2-c) \mu z}$
-% 		\STATE $\sigma \leftarrow \sigma \times \text{exp} \left(\frac{c}{d} \frac{\left\lVert X \right\rVert} { E \left\lVert N(0,I) \right\rVert} -1 \right )$
-		
-% 	\ENDIF
-
-% \ENDWHILE
-%    \STATE $S \leftarrow 0$
-
-% \end{algorithmic}
-% \end{algorithm}
-
-% $\left\lVert X \right\rVert$ where $\left ( x \left( y\right ) \right )$
 
 \section{Conclusions}
 In this paper, We proposed a local surrogate-assisted $(\mu/\mu,\lambda)+(\mu/\mu,\lambda)$-ES. The strategy uses a lcoal surrogate model to optimize the candidate solution obtained in each iteration. The performance is analyzed by adding different levels of Gaussian distributed noise and applying the strategy to sphere functions. 
