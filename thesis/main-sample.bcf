@@ -2156,9 +2156,9 @@
     <bcf:citekey order="11">Jin02aframework</bcf:citekey>
     <bcf:citekey order="12">Ulmer03evolutionstrategies</bcf:citekey>
     <bcf:citekey order="13">1424193</bcf:citekey>
-    <bcf:citekey order="14">4033013</bcf:citekey>
-    <bcf:citekey order="15">GIANNAKOGLOU200243</bcf:citekey>
-    <bcf:citekey order="16">4033013</bcf:citekey>
+    <bcf:citekey order="14">loshchilov2012self</bcf:citekey>
+    <bcf:citekey order="15">4033013</bcf:citekey>
+    <bcf:citekey order="16">GIANNAKOGLOU200243</bcf:citekey>
     <bcf:citekey order="17">10.1007/978-3-319-09333-8_4</bcf:citekey>
     <bcf:citekey order="18">DBLP:conf/ppsn/KayhaniA18</bcf:citekey>
     <bcf:citekey order="19">Ulmer2005</bcf:citekey>
@@ -2168,11 +2168,13 @@
     <bcf:citekey order="23">1284729</bcf:citekey>
     <bcf:citekey order="24">rechenberg1973evolutionsstrategie</bcf:citekey>
     <bcf:citekey order="25">1284729</bcf:citekey>
-    <bcf:citekey order="26">1284729</bcf:citekey>
+    <bcf:citekey order="26">ARNOLD2001127</bcf:citekey>
     <bcf:citekey order="27">Arnold:2000:EMS:645825.669117</bcf:citekey>
-    <bcf:citekey order="28">ARNOLD2002629</bcf:citekey>
-    <bcf:citekey order="29">Ostermeier:1994:DAS:1326675.1326679</bcf:citekey>
-    <bcf:citekey order="30">Hansen:2003:RTC:772374.772376</bcf:citekey>
+    <bcf:citekey order="28">DBLP:conf/ppsn/KayhaniA18</bcf:citekey>
+    <bcf:citekey order="29">DBLP:conf/ppsn/KayhaniA18</bcf:citekey>
+    <bcf:citekey order="30">ARNOLD2002629</bcf:citekey>
+    <bcf:citekey order="31">Ostermeier:1994:DAS:1326675.1326679</bcf:citekey>
+    <bcf:citekey order="32">Hansen:2003:RTC:772374.772376</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="nty/global/" type="entry" sortscheme="nty" sortnamekeyscheme="global" labelprefix="">
   <bcf:sorting>

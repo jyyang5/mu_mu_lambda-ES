@@ -92,6 +92,60 @@
       \verb http://dl.acm.org/citation.cfm?id=645825.669117
       \endverb
     \endentry
+    \entry{ARNOLD2001127}{incollection}{}
+      \name{author}{2}{}{%
+        {{hash=aeb1a96d80910b7f23835b99398a0e07}{%
+           family={Arnold},
+           familyi={A\bibinitperiod},
+           given={Dirk\bibnamedelima V.},
+           giveni={D\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=695e551c7bda7f41c62840003f872fdb}{%
+           family={Beyer},
+           familyi={B\bibinitperiod},
+           given={Hans-Georg},
+           giveni={H\bibinithyphendelim G\bibinitperiod}}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=e66d2fdf4007efd48ccd745047a1d557}{%
+           family={Martin},
+           familyi={M\bibinitperiod},
+           given={Worthy\bibnamedelima N.},
+           giveni={W\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=718c59384b821063b6c177a6f2821f96}{%
+           family={Spears},
+           familyi={S\bibinitperiod},
+           given={William\bibnamedelima M.},
+           giveni={W\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {San Francisco}%
+      }
+      \list{publisher}{1}{%
+        {Morgan Kaufmann}%
+      }
+      \strng{namehash}{b5ae46847f65077930aac40be45790d5}
+      \strng{fullhash}{b5ae46847f65077930aac40be45790d5}
+      \strng{authornamehash}{b5ae46847f65077930aac40be45790d5}
+      \strng{authorfullhash}{b5ae46847f65077930aac40be45790d5}
+      \strng{editornamehash}{3a220cddaf8f00027ed26a18960409f3}
+      \strng{editorfullhash}{3a220cddaf8f00027ed26a18960409f3}
+      \field{sortinit}{A}
+      \field{sortinithash}{3248043b5fe8d0a34dab5ab6b8d4309b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Foundations of Genetic Algorithms 6}
+      \field{isbn}{978-1-55860-734-7}
+      \field{title}{Local Performance of the (Mu/Mu, Lambda)-ES in a Noisy Environment}
+      \field{year}{2001}
+      \field{pages}{127\bibrangedash 141}
+      \range{pages}{15}
+      \verb{doi}
+      \verb https://doi.org/10.1016/B978-155860734-7/50090-1
+      \endverb
+      \verb{url}
+      \verb http://www.sciencedirect.com/science/article/pii/B9781558607347500901
+      \endverb
+    \endentry
     \entry{arnold2002noisy}{book}{}
       \name{author}{2}{}{%
         {{hash=7431cd17c83a5766177e40a92b04a488}{%
@@ -579,6 +633,41 @@
       \field{year}{2016}
       \field{pages}{to appear}
       \range{pages}{-1}
+    \endentry
+    \entry{loshchilov2012self}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=1241b8181104f1917578d4c7f9b323b6}{%
+           family={Loshchilov},
+           familyi={L\bibinitperiod},
+           given={Ilya},
+           giveni={I\bibinitperiod}}}%
+        {{hash=8db29f6587badffb4797659c16105f20}{%
+           family={Schoenauer},
+           familyi={S\bibinitperiod},
+           given={Marc},
+           giveni={M\bibinitperiod}}}%
+        {{hash=0049a8f4105c18fe1642721301045aff}{%
+           family={Sebag},
+           familyi={S\bibinitperiod},
+           given={Michele},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{c784125d7232dac68b5328f98deb45a8}
+      \strng{fullhash}{c784125d7232dac68b5328f98deb45a8}
+      \strng{authornamehash}{c784125d7232dac68b5328f98deb45a8}
+      \strng{authorfullhash}{c784125d7232dac68b5328f98deb45a8}
+      \field{sortinit}{L}
+      \field{sortinithash}{7bba64db83423e3c29ad597f3b682cf3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 14th annual conference on Genetic and evolutionary computation}
+      \field{title}{Self-adaptive surrogate-assisted covariance matrix adaptation evolution strategy}
+      \field{year}{2012}
+      \field{pages}{321\bibrangedash 328}
+      \range{pages}{8}
     \endentry
     \entry{Ostermeier:1994:DAS:1326675.1326679}{article}{}
       \name{author}{3}{}{%

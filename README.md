@@ -131,6 +131,30 @@ Where D is the decrease factor for step size in occurance of emergency
 |   (12/12,50)		    | 2      | ||0.96(3.0)   |
 
 ## 	Schedule 
+- Thesis write-up
+    - Send the paper needed for computing c_{\mu/\mu,\lambda}
+      - Include those equations for probbaility  
+    - Graph 
+      - Do it 2*2 or 1*4
+
+- Contribution 
+    - Simple idea 
+    - Systematic evaluations 
+
+    recent paper introduces (1+1)-ES exploiting GP surrogate models, we wonder whether mml-ES could work better
+    1. Model using GP noise, fig. and Eqns. 
+    2. Even though suggest potential better performance 
+      - no gaurantee step size adaptation
+      - very inaccurate finite of n, practical analysis (experimental result)
+    3. Runs, many steps in the iteration deterior the candidate solutions -> simplily not using those-> we can get significant advantage 
+
+- Paper
+    wonder (1+1)-ES benefit get better direction 
+    - MATH
+    - Insight any step size adaptation without CSA 
+
+
+
 
 - Thesis write-up
 
