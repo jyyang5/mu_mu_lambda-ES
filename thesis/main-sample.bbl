@@ -54,6 +54,44 @@
       \endverb
       \keyw{evolutionary computation;optimisation;iterative methods;continuous time systems;noise;performance analysis;evolutionary optimization;cumulative step length adaptation;iterative algorithms;continuous numerical optimization;interfering noise;mutation strength;Performance analysis;Computer science;Job shop scheduling;Evolutionary computation;Filtering;Dynamic scheduling;History;Stochastic resonance;Simulated annealing;Stochastic processes}
     \endentry
+    \entry{Arnold:2000:EMS:645825.669117}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=aeb1a96d80910b7f23835b99398a0e07}{%
+           family={Arnold},
+           familyi={A\bibinitperiod},
+           given={Dirk\bibnamedelima V.},
+           giveni={D\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=695e551c7bda7f41c62840003f872fdb}{%
+           family={Beyer},
+           familyi={B\bibinitperiod},
+           given={Hans-Georg},
+           giveni={H\bibinithyphendelim G\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {London, UK, UK}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag}%
+      }
+      \strng{namehash}{b5ae46847f65077930aac40be45790d5}
+      \strng{fullhash}{b5ae46847f65077930aac40be45790d5}
+      \strng{authornamehash}{b5ae46847f65077930aac40be45790d5}
+      \strng{authorfullhash}{b5ae46847f65077930aac40be45790d5}
+      \field{sortinit}{A}
+      \field{sortinithash}{3248043b5fe8d0a34dab5ab6b8d4309b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 6th International Conference on Parallel Problem Solving from Nature}
+      \field{isbn}{3-540-41056-2}
+      \field{series}{PPSN VI}
+      \field{title}{Efficiency and Mutation Strength Adaptation of the (Mu, muI, Lambda)-ES in a Noisy Environment}
+      \field{year}{2000}
+      \field{pages}{39\bibrangedash 48}
+      \range{pages}{10}
+      \verb{url}
+      \verb http://dl.acm.org/citation.cfm?id=645825.669117
+      \endverb
+    \endentry
     \entry{arnold2002noisy}{book}{}
       \name{author}{2}{}{%
         {{hash=7431cd17c83a5766177e40a92b04a488}{%

@@ -2169,9 +2169,10 @@
     <bcf:citekey order="24">rechenberg1973evolutionsstrategie</bcf:citekey>
     <bcf:citekey order="25">1284729</bcf:citekey>
     <bcf:citekey order="26">1284729</bcf:citekey>
-    <bcf:citekey order="27">ARNOLD2002629</bcf:citekey>
-    <bcf:citekey order="28">Ostermeier:1994:DAS:1326675.1326679</bcf:citekey>
-    <bcf:citekey order="29">Hansen:2003:RTC:772374.772376</bcf:citekey>
+    <bcf:citekey order="27">Arnold:2000:EMS:645825.669117</bcf:citekey>
+    <bcf:citekey order="28">ARNOLD2002629</bcf:citekey>
+    <bcf:citekey order="29">Ostermeier:1994:DAS:1326675.1326679</bcf:citekey>
+    <bcf:citekey order="30">Hansen:2003:RTC:772374.772376</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="nty/global/" type="entry" sortscheme="nty" sortnamekeyscheme="global" labelprefix="">
   <bcf:sorting>

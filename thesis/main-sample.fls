@@ -468,16 +468,6 @@ INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-t1.vf
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-t1--base.tfm
-INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/public/newtx/ntxsy5.vf
-INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
-INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
-INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/public/newtx/nxlmi5.vf
-INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/newtx/fxlri-5alt.tfm
-INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/newtx/LibertineTheta-Regular.tfm
-INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/newtx/rtxmi5.tfm
-INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/newtx/zxlr-5nums.tfm
-INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/newtx/fxlri-5letters.tfm
-INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/newtx/rntxmi5.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-ot1.vf
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-ot1--base.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/public/libertine/LinLibertineTB-tlf-t1.vf
@@ -499,10 +489,8 @@ INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinBiolinu
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb
-INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/newtx/fxlri-5letters.pfb
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/newtx/fxlri-7letters.pfb
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb
-INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/newtx/rtxmi5.pfb
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/newtx/rtxmi7.pfb
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/newtx/txexs.pfb
