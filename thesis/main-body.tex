@@ -86,6 +86,16 @@ The step size of $(\mu/\mu,\lambda)$-ES is commonly adapated using cumulative st
 
 \section{Analysis}
 
+
+% The expected fitness gain over noise-to-signal ratio
+\begin{center}
+\begin{figure*}
+\includegraphics[height=2.7in, width=7.1in]{expectedFitGain}
+\caption{The figures from left to right shows the expected signle step behaviour of the surrogate model assisted $(\mu/\mu,\lambda)$-ES with unbiased Gaussin distributed surrogate error with $\lambda=10,20,40$ respectively where $\mu = ceil(\lambda/4)$. The solid lines are the results obtained analytically when $n \rightarrow n$, while the dotted line below illustrates the corresponding performance ($n=10$) of the $(\mu/\mu,\lambda)$-ES without model assistance. The dots represents the experimental result for $n=1-$ (croesses) and $n=100$ (circles).}
+\end{figure*}
+\end{center}
+
+
 % \begin{figure*}
 % \includegraphics[height=3in, width=6in]{successRate}
 % \caption{Expected signle step hehaviour of the surrogate model assisted (1+1)-ES with differnet level of Gaussian surrogate errors. The dots show balues observed experimentally for $n = 10$ (crosses) and $n = 100$ (circles). }
@@ -110,7 +120,6 @@ where $z_{\text{step},1} $, the component of $z_{\text{step}}$ pointing to the n
 
 The actual normalized fitness advantage of $y$ using the surrogate model is 
 $$\delta_\epsilon = \delta+\sigma_\epsilon^* z_\epsilon$$
-
 
 The expected value of the normalized change in objective function value  
 \begin{align}
@@ -138,8 +147,18 @@ To obtain the opt. expected fitness gain $\eta_{opt}$ and its coresponding opt. 
 \sigma^*_{opt} &= \frac{ \mu c_{\mu \ \mu, \lambda}}{\sqrt {1+ \vartheta^2}}
 \end{align}
 
+The expected fitness gian against the normalized step size for $(\mu/\mu,\lambda)$-ES with population size $\lambda=10,20,40$ corresponding $\mu=3,5,10$ are ploted in Figure 1 from left to right respectively. The line shows the result obtained from Eqs. (\ref{eq:eta}) (\ref{eq:c_mu_mu_lambda}). The dots represent the experimental result for unbiased Gaussin surroagte error for $n \in \{10,100 \}$ obtained by averaging 100 runs. The result obtained for $n \rightarrow \infty$ are considered to be cases with a large normalized step size with very small noise to signal ratio. 
 
-The expected fitness gian against the normalized step size for (1+1)-ES is ploted in Fig. 1 (\cite{DBLP:conf/ppsn/KayhaniA18} and $(\mu/\mu,\lambda)$-ES with population size $\lambda=10,20,40$ in Fig. 2, Fig. 3 and Fig. 4 respectively. The line shows the result obtained from Eqs. (4),(5),(6) for (1+1)-ES from Arash and Dirk \cite{DBLP:conf/ppsn/KayhaniA18} and (\ref{eq:eta}) (\ref{eq:c_mu_mu_lambda}) for $(\mu/\mu,\lambda)$-ES. The dots represent the experimental result for unbiased Gaussin surroagte error for $n \in \{10,100 \}$ obtained by averaging 100 runs. The result obtained for $n \rightarrow \infty$ are considered to be cases with a large normalized step size with very small noise to signal ratio. 
+% The expected fitness gian against the normalized step size for (1+1)-ES is ploted in Fig. 1 (\cite{DBLP:conf/ppsn/KayhaniA18} and $(\mu/\mu,\lambda)$-ES with population size $\lambda=10,20,40$ in Fig. 2, Fig. 3 and Fig. 4 respectively. The line shows the result obtained from Eqs. (4),(5),(6) for (1+1)-ES from Arash and Dirk \cite{DBLP:conf/ppsn/KayhaniA18} and (\ref{eq:eta}) (\ref{eq:c_mu_mu_lambda}) for $(\mu/\mu,\lambda)$-ES. The dots represent the experimental result for unbiased Gaussin surroagte error for $n \in \{10,100 \}$ obtained by averaging 100 runs. The result obtained for $n \rightarrow \infty$ are considered to be cases with a large normalized step size with very small noise to signal ratio. 
+
+
+
+\begin{center}
+\begin{figure*}
+\includegraphics[height=2.7in, width=5.4in]{opt_stepSize_fitGain}
+\caption{Opt. expected step size and  opt. expected fitness gain}
+\end{figure*}
+\end{center}
 
 $\color{red}{graph- subplot(2,2)???\ different\ lambda?}$
 
