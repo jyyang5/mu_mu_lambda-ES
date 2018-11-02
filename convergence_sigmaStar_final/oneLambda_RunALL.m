@@ -113,7 +113,8 @@ figure(FIG_NUM);
 subplot(1,2,1);hold on;
 fun_precise_optFitGain_over_v(f,NUM_OF_RUNS,mu,lambda,v_array,10,opt_plot_colour,'x',c_mu_lambda,v_expedted_curve_array);    % plot n = 10 (x)
 disp('* done'); 
-subplot(2,1,1);hold on;
+figure(FIG_NUM);
+subplot(1,2,1);hold on;
 fun_precise_optFitGain_over_v(f,NUM_OF_RUNS,mu,lambda,v_array,100,opt_plot_colour,'o',c_mu_lambda,v_expedted_curve_array);   % plot n = 100 (o)
 disp('s done');
 xlim([0 10]);

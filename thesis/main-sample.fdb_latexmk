@@ -1,11 +1,11 @@
 # Fdb version 3
-["biber main-sample"] 1541093372 "main-sample.bcf" "main-sample.bbl" "main-sample" 1541093455
+["biber main-sample"] 1541130710 "main-sample.bcf" "main-sample.bbl" "main-sample" 1541130717
   "main-bibliography.bib" 1541093176 25079 32f8bdfb77215c16be346177b255bbe7 ""
-  "main-sample.bcf" 1541093454 97713 ca698a5e91f1fe17d97f072f88665fc7 ""
+  "main-sample.bcf" 1541130717 97791 e1d0b90a8890ed5318cc945b8a96fc3d ""
   (generated)
   "main-sample.blg"
   "main-sample.bbl"
-["pdflatex"] 1541093452 "main-sample.tex" "main-sample.pdf" "main-sample" 1541093455
+["pdflatex"] 1541130714 "main-sample.tex" "main-sample.pdf" "main-sample" 1541130717
   "/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc" 1480098666 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc" 1490133665 2921 8ca0eb0831f9bc5da080d3697cfe67bf ""
   "/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc" 1490133665 2933 9ad527ce78d7c5fa0a642dead095f172 ""
@@ -217,16 +217,16 @@
   "/usr/local/texlive/2017/texmf.cnf" 1495593465 577 2b71d4d888f9e5560b2e99985915a9fa ""
   "ACM-Reference-Format.bbx" 1540472225 18425 c755f24a02600e7dab3afb895bb9871a ""
   "ACM-Reference-Format.cbx" 1540472225 100 022318c52dbfd268aba635ca65293b8e ""
-  "main-body.tex" 1541093439 32702 6846b4f573e14939b3c134fb7fb5cf2a ""
-  "main-sample.aux" 1541093454 6769 307fbb9f70eff553d851c5b10cbf96b3 ""
-  "main-sample.bbl" 1541093373 38853 d3d3d706991bd1131069ce44dc2e6eee "biber main-sample"
-  "main-sample.out" 1541093454 1032 cd59920445e76ff7604a001f093cdcf8 ""
-  "main-sample.run.xml" 1541093454 2521 faabd12540979f7ba19c0e7e4199c936 ""
+  "main-body.tex" 1541130707 33110 a74c1848f04b6ea6e85f2f4953f74bf3 ""
+  "main-sample.aux" 1541130717 6971 bf24bb6c22e7fe682d589a04721d2864 ""
+  "main-sample.bbl" 1541130711 38853 d3d3d706991bd1131069ce44dc2e6eee "biber main-sample"
+  "main-sample.out" 1541130717 1194 426cc27acba641ac496f2dfab19dee32 ""
+  "main-sample.run.xml" 1541130717 2521 faabd12540979f7ba19c0e7e4199c936 ""
   "main-sample.tex" 1541035662 4478 183d637e625d9a59551c1622faaee260 ""
   (generated)
-  "main-sample.bcf"
-  "main-sample.run.xml"
-  "main-sample.out"
   "main-sample.log"
-  "main-sample.pdf"
   "main-sample.aux"
+  "main-sample.out"
+  "main-sample.pdf"
+  "main-sample.run.xml"
+  "main-sample.bcf"
