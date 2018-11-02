@@ -108,25 +108,20 @@ v_array = s_start:increment:s_end;                                          % Fo
 
 v_expedted_curve_array = 0.0001:0.0001:20;                                  % plot curve n -> infty
 
-FIG_NUM = 5;
-figure(FIG_NUM);
-subplot(1,2,1);hold on;
-fun_precise_optFitGain_over_v(f,NUM_OF_RUNS,mu,lambda,v_array,10,opt_plot_colour,'x',c_mu_lambda,v_expedted_curve_array);    % plot n = 10 (x)
+FIG_NUM = 5;                
+fun_precise_optFitGain_over_v(f,NUM_OF_RUNS,mu,lambda,v_array,10,opt_plot_colour,'x',FIG_NUM,c_mu_lambda,v_expedted_curve_array);    % plot n = 10 (x)
 disp('* done'); 
-subplot(2,1,1);hold on;
-fun_precise_optFitGain_over_v(f,NUM_OF_RUNS,mu,lambda,v_array,100,opt_plot_colour,'o',c_mu_lambda,v_expedted_curve_array);   % plot n = 100 (o)
+fun_precise_optFitGain_over_v(f,NUM_OF_RUNS,mu,lambda,v_array,100,opt_plot_colour,'o',FIG_NUM,c_mu_lambda,v_expedted_curve_array);   % plot n = 100 (o)
 disp('s done');
 xlim([0 10]);
 ylim([0 inf]);
-box on;
 
-
-% % save opt. expected fitGain
-% if(subplotNum==3)
-%     box on;
-%     p2 = sprintf('opt_fitGain.fig');
-%     saveas(gcf,p2);
-% end
+% save opt. expected fitGain
+if(subplotNum==3)
+    box on;
+    p2 = sprintf('opt_fitGain.fig');
+    saveas(gcf,p2);
+end
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -169,8 +164,7 @@ box on;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Plot opt. expected step size gain over noise-to-signal ratio 
 % solid n->infty
-figure(FIG_NUM);hold on;
-subplot(1,2,2);hold on;
+figure(6);hold on;
 v_range = v_expedted_curve_array;
 sigma_star = c_mu_lambda*mu./(sqrt(1+v_range.*v_range));
 plot(v_range,sigma_star,'Color',opt_plot_colour);
@@ -184,7 +178,6 @@ ylabel('opt. normalized step size \sigma^*_{opt}','FontSize',15);
 xlabel('noise-to-signal-ratio \upsilon','FontSize',15); 
 % set(gca, 'XScale', 'log');
 set(gca,'FontSize',15);
-box on;
 xlim([0 10]);
 ylim([0 inf]);
 
@@ -193,9 +186,9 @@ title(p1,'fontsize',20);
 if(subplotNum==3)
     leg = legend('(3/3,10)-ES','(5/5,20)-ES','(10/10,40)-ES');
     leg.FontSize = 10;
-    title(leg,'Model assisted');
+    title(leg,'Surrogate as');
     box on;
-    p2 = sprintf('opt_stepSize_fitGain.fig');
+    p2 = sprintf('opt_stepSize.fig');
     saveas(gcf,p2);
 end
 

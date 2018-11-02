@@ -1,7 +1,7 @@
 % add different curve for expected progress rate over dim n
 % plot opt. normalized step size & opt. expected fitness gain over v 
 
-function fun_precise_optFitGain_over_v(f,NUM_OF_RUNS,mu,lambda,v_array,n,scatterColour,typeDot,FIG_NUM,c_mu_lambda,v_expected_curve_array)
+function fun_precise_optFitGain_over_v(f,NUM_OF_RUNS,mu,lambda,v_array,n,scatterColour,typeDot,c_mu_lambda,v_expected_curve_array)
 %Input
 %   v_array:              experimental result array noise-to-signal ratio = sigma_ep_star /sigma_star
 %   n:                    dim of data 
@@ -81,23 +81,9 @@ for k = 1:1:V_LENGTH
     % STORE MAX index 
 end
 
-figure(FIG_NUM);hold on;
 hold on
 legend('-DynamicLegend'); 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% plot expected convergence rate for n-> infty
-% noise-to-signal ratio
-v = v_expected_curve_array;
 
-% solve the plot by taking derivative
-% opt. expected step size
-if(n==100)
-    d =sprintf('n \\rightarrow \\infty');
-    sigma_star_opt = c_mu_lambda*mu./(sqrt(1+v.*v));
-    plot(v,sigma_star_opt*(c_mu_lambda)./sqrt(1+v.^2)-sigma_star_opt.^2./(2*mu),'Color',scatterColour,'DisplayName',d);
-    set(gca,'FontSize',15);
-    xlim([0 10]);   % set y = 0-10
-end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % plot opt. expected normalized step size for diffeent noise t
 % figure(FIG_NUM);
@@ -136,23 +122,37 @@ end
 % % scatter(v_array, v_convergence_rate_array,typeDot,scatterColour,'DisplayName',d); hold on; 
 % scatter(v_array, sigma_max_exp,typeDot,scatterColour,'DisplayName',d); hold on; 
 
-d =sprintf('n = %.0f',n);
+d =sprintf('N = %.0f',n);
 scatter(v_array, v_convergence_rate_array,typeDot,scatterColour,'DisplayName',d); hold on; 
 legend('-DynamicLegend'); 
 legend('show');
 leg = legend();
 leg.FontSize = 10;
-title(leg,'dimension of data');
+title(leg,'Dimension of data');
 % ylabel('convergnece rate c','fontsize',20);
 ylim([0,inf]);  % y starts from 0
 xlim([0 10]);   % set y = 0-10
 xlabel('noise-to-signal ratio \vartheta','fontsize',20);
-ylabel('opt. expected fitness gain \eta','FontSize',15); 
+ylabel('opt. expected fitness gain \eta_{opt}','FontSize',15); 
 set(gca,'FontSize',15);
 % d = sprintf("Opt. expected fitness gain");
 % title(d,'FontSize', 20);
 xlim([0 10]);   % set y = 0-10
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% plot expected convergence rate for n-> infty
+% noise-to-signal ratio
+v = v_expected_curve_array;
+
+% solve the plot by taking derivative
+% opt. expected step size
+if(n==100)
+    d =sprintf('N \\rightarrow \\infty');
+    sigma_star_opt = c_mu_lambda*mu./(sqrt(1+v.*v));
+    plot(v,sigma_star_opt*(c_mu_lambda)./sqrt(1+v.^2)-sigma_star_opt.^2./(2*mu),'Color',scatterColour,'DisplayName',d);
+    set(gca,'FontSize',15);
+    xlim([0 10]);   % set y = 0-10
+end
 
 % % save all fig
 % p2 = sprintf('1opt_fitGain_%d_%d_%d_ES.fig',mu,mu,lambda);

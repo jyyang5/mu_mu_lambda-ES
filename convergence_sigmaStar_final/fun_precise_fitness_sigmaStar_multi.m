@@ -94,14 +94,14 @@ legend('-DynamicLegend');
 hold on
 % dotted line (normal mml-ES)
 if(typeDot == '.')
-    d = sprintf('without GP n=%d',n);
+    d = sprintf('Without model N=%d',n);
     plot(s_start:increment:s_end, sigma_counvergence_rate_array,':','DisplayName',d); hold on; 
 % need scatter plots (through experiemnt runs different noise-to signal ratio and dim)
 else
     hold on;
     scatter_range=(1:5:(s_end-s_start)/increment+1);
     sigma_temp_array = s_start:increment:s_end;
-    d = sprintf('\\vartheta = %.2f n=%d',ita,n);
+    d = sprintf('\\vartheta = %.2f N=%d',ita,n);
     scatter(sigma_temp_array(scatter_range), sigma_counvergence_rate_array(scatter_range),typeDot,scatterColour,'DisplayName',d); hold on; 
 end
 % if n -> \infty plot the curve(expected fitness gain)
@@ -110,7 +110,7 @@ if LINE_OR_NOT==1
     % first approximation n->infty
     sigma_star = s_start:increment:s_end;
     expected_cure = sigma_star*(c_mu_lambda)./sqrt(1+ita^2)-sigma_star.^2./(2*mu);
-    d1 = sprintf('\\vartheta = %.2f n=\\infty',ita);
+    d1 = sprintf('\\vartheta = %.2f N \\rightarrow \\infty',ita);
     plot(sigma_star,expected_cure,'Color',scatterColour,'DisplayName',d1); hold on; 
 
 end
@@ -130,8 +130,12 @@ end
 
 % each ita plot theta = some n
 if n ==10
-    d = sprintf('\vartheta = %d', ita);
-    text(5, median(sigma_counvergence_rate_array), d, 'Color', scatterColour, 'fontsize',15);
+    if typeDot== '.'
+        d = sprintf('Without model');
+    else
+        d = sprintf('\\vartheta = %.2f', ita);
+    end
+    text(5, max(sigma_counvergence_rate_array), d, 'Color', scatterColour, 'fontsize',15);
 end
 
 
@@ -139,7 +143,7 @@ legend('-DynamicLegend');
 legend('show');
 leg = legend();
 leg.FontSize = 10;
-title(leg,'noise-to-signal-ratio \vartheta');
+% title(leg,'Noise-to-signal-ratio  Dimension');
 hold off
 ylabel('expected fitness gain \eta','fontsize',20);
 xlabel('normalized step size \sigma^*','fontsize',20);
