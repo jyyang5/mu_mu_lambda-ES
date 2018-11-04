@@ -79,7 +79,7 @@ for sigma_star = s_start:increment:s_end
     end
     sigma_success_rate_array(i) = median(temp_sigma_success_rate_array);
     parent_not_lowest_of_quadratic_array(i) = median(temp_parent_not_lowest_of_quadratic_array);
-    sigma_counvergence_rate_array(i) = median(temp_sigma_counvergence_rate_array);
+    sigma_counvergence_rate_array(i) = median(temp_sigma_counvergence_rate_array)./lambda;
     sigma_T_array(i) = median(temp_sigma_T_array);    
     i = i + 1;
 
@@ -96,6 +96,8 @@ hold on
 if(typeDot == '.')
     d = sprintf('Without model N=%d',n);
     plot(s_start:increment:s_end, sigma_counvergence_rate_array,':','DisplayName',d); hold on; 
+%     plot(s_start:increment:s_end, sigma_counvergence_rate_array,':','DisplayName',d); hold on; 
+
 % need scatter plots (through experiemnt runs different noise-to signal ratio and dim)
 else
     hold on;
@@ -111,7 +113,8 @@ if LINE_OR_NOT==1
     sigma_star = s_start:increment:s_end;
     expected_cure = sigma_star*(c_mu_lambda)./sqrt(1+ita^2)-sigma_star.^2./(2*mu);
     d1 = sprintf('\\vartheta = %.2f N \\rightarrow \\infty',ita);
-    plot(sigma_star,expected_cure,'Color',scatterColour,'DisplayName',d1); hold on; 
+    plot(sigma_star,expected_cure./lambda,'Color',scatterColour,'DisplayName',d1); hold on; 
+%     plot(sigma_star,expected_cure,'Color',scatterColour,'DisplayName',d1); hold on; 
 
 end
 

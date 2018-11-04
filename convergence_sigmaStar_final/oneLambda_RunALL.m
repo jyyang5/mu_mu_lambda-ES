@@ -37,7 +37,7 @@ elseif(subplotNum == 2)
 elseif(subplotNum == 3)
     lambda = 40;
     mu = ceil(lambda/4);
-    opt_plot_colour = 'g';
+    opt_plot_colour = 'm';
 end
 
 

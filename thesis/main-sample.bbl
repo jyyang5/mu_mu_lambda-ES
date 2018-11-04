@@ -19,6 +19,44 @@
 
 \refsection{0}
   \sortlist[entry]{nty/global/}
+    \entry{Arnold:2000:EMS:645825.669117}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=ab78d001d3d468606aff3105d3c7d855}{%
+           family={Arnold},
+           familyi={A\bibinitperiod},
+           given={D.\bibnamedelimi V.},
+           giveni={D\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=96c8653d2863cf1dbe86d89643e2eeb6}{%
+           family={Beyer},
+           familyi={B\bibinitperiod},
+           given={H.\bibnamedelimi -G.},
+           giveni={H\bibinitperiod\bibinitdelim \bibinithyphendelim \bibinithyphendelim G\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {London, UK, UK}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag}%
+      }
+      \strng{namehash}{622d49e372454ccdd804be8694649ae5}
+      \strng{fullhash}{622d49e372454ccdd804be8694649ae5}
+      \strng{authornamehash}{622d49e372454ccdd804be8694649ae5}
+      \strng{authorfullhash}{622d49e372454ccdd804be8694649ae5}
+      \field{sortinit}{A}
+      \field{sortinithash}{3248043b5fe8d0a34dab5ab6b8d4309b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 6th International Conference on Parallel Problem Solving from Nature}
+      \field{isbn}{3-540-41056-2}
+      \field{series}{PPSN VI}
+      \field{title}{Efficiency and Mutation Strength Adaptation of the (Mu, muI, Lambda)-ES in a Noisy Environment}
+      \field{year}{2000}
+      \field{pages}{39\bibrangedash 48}
+      \range{pages}{10}
+      \verb{url}
+      \verb http://dl.acm.org/citation.cfm?id=645825.669117
+      \endverb
+    \endentry
     \entry{1284729}{article}{}
       \name{author}{2}{}{%
         {{hash=ab78d001d3d468606aff3105d3c7d855}{%
@@ -26,16 +64,16 @@
            familyi={A\bibinitperiod},
            given={D.\bibnamedelimi V.},
            giveni={D\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
-        {{hash=3b66e9555e0f134e447437d70336ee94}{%
+        {{hash=96c8653d2863cf1dbe86d89643e2eeb6}{%
            family={Beyer},
            familyi={B\bibinitperiod},
-           given={H.\bibnamedelimi -.},
-           giveni={H\bibinitperiod\bibinitdelim \bibinithyphendelim \bibinithyphendelim .\bibinitperiod}}}%
+           given={H.\bibnamedelimi -G.},
+           giveni={H\bibinitperiod\bibinitdelim \bibinithyphendelim \bibinithyphendelim G\bibinitperiod}}}%
       }
-      \strng{namehash}{840b36bab1e6e4a1d7ac590248bfe561}
-      \strng{fullhash}{840b36bab1e6e4a1d7ac590248bfe561}
-      \strng{authornamehash}{840b36bab1e6e4a1d7ac590248bfe561}
-      \strng{authorfullhash}{840b36bab1e6e4a1d7ac590248bfe561}
+      \strng{namehash}{622d49e372454ccdd804be8694649ae5}
+      \strng{fullhash}{622d49e372454ccdd804be8694649ae5}
+      \strng{authornamehash}{622d49e372454ccdd804be8694649ae5}
+      \strng{authorfullhash}{622d49e372454ccdd804be8694649ae5}
       \field{sortinit}{A}
       \field{sortinithash}{3248043b5fe8d0a34dab5ab6b8d4309b}
       \field{labelnamesource}{author}
@@ -54,43 +92,33 @@
       \endverb
       \keyw{evolutionary computation;optimisation;iterative methods;continuous time systems;noise;performance analysis;evolutionary optimization;cumulative step length adaptation;iterative algorithms;continuous numerical optimization;interfering noise;mutation strength;Performance analysis;Computer science;Job shop scheduling;Evolutionary computation;Filtering;Dynamic scheduling;History;Stochastic resonance;Simulated annealing;Stochastic processes}
     \endentry
-    \entry{Arnold:2000:EMS:645825.669117}{inproceedings}{}
+    \entry{arnold2002noisy}{book}{}
       \name{author}{2}{}{%
-        {{hash=aeb1a96d80910b7f23835b99398a0e07}{%
+        {{hash=ab78d001d3d468606aff3105d3c7d855}{%
            family={Arnold},
            familyi={A\bibinitperiod},
-           given={Dirk\bibnamedelima V.},
+           given={D.\bibnamedelimi V.},
            giveni={D\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
-        {{hash=695e551c7bda7f41c62840003f872fdb}{%
+        {{hash=e35c5b358a87eed97cfa292b659a2007}{%
            family={Beyer},
            familyi={B\bibinitperiod},
-           given={Hans-Georg},
+           given={H.-G.},
            giveni={H\bibinithyphendelim G\bibinitperiod}}}%
       }
-      \list{location}{1}{%
-        {London, UK, UK}%
-      }
       \list{publisher}{1}{%
-        {Springer-Verlag}%
+        {Springer Science \& Business Media}%
       }
-      \strng{namehash}{b5ae46847f65077930aac40be45790d5}
-      \strng{fullhash}{b5ae46847f65077930aac40be45790d5}
-      \strng{authornamehash}{b5ae46847f65077930aac40be45790d5}
-      \strng{authorfullhash}{b5ae46847f65077930aac40be45790d5}
+      \strng{namehash}{07858cea381e6e4a5d0d96809c7c318e}
+      \strng{fullhash}{07858cea381e6e4a5d0d96809c7c318e}
+      \strng{authornamehash}{07858cea381e6e4a5d0d96809c7c318e}
+      \strng{authorfullhash}{07858cea381e6e4a5d0d96809c7c318e}
       \field{sortinit}{A}
       \field{sortinithash}{3248043b5fe8d0a34dab5ab6b8d4309b}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{booktitle}{Proceedings of the 6th International Conference on Parallel Problem Solving from Nature}
-      \field{isbn}{3-540-41056-2}
-      \field{series}{PPSN VI}
-      \field{title}{Efficiency and Mutation Strength Adaptation of the (Mu, muI, Lambda)-ES in a Noisy Environment}
-      \field{year}{2000}
-      \field{pages}{39\bibrangedash 48}
-      \range{pages}{10}
-      \verb{url}
-      \verb http://dl.acm.org/citation.cfm?id=645825.669117
-      \endverb
+      \field{title}{Noisy optimization with evolution strategies}
+      \field{volume}{8}
+      \field{year}{2002}
     \endentry
     \entry{ARNOLD2001127}{incollection}{}
       \name{author}{2}{}{%
@@ -106,15 +134,15 @@
            giveni={H\bibinithyphendelim G\bibinitperiod}}}%
       }
       \name{editor}{2}{}{%
-        {{hash=e66d2fdf4007efd48ccd745047a1d557}{%
+        {{hash=bc23706bee32d61f73d0bfc94e45e606}{%
            family={Martin},
            familyi={M\bibinitperiod},
-           given={Worthy\bibnamedelima N.},
+           given={W.\bibnamedelimi N.},
            giveni={W\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
-        {{hash=718c59384b821063b6c177a6f2821f96}{%
+        {{hash=d6c5d47c8ad2b99ba5fbf5679074e9a4}{%
            family={Spears},
            familyi={S\bibinitperiod},
-           given={William\bibnamedelima M.},
+           given={W.\bibnamedelimi M.},
            giveni={W\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
       }
       \list{location}{1}{%
@@ -127,8 +155,8 @@
       \strng{fullhash}{b5ae46847f65077930aac40be45790d5}
       \strng{authornamehash}{b5ae46847f65077930aac40be45790d5}
       \strng{authorfullhash}{b5ae46847f65077930aac40be45790d5}
-      \strng{editornamehash}{3a220cddaf8f00027ed26a18960409f3}
-      \strng{editorfullhash}{3a220cddaf8f00027ed26a18960409f3}
+      \strng{editornamehash}{4108745a3406ae9b4e9d952a3b957a34}
+      \strng{editorfullhash}{4108745a3406ae9b4e9d952a3b957a34}
       \field{sortinit}{A}
       \field{sortinithash}{3248043b5fe8d0a34dab5ab6b8d4309b}
       \field{labelnamesource}{author}
@@ -145,71 +173,6 @@
       \verb{url}
       \verb http://www.sciencedirect.com/science/article/pii/B9781558607347500901
       \endverb
-    \endentry
-    \entry{arnold2002noisy}{book}{}
-      \name{author}{2}{}{%
-        {{hash=7431cd17c83a5766177e40a92b04a488}{%
-           family={Arnold},
-           familyi={A\bibinitperiod},
-           given={Dirk\bibnamedelima V},
-           giveni={D\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
-        {{hash=695e551c7bda7f41c62840003f872fdb}{%
-           family={Beyer},
-           familyi={B\bibinitperiod},
-           given={Hans-Georg},
-           giveni={H\bibinithyphendelim G\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Springer Science \& Business Media}%
-      }
-      \strng{namehash}{42ccae9c7dbfb64df2775f184af76de1}
-      \strng{fullhash}{42ccae9c7dbfb64df2775f184af76de1}
-      \strng{authornamehash}{42ccae9c7dbfb64df2775f184af76de1}
-      \strng{authorfullhash}{42ccae9c7dbfb64df2775f184af76de1}
-      \field{sortinit}{A}
-      \field{sortinithash}{3248043b5fe8d0a34dab5ab6b8d4309b}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Noisy optimization with evolution strategies}
-      \field{volume}{8}
-      \field{year}{2002}
-    \endentry
-    \entry{ARNOLD2002629}{article}{}
-      \name{author}{2}{}{%
-        {{hash=aeb1a96d80910b7f23835b99398a0e07}{%
-           family={Arnold},
-           familyi={A\bibinitperiod},
-           given={Dirk\bibnamedelima V.},
-           giveni={D\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
-        {{hash=695e551c7bda7f41c62840003f872fdb}{%
-           family={Beyer},
-           familyi={B\bibinitperiod},
-           given={Hans-Georg},
-           giveni={H\bibinithyphendelim G\bibinitperiod}}}%
-      }
-      \strng{namehash}{b5ae46847f65077930aac40be45790d5}
-      \strng{fullhash}{b5ae46847f65077930aac40be45790d5}
-      \strng{authornamehash}{b5ae46847f65077930aac40be45790d5}
-      \strng{authorfullhash}{b5ae46847f65077930aac40be45790d5}
-      \field{sortinit}{A}
-      \field{sortinithash}{3248043b5fe8d0a34dab5ab6b8d4309b}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{0304-3975}
-      \field{journaltitle}{Theoretical Computer Science}
-      \field{number}{1}
-      \field{title}{Performance analysis of evolution strategies with multi-recombination in high-dimensional RN-search spaces disturbed by noise}
-      \field{volume}{289}
-      \field{year}{2002}
-      \field{pages}{629\bibrangedash 647}
-      \range{pages}{19}
-      \verb{doi}
-      \verb https://doi.org/10.1016/S0304-3975(01)00384-X
-      \endverb
-      \verb{url}
-      \verb http://www.sciencedirect.com/science/article/pii/S030439750100384X
-      \endverb
-      \keyw{Evolution strategies,Darwinian evolution,Noise,Optimization}
     \endentry
     \entry{1424193}{article}{}
       \name{author}{3}{}{%
@@ -252,32 +215,27 @@
     \endentry
     \entry{10.1007/978-3-319-09333-8_4}{inproceedings}{}
       \name{author}{2}{}{%
-        {{hash=5ffb5aba0d9858b862639d446d48f8eb}{%
+        {{hash=f889019fc61464b084bbe69847cbc904}{%
            family={Chen},
            familyi={C\bibinitperiod},
-           given={Yu},
+           given={Y.},
            giveni={Y\bibinitperiod}}}%
-        {{hash=5f0f2e75c86d00c7c71f073063343b21}{%
+        {{hash=9c4c7a48f8458c8a5708ada2f543f46c}{%
            family={Zou},
            familyi={Z\bibinitperiod},
-           given={Xiufen},
+           given={X.},
            giveni={X\bibinitperiod}}}%
       }
-      \name{editor}{3}{}{%
-        {{hash=9174f234e6e6f6ca1d35a398d0a7d5b1}{%
-           family={Huang},
-           familyi={H\bibinitperiod},
-           given={De-Shuang},
-           giveni={D\bibinithyphendelim S\bibinitperiod}}}%
-        {{hash=1e6cb31538499e6753771b70fdfb2d34}{%
-           family={Bevilacqua},
-           familyi={B\bibinitperiod},
-           given={Vitoantonio},
-           giveni={V\bibinitperiod}}}%
-        {{hash=4cd203b4807f80764650fc47a5a64b72}{%
+      \name{editor}{2}{}{%
+        {{hash=67ec15fbde31de5615b1e27b14a40d74}{%
+           family={D.\bibnamedelimi Huang},
+           familyi={D\bibinitperiod\bibinitdelim H\bibinitperiod},
+           given={V.\bibnamedelimi Bevilacqua},
+           giveni={V\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=9210de1c961c8b4607c2a636388548ad}{%
            family={Premaratne},
            familyi={P\bibinitperiod},
-           given={Prashan},
+           given={P.},
            giveni={P\bibinitperiod}}}%
       }
       \list{location}{1}{%
@@ -286,12 +244,12 @@
       \list{publisher}{1}{%
         {Springer International Publishing}%
       }
-      \strng{namehash}{29cc5e91e2b283de5310ceef6e7321a2}
-      \strng{fullhash}{29cc5e91e2b283de5310ceef6e7321a2}
-      \strng{authornamehash}{29cc5e91e2b283de5310ceef6e7321a2}
-      \strng{authorfullhash}{29cc5e91e2b283de5310ceef6e7321a2}
-      \strng{editornamehash}{66deff2560f0f3ffd84f930c409f522c}
-      \strng{editorfullhash}{66deff2560f0f3ffd84f930c409f522c}
+      \strng{namehash}{2a51593a5eada4289bc055dcbf49ab28}
+      \strng{fullhash}{2a51593a5eada4289bc055dcbf49ab28}
+      \strng{authornamehash}{2a51593a5eada4289bc055dcbf49ab28}
+      \strng{authorfullhash}{2a51593a5eada4289bc055dcbf49ab28}
+      \strng{editornamehash}{37ea01ca523d24213d3b1e6bfa5473ef}
+      \strng{editorfullhash}{37ea01ca523d24213d3b1e6bfa5473ef}
       \field{sortinit}{C}
       \field{sortinithash}{095692fd22cc3c74d7fe223d02314dbd}
       \field{labelnamesource}{author}
@@ -302,52 +260,47 @@
       \field{pages}{32\bibrangedash 40}
       \range{pages}{9}
     \endentry
-    \entry{Dunham1963}{article}{}
+    \entry{dunham1963design}{article}{}
       \name{author}{4}{}{%
-        {{hash=5681ff3300aa260d608aa2ae46e650fe}{%
+        {{hash=50fa65b82be01fc31522a167e0496ebb}{%
            family={Dunham},
            familyi={D\bibinitperiod},
-           given={B.},
+           given={B},
            giveni={B\bibinitperiod}}}%
-        {{hash=a1b3a94a5111e4abc00b406ad5f46736}{%
+        {{hash=4449ba91063631f0638630411a85a57a}{%
            family={Fridshal},
            familyi={F\bibinitperiod},
-           given={D.},
+           given={D},
            giveni={D\bibinitperiod}}}%
-        {{hash=3fd399e4f6a15aeaa9f5c217b158e17b}{%
+        {{hash=0a0384a49875a6ed7c1fb46bb8f574f3}{%
            family={Fridshal},
            familyi={F\bibinitperiod},
-           given={R.},
+           given={R},
            giveni={R\bibinitperiod}}}%
-        {{hash=0273ff1d6e953ff9a8920dcc92584285}{%
+        {{hash=3b411bf6778cc016ef39106bef6d3774}{%
            family={North},
            familyi={N\bibinitperiod},
-           given={J.\bibnamedelimi H.},
-           giveni={J\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+           given={JH},
+           giveni={J\bibinitperiod}}}%
       }
-      \strng{namehash}{fb083bf19bd471551179993bc964f9a4}
-      \strng{fullhash}{fb083bf19bd471551179993bc964f9a4}
-      \strng{authornamehash}{fb083bf19bd471551179993bc964f9a4}
-      \strng{authorfullhash}{fb083bf19bd471551179993bc964f9a4}
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{3eeae9b46f137a10bacd0220abe7a737}
+      \strng{fullhash}{3eeae9b46f137a10bacd0220abe7a737}
+      \strng{authornamehash}{3eeae9b46f137a10bacd0220abe7a737}
+      \strng{authorfullhash}{3eeae9b46f137a10bacd0220abe7a737}
       \field{sortinit}{D}
       \field{sortinithash}{d10b5413de1f3d197b20897dd0d565bb}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{issn}{1573-0964}
       \field{journaltitle}{Synthese}
-      \field{month}{1}
       \field{number}{1}
       \field{title}{Design by natural selection}
       \field{volume}{15}
       \field{year}{1963}
       \field{pages}{254\bibrangedash 259}
       \range{pages}{6}
-      \verb{doi}
-      \verb 10.1007/BF00484855
-      \endverb
-      \verb{url}
-      \verb https://doi.org/10.1007/BF00484855
-      \endverb
     \endentry
     \entry{GIANNAKOGLOU200243}{article}{}
       \name{author}{1}{}{%
@@ -380,75 +333,75 @@
       \verb http://www.sciencedirect.com/science/article/pii/S0376042101000197
       \endverb
     \endentry
-    \entry{Hansen:2003:RTC:772374.772376}{article}{}
-      \name{author}{3}{}{%
-        {{hash=71bc70e7c119a2151bf105823920cf83}{%
-           family={Hansen},
-           familyi={H\bibinitperiod},
-           given={Nikolaus},
-           giveni={N\bibinitperiod}}}%
-        {{hash=be1bfb2715341a205d9b86155d9310ff}{%
-           family={M\"{u}ller},
-           familyi={M\bibinitperiod},
-           given={Sibylle\bibnamedelima D.},
-           giveni={S\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
-        {{hash=d0a18518b57cef85c32665e92ec3dea1}{%
-           family={Koumoutsakos},
-           familyi={K\bibinitperiod},
-           given={Petros},
-           giveni={P\bibinitperiod}}}%
+    \entry{Ulmer2005}{inbook}{}
+      \name{author}{2}{}{%
+        {{hash=f15ff4a9724fe0db56d06bddb1214cc2}{%
+           family={H.\bibnamedelimi Ulmer},
+           familyi={H\bibinitperiod\bibinitdelim U\bibinitperiod},
+           given={F.\bibnamedelimi Streichert},
+           giveni={F\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=9adb3920ee63b942bd00e13099f205c6}{%
+           family={Zell},
+           familyi={Z\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=d2e894da3ef2bd7c7c172a46391d08ec}{%
+           family={Jin},
+           familyi={J\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
       }
       \list{location}{1}{%
-        {Cambridge, MA, USA}%
+        {Berlin, Heidelberg}%
       }
       \list{publisher}{1}{%
-        {MIT Press}%
+        {Springer Berlin Heidelberg}%
       }
-      \strng{namehash}{ed515927579078401b1266dd46ab0880}
-      \strng{fullhash}{ed515927579078401b1266dd46ab0880}
-      \strng{authornamehash}{ed515927579078401b1266dd46ab0880}
-      \strng{authorfullhash}{ed515927579078401b1266dd46ab0880}
+      \strng{namehash}{58a12b6aaf17e4b5bc24f1b706c474fa}
+      \strng{fullhash}{58a12b6aaf17e4b5bc24f1b706c474fa}
+      \strng{authornamehash}{58a12b6aaf17e4b5bc24f1b706c474fa}
+      \strng{authorfullhash}{58a12b6aaf17e4b5bc24f1b706c474fa}
+      \strng{editornamehash}{d2e894da3ef2bd7c7c172a46391d08ec}
+      \strng{editorfullhash}{d2e894da3ef2bd7c7c172a46391d08ec}
       \field{sortinit}{H}
       \field{sortinithash}{2f664b453ec75da1fe3804ca92633405}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{issn}{1063-6560}
-      \field{journaltitle}{Evol. Comput.}
-      \field{month}{3}
-      \field{number}{1}
-      \field{title}{Reducing the Time Complexity of the Derandomized Evolution Strategy with Covariance Matrix Adaptation (CMA-ES)}
-      \field{volume}{11}
-      \field{year}{2003}
-      \field{pages}{1\bibrangedash 18}
-      \range{pages}{18}
+      \field{booktitle}{Knowledge Incorporation in Evolutionary Computation}
+      \field{isbn}{978-3-540-44511-1}
+      \field{title}{Model Assisted Evolution Strategies}
+      \field{year}{2005}
+      \field{pages}{333\bibrangedash 355}
+      \range{pages}{23}
       \verb{doi}
-      \verb 10.1162/106365603321828970
+      \verb 10.1007/978-3-540-44511-1_16
       \endverb
       \verb{url}
-      \verb http://dx.doi.org/10.1162/106365603321828970
+      \verb https://doi.org/10.1007/978-3-540-44511-1_16
       \endverb
-      \keyw{covariance matrix adaptation,derandomized self-adaptation,evolution path,evolution strategy,parallelization}
     \endentry
     \entry{doi:10.1080/00401706.1966.10490404}{article}{}
       \name{author}{2}{}{%
-        {{hash=b50190b12d2ec490cbaefb75e58fc0ab}{%
+        {{hash=b0ec6badf105a434b264a6eb4ee586cb}{%
            family={Hill},
            familyi={H\bibinitperiod},
-           given={William\bibnamedelima J.},
+           given={W.\bibnamedelimi J.},
            giveni={W\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
-        {{hash=f8313ae60df519313aa0ebca55b59c30}{%
-           family={Hunter},
+        {{hash=1655c57cc44ca8c4f2328c5abbe2f160}{%
+           family={Hunter.},
            familyi={H\bibinitperiod},
-           given={William\bibnamedelima G.},
+           given={W.\bibnamedelimi G.},
            giveni={W\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
       }
       \list{publisher}{1}{%
         {Taylor & Francis}%
       }
-      \strng{namehash}{f9e53c70b5676fd1e0bf3e24a3667591}
-      \strng{fullhash}{f9e53c70b5676fd1e0bf3e24a3667591}
-      \strng{authornamehash}{f9e53c70b5676fd1e0bf3e24a3667591}
-      \strng{authorfullhash}{f9e53c70b5676fd1e0bf3e24a3667591}
+      \strng{namehash}{fccfcfb3c7520c125d11e6cdbb5069c0}
+      \strng{fullhash}{fccfcfb3c7520c125d11e6cdbb5069c0}
+      \strng{authornamehash}{fccfcfb3c7520c125d11e6cdbb5069c0}
+      \strng{authorfullhash}{fccfcfb3c7520c125d11e6cdbb5069c0}
       \field{sortinit}{H}
       \field{sortinithash}{2f664b453ec75da1fe3804ca92633405}
       \field{labelnamesource}{author}
@@ -470,18 +423,92 @@
       \verb https://amstat.tandfonline.com/doi/abs/10.1080/00401706.1966.10490404
       \endverb
     \endentry
+    \entry{loshchilov2012self}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=35e61143f978a9148c8803333e91743d}{%
+           family={I.\bibnamedelimi Loshchilov},
+           familyi={I\bibinitperiod\bibinitdelim L\bibinitperiod},
+           given={M.\bibnamedelimi Schoenauer},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=ee7301b5064a1767694da4551593ae2e}{%
+           family={Sebag},
+           familyi={S\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{d644620b5b70b1c2554045d1fabdbb1c}
+      \strng{fullhash}{d644620b5b70b1c2554045d1fabdbb1c}
+      \strng{authornamehash}{d644620b5b70b1c2554045d1fabdbb1c}
+      \strng{authorfullhash}{d644620b5b70b1c2554045d1fabdbb1c}
+      \field{sortinit}{I}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 14th annual conference on Genetic and evolutionary computation}
+      \field{title}{Self-adaptive surrogate-assisted covariance matrix adaptation evolution strategy}
+      \field{year}{2012}
+      \field{pages}{321\bibrangedash 328}
+      \range{pages}{8}
+    \endentry
+    \entry{sacks1989}{article}{}
+      \name{author}{3}{}{%
+        {{hash=7124328dadeb7a3a10e41d90d3799fe6}{%
+           family={J.\bibnamedelimi Sacks},
+           familyi={J\bibinitperiod\bibinitdelim S\bibinitperiod},
+           given={W.\bibnamedelimi J.\bibnamedelimi Welch},
+           giveni={W\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=e51b4444eb1bf550ba6c9e9d8248c125}{%
+           family={Mitchell},
+           familyi={M\bibinitperiod},
+           given={T.\bibnamedelimi J.},
+           giveni={T\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=96d1d9a89b400fba4a2b1f3d2d31dd1f}{%
+           family={Wynn.},
+           familyi={W\bibinitperiod},
+           given={H.\bibnamedelimi P.},
+           giveni={H\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {The Institute of Mathematical Statistics}%
+      }
+      \strng{namehash}{bf9c3f0fd4805c1fe5ec370d3943e29e}
+      \strng{fullhash}{bf9c3f0fd4805c1fe5ec370d3943e29e}
+      \strng{authornamehash}{bf9c3f0fd4805c1fe5ec370d3943e29e}
+      \strng{authorfullhash}{bf9c3f0fd4805c1fe5ec370d3943e29e}
+      \field{sortinit}{J}
+      \field{sortinithash}{c86bd6cced82a15683b396c2169909ef}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Statist. Sci.}
+      \field{month}{11}
+      \field{number}{4}
+      \field{title}{Design and Analysis of Computer Experiments}
+      \field{volume}{4}
+      \field{year}{1989}
+      \field{pages}{409\bibrangedash 423}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1214/ss/1177012413
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1214/ss/1177012413
+      \endverb
+    \endentry
     \entry{JIN201161}{article}{}
       \name{author}{1}{}{%
-        {{hash=c3da5be922b2509d740ae31f49229c23}{%
+        {{hash=d2e894da3ef2bd7c7c172a46391d08ec}{%
            family={Jin},
            familyi={J\bibinitperiod},
-           given={Yaochu},
+           given={Y.},
            giveni={Y\bibinitperiod}}}%
       }
-      \strng{namehash}{c3da5be922b2509d740ae31f49229c23}
-      \strng{fullhash}{c3da5be922b2509d740ae31f49229c23}
-      \strng{authornamehash}{c3da5be922b2509d740ae31f49229c23}
-      \strng{authorfullhash}{c3da5be922b2509d740ae31f49229c23}
+      \strng{namehash}{d2e894da3ef2bd7c7c172a46391d08ec}
+      \strng{fullhash}{d2e894da3ef2bd7c7c172a46391d08ec}
+      \strng{authornamehash}{d2e894da3ef2bd7c7c172a46391d08ec}
+      \strng{authorfullhash}{d2e894da3ef2bd7c7c172a46391d08ec}
       \field{sortinit}{J}
       \field{sortinithash}{c86bd6cced82a15683b396c2169909ef}
       \field{labelnamesource}{author}
@@ -504,26 +531,26 @@
     \endentry
     \entry{Jin02aframework}{article}{}
       \name{author}{3}{}{%
-        {{hash=c3da5be922b2509d740ae31f49229c23}{%
+        {{hash=d2e894da3ef2bd7c7c172a46391d08ec}{%
            family={Jin},
            familyi={J\bibinitperiod},
-           given={Yaochu},
+           given={Y.},
            giveni={Y\bibinitperiod}}}%
-        {{hash=1090caf76158f01efad195d51c0f77fb}{%
+        {{hash=08c3ecbc4ae967b605bd3e8ceee73d67}{%
            family={Olhofer},
            familyi={O\bibinitperiod},
-           given={Markus},
+           given={M.},
            giveni={M\bibinitperiod}}}%
-        {{hash=2bf4fe0d55970e86270a528542b5093d}{%
+        {{hash=4575253205c7c6dd6b55747f860b006d}{%
            family={Sendhoff},
            familyi={S\bibinitperiod},
-           given={Bernhard},
+           given={B.},
            giveni={B\bibinitperiod}}}%
       }
-      \strng{namehash}{5b9d24070b628cf4d0c161b3bf6edfc9}
-      \strng{fullhash}{5b9d24070b628cf4d0c161b3bf6edfc9}
-      \strng{authornamehash}{5b9d24070b628cf4d0c161b3bf6edfc9}
-      \strng{authorfullhash}{5b9d24070b628cf4d0c161b3bf6edfc9}
+      \strng{namehash}{7f0b4174fc17752f3e5aad1cdb59b9d8}
+      \strng{fullhash}{7f0b4174fc17752f3e5aad1cdb59b9d8}
+      \strng{authornamehash}{7f0b4174fc17752f3e5aad1cdb59b9d8}
+      \strng{authorfullhash}{7f0b4174fc17752f3e5aad1cdb59b9d8}
       \field{sortinit}{J}
       \field{sortinithash}{c86bd6cced82a15683b396c2169909ef}
       \field{labelnamesource}{author}
@@ -537,15 +564,15 @@
     \endentry
     \entry{Jin:2002:FAE:2955491.2955686}{inproceedings}{}
       \name{author}{2}{}{%
-        {{hash=c3da5be922b2509d740ae31f49229c23}{%
+        {{hash=d2e894da3ef2bd7c7c172a46391d08ec}{%
            family={Jin},
            familyi={J\bibinitperiod},
-           given={Yaochu},
+           given={Y.},
            giveni={Y\bibinitperiod}}}%
-        {{hash=2bf4fe0d55970e86270a528542b5093d}{%
+        {{hash=4575253205c7c6dd6b55747f860b006d}{%
            family={Sendhoff},
            familyi={S\bibinitperiod},
-           given={Bernhard},
+           given={B.},
            giveni={B\bibinitperiod}}}%
       }
       \list{location}{1}{%
@@ -554,10 +581,10 @@
       \list{publisher}{1}{%
         {Morgan Kaufmann Publishers Inc.}%
       }
-      \strng{namehash}{5239c362b93eb41cde5a543a3b6c4c77}
-      \strng{fullhash}{5239c362b93eb41cde5a543a3b6c4c77}
-      \strng{authornamehash}{5239c362b93eb41cde5a543a3b6c4c77}
-      \strng{authorfullhash}{5239c362b93eb41cde5a543a3b6c4c77}
+      \strng{namehash}{825f031c085fde2157ada71ab1cef220}
+      \strng{fullhash}{825f031c085fde2157ada71ab1cef220}
+      \strng{authornamehash}{825f031c085fde2157ada71ab1cef220}
+      \strng{authorfullhash}{825f031c085fde2157ada71ab1cef220}
       \field{sortinit}{J}
       \field{sortinithash}{c86bd6cced82a15683b396c2169909ef}
       \field{labelnamesource}{author}
@@ -575,21 +602,21 @@
     \endentry
     \entry{DBLP:conf/ppsn/KayhaniA18}{inproceedings}{}
       \name{author}{2}{}{%
-        {{hash=aa08f98decda6cf2464dbce91c533695}{%
+        {{hash=e52c92c0fd51fa9b843c08e8668e5a00}{%
            family={Kayhani},
            familyi={K\bibinitperiod},
-           given={Arash},
+           given={A.},
            giveni={A\bibinitperiod}}}%
-        {{hash=aeb1a96d80910b7f23835b99398a0e07}{%
+        {{hash=ab78d001d3d468606aff3105d3c7d855}{%
            family={Arnold},
            familyi={A\bibinitperiod},
-           given={Dirk\bibnamedelima V.},
+           given={D.\bibnamedelimi V.},
            giveni={D\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
       }
-      \strng{namehash}{4aa6c1e466f57c103808a57bc0fd9b87}
-      \strng{fullhash}{4aa6c1e466f57c103808a57bc0fd9b87}
-      \strng{authornamehash}{4aa6c1e466f57c103808a57bc0fd9b87}
-      \strng{authorfullhash}{4aa6c1e466f57c103808a57bc0fd9b87}
+      \strng{namehash}{716791123eb4b0279364af58fbe62495}
+      \strng{fullhash}{716791123eb4b0279364af58fbe62495}
+      \strng{authornamehash}{716791123eb4b0279364af58fbe62495}
+      \strng{authorfullhash}{716791123eb4b0279364af58fbe62495}
       \field{sortinit}{K}
       \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
       \field{labelnamesource}{author}
@@ -634,58 +661,18 @@
       \field{pages}{to appear}
       \range{pages}{-1}
     \endentry
-    \entry{loshchilov2012self}{inproceedings}{}
-      \name{author}{3}{}{%
-        {{hash=1241b8181104f1917578d4c7f9b323b6}{%
-           family={Loshchilov},
-           familyi={L\bibinitperiod},
-           given={Ilya},
-           giveni={I\bibinitperiod}}}%
-        {{hash=8db29f6587badffb4797659c16105f20}{%
-           family={Schoenauer},
-           familyi={S\bibinitperiod},
-           given={Marc},
-           giveni={M\bibinitperiod}}}%
-        {{hash=0049a8f4105c18fe1642721301045aff}{%
-           family={Sebag},
-           familyi={S\bibinitperiod},
-           given={Michele},
-           giveni={M\bibinitperiod}}}%
-      }
-      \list{organization}{1}{%
-        {ACM}%
-      }
-      \strng{namehash}{c784125d7232dac68b5328f98deb45a8}
-      \strng{fullhash}{c784125d7232dac68b5328f98deb45a8}
-      \strng{authornamehash}{c784125d7232dac68b5328f98deb45a8}
-      \strng{authorfullhash}{c784125d7232dac68b5328f98deb45a8}
-      \field{sortinit}{L}
-      \field{sortinithash}{7bba64db83423e3c29ad597f3b682cf3}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{booktitle}{Proceedings of the 14th annual conference on Genetic and evolutionary computation}
-      \field{title}{Self-adaptive surrogate-assisted covariance matrix adaptation evolution strategy}
-      \field{year}{2012}
-      \field{pages}{321\bibrangedash 328}
-      \range{pages}{8}
-    \endentry
-    \entry{Ostermeier:1994:DAS:1326675.1326679}{article}{}
-      \name{author}{3}{}{%
-        {{hash=baad0a55a3d382a5b55ac169579ee0c8}{%
-           family={Ostermeier},
-           familyi={O\bibinitperiod},
-           given={Andreas},
-           giveni={A\bibinitperiod}}}%
-        {{hash=f2ca6500c20cf8964e74c1e7954a42e0}{%
-           family={Gawelczyk},
-           familyi={G\bibinitperiod},
-           given={Andreas},
-           giveni={A\bibinitperiod}}}%
-        {{hash=71bc70e7c119a2151bf105823920cf83}{%
-           family={Hansen},
-           familyi={H\bibinitperiod},
-           given={Nikolaus},
-           giveni={N\bibinitperiod}}}%
+    \entry{Hansen:2003:RTC:772374.772376}{article}{}
+      \name{author}{2}{}{%
+        {{hash=c4e0bc7efa9e51cfbf20ba10e6d92c2f}{%
+           family={N.\bibnamedelimi Hansen},
+           familyi={N\bibinitperiod\bibinitdelim H\bibinitperiod},
+           given={S.\bibnamedelimi D.\bibnamedelimi M\"{u}ller},
+           giveni={S\bibinitperiod\bibinitdelim D\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=9c0de4778f99c2c1ac98af5b6f29670b}{%
+           family={Koumoutsakos},
+           familyi={K\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
       }
       \list{location}{1}{%
         {Cambridge, MA, USA}%
@@ -693,10 +680,54 @@
       \list{publisher}{1}{%
         {MIT Press}%
       }
-      \strng{namehash}{bfbddf8e6b4344afba15aef69c39b8c3}
-      \strng{fullhash}{bfbddf8e6b4344afba15aef69c39b8c3}
-      \strng{authornamehash}{bfbddf8e6b4344afba15aef69c39b8c3}
-      \strng{authorfullhash}{bfbddf8e6b4344afba15aef69c39b8c3}
+      \strng{namehash}{6b8349bdd97694353c5174e090a741ca}
+      \strng{fullhash}{6b8349bdd97694353c5174e090a741ca}
+      \strng{authornamehash}{6b8349bdd97694353c5174e090a741ca}
+      \strng{authorfullhash}{6b8349bdd97694353c5174e090a741ca}
+      \field{sortinit}{N}
+      \field{sortinithash}{1163c28585427c673ad5a010cbf82f52}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1063-6560}
+      \field{journaltitle}{Evol. Comput.}
+      \field{month}{3}
+      \field{number}{1}
+      \field{title}{Reducing the Time Complexity of the Derandomized Evolution Strategy with Covariance Matrix Adaptation (CMA-ES)}
+      \field{volume}{11}
+      \field{year}{2003}
+      \field{pages}{1\bibrangedash 18}
+      \range{pages}{18}
+      \verb{doi}
+      \verb 10.1162/106365603321828970
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1162/106365603321828970
+      \endverb
+      \keyw{covariance matrix adaptation,derandomized self-adaptation,evolution path,evolution strategy,parallelization}
+    \endentry
+    \entry{Ostermeier:1994:DAS:1326675.1326679}{article}{}
+      \name{author}{2}{}{%
+        {{hash=23a7b32d4787448fc0816c1cfc996dc6}{%
+           family={O.\bibnamedelimi Andreas},
+           familyi={O\bibinitperiod\bibinitdelim A\bibinitperiod},
+           given={G.\bibnamedelimi Andreas},
+           giveni={G\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=dacf2995b89f8bdeecf8c1e1ac9f3194}{%
+           family={Nikolaus},
+           familyi={N\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cambridge, MA, USA}%
+      }
+      \list{publisher}{1}{%
+        {MIT Press}%
+      }
+      \strng{namehash}{2ba8a3eb6fe770d88d8da0db9cc6e42c}
+      \strng{fullhash}{2ba8a3eb6fe770d88d8da0db9cc6e42c}
+      \strng{authornamehash}{2ba8a3eb6fe770d88d8da0db9cc6e42c}
+      \strng{authorfullhash}{2ba8a3eb6fe770d88d8da0db9cc6e42c}
       \field{sortinit}{O}
       \field{sortinithash}{f5d80ef71b5b58852663ecfd775b175a}
       \field{labelnamesource}{author}
@@ -720,10 +751,10 @@
     \endentry
     \entry{Ratle:2001:KSF:966173.966177}{article}{}
       \name{author}{1}{}{%
-        {{hash=3259b9b36d4a2aaaa7ccaa3338b5e0a0}{%
+        {{hash=971de779082c774c5b17449046696d6a}{%
            family={Ratle},
            familyi={R\bibinitperiod},
-           given={Alain},
+           given={A.},
            giveni={A\bibinitperiod}}}%
       }
       \list{location}{1}{%
@@ -732,10 +763,10 @@
       \list{publisher}{1}{%
         {Cambridge University Press}%
       }
-      \strng{namehash}{3259b9b36d4a2aaaa7ccaa3338b5e0a0}
-      \strng{fullhash}{3259b9b36d4a2aaaa7ccaa3338b5e0a0}
-      \strng{authornamehash}{3259b9b36d4a2aaaa7ccaa3338b5e0a0}
-      \strng{authorfullhash}{3259b9b36d4a2aaaa7ccaa3338b5e0a0}
+      \strng{namehash}{971de779082c774c5b17449046696d6a}
+      \strng{fullhash}{971de779082c774c5b17449046696d6a}
+      \strng{authornamehash}{971de779082c774c5b17449046696d6a}
+      \strng{authorfullhash}{971de779082c774c5b17449046696d6a}
       \field{sortinit}{R}
       \field{sortinithash}{c15bc8eb6936bc6b3c8baa9e8575af53}
       \field{labelnamesource}{author}
@@ -759,19 +790,19 @@
     \endentry
     \entry{rechenberg1973evolutionsstrategie}{article}{}
       \name{author}{1}{}{%
-        {{hash=b58e12d54f5d5bc1ab10d52d28863dce}{%
+        {{hash=45fb24e8e1dc73e4b8b8b59d4cb85697}{%
            family={Rechenberg},
            familyi={R\bibinitperiod},
-           given={Ingo},
+           given={I.},
            giveni={I\bibinitperiod}}}%
       }
       \list{publisher}{1}{%
         {Frommann-Holzboog}%
       }
-      \strng{namehash}{b58e12d54f5d5bc1ab10d52d28863dce}
-      \strng{fullhash}{b58e12d54f5d5bc1ab10d52d28863dce}
-      \strng{authornamehash}{b58e12d54f5d5bc1ab10d52d28863dce}
-      \strng{authorfullhash}{b58e12d54f5d5bc1ab10d52d28863dce}
+      \strng{namehash}{45fb24e8e1dc73e4b8b8b59d4cb85697}
+      \strng{fullhash}{45fb24e8e1dc73e4b8b8b59d4cb85697}
+      \strng{authornamehash}{45fb24e8e1dc73e4b8b8b59d4cb85697}
+      \strng{authorfullhash}{45fb24e8e1dc73e4b8b8b59d4cb85697}
       \field{sortinit}{R}
       \field{sortinithash}{c15bc8eb6936bc6b3c8baa9e8575af53}
       \field{labelnamesource}{author}
@@ -779,70 +810,21 @@
       \field{title}{Evolutionsstrategie--Optimierung technisher Systeme nach Prinzipien der biologischen Evolution}
       \field{year}{1973}
     \endentry
-    \entry{sacks1989}{article}{}
-      \name{author}{4}{}{%
-        {{hash=85877ac80e3df5401239ba28ad5be7a4}{%
-           family={Sacks},
-           familyi={S\bibinitperiod},
-           given={Jerome},
-           giveni={J\bibinitperiod}}}%
-        {{hash=cd22871eb90b4e075b111b815a1be3e6}{%
-           family={Welch},
-           familyi={W\bibinitperiod},
-           given={William\bibnamedelima J.},
-           giveni={W\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
-        {{hash=7835269e5e85ab1f4a073a76fdce0892}{%
-           family={Mitchell},
-           familyi={M\bibinitperiod},
-           given={Toby\bibnamedelima J.},
-           giveni={T\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
-        {{hash=740a6d68f7410336b24546bb91751f9c}{%
-           family={Wynn},
-           familyi={W\bibinitperiod},
-           given={Henry\bibnamedelima P.},
-           giveni={H\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {The Institute of Mathematical Statistics}%
-      }
-      \strng{namehash}{80eb1c6acca25cc28e489abb5f58aac7}
-      \strng{fullhash}{80eb1c6acca25cc28e489abb5f58aac7}
-      \strng{authornamehash}{80eb1c6acca25cc28e489abb5f58aac7}
-      \strng{authorfullhash}{80eb1c6acca25cc28e489abb5f58aac7}
-      \field{sortinit}{S}
-      \field{sortinithash}{3c1547c63380458f8ca90e40ed14b83e}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Statist. Sci.}
-      \field{month}{11}
-      \field{number}{4}
-      \field{title}{Design and Analysis of Computer Experiments}
-      \field{volume}{4}
-      \field{year}{1989}
-      \field{pages}{409\bibrangedash 423}
-      \range{pages}{15}
-      \verb{doi}
-      \verb 10.1214/ss/1177012413
-      \endverb
-      \verb{url}
-      \verb https://doi.org/10.1214/ss/1177012413
-      \endverb
-    \endentry
     \entry{Smith:1993:NNS:583180}{book}{}
       \name{author}{1}{}{%
-        {{hash=9d8e16dd1f7782dbe8e1ee38498c37f9}{%
+        {{hash=abea0164f5c13d4e53c898ebc470392c}{%
            family={Smith},
            familyi={S\bibinitperiod},
-           given={Murray},
+           given={M.},
            giveni={M\bibinitperiod}}}%
       }
       \list{publisher}{1}{%
         {Thomson Learning}%
       }
-      \strng{namehash}{9d8e16dd1f7782dbe8e1ee38498c37f9}
-      \strng{fullhash}{9d8e16dd1f7782dbe8e1ee38498c37f9}
-      \strng{authornamehash}{9d8e16dd1f7782dbe8e1ee38498c37f9}
-      \strng{authorfullhash}{9d8e16dd1f7782dbe8e1ee38498c37f9}
+      \strng{namehash}{abea0164f5c13d4e53c898ebc470392c}
+      \strng{fullhash}{abea0164f5c13d4e53c898ebc470392c}
+      \strng{authornamehash}{abea0164f5c13d4e53c898ebc470392c}
+      \strng{authorfullhash}{abea0164f5c13d4e53c898ebc470392c}
       \field{sortinit}{S}
       \field{sortinithash}{3c1547c63380458f8ca90e40ed14b83e}
       \field{labelnamesource}{author}
@@ -854,26 +836,26 @@
     \endentry
     \entry{Ulmer03evolutionstrategies}{inproceedings}{}
       \name{author}{3}{}{%
-        {{hash=bbb0cead6a66496f1442d3981f0b823f}{%
+        {{hash=9dcc38f92e41290a7b97a65b3851ae5f}{%
            family={Ulmer},
            familyi={U\bibinitperiod},
-           given={Holger},
+           given={H.},
            giveni={H\bibinitperiod}}}%
-        {{hash=2ccde36bf22c6fcc69d07d11970bc4fe}{%
+        {{hash=9b3668d9e258f1484386721e68a7d42d}{%
            family={Streichert},
            familyi={S\bibinitperiod},
-           given={Felix},
+           given={F.},
            giveni={F\bibinitperiod}}}%
-        {{hash=650741453181162d551d5db838d0856f}{%
+        {{hash=9adb3920ee63b942bd00e13099f205c6}{%
            family={Zell},
            familyi={Z\bibinitperiod},
-           given={Andreas},
+           given={A.},
            giveni={A\bibinitperiod}}}%
       }
-      \strng{namehash}{640c2590e068a92b4f3dd4a04c02ef06}
-      \strng{fullhash}{640c2590e068a92b4f3dd4a04c02ef06}
-      \strng{authornamehash}{640c2590e068a92b4f3dd4a04c02ef06}
-      \strng{authorfullhash}{640c2590e068a92b4f3dd4a04c02ef06}
+      \strng{namehash}{c66644027d0110f0d7b82210e507c08c}
+      \strng{fullhash}{c66644027d0110f0d7b82210e507c08c}
+      \strng{authornamehash}{c66644027d0110f0d7b82210e507c08c}
+      \strng{authorfullhash}{c66644027d0110f0d7b82210e507c08c}
       \field{sortinit}{U}
       \field{sortinithash}{1554584e7f69d2b4fe0a645e73d50194}
       \field{labelnamesource}{author}
@@ -883,60 +865,6 @@
       \field{year}{2003}
       \field{pages}{692\bibrangedash 699}
       \range{pages}{8}
-    \endentry
-    \entry{Ulmer2005}{inbook}{}
-      \name{author}{3}{}{%
-        {{hash=bbb0cead6a66496f1442d3981f0b823f}{%
-           family={Ulmer},
-           familyi={U\bibinitperiod},
-           given={Holger},
-           giveni={H\bibinitperiod}}}%
-        {{hash=2ccde36bf22c6fcc69d07d11970bc4fe}{%
-           family={Streichert},
-           familyi={S\bibinitperiod},
-           given={Felix},
-           giveni={F\bibinitperiod}}}%
-        {{hash=650741453181162d551d5db838d0856f}{%
-           family={Zell},
-           familyi={Z\bibinitperiod},
-           given={Andreas},
-           giveni={A\bibinitperiod}}}%
-      }
-      \name{editor}{1}{}{%
-        {{hash=c3da5be922b2509d740ae31f49229c23}{%
-           family={Jin},
-           familyi={J\bibinitperiod},
-           given={Yaochu},
-           giveni={Y\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {Berlin, Heidelberg}%
-      }
-      \list{publisher}{1}{%
-        {Springer Berlin Heidelberg}%
-      }
-      \strng{namehash}{640c2590e068a92b4f3dd4a04c02ef06}
-      \strng{fullhash}{640c2590e068a92b4f3dd4a04c02ef06}
-      \strng{authornamehash}{640c2590e068a92b4f3dd4a04c02ef06}
-      \strng{authorfullhash}{640c2590e068a92b4f3dd4a04c02ef06}
-      \strng{editornamehash}{c3da5be922b2509d740ae31f49229c23}
-      \strng{editorfullhash}{c3da5be922b2509d740ae31f49229c23}
-      \field{sortinit}{U}
-      \field{sortinithash}{1554584e7f69d2b4fe0a645e73d50194}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{booktitle}{Knowledge Incorporation in Evolutionary Computation}
-      \field{isbn}{978-3-540-44511-1}
-      \field{title}{Model Assisted Evolution Strategies}
-      \field{year}{2005}
-      \field{pages}{333\bibrangedash 355}
-      \range{pages}{23}
-      \verb{doi}
-      \verb 10.1007/978-3-540-44511-1_16
-      \endverb
-      \verb{url}
-      \verb https://doi.org/10.1007/978-3-540-44511-1_16
-      \endverb
     \endentry
     \entry{4033013}{article}{}
       \name{author}{5}{}{%

@@ -131,7 +131,7 @@ leg.FontSize = 10;
 title(leg,'Dimension of data');
 % ylabel('convergnece rate c','fontsize',20);
 ylim([0,inf]);  % y starts from 0
-xlim([0 10]);   % set y = 0-10
+xlim([0.1 10]);   % set y = 0-10
 xlabel('noise-to-signal ratio \vartheta','fontsize',20);
 ylabel('opt. expected fitness gain \eta_{opt}','FontSize',15); 
 set(gca,'FontSize',15);
@@ -151,7 +151,8 @@ if(n==100)
     sigma_star_opt = c_mu_lambda*mu./(sqrt(1+v.*v));
     plot(v,sigma_star_opt*(c_mu_lambda)./sqrt(1+v.^2)-sigma_star_opt.^2./(2*mu),'Color',scatterColour,'DisplayName',d);
     set(gca,'FontSize',15);
-    xlim([0 10]);   % set y = 0-10
+    xlim([0.1 10]);   % set y = 0-10
+    set(gca, 'XScale', 'log');
 end
 
 % % save all fig

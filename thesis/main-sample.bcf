@@ -2148,7 +2148,7 @@
     <bcf:citekey order="3">JIN201161</bcf:citekey>
     <bcf:citekey order="4">ECJ2016_LMCMA</bcf:citekey>
     <bcf:citekey order="5">DBLP:conf/ppsn/KayhaniA18</bcf:citekey>
-    <bcf:citekey order="6">Dunham1963</bcf:citekey>
+    <bcf:citekey order="6">dunham1963design</bcf:citekey>
     <bcf:citekey order="7">doi:10.1080/00401706.1966.10490404</bcf:citekey>
     <bcf:citekey order="8">sacks1989</bcf:citekey>
     <bcf:citekey order="9">Smith:1993:NNS:583180</bcf:citekey>
@@ -2172,7 +2172,7 @@
     <bcf:citekey order="27">1284729</bcf:citekey>
     <bcf:citekey order="28">ARNOLD2001127</bcf:citekey>
     <bcf:citekey order="29">Arnold:2000:EMS:645825.669117</bcf:citekey>
-    <bcf:citekey order="30">ARNOLD2002629</bcf:citekey>
+    <bcf:citekey order="30">DBLP:conf/ppsn/KayhaniA18</bcf:citekey>
     <bcf:citekey order="31">Ostermeier:1994:DAS:1326675.1326679</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="nty/global/" type="entry" sortscheme="nty" sortnamekeyscheme="global" labelprefix="">

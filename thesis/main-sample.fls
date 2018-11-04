@@ -180,6 +180,10 @@ INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/algorithms/algorithm.sty
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/algorithms/algorithm.sty
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/algorithms/algorithmic.sty
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/algorithms/algorithmic.sty
+INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/tools/dcolumn.sty
+INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/tools/dcolumn.sty
+INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/tools/array.sty
+INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/tools/array.sty
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/biblatex/lbx/american.lbx
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/biblatex/lbx/american.lbx
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/biblatex/lbx/english.lbx
@@ -478,11 +482,15 @@ INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/public/libertine/LinLibertineT
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/libertine/LinLibertineTB-tlf-t1--base.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-ot1.vf
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-ot1--base.tfm
+INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/inconsolata/t1zi4.fd
+INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/inconsolata/t1zi4.fd
+INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/inconsolata/t1-zi4r-4.tfm
 INPUT main-sample.aux
 INPUT ./main-sample.out
 INPUT ./main-sample.out
 INPUT main-sample.run.xml
 OUTPUT main-sample.run.xml
+INPUT /usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-4.enc
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/newtx/libertinealt.enc
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc
@@ -491,6 +499,7 @@ INPUT /usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.e
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc
+INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinBiolinumTB.pfb
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb

@@ -461,6 +461,8 @@ INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/public/libertine/LinLibertineT
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/libertine/LinLibertineTI-tlf-t1--base.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-ts1.vf
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-ts1--base.tfm
+INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/public/libertine/LinLibertineTB-tlf-t1.vf
+INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/libertine/LinLibertineTB-tlf-t1--base.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-t1.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-t1.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-ot1.vf
@@ -513,8 +515,6 @@ INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/newtx/fxlri-5letters.t
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/newtx/rntxmi5.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-ot1.vf
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-ot1--base.tfm
-INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/public/libertine/LinLibertineTB-tlf-t1.vf
-INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/libertine/LinLibertineTB-tlf-t1--base.tfm
 INPUT main-sample.aux
 INPUT ./main-sample.out
 INPUT ./main-sample.out

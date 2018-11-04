@@ -31,7 +31,7 @@ This paper intend to improve the understanding of the impact of population size 
 \subsection{Surrogate Model} 
 % Def of surrogate model 
 
-Using an approximate model to reduce computational cost can be traced back to 1960s \cite{Dunham1963}. Some successful surrogated models include but are not limitted to Polynomial Regression (PR, response surface methodology) \cite{doi:10.1080/00401706.1966.10490404}, Gaussian Process (GP, Kriging models) \cite{sacks1989}, Artificial neural networks \cite{Smith:1993:NNS:583180}. There are two types of surrogate models, global surrogate model and local surrogate model, . ES using global surrogate model based on Kring was examined by Ratle \cite{Ratle:2001:KSF:966173.966177}. Another ES using global surrogate model based on Artificial neural networks was constructed by Jin \cite{Jin02aframework} which gives an imperial criterion on using the true objective function or the surrogate model to evaluate the offspring. Ulmer et al \cite{Ulmer03evolutionstrategies} and Buche et al \cite{1424193} also applied GP as surrogate models in ES. But the performance of global surrogate models degrade as the dimension of the data increases, known as \textit{curse of dimensionality}. Since the performance of ES is straightly affected by the surrogate model accurancy, online surrogates has been introduced by using a surrogate-adaptation mechanism that updated the model according to some heustic. Loshchilov et al \cite{loshchilov2012self} uses .
+Using an approximate model to reduce computational cost can be traced back to 1960s \cite{dunham1963design}. Some successful surrogated models include but are not limitted to Polynomial Regression (PR, response surface methodology) \cite{doi:10.1080/00401706.1966.10490404}, Gaussian Process (GP, Kriging models) \cite{sacks1989}, Artificial neural networks \cite{Smith:1993:NNS:583180}. There are two types of surrogate models, global surrogate model and local surrogate model, . ES using global surrogate model based on Kring was examined by Ratle \cite{Ratle:2001:KSF:966173.966177}. Another ES using global surrogate model based on Artificial neural networks was constructed by Jin \cite{Jin02aframework} which gives an imperial criterion on using the true objective function or the surrogate model to evaluate the offspring. Ulmer et al \cite{Ulmer03evolutionstrategies} and Buche et al \cite{1424193} also applied GP as surrogate models in ES. But the performance of global surrogate models degrade as the dimension of the data increases, known as \textit{curse of dimensionality}. Since the performance of ES is straightly affected by the surrogate model accurancy, online surrogates has been introduced by using a surrogate-adaptation mechanism that updated the model according to some heustic. Loshchilov et al \cite{loshchilov2012self} uses .
 Online local surrogate models \cite{4033013} can be constructed using methods like radial basis function (RBF) \cite{GIANNAKOGLOU200243} to replace the global surrogate model, where the surrogate model is updated online, giving a more accurate estimation compared with the global surrogate model.
 
 
@@ -43,7 +43,7 @@ Online local surrogate models \cite{4033013} can be constructed using methods li
 % Recent works in surrogated assisted EAs uses a combination of different surrogate models to estimate the fitness strength of the candidate solutions. Zhou et al \cite{4033013} proposed a hierarchical surrogate-assisted ES where a global surrogate model and a local surrogate model are integrated. The Global surrogate model uses GP and PR to estimate the global fitness of ES's search space, filtering the unpromising candidate solutions. Then, a local surrogate-assisted Lamarckian learning based on RBF is performed to search the promising candidate solutions. 
 
 
-There are various surrogate-assisted EAs integrating global and local surrogate models or using a combination of heuristics. These methods tend to be sophisticated for good performance, while few literatures have $\color{red}{systematically\ investigated ????????}$ the surrogated-assisted $(\mu/\mu,\lambda)$-ES. One exception is what Chen and Zou \cite{10.1007/978-3-319-09333-8_4} proposed but yet incomplete in terms of two aspects. Firstly, it uses a linear surrogate that cannot give a precise estimate when coordinate transform is applied, the precondition to solve a generalized optimization problem \cite{DBLP:conf/ppsn/KayhaniA18}. Secondly, it does not include a step size adaptation mechanism. Besides that, Ulmer et al \cite{Ulmer2005} proposed a Model Assisted Steady-State Evolution Strategy (MASS-ES), which is a ($\mu+\lambda$)-ES that is a (1+1)-ES when we set $\mu=\lambda=1$. But the behavior of step size adaptation is unclear given the proposed conditions.
+There are various surrogate-assisted EAs integrating global and local surrogate models or using a combination of heuristics. These methods tend to be sophisticated for good performance, while few literatures have $\color{red}{systematically\ investigated ???}$ the surrogated-assisted $(\mu/\mu,\lambda)$-ES. One exception is what Chen and Zou \cite{10.1007/978-3-319-09333-8_4} proposed but yet incomplete in terms of two aspects. Firstly, it uses a linear surrogate that cannot give a precise estimate when coordinate transform is applied, the precondition to solve a generalized optimization problem \cite{DBLP:conf/ppsn/KayhaniA18}. Secondly, it does not include a step size adaptation mechanism. Besides that, Ulmer et al \cite{Ulmer2005} proposed a Model Assisted Steady-State Evolution Strategy (MASS-ES), which is a ($\mu+\lambda$)-ES that is a (1+1)-ES when we set $\mu=\lambda=1$. But the behavior of step size adaptation is unclear given the proposed conditions.
 
 
 % (mml)-ES with surrogate model 
@@ -63,7 +63,7 @@ There is a wealth of literatures for solving black box optimization using (1+1)-
 \subsection{Step size adaptation}
 % CSA
 
-The step size of $(\mu/\mu,\lambda)$-ES is commonly adapated using cumulative step size adaptation (CSA) \cite{Ostermeier:1994:DAS:1326675.1326679} and Covariance Matrix Adaptation (CMA) \cite{Hansen:2003:RTC:772374.772376}. The former uses an evolution path and a trial path 
+The step size of $(\mu/\mu,\lambda)$-ES is commonly adapated using cumulative step size adaptation (CSA) \cite{Ostermeier:1994:DAS:1326675.1326679}. ($\color{red}{not\ step\ size\ adaptation\ COULD\ IN\ FUTURE\ WORK}$) Covariance Matrix Adaptation (CMA) \cite{Hansen:2003:RTC:772374.772376}. The former uses an evolution path and a trial path 
 
 % 1/5 rule
 
@@ -91,7 +91,7 @@ The step size of $(\mu/\mu,\lambda)$-ES is commonly adapated using cumulative st
 \begin{center}
 \begin{figure*}
 \includegraphics[height=2.7in, width=7.1in]{expectedFitGain}
-\caption{The figures from left to right shows the expected signle step behaviour of the surrogate model assisted $(\mu/\mu,\lambda)$-ES with unbiased Gaussin distributed surrogate error with $\lambda=10,20,40$ respectively where $\mu = ceil(\lambda/4)$. The solid lines are the results obtained analytically when $n \rightarrow n$, while the dotted line below illustrates the corresponding performance ($n=10$) of the $(\mu/\mu,\lambda)$-ES without model assistance. The dots represents the experimental result for $n=1-$ (croesses) and $n=100$ (circles).}
+\caption{The figures from left to right shows the expected signle step behaviour of the surrogate model assisted $(\mu/\mu,\lambda)$-ES with unbiased Gaussin distributed surrogate error with $\lambda=10,20,40$ respectively where $\mu = ceil(\lambda/4)$. The solid lines are the results obtained analytically when $n \rightarrow \infty$, while the dotted line below illustrates the corresponding performance ($n=10$) of the $(\mu/\mu,\lambda)$-ES without model assistance. The dots represents the experimental result for $n=10$ (croesses) and $n=100$ (circles).}
 \end{figure*}
 \end{center}
 
@@ -109,17 +109,20 @@ Comparision based surrogate model
 
 Consider the minimization of the quadratic sphere $f: \mathbb R^N \rightarrow \mathbb R$ with $f(x)=x^Tx$ where the surrogate model assisted $(\mu/\mu.\lambda)$-ES is applied. This section will use the surrogate model described above to replace the true objective function calls of candidate solutions in each iteration, inaccurate but at vanishing cost. We first consider a simple iteration of the strategy. In each iteration, a population size of $\lambda$ new candidate solutions $y_i \in \mathbb{R}^N,i = 1,...,\lambda $ are generated from $\mu$ parents $x_i \in \mathbb{R}^N, i=1,...,\mu$, where $\lambda>\mu$. The parental population with size $\mu$ are replaced by the best $\mu$ candidate solutions $y_{i;\lambda},i = 1,2,...,\mu$ evaluated by the surrogate model with fitness estimate $f_{\epsilon}(y_{i;\lambda}) \leq f_{\epsilon}(y_{j,\lambda}), 1 \leq i < j \leq \lambda$ at vanishing cost. For each of the $\lambda$ candidate solutions $y_i=x + \sigma z$ where the parent $x = \sum_{i=1}^n x_i/\mu$, the centroid of the parental population is obtained through intermediate recombination, $z \in  \mathbb R^N$ is a standard normally distributed random vector, $\sigma > 0$ is the step size of the strategy that the adaptation is discussed in Section 4. The strategy uses the surrogate model to obtain a fitness estimate of the candidate solution $f_{\epsilon} (y_i), 1 \leq i \geq \lambda$ and by the assumption the estimate has mean $f(y_i)$ with some standard deviation $\sigma_\epsilon > 0$ (\textit{surroagte model error} also as \textit{fitness noise} \cite{1284729}). Better surrogate model results in smaller model error $\sigma_\epsilon$. For the $\lambda$ new candidate solutions $f_\epsilon (y_i) < f_\epsilon (y_j), 1 \leq i < j \leq \lambda$ indiccates the estimated objective function value of $y_i$ is superior to $y_j$ and therefore the best $\mu$ candidate solutions are selected,replacing the old parental population of size $\mu$ (used for offspring generation in next iteration), while the other inferior candidate solutions are discarded. Therefore, in each iteration only one objective function call is made in evaluating the fitness of the parent (centroid of parental population). The surrogate essentially does a pre-selection for $(\mu/\mu,\lambda)$-ES over candidate solutions, avoiding the unecessary objective function calls determined by the surroagte model.  
 
-Decomposition of $z$, first proposed by Rechenberg \cite{rechenberg1973evolutionsstrategie} can be used to study the expected step size of the strategy. We can decompose the vector $z$ as a vector sum $z = z_1 + z_2$, where $z_1$ is in the direction of the negative gradient of the objecive function $\nabla f(x)$, while $z_2$ orthogonal to $z_1$. We have $z_1$ standard normally distributed, while $\Vert z_2\Vert^2$ $\chi$-distributed with $N-1$ degree of freedom and $ \Vert z_2\Vert^2 /n \overset{N \rightarrow \infty }{=} 0$ (see reference theorem [$\color{red}{dirk's slides }$]). Denote $\delta = N (f(x) - f(y))/(2R^2)$ where $R = \Vert x \Vert$ is the distance to the optimal, we further introduce normalized step size $\sigma^* = n \sigma/R$ and $z_{\text{step}} = \sum_{i=1}^\mu z_{i;\lambda}$ (the averaged $z$ taken by the best $mu$ candidate solutions). The normalized fitness advantage of $y$ over $x$ follows
+Decomposition of $z$, first proposed by Rechenberg \cite{rechenberg1973evolutionsstrategie} can be used to study the expected step size of the strategy. We can decompose the vector $z$ as a vector sum $z = z_1 + z_2$, where $z_1$ is in the direction of the negative gradient of the objecive function $\nabla f(x)$, while $z_2$ orthogonal to $z_1$. We have $z_1$ standard normally distributed, while $\Vert z_2\Vert^2$ $\chi$-distributed with $N-1$ degree of freedom and $ \Vert z_2\Vert^2 /N \overset{N \rightarrow \infty }{=} 0$ (see reference theorem [$\color{red}{dirk's\ slides }$]). Denote $\delta = N (f(x) - f(y))/(2R^2)$ where $R = \Vert x \Vert$ is the distance to the optimal, we further introduce normalized step size $\sigma^* = N \sigma/R$ and $z_{\text{step}} = \sum_{i=1}^\mu z_{i;\lambda}$ (the averaged $z$ taken by the best $mu$ candidate solutions). The normalized fitness advantage of $y$ over $x$ follows
 \begin{align}
 \delta & = \frac{N}{2R^2} (x^Tx - (x+\sigma z_{\text{step}})^T (x+\sigma z_{\text{step}})) \nonumber\\
 & = \frac{N}{2R^2} (-2 \sigma x^Tz_{\text{step}} - \sigma^2 \Vert z_{\text{step}}\Vert^2 ) \nonumber\\
 & \overset{N \rightarrow \infty}{=} \sigma^* z_{\text{step},1} - \frac{{\sigma^*} ^2}{2},
 \end{align}
 
-where $z_{\text{step},1} $, the component of $z_{\text{step}}$ pointing to the negative graident of $f(x)$, is normally distributed and $\overset{N \rightarrow \infty}{=}$ denotes the convergence of the distribution $\Vert z_{\text{step} }\Vert^n/n =\mu$ $\color{red}{????? \mu \text{or} 1???}$ assuming $\mu \ll n$. We further indtroudce $\sigma_\epsilon^* = N \sigma_\epsilon / (2R^2)$, the normalized surrogate model error (also referred to as the normalized fitness noise in Noise Sphere from Arnold and Beyer \cite{1284729}). The estimate of true objective function value of $y_i$ is $f_\epsilon (y_i) = f(y_i) + \sigma_\epsilon z_\epsilon, z_\epsilon \in \mathbb{R}$ is standard normally distributed.
+ % $\color{red}{??? 1 \text{ or }\mu ???}$ assuming $\mu \ll N$
+where $z_{\text{step},1} $, the component of $z_{\text{step}}$ pointing to the negative graident of $f(x)$, is normally distributed and $\overset{ N \rightarrow \infty}{=}$ denotes the convergence of the distribution $\Vert z_{\text{step} } \Vert^N/N = 1$. We further indtroudce $\sigma_\epsilon^* = N \sigma_\epsilon / (2R^2)$, the normalized surrogate model error (also referred to as the normalized fitness noise in Noise Sphere from Arnold and Beyer \cite{1284729}). The estimate of true objective function value of $y_i$ is $f_\epsilon (y_i) = f(y_i) + \sigma_\epsilon z_\epsilon, z_\epsilon \in \mathbb{R}$ is standard normally distributed.
 
 The actual normalized fitness advantage of $y$ using the surrogate model is 
-$$\delta_\epsilon = \delta+\sigma_\epsilon^* z_\epsilon$$
+\begin{align}
+\delta_\epsilon = \delta+\sigma_\epsilon^* z_\epsilon 
+\end{align}
 
 The expected value of the normalized change in objective function value  
 \begin{align}
@@ -130,24 +133,29 @@ The expected value of the normalized change in objective function value
 where $y^{t}$ is the centroid of parental population in timestamp $t$, the equation is normalized in terms of dimensionality.
 
 Since the fitness of $\lambda$ offspring generated are evaluated by the surrogate model with vanishing cost. The objective function evaluation per iteration is 1 instead of $\lambda$ (for $(\mu/\mu,\lambda)$-ES), therefore the normalized progress rate when dimensionality $N \rightarrow \infty$, by substituting $\lambda$ with 1 in equation (7) from \cite{ARNOLD2001127} is 
-\begin{align}\label{eq:eta}
+\begin{align}\label{eta}
 \eta = \frac{1}{1}E[ \Delta] = \frac{\sigma^* c_{\mu / \mu, \lambda}}{\sqrt {1+ \vartheta^2}} - \frac{(\sigma^*)^2}{2 \mu},
 \end{align}
 where $\vartheta = \sigma_\epsilon^*/\sigma^*$ is the noise-to-signal ratio, defined to measure the quality of surrogate model relative to the algorithm's step size, $c_{\mu/\mu,\lambda}$ is the $(\mu/\mu,\lambda)$-progess coefficient derived by Arnold and Beyer \cite{Arnold:2000:EMS:645825.669117} that follows
-$\color{red}{paper\ missing}$
-\begin{align}\label{eq:c_mu_mu_lambda}
-% c_{\mu/\mu,\lambda} \approx \frac{1}{\sqrt{2 \pi} \alpha} \text{exp} \left(  -\frac{1}{2} \left (\Phi^{-1} (1-\alpha) \right )^2 \right)
+% $\color{red}{paper\ missing}$
+\begin{align}\label{c_mu_mu_lambda}
 c_{\mu/\mu,\lambda}  = \frac{\lambda-\mu}{2 \pi} \begin{pmatrix} \lambda \\ \mu \end{pmatrix} \int_{-\infty}^{\infty} e^{-x^2}   \left [ \Phi(x)\right]^{\lambda-\mu-1}  \left[ 1- \Phi (x) \right]^{\mu-1}  \text{d} x,
 \end{align}
 where $\Phi^{-1}$ is the inverse function of $\Phi$, the normal cumulative distribution function. The integral can be solve numerically.  
 
-To obtain the opt. expected fitness gain $\eta_{opt}$ and its coresponding opt. normalized step size $\sigma^*_{opt}$, we take derivative of equation (\ref{eq:eta}) over $\sigma^*$ and get the following 
-\begin{align}\label{eq:opt}
+To obtain the opt. expected fitness gain $\eta_{opt}$ and its coresponding opt. normalized step size $\sigma^*_{opt}$, we take derivative of equation (\ref{eta}) over $\sigma^*$ and get the following 
+\begin{align}\label{opt}
 \eta_{opt} &= \frac{\sigma^*_{opt} c_{\mu \ \mu, \lambda}}{\sqrt {1+ \vartheta^2}} - \frac{(\sigma^*_{opt})^2}{2 \mu} \\
 \sigma^*_{opt} &= \frac{ \mu c_{\mu \ \mu, \lambda}}{\sqrt {1+ \vartheta^2}}
 \end{align}
 
-The expected fitness gian against the normalized step size for $(\mu/\mu,\lambda)$-ES with population size $\lambda=10,20,40$ corresponding $\mu=3,5,10$ are ploted in Figure 1 from left to right respectively. The line shows the result obtained from Eqs. (\ref{eq:eta}) (\ref{eq:c_mu_mu_lambda}). The dots represent the experimental result for unbiased Gaussin surroagte error for $n \in \{10,100 \}$ obtained by averaging 100 runs. The result obtained for $n \rightarrow \infty$ are considered to be cases with a large normalized step size with very small noise to signal ratio. 
+The expected fitness gian against the normalized step size for $(\mu/\mu,\lambda)$-ES with population size $\lambda=10,20,40$ corresponding $\mu=3,5,10$ are ploted in Figure 1 from left to right respectively. The line shows the result obtained from Eqs. (\ref{eta}) (\ref{c_mu_mu_lambda}). The dots represent the experimental result for unbiased Gaussin surroagte error for $n \in \{10,100 \}$ obtained by averaging 100 runs. The result obtained for $n \rightarrow \infty$ are considered to be cases with a large normalized step size with very small noise to signal ratio. 
+
+It can be inferred from Figure 1 that, for a fixed population size, the expected fitness gain decreases with an increasing noise-to-signal-ratio. The surrogate cannot severe its purpose and the performance without 
+
+Compared the result obtained by the surrogate assisted (1+1)-ES (Fig 1. \cite{DBLP:conf/ppsn/KayhaniA18}), there is indeed a 
+
+there is a significant increase in expected fitness gain as the population size $\lambda$ increases, the 
 
 % The expected fitness gian against the normalized step size for (1+1)-ES is ploted in Fig. 1 (\cite{DBLP:conf/ppsn/KayhaniA18} and $(\mu/\mu,\lambda)$-ES with population size $\lambda=10,20,40$ in Fig. 2, Fig. 3 and Fig. 4 respectively. The line shows the result obtained from Eqs. (4),(5),(6) for (1+1)-ES from Arash and Dirk \cite{DBLP:conf/ppsn/KayhaniA18} and (\ref{eq:eta}) (\ref{eq:c_mu_mu_lambda}) for $(\mu/\mu,\lambda)$-ES. The dots represent the experimental result for unbiased Gaussin surroagte error for $n \in \{10,100 \}$ obtained by averaging 100 runs. The result obtained for $n \rightarrow \infty$ are considered to be cases with a large normalized step size with very small noise to signal ratio. 
 
@@ -155,12 +163,15 @@ The expected fitness gian against the normalized step size for $(\mu/\mu,\lambda
 
 \begin{center}
 \begin{figure*}
-\includegraphics[height=2.7in, width=5.4in]{opt_stepSize_fitGain}
-\caption{Opt. expected step size and  opt. expected fitness gain}
+\includegraphics[height=2.2in, width=5.4in]{opt_stepSize_fitGain}
+\caption{Opt. expected fitness gain and corsponding opt. normalized step size of the surrogate model assisted $(\mu/\mu,\lambda)$-ES plotted against the noise-to-signal ratio. The line and dots with colour black, blue green represent $(3/3,10)$-ES, $(3/3,10)$-ES, $(3/3,10)$-ES The solid line representa the results obtained analytically when $n\rightarrow \infty$. }
 \end{figure*}
 \end{center}
 
-$\color{red}{graph- subplot(2,2)???\ different\ lambda?}$
+$\color{red}{(log\ sclae\ size)}$
+
+
+$\color{red}{graph- subplot(1,3)\ seems\ better?}$
 
 % $$g(x,y,\sigma_\epsilon^*, \sigma^*)= 1/ \sqrt{2 \pi} e^{-y^2/2} p_{\alpha|z1}(x|y) \delta(x, y)$$
 
@@ -182,25 +193,85 @@ $\color{red}{graph- subplot(2,2)???\ different\ lambda?}$
 
 
 
-For a fixd dimensionality $N$ the normalized progress rate \cite{ARNOLD2002629} is 
+% For a fixd dimensionality $N$ the normalized progress rate \cite{ARNOLD2002629} is 
 
 
-$$
-\eta \approx \frac{c_{\mu/\mu,\lambda} \sigma^* (1+{\sigma^*}^2 /2\mu N)}{\sqrt{ 1+{\sigma^*}^2 /2\mu N) } \sqrt{ 1+ \vartheta^2 +{\sigma^*}^2 /2N }} - N \left [ \sqrt{1+ \frac{ {\sigma^*}^2 }{\mu N} - 1} \right ] 
-$$
+% $$
+% \eta \approx \frac{c_{\mu/\mu,\lambda} \sigma^* (1+{\sigma^*}^2 /2\mu N)}{\sqrt{ 1+{\sigma^*}^2 /2\mu N) } \sqrt{ 1+ \vartheta^2 +{\sigma^*}^2 /2N }} - N \left [ \sqrt{1+ \frac{ {\sigma^*}^2 }{\mu N} - 1} \right ] 
+% $$
 
 
 
 
 \section{Step size adaptation}
 
-
+\subsection{Cummulative step size adaptation}
 
 Even though the analysis in Section 3 suggests potential better performance for the surrogate-assisted $(\mu/\mu,\lambda)$-ES. There is no gaurantee the step size of the strategy can be properly adapted and further the analysis is very inaccurate in terms of finite dimension. In this section we experiemnt the surroagted model assisted $((\mu/\mu,\lambda)+(\mu/\mu,\lambda))$-ES using the cumulative step size adaptation (CSA)\cite{Ostermeier:1994:DAS:1326675.1326679}, commonly used in $(\mu/\mu,\lambda)$-ES and exploit the potential insight that it may offer. The strategy is evaluated by using a Gaussian Process based surrogate model replacing the simple model that simulates the surrogate behaviour in Section 3. Several test functions are used for testing the strategy.
 
+$\color{red}{table(normalized\ step\ size)}$
 
 
 
+$\color{red}{table(test\ functions)}$
+
+Table for median of test results for surrogate model assisted $(\mu/\mu,\lambda)$-ES using CSA
+
+
+$\color{red}{histgram\ obejective\ function\ evaluations\ AND\ plot\ model\ error\ AND\ normalized\ step\ size)}$
+
+Figure histogram for objective function evaluations and relative surrogate model error. 
+
+$\color{red}{histgram\ success\ rate\ AND\ normalized\ convergence\ rate(3\ sphere\ functions) }$
+
+Figure for success rate for surroagte assisted $(\mu/\mu,\lambda)$-ES with $\lambda = 10,20,40$
+
+
+
+
+
+\begin{table*} 
+\caption{Median test results.}
+\begin{tabular}{ l *{5}{D{.}{.}{4}} }
+\toprule
+\textbf{} & \multicolumn{5}{c}{\textbf{Median number of objective function calls (with model assistance) }} \\
+\cmidrule(lr){2-6}
+\textbf{Test functions} & \multicolumn{1}{c}{$(1+1)$-ES} & \multicolumn{1}{c}{$(3/3,10)$-ES} & \multicolumn{1}{c}{$(5/5,20)$-ES} & \multicolumn{1}{c}{$(10/10,40)$-ES}  \\
+\midrule
+\texttt{linear sphere} &1.72\% &4.65\% &9.84\% &19.17\%      \\
+\texttt{quadratic sphere} &3.00\% &8.39\% &18.31\%  &28.09\% \\ 
+\texttt{cubic sphere} &4.13\% &8.64\% &14.51\% &25.83\%      \\ 
+\texttt{Schwefel\' s function} &7.78\% &18.28\% &31.58\% &64.43\%\\ 
+\texttt{quartic function} &2.21\% &7.37\% &15.55\% &32.48\%    \\ 
+        \bottomrule             
+\end{tabular}
+\label{Tab:Test_result}
+\end{table*}
+
+% \renewcommand{\arraystretch}{1.5} %控制行高
+% \begin{table}[tp]
+ 
+%   \centering
+%   \fontsize{6.5}{8}\selectfont
+%   \begin{threeparttable}
+%   \caption{Demographic Prediction performance comparison by three evaluation metrics.}
+%   \label{tab:performance_comparison}
+%     \begin{tabular}{ccccccc}
+%     \toprule
+%     \multirow{2}{*}{Methods}&
+%     \multicolumn{1}{c}{median number of objective function calls (with model assistenace)}\cr
+%     \cmidrule(lr){2-2} \cmidrule(lr){3-5}
+%     &(1+1)-ES with model&$(3/3,10)-ES$&$(5/5,20)-ES$&$(10/10,40)-ES$\cr
+%     \midrule
+%     linear sphere&503&0.7388&0.7301&0.6371\cr
+%     quadratic sphere&214&0.7385&0.7323&0.6363\cr
+%     cubic sphere&198&0.7222&0.7311&0.6243\cr
+%     Schwefel’s function&1503&0.7716&0.7699\cr
+%     quartic function&1236&0.7317&0.7343\cr
+%     \bottomrule
+%     \end{tabular}
+%     \end{threeparttable}
+% \end{table}
 
 
 
@@ -262,8 +333,54 @@ Even though the analysis in Section 3 suggests potential better performance for 
 
 
 
-\section{Step size adaptation}
 
+\subsection{Alternative}
+
+From Figure x, the success rate for all test functions are approxiamtely 0.48, the strategy makes a bad step every other step. It comes natural to ask, how much we are to benefit if we can avoid or simplily not take those bad steps.  
+
+
+Recent papers in surroagte model assisted ES consider (1+1)-ES, the step size of the stratgey is successfully adapted using the 1/5-rule []. Then we probbaly can apply a similar criteria when encounter a bad step size. 
+
+Propose step size adaptation in terms of emergency.
+
+\begin{algorithm}
+\caption{Cummulative Step Size Adaptation with Emergency}
+\label{alg}
+\begin{algorithmic}[1]
+\STATE $c \leftarrow  \frac{\mu +2}{n+\mu+5}$ 
+\STATE $d \leftarrow 1 + 2 \text{max}(0, \sqrt{\frac{\mu - 1}{n+1} } - 1 ) $
+\STATE $p \leftarrow 0$
+\STATE $D \leftarrow 0.68$
+
+\WHILE{not terminate()} 
+	\FOR{$i=1,2,...,\lambda$}
+		\STATE Generate standard normally distributed $z_i \in \mathbb{R}^N $
+		\STATE $y_i \leftarrow x + \sigma z_i$
+		\STATE Evaluate $y_i$ using the surrogate model, yieding $\hat{f}(y_i)$
+	\ENDFOR
+	\STATE $z = \frac{1}{\mu} \sum_{i=1}^{\mu} z_{i;\lambda}$
+	\STATE $y = x + \sigma x$
+	\STATE Evaluate $y$ using true objective function, yieding $f(y)$
+	\STATE Update surrogate modle 
+	\IF{$f(x) < f(y)$ (Emergency)}
+		\STATE $\sigma \leftarrow \sigma D$
+		
+	\ELSE
+		\STATE $s \leftarrow (1-c)s + \sqrt{ c(2-c) \mu z}$
+		\STATE $\sigma \leftarrow \sigma \times \text{exp} \left(\frac{c}{d} \frac{\left\lVert X \right\rVert} { E \left\lVert N(0,I) \right\rVert} -1 \right )$
+		
+	\ENDIF
+
+
+\ENDWHILE
+\end{algorithmic}
+\end{algorithm}
+
+$\color{red}{table(test\ functions)}$
+Table for median of test results for surrogate model assisted $(\mu/\mu,\lambda)$-ES using CSA with emergency
+
+
+Figure for success rate for surroagte assisted $(\mu/\mu,\lambda)$-ES with $\lambda = 10,20,40$
 
 
 

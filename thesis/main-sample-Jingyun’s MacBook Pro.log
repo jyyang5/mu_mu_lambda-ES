@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  1 NOV 2018 13:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  3 NOV 2018 22:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -963,64 +963,67 @@ Package biblatex Warning: Patching footnotes failed.
 
 \@quotelevel=\count321
 \@quotereset=\count322
-(./main-sample.aux)
+(./main-sample.aux
+
+LaTeX Warning: Label `alg' multiply defined.
+
+)
 \openout1 = `main-sample.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/nxlmi/m/it on input line 51.
-LaTeX Font Info:    Try loading font information for OML+nxlmi on input line 51
+LaTeX Font Info:    Checking defaults for OML/nxlmi/m/it on input line 52.
+LaTeX Font Info:    Try loading font information for OML+nxlmi on input line 52
 .
-
-(/usr/local/texlive/2017/texmf-dist/tex/latex/newtx/omlnxlmi.fd
+ (/usr/local/texlive/2017/texmf-dist/tex/latex/newtx/omlnxlmi.fd
 File: omlnxlmi.fd 2013/11/19 Fontinst v1.933 font definitions for OML/nxlmi.
 )
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 51.
-LaTeX Font Info:    Try loading font information for U+ntxexa on input line 51.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 52.
+LaTeX Font Info:    Try loading font information for U+ntxexa on input line 52.
 
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/newtx/untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 51.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 51.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 52.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 52.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 51.
-LaTeX Font Info:    Try loading font information for LMS+ntxsy on input line 51
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 52.
+LaTeX Font Info:    Try loading font information for LMS+ntxsy on input line 52
 .
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/newtx/lmsntxsy.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 52.
 LaTeX Font Info:    Try loading font information for LMX+ntxexx on input line 5
-1.
+2.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/newtx/lmxntxexx.fd
 File: lmxntxexx.fd 2016/07/03 Fontinst v1.933 font definitions for LMX/ntxexx.
 )
-LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    ... okay on input line 52.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 51.
+(Font)              scaled to size 7.0pt on input line 52.
 LaTeX Font Info:    Try loading font information for OT1+LinuxLibertineT-TLF on
- input line 51.
+ input line 52.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/libertine/OT1LinuxLibertineT-TLF.
 fd
@@ -1028,40 +1031,40 @@ File: OT1LinuxLibertineT-TLF.fd 2017/03/20 (autoinst) Font definitions for OT1/
 LinuxLibertineT-TLF.
 )
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.3pt on input line 51.
+(Font)              scaled to size 7.3pt on input line 52.
 <<ot1.cmap>>
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 5.5pt on input line 51.
+(Font)              scaled to size 5.5pt on input line 52.
 <<oml.cmap>>
-LaTeX Font Info:    Try loading font information for U+msa on input line 51.
+LaTeX Font Info:    Try loading font information for U+msa on input line 52.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 51.
+LaTeX Font Info:    Try loading font information for U+msb on input line 52.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+ntxmia on input line 51.
+LaTeX Font Info:    Try loading font information for U+ntxmia on input line 52.
 
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/newtx/untxmia.fd
 File: untxmia.fd 2016/01/31 Fontinst v1.933 font definitions for U/ntxmia.
 )
-LaTeX Font Info:    Try loading font information for U+ntxsym on input line 51.
+LaTeX Font Info:    Try loading font information for U+ntxsym on input line 52.
 
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/newtx/untxsym.fd
 File: untxsym.fd 2015/03/20 Fontinst v1.933 font definitions for U/ntxsym.
 )
-LaTeX Font Info:    Try loading font information for U+ntxsyc on input line 51.
+LaTeX Font Info:    Try loading font information for U+ntxsyc on input line 52.
 
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/newtx/untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
-LaTeX Info: Redefining \microtypecontext on input line 51.
+LaTeX Info: Redefining \microtypecontext on input line 52.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1078,7 +1081,7 @@ Package microtype Info: Loading generic settings for font family
 
 ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box34
-Package hyperref Info: Link coloring OFF on input line 51.
+Package hyperref Info: Link coloring OFF on input line 52.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -1088,9 +1091,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count323
 )
-LaTeX Info: Redefining \ref on input line 51.
-LaTeX Info: Redefining \pageref on input line 51.
-LaTeX Info: Redefining \nameref on input line 51.
+LaTeX Info: Redefining \ref on input line 52.
+LaTeX Info: Redefining \pageref on input line 52.
+LaTeX Info: Redefining \nameref on input line 52.
 
 (./main-sample.out) (./main-sample.out)
 \@outlinefile=\write6
@@ -1180,35 +1183,35 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main-sample.bbl' found.
 
 (./main-sample.bbl)
-Package biblatex Info: Reference section=0 on input line 51.
-Package biblatex Info: Reference segment=0 on input line 51.
+Package biblatex Info: Reference section=0 on input line 52.
+Package biblatex Info: Reference segment=0 on input line 52.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 17.28pt on input line 129.
+(Font)              scaled to size 17.28pt on input line 130.
 LaTeX Font Info:    Try loading font information for T1+LinuxBiolinumT-TLF on i
-nput line 129.
+nput line 130.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/libertine/T1LinuxBiolinumT-TLF.fd
 File: T1LinuxBiolinumT-TLF.fd 2017/03/20 (autoinst) Font definitions for T1/Lin
 uxBiolinumT-TLF.
 )
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 17.28pt on input line 129.
+(Font)              scaled to size 17.28pt on input line 130.
 Package microtype Info: Loading generic settings for font family
 (microtype)             `LinuxBiolinumT-TLF' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/b/n' will be
-(Font)              scaled to size 17.28pt on input line 129.
+(Font)              scaled to size 17.28pt on input line 130.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 17.28pt on input line 129.
+(Font)              scaled to size 17.28pt on input line 130.
 Package microtype Info: Loading generic settings for font family
 (microtype)             `LinuxLibertineT-TLF' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 12.5pt on input line 129.
+(Font)              scaled to size 12.5pt on input line 130.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 9.4pt on input line 129.
+(Font)              scaled to size 9.4pt on input line 130.
  (/usr/local/texlive/2017/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
@@ -1216,15 +1219,15 @@ File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 12.0pt on input line 129.
+(Font)              scaled to size 12.0pt on input line 130.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 129.
+(Font)              scaled to size 10.0pt on input line 130.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 129.
+(Font)              scaled to size 10.0pt on input line 130.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 7.0pt on input line 129.
+(Font)              scaled to size 7.0pt on input line 130.
 LaTeX Font Info:    Try loading font information for TS1+LinuxLibertineT-TLF on
- input line 129.
+ input line 130.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/libertine/TS1LinuxLibertineT-TLF.
 fd
@@ -1232,260 +1235,169 @@ File: TS1LinuxLibertineT-TLF.fd 2017/03/20 (autoinst) Font definitions for TS1/
 LinuxLibertineT-TLF.
 )
 LaTeX Font Info:    Font shape `TS1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 129.
+(Font)              scaled to size 7.0pt on input line 130.
 Package microtype Info: Loading generic settings for font family
 (microtype)             `LinuxLibertineT-TLF' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 9.0pt on input line 129.
+(Font)              scaled to size 9.0pt on input line 130.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 10.95pt on input line 129.
+(Font)              scaled to size 10.95pt on input line 130.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 129.
+(Font)              scaled to size 9.0pt on input line 130.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 129.
+(Font)              scaled to size 8.0pt on input line 130.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 8.0pt on input line 129.
+(Font)              scaled to size 8.0pt on input line 130.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 129.
+(Font)              scaled to size 8.0pt on input line 130.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 6.2pt on input line 129.
+(Font)              scaled to size 6.2pt on input line 130.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 8.0pt on input line 129.
+(Font)              scaled to size 8.0pt on input line 130.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 129.
+(hyperref)                removing `math shift' on input line 130.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mu' on input line 129.
+(hyperref)                removing `\mu' on input line 130.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mu' on input line 129.
+(hyperref)                removing `\mu' on input line 130.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lambda' on input line 129.
+(hyperref)                removing `\lambda' on input line 130.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 129.
+(hyperref)                removing `math shift' on input line 130.
 
 (./main-body.tex
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
 (Font)              scaled to size 9.0pt on input line 5.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 1418) has occurred while \output is active []
 
  [1.1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.3pt on input line 100.
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 5.5pt on input line 100.
- [2.2]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 211.
-)
-! Undefined control sequence.
-<argument> Local Performance of the (\x 
-                                        {fffd}\x {fffd}\x {fffd}\x {fffd}/\x...
-l.134 
-      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> Local Performance of the (\x {fffd}\x 
-                                                 {fffd}\x {fffd}\x {fffd}/\x...
-l.134 
-      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ...rmance of the (\x {fffd}\x {fffd}\x 
-                                                  {fffd}\x {fffd}/\x {fffd}\...
-l.134 
-      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ... the (\x {fffd}\x {fffd}\x {fffd}\x 
-                                                  {fffd}/\x {fffd}\x {fffd}\...
-l.134 
-      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ...fffd}\x {fffd}\x {fffd}\x {fffd}/\x 
-                                                  {fffd}\x {fffd}\x {fffd}\x...
-l.134 
-      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ...fffd}\x {fffd}\x {fffd}/\x {fffd}\x 
-                                                  {fffd}\x {fffd}\x {fffd}I,...
-l.134 
-      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ...fffd}\x {fffd}/\x {fffd}\x {fffd}\x 
-                                                  {fffd}\x {fffd}I, \x {fffd...
-l.134 
-      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ...fffd}/\x {fffd}\x {fffd}\x {fffd}\x 
-                                                  {fffd}I, \x {fffd}\x {fffd...
-l.134 
-      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ...fd}\x {fffd}\x {fffd}\x {fffd}I, \x 
-                                                  {fffd}\x {fffd}\x {fffd}\x...
-l.134 
-      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ...fd}\x {fffd}\x {fffd}I, \x {fffd}\x 
-                                                  {fffd}\x {fffd}\x {fffd})-...
-l.134 
-      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ...fd}\x {fffd}I, \x {fffd}\x {fffd}\x 
-                                                  {fffd}\x {fffd})-ES in a N...
-l.134 
-      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-<argument> ...fd}I, \x {fffd}\x {fffd}\x {fffd}\x 
-                                                  {fffd})-ES in a Noisy Envi...
-l.134 
-      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (56.16179pt too wide) in paragraph at lines 134--134
-[]\T1/LinuxLibertineT-TLF/m/n/7 (-20) Dirk V. Arnold and Hans-Georg Beyer. 2001
-. Lo-cal per-for-mance of the (fffdfffdfffdfffd/fffdfffdfffdfffdi,
+Overfull \hbox (73.05379pt too wide) in paragraph at lines 66--67
+\T1/LinuxLibertineT-TLF/m/n/9 (-20) step size adap-ta-tion (CSA) [[]19[]]. ($[]
+[]$[])
  []
 
-[3.3] [4.4
+<expectedFitGain.pdf, id=105, 1368.21417pt x 432.0896pt>
+File: expectedFitGain.pdf Graphic file (type pdf)
+
+<use expectedFitGain.pdf>
+Package pdftex.def Info: expectedFitGain.pdf used on input line 93.
+(pdftex.def)             Requested size: 513.12082pt x 195.1308pt.
+
+Overfull \hbox (6.82582pt too wide) in paragraph at lines 93--94
+ [][] 
+ []
+
+
+Underfull \vbox (badness 1242) has occurred while \output is active []
+
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 7.3pt on input line 112.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 5.5pt on input line 112.
+ [2.2]
+<opt_stepSize_fitGain.pdf, id=133, 1165.49062pt x 488.7618pt>
+File: opt_stepSize_fitGain.pdf Graphic file (type pdf)
+
+<use opt_stepSize_fitGain.pdf>
+Package pdftex.def Info: opt_stepSize_fitGain.pdf used on input line 166.
+(pdftex.def)             Requested size: 390.2506pt x 158.99486pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3.3 <./expectedFitGain.pdf>]
+Overfull \hbox (109.22246pt too wide) in paragraph at lines 221--222
+[]$[][]$[] 
+ []
+
+
+Overfull \hbox (54.62856pt too wide) in paragraph at lines 225--226
+[]$[][]$[] 
+ []
+
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
+(Font)              scaled to size 7.3pt on input line 243.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
+(Font)              scaled to size 5.5pt on input line 244.
+
+Overfull \hbox (215.00983pt too wide) in paragraph at lines 241--262
+ [] 
+ []
+
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 301.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+) [4.4 <./opt_stepSize_fitGain.pdf>] [5.5] [6.6
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 135.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 135.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 136.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 136.
  (./main-sample.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 135.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 135.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 136.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 136.
 Package rerunfilecheck Info: File `main-sample.out' has not changed.
-(rerunfilecheck)             Checksum: CD59920445E76FF7604A001F093CDCF8;1032.
+(rerunfilecheck)             Checksum: C2F7029C27C032BA282CD920C54ACC8B;1417.
 
 
-LaTeX Warning: There were undefined references.
-
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                main-sample
-(biblatex)                and rerun LaTeX afterwards.
+LaTeX Warning: There were multiply-defined labels.
 
 Package logreq Info: Writing requests to 'main-sample.run.xml'.
 \openout1 = `main-sample.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 135.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 136.
  ) 
 Here is how much of TeX's memory you used:
- 23945 strings out of 492995
- 387575 string characters out of 6132704
- 866316 words of memory out of 5000000
- 26550 multiletter control sequences out of 15000+600000
- 177097 words of font info for 382 fonts, out of 8000000 for 9000
+ 23993 strings out of 492995
+ 388385 string characters out of 6132704
+ 868450 words of memory out of 5000000
+ 26564 multiletter control sequences out of 15000+600000
+ 187295 words of font info for 383 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 60i,14n,94p,2474b,1353s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/newtx/libertinealt.enc}{/
-usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texli
-ve/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}{/usr/local/texliv
-e/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_naooyc.enc}{/usr/local/texlive
-/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}{/usr/local/texlive/
-2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{/usr/local/texlive/2
-017/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}{/usr/local/texlive/20
-17/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc}</usr/local/texlive/201
-7/texmf-dist/fonts/type1/public/libertine/LinBiolinumTB.pfb></usr/local/texlive
-/2017/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb></usr/local/tex
-live/2017/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb></usr/loca
-l/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb></usr
-/local/texlive/2017/texmf-dist/fonts/type1/public/newtx/fxlri-7letters.pfb></us
-r/local/texlive/2017/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/loca
-l/texlive/2017/texmf-dist/fonts/type1/public/newtx/rtxmi7.pfb></usr/local/texli
-ve/2017/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/texlive/2017
-/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2017/texmf-d
-ist/fonts/type1/public/txfonts/txsyb.pfb></usr/local/texlive/2017/texmf-dist/fo
-nts/type1/public/newtx/txsys.pfb></usr/local/texlive/2017/texmf-dist/fonts/type
-1/public/newtx/zxlr.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/
-newtx/zxlri.pfb>
-Output written on main-sample.pdf (4 pages, 465711 bytes).
+ 60i,17n,94p,2474b,1364s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
+st, replaced by a fixed one
+
+{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/newtx/libertinealt.enc}{/us
+r/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}{/usr
+/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/
+2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_naooyc.enc}{/usr/local/texlive/2
+017/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}{/usr/local/texlive/20
+17/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{/usr/local/texlive/201
+7/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}{/usr/local/texlive/2017
+/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc}</usr/local/texlive/2017/
+texmf-dist/fonts/type1/public/libertine/LinBiolinumTB.pfb></usr/local/texlive/2
+017/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb></usr/local/texli
+ve/2017/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb></usr/local/
+texlive/2017/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb></usr/l
+ocal/texlive/2017/texmf-dist/fonts/type1/public/newtx/fxlri-7letters.pfb></usr/
+local/texlive/2017/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/local/
+texlive/2017/texmf-dist/fonts/type1/public/newtx/rtxmi7.pfb></usr/local/texlive
+/2017/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/texlive/2017/t
+exmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2017/texmf-dis
+t/fonts/type1/public/txfonts/txsyb.pfb></usr/local/texlive/2017/texmf-dist/font
+s/type1/public/newtx/txsys.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/
+public/newtx/zxlr.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/ne
+wtx/zxlri.pfb>
+Output written on main-sample.pdf (6 pages, 1024143 bytes).
 PDF statistics:
- 269 PDF objects out of 1000 (max. 8388607)
- 227 compressed objects within 3 object streams
- 60 named destinations out of 1000 (max. 500000)
- 45133 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 353 PDF objects out of 1000 (max. 8388607)
+ 298 compressed objects within 3 object streams
+ 91 named destinations out of 1000 (max. 500000)
+ 46183 words of extra memory for PDF output out of 51595 (max. 10000000)
 
