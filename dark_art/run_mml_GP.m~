@@ -131,44 +131,13 @@ disp(T);
     histogram(delta_array(1:t),'Normalization','probability');hold on;
     title('Delta pdf','FontSize',20);
     
-    
-    % plot pdf curve (green)[.2 .71 .3]
-    data = delta_array(1:t);
-    h = histogram(delta_array(1:t),'Normalization','probability','facecolor',[.2 .71 .3]);hold on;
-    c = h.BinCounts;
-    w = h.BinWidth;
-    limit = h.BinLimits;
-    plot(limit(1)+w/2:w:limit(2)+w/2,c/sum(c),'color',[.2 .71 .3]);hold on;
-    
-    % plot pdf curve (dark blue)[.25 .55 .79]
-    data = delta_array(1:t);
-    h = histogram(delta_array(1:t),'Normalization','probability','facecolor',[.25 .55 .79]);hold on;
-    c = h.BinCounts;
-    w = h.BinWidth;
-    limit = h.BinLimits;
-    plot(limit(1)+w/2:w:limit(2)+w/2,c/sum(c),'color',[.9 .1 .14]);hold on;
-    
-    % dark red [.9 .1 .14]
-    data = delta_array(1:t);
-    h = histogram(delta_array(1:t),'Normalization','probability','facecolor',[.9 .1 .14]);hold on;
-    c = h.BinCounts;
-    w = h.BinWidth;
-    limit = h.BinLimits;
-    plot(limit(1)+w/2:w:limit(2)+w/2,c/sum(c),'color',[.9 .1 .14]);hold on;
-    
-    % orange [1 0.5 0]
-    data = delta_array(1:t);
-    h = histogram(delta_array(1:t),'Normalization','probability','facecolor',[1 0.5 0]);hold on;
-    c = h.BinCounts;
-    w = h.BinWidth;
-    limit = h.BinLimits;
-    plot(limit(1)+w/2:w:limit(2)+w/2,c/sum(c),'color',[1 0.5 0]);hold on;
-    
-    
-mu = mean(data);
-sigma = std(data);
+    dx = 1;
+    x = 1:dx:1000;
+    h = histogram(delta_array(1:t),x,'Normalization','probability');hold on;
+    plot(x,y./dx,'r');
+    hold on;
+    ksdensity(X)  %Kernel smoothing function estimate 
 
-f = exp(-(x-mu).^2./(2*sigma^2))./(sigma*sqrt(2*pi));
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Schwefel's Problem 1.2
 function val = f4(x)

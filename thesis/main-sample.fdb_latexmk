@@ -1,11 +1,11 @@
 # Fdb version 3
-["biber main-sample"] 1541297497 "main-sample.bcf" "main-sample.bbl" "main-sample" 1541297682
+["biber main-sample"] 1541346568 "main-sample.bcf" "main-sample.bbl" "main-sample" 1541346981
   "main-bibliography.bib" 1541191261 27970 e0233f3939fb4951a1d5b4574be7b2d7 ""
-  "main-sample.bcf" 1541297682 97673 049dcbf9fb0efe2c0fe1f491337b3b19 ""
+  "main-sample.bcf" 1541346981 97673 049dcbf9fb0efe2c0fe1f491337b3b19 ""
   (generated)
   "main-sample.blg"
   "main-sample.bbl"
-["pdflatex"] 1541297679 "main-sample.tex" "main-sample.pdf" "main-sample" 1541297682
+["pdflatex"] 1541346979 "main-sample.tex" "main-sample.pdf" "main-sample" 1541346981
   "/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc" 1480098666 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-4.enc" 1480098667 7311 f1482de29b79cbe9ecc4861d6c55e906 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc" 1490133665 2921 8ca0eb0831f9bc5da080d3697cfe67bf ""
@@ -223,18 +223,18 @@
   "/usr/local/texlive/2017/texmf.cnf" 1495593465 577 2b71d4d888f9e5560b2e99985915a9fa ""
   "ACM-Reference-Format.bbx" 1540472225 18425 c755f24a02600e7dab3afb895bb9871a ""
   "ACM-Reference-Format.cbx" 1540472225 100 022318c52dbfd268aba635ca65293b8e ""
-  "expectedFitGain.pdf" 1541164696 242916 a5d959790cabdd02cab868b950e15ad2 ""
-  "main-body.tex" 1541297666 39524 9b14aba3c3b0766001f2c9028358db83 ""
-  "main-sample.aux" 1541297679 8724 a20478d5057bff9afe1093e2a54d6b84 ""
-  "main-sample.bbl" 1541297498 36462 97ba5d9607993ea65c018cb35d86c2f2 "biber main-sample"
-  "main-sample.out" 1541297679 1417 c2f7029c27c032ba282cd920c54acc8b ""
-  "main-sample.run.xml" 1541297679 2521 b3570aef706c8b77a3b0668cc26c516e ""
+  "expectedFitGain_v1.pdf" 1541346753 64941 0bb4fefb8748ebf68b1838019073b1c1 ""
+  "main-body.tex" 1541346966 39517 e245bdd7c56ed3227c175b85595a4002 ""
+  "main-sample.aux" 1541346978 8724 a20478d5057bff9afe1093e2a54d6b84 ""
+  "main-sample.bbl" 1541346569 36462 97ba5d9607993ea65c018cb35d86c2f2 "biber main-sample"
+  "main-sample.out" 1541346981 1417 c2f7029c27c032ba282cd920c54acc8b ""
+  "main-sample.run.xml" 1541346978 2521 b3570aef706c8b77a3b0668cc26c516e ""
   "main-sample.tex" 1541296701 4595 f437865f816df7e1cd6030c28b9f6792 ""
-  "opt_stepSize_fitGain.pdf" 1541166527 305572 da80c0c7e0f5316f2d08691ee371dd74 ""
+  "opt_stepSize_fitGain_v1.pdf" 1541346454 262406 b539cb42f77ea56c7cba3e32117a5f27 ""
   (generated)
   "main-sample.run.xml"
-  "main-sample.pdf"
-  "main-sample.aux"
-  "main-sample.bcf"
-  "main-sample.log"
   "main-sample.out"
+  "main-sample.pdf"
+  "main-sample.bcf"
+  "main-sample.aux"
+  "main-sample.log"

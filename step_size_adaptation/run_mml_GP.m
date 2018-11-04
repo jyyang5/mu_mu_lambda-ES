@@ -22,7 +22,7 @@ f3 = @(x) (x'*x)^(3/2);  % cubic sphere
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-f = f1;
+f = @f5;
 n = 10;
 
 lambda = 40;
@@ -131,7 +131,7 @@ end
 function val = f5(x)
     beta = 1;
     val = 0;
-    for i = 1:1:n-1
+    for i = 1:1:length(x)-1
         val = val + beta*(x(i+1)-x(i).^2)^2+(1-x(i))^2;
     end
 end
