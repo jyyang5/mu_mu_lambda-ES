@@ -8,7 +8,7 @@ f2 = @(x) (x'*x);
 f3 = @(x) (x'*x)^(3/2);
 
 close all;
-NUM_OF_RUNS = 200;
+NUM_OF_RUNS = 5;
 % NUM_OF_RUNS = 2;
 TRAINING_SIZE = 40;
 LENGTH_SCALE = 8;
@@ -75,6 +75,9 @@ for fname = 1:1:5
     end   
 end
 
+save('data.mat','NUM_OF_RUNS','TRAINING_SIZE','LENGTH_SCALE','t_array','sigma_matrix',...
+    'T_array','f_x_matrix','convergence_rate_array','GP_error_matrix','sigma_star_matrix',...
+    'success_rate_array','delta_matrix');
 
 
 

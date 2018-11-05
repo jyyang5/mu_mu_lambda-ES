@@ -7,53 +7,53 @@ f1 = @(x) (x'*x)^(1/2);
 f2 = @(x) (x'*x);
 f3 = @(x) (x'*x)^(3/2);
 
-
-NUM_OF_RUNS = 5;
+close all;
+NUM_OF_RUNS = 3;
 % NUM_OF_RUNS = 2;
 TRAINING_SIZE = 40;
 LENGTH_SCALE = 8;
 % lambda_array = [5 10 15 20 25 30 35 40 50 60 70 80 90 100];
 
-
-fname = 1;
-data11 = fun_multi_run(fname,NUM_OF_RUNS,0,TRAINING_SIZE,LENGTH_SCALE);
-data12 = fun_multi_run(fname,NUM_OF_RUNS,10,TRAINING_SIZE,LENGTH_SCALE);
-data13 = fun_multi_run(fname,NUM_OF_RUNS,20,TRAINING_SIZE,LENGTH_SCALE);
-data14 = fun_multi_run(fname,NUM_OF_RUNS,40,TRAINING_SIZE,LENGTH_SCALE);
-
-
-fname = 2;
-data21 = fun_multi_run(fname,NUM_OF_RUNS,0,TRAINING_SIZE,LENGTH_SCALE);
-data22 = fun_multi_run(fname,NUM_OF_RUNS,10,TRAINING_SIZE,LENGTH_SCALE);
-data23 = fun_multi_run(fname,NUM_OF_RUNS,20,TRAINING_SIZE,LENGTH_SCALE);
-data24 = fun_multi_run(fname,NUM_OF_RUNS,40,TRAINING_SIZE,LENGTH_SCALE);
-
-fname = 3;
-data31 = fun_multi_run(fname,NUM_OF_RUNS,0,TRAINING_SIZE,LENGTH_SCALE);
-data32 = fun_multi_run(fname,NUM_OF_RUNS,10,TRAINING_SIZE,LENGTH_SCALE);
-data33 = fun_multi_run(fname,NUM_OF_RUNS,20,TRAINING_SIZE,LENGTH_SCALE);
-data34 = fun_multi_run(fname,NUM_OF_RUNS,40,TRAINING_SIZE,LENGTH_SCALE);
-
-fname = 4;
-data41 = fun_multi_run(fname,NUM_OF_RUNS,0,TRAINING_SIZE,LENGTH_SCALE);
-data42 = fun_multi_run(fname,NUM_OF_RUNS,10,TRAINING_SIZE,LENGTH_SCALE);
-data43 = fun_multi_run(fname,NUM_OF_RUNS,20,TRAINING_SIZE,LENGTH_SCALE);
-data44 = fun_multi_run(fname,NUM_OF_RUNS,40,TRAINING_SIZE,LENGTH_SCALE);
-
-fname = 5;
-data51 = fun_multi_run(fname,NUM_OF_RUNS,0,TRAINING_SIZE,LENGTH_SCALE);
-data52 = fun_multi_run(fname,NUM_OF_RUNS,10,TRAINING_SIZE,LENGTH_SCALE);
-data53 = fun_multi_run(fname,NUM_OF_RUNS,20,TRAINING_SIZE,LENGTH_SCALE);
-data54 = fun_multi_run(fname,NUM_OF_RUNS,40,TRAINING_SIZE,LENGTH_SCALE);
+% 
+% fname = 1;
+% data11 = fun_multi_run(fname,NUM_OF_RUNS,0,TRAINING_SIZE,LENGTH_SCALE);
+% data12 = fun_multi_run(fname,NUM_OF_RUNS,10,TRAINING_SIZE,LENGTH_SCALE);
+% data13 = fun_multi_run(fname,NUM_OF_RUNS,20,TRAINING_SIZE,LENGTH_SCALE);
+% data14 = fun_multi_run(fname,NUM_OF_RUNS,40,TRAINING_SIZE,LENGTH_SCALE);
+% 
+% 
+% fname = 2;
+% data21 = fun_multi_run(fname,NUM_OF_RUNS,0,TRAINING_SIZE,LENGTH_SCALE);
+% data22 = fun_multi_run(fname,NUM_OF_RUNS,10,TRAINING_SIZE,LENGTH_SCALE);
+% data23 = fun_multi_run(fname,NUM_OF_RUNS,20,TRAINING_SIZE,LENGTH_SCALE);
+% data24 = fun_multi_run(fname,NUM_OF_RUNS,40,TRAINING_SIZE,LENGTH_SCALE);
+% 
+% fname = 3;
+% data31 = fun_multi_run(fname,NUM_OF_RUNS,0,TRAINING_SIZE,LENGTH_SCALE);
+% data32 = fun_multi_run(fname,NUM_OF_RUNS,10,TRAINING_SIZE,LENGTH_SCALE);
+% data33 = fun_multi_run(fname,NUM_OF_RUNS,20,TRAINING_SIZE,LENGTH_SCALE);
+% data34 = fun_multi_run(fname,NUM_OF_RUNS,40,TRAINING_SIZE,LENGTH_SCALE);
+% 
+% fname = 4;
+% data41 = fun_multi_run(fname,NUM_OF_RUNS,0,TRAINING_SIZE,LENGTH_SCALE);
+% data42 = fun_multi_run(fname,NUM_OF_RUNS,10,TRAINING_SIZE,LENGTH_SCALE);
+% data43 = fun_multi_run(fname,NUM_OF_RUNS,20,TRAINING_SIZE,LENGTH_SCALE);
+% data44 = fun_multi_run(fname,NUM_OF_RUNS,40,TRAINING_SIZE,LENGTH_SCALE);
+% 
+% fname = 5;
+% data51 = fun_multi_run(fname,NUM_OF_RUNS,0,TRAINING_SIZE,LENGTH_SCALE);
+% data52 = fun_multi_run(fname,NUM_OF_RUNS,10,TRAINING_SIZE,LENGTH_SCALE);
+% data53 = fun_multi_run(fname,NUM_OF_RUNS,20,TRAINING_SIZE,LENGTH_SCALE);
+% data54 = fun_multi_run(fname,NUM_OF_RUNS,40,TRAINING_SIZE,LENGTH_SCALE);
 
 t_array = zeros(5,4,NUM_OF_RUNS,1);                                           % # of iterations for the stop creteria
-sigma_matrix = zeros(5,4,NUM_OF_RUNS,10000);                                  % store all sigma
-T_array = zeros(5,4,NUM_OF_RUNS,1);                                           % # of objective function evaluations for the stop creteria
-f_x_matrix = zeros(5,4,NUM_OF_RUNS,10000);                                    % store all fx
-convergence_rate_array = zeros(5,4,NUM_OF_RUNS,1);                            % convergence rate 
-GP_error_matrix = zeros(5,4,NUM_OF_RUNS,10000);                               % store similar to noise-to-signal ratio
-sigma_star_matrix = zeros(5,4,NUM_OF_RUNS,10000);                             % normalized step size 
-success_rate_array = zeros(5,4,NUM_OF_RUNS,1);                                % success rate 
+sigma_m = zeros(5,4,NUM_OF_RUNS,10000);                                  % store all sigma
+T_m = zeros(5,4,NUM_OF_RUNS,1);                                           % # of objective function evaluations for the stop creteria
+f_x_m = zeros(5,4,NUM_OF_RUNS,10000);                                    % store all fx
+convergence_rate_m = zeros(5,4,NUM_OF_RUNS,1);                            % convergence rate 
+GP_error_m = zeros(5,4,NUM_OF_RUNS,10000);                               % store similar to noise-to-signal ratio
+sigma_star_matri = zeros(5,4,NUM_OF_RUNS,10000);                             % normalized step size 
+success_rate_matrix = zeros(5,4,NUM_OF_RUNS,1);                                % success rate 
 delta_matrix = zeros(5,4,NUM_OF_RUNS,10000);                                  % each [i,j] stores a delta array 
 
 
@@ -63,16 +63,23 @@ for fname = 1:1:5
     for i = 1:1:length(lambda_array)
         lambda = lambda_array(i);
         temp = fun_multi_run(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE);
-        t_array(fname,i,:,:) =  cell2mat(data)
-    end
-        lambda_temp = [0,10,20,40]
-    
+        t_array(fname,i,:) =  cell2mat(temp(1));
+        sigma_matrix(fname,i,:,:) = cell2mat(temp(2));
+        T_array(fname,i,:) = cell2mat(temp(3));                              % # of objective function evaluations for the stop creteria
+        f_x_matrix(fname,i,:,:) = cell2mat(temp(4));                         % store all fx
+        convergence_rate_array(fname,i,:) = cell2mat(temp(5));               % convergence rate 
+        GP_error_matrix(fname,i,:,:) = cell2mat(temp(6));                    % store similar to noise-to-signal ratio
+        sigma_star_matrix(fname,i,:,:) = cell2mat(temp(7));                  % normalized step size 
+        success_rate_matrix(fname,i,:) = cell2mat(temp(8));                   % success rate 
+        delta_matrix(fname,i,:,:) = cell2mat(temp(9));                       % each [i,j] stores a delta array 
+    end   
 end
 
+save('data.mat','NUM_OF_RUNS','TRAINING_SIZE','LENGTH_SCALE','t_array','sigma_matrix',...
+    'T_array','f_x_matrix','convergence_rate_array','GP_error_matrix','sigma_star_matrix',...
+    'success_rate_array','delta_matrix');
 
-for i = 1:1:5
-    t_array(i,:,:) = cell
-end
+
 
 
 % 
