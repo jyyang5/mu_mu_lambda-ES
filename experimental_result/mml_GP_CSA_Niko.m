@@ -124,7 +124,7 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
         % if diverge -> convergence rate = 0 success rate = 0
         success_rate = 0;
 %         val = {9999,mean(x0, 2),9999,sigma_array, 9999, fcentroid_array,-1,error_array,sigma_star_array,success_rate,delta_array}; 
-        val = {t,centroid,f_centroid,sigma_array, 5000, fcentroid_array,convergence_rate,error_array,sigma_star_array,success_rate,delta_array};
+        val = {t,centroid,f_centroid,sigma_array, 2000, fcentroid_array,convergence_rate,error_array,sigma_star_array,success_rate,delta_array};
 
         return 
     end
