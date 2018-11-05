@@ -46,7 +46,7 @@ NUM_OF_ITERATIONS = 2000;
 % mu = 3;
 n = 10;
 
-subplot_ROW = 4;
+subplot_ROW = 5;
 subplot_COL = 5; 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -173,20 +173,20 @@ h.BinWidth = 20;
 if(lambda==40)
     legend({'(1+1)-ES','(3/3,10)-ES','(5/5,20)-ES','(10/10,40)-ES'})
     if(fname == 1)
-        d =sprintf('linear sphere');
-        title(d,'fontsize',15);
+        d3 =sprintf('linear sphere');
+        title(d3,'fontsize',15);
     elseif(fname == 2)
-        d =sprintf('quadratic sphere');
-        title(d,'fontsize',15);
+        d3 =sprintf('quadratic sphere');
+        title(d3,'fontsize',15);
     elseif(fname == 3)
-        d =sprintf('cubic sphere');
-        title(d,'fontsize',15);
+        d3 =sprintf('cubic sphere');
+        title(d3,'fontsize',15);
     elseif(fname == 4)
-        d =sprintf('Schwefel;s function');
-        title(d,'fontsize',15);
+        d3 =sprintf('Schwefel;s function');
+        title(d3,'fontsize',15);
     elseif(fname == 5)
-        d =sprintf('quartic function');
-        title(d,'fontsize',15); 
+        d3 =sprintf('quartic function');
+        title(d3,'fontsize',15); 
     end
 end
 % if(fname==1)
@@ -264,44 +264,8 @@ if(fname<4)
     legend('show');
 end
 
-saveas(gcf,'merged_plot.fig');  
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Histogram normalized fitGain
-figure(101);
-% % 5. histogram success rate (good step size)
-% subplot(1,subplot_COL,fname);
-% % No bar colour, bold binwidth
-% if(T_med == 5000) % early stopping
-%     h2 = histogram(delta_matrix_med,'Normalization','probability','DisplayName',d);hold on;
-% else
-%     h2 = histogram(delta_matrix_med,'Normalization','probability','DisplayName',d);hold on;
-% end
-% if(lambda==0)
-%     h2.BinEdges=h.BinEdges-0.0125;
-% elseif(lambda == 10)
-%     h2.BinEdges=h.BinEdges;
-% elseif(lambda==20)
-%     h2.BinEdges=h.BinEdges+0.0125;
-% elseif(lambda==40)
-%     h2.BinEdges=h.BinEdges+0.025;
-% end
-% h2.LineWidth=1.5;
-% h2.BinWidth = 0.1;
-% if(fname==1)
-%     ylabel('Probability','FontSize',15);%
-% end
-% xlabel('Normalized fitness gain','FontSize',15); 
-% % set(gca, 'YScale', 'log');
-% % title('step size \sigma','FontSize',20);
-% legend('-DynamicLegend'); 
-% legend('show');
-% saveas(gcf,'fitGain_pdf.fig');  
-
-
 % 5. histogram success rate (good step size)
-
-subplot(1,subplot_COL,fname);
+subplot(subplot_ROW,subplot_COL,fname+20);
 % No bar colour, bold binwidth
 if(T_med == 5000) % early stopping
     h2 = histogram(nonzeros(delta_matrix_med),'Normalization','probability','DisplayName',d,'FaceColor','none','LineWidth',2);hold on;
@@ -311,16 +275,16 @@ else
 end
 if(lambda==0)
     h2.EdgeColor= [0  0.4470 0.7410];
-    h2.BinEdges=h2.BinEdges-0.0125;
+    h2.BinEdges=h2.BinEdges-0.015;
 elseif(lambda == 10)
     h2.EdgeColor= [0.8500  0.3250  0.0980];
-    h2.BinEdges=h2.BinEdges;
+    h2.BinEdges=h2.BinEdges-0.005;
 elseif(lambda==20)
     h2.EdgeColor= [0.9290  0.6940  0.1250];
-    h2.BinEdges=h2.BinEdges+0.0125;
+    h2.BinEdges=h2.BinEdges+0.005;
 elseif(lambda==40)
     h2.EdgeColor= [0.4940  0.1840  0.5560];
-    h2.BinEdges=h2.BinEdges+0.025;
+    h2.BinEdges=h2.BinEdges+0.015;
 end
 h2.LineWidth=1.2;
 h2.BinWidth = 0.2;
@@ -332,7 +296,46 @@ xlabel('Normalized fitness gain','FontSize',15);
 % title('step size \sigma','FontSize',20);
 legend('-DynamicLegend'); 
 legend('show');
-saveas(gcf,'fitGain_pdf.fig');  
+
+saveas(gcf,'merged_plot.fig');  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Histogram normalized fitGain [SEPERATE]
+% figure(101);
+% % 5. histogram success rate (good step size)
+% 
+% subplot(1,subplot_COL,fname);
+% % No bar colour, bold binwidth
+% if(T_med == 5000) % early stopping
+%     h2 = histogram(nonzeros(delta_matrix_med),'Normalization','probability','DisplayName',d,'FaceColor','none','LineWidth',2);hold on;
+% else
+%     
+%     h2 = histogram(nonzeros(delta_matrix_med),'Normalization','probability','DisplayName',d,'FaceColor','none','LineWidth',2);hold on;
+% end
+% if(lambda==0)
+%     h2.EdgeColor= [0  0.4470 0.7410];
+%     h2.BinEdges=h2.BinEdges-0.0125;
+% elseif(lambda == 10)
+%     h2.EdgeColor= [0.8500  0.3250  0.0980];
+%     h2.BinEdges=h2.BinEdges;
+% elseif(lambda==20)
+%     h2.EdgeColor= [0.9290  0.6940  0.1250];
+%     h2.BinEdges=h2.BinEdges+0.0125;
+% elseif(lambda==40)
+%     h2.EdgeColor= [0.4940  0.1840  0.5560];
+%     h2.BinEdges=h2.BinEdges+0.025;
+% end
+% h2.LineWidth=1.2;
+% h2.BinWidth = 0.2;
+% if(fname==1)
+%     ylabel('Probability','FontSize',15);%
+% end
+% xlabel('Normalized fitness gain','FontSize',15); 
+% % set(gca, 'YScale', 'log');
+% % title('step size \sigma','FontSize',20);
+% legend('-DynamicLegend'); 
+% legend('show');
+% saveas(gcf,'fitGain_pdf.fig');  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Success rate good step size
