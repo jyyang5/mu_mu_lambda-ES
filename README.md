@@ -132,10 +132,19 @@ Where D is the decrease factor for step size in occurance of emergency
 
 ## 	Schedule 
 - Thesis write-up
-    - Send the paper needed for computing c_{\mu/\mu,\lambda}
+    - [x] Send the paper needed for computing c_{\mu/\mu,\lambda}
       - Include those equations for probbaility  
-    - Graph 
+    - [x] Graph 
       - Do it 2*2 or 1*4
+      - expected fitness gain/lambda (normalized same scale)
+      - opt. fitness gain and step size (log [.1,10]) 
+    - [] Medium run
+      - Take the run use medium objective function calls 
+        - plot convergence plot
+        - relative model error
+        - normalized step size
+    - [] Include the progress rate and convergence rate for sphere functions (pdf or histogram as you like)
+    - [x] When noise-to-signal ratio -> infty (model useless) -> point out random search (ultimately diverge)
 
 - Contribution 
     - Simple idea 
