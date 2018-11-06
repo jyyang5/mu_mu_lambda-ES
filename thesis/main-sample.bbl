@@ -382,6 +382,26 @@
       \verb https://doi.org/10.1007/978-3-540-44511-1_16
       \endverb
     \endentry
+    \entry{hansen2016cma}{article}{}
+      \name{author}{1}{}{%
+        {{hash=fe1b69ac870397d00b7b9cd21ce7ecd4}{%
+           family={Hansen},
+           familyi={H\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{fe1b69ac870397d00b7b9cd21ce7ecd4}
+      \strng{fullhash}{fe1b69ac870397d00b7b9cd21ce7ecd4}
+      \strng{authornamehash}{fe1b69ac870397d00b7b9cd21ce7ecd4}
+      \strng{authorfullhash}{fe1b69ac870397d00b7b9cd21ce7ecd4}
+      \field{sortinit}{H}
+      \field{sortinithash}{2f664b453ec75da1fe3804ca92633405}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1604.00772}
+      \field{title}{The CMA evolution strategy: A tutorial}
+      \field{year}{2016}
+    \endentry
     \entry{doi:10.1080/00401706.1966.10490404}{article}{}
       \name{author}{2}{}{%
         {{hash=b0ec6badf105a434b264a6eb4ee586cb}{%

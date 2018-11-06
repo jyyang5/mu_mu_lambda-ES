@@ -67,21 +67,21 @@ The step size of $(\mu/\mu,\lambda)$-ES is commonly adapated using cumulative st
 
 To decide the correlation, information from previous steps and mutations are cummulated. By comparing the step size with its expected length under random selection, the step size is adapted according to its expedcted length. It increases if the length is less than expected and decrease otherwise. 
 
-Define the search path 
+Define the search path as 
 \begin{align}
-p_{k+1} \leftarrow (1-c)s_k + \sqrt{\mu c (2-c)} z
+p_{k+1} \leftarrow (1-c)p_k + \sqrt{\mu c (2-c)} z,
 \end{align}
+where $0<c \geq 1$ is the proportion of history information retaiend and passed to the evolution path in the next iteration, $ \sqrt{\mu c (2-c)}$ is a normalization constant that updates the evolution path from the mutation of this iteration and $z$ the mutation obatined by averaging the best $\mu$ candidate solutions generated. 
 
 The step size is adapated 
 \begin{align}
-\sigma = \sigma \exp \left (  \frac{c}{d}  \left( \frac{\Vert p\Vert}{E \Vert N(O,I)\Vert } \right) \right )
+\sigma \leftarrow \sigma \exp \left (  \frac{c}{d}  \left( \frac{\Vert p\Vert}{E \Vert N(O,I)\Vert } \right) \right ),
 \end{align}
+where $E\| N(0,I) \|$ is the expected length of the search path $p$ and can be approximated as $E\| N(0,I) \| \approx \sqrt{n} (1-1/4n + 1/21n^2)$. In Section 4, we use the well established parameters from Hansen's CMA tutorial \cite{hansen2016cma} where $c = (\mu+2)/(N+\mu+5)$, $d=1+2 \max\left (0, \sqrt{(\mu-1)/(N+1)-1} \right)+c$.
 
+Few
 
-refers to the consective steps the strategy taken, the strategy obatins information from previous steps and its corsponding mutations   
-
-($\color{red}{not\ step\ size\ adaptation\ COULD\ IN\ FUTURE\ WORK}$) Covariance Matrix Adaptation (CMA) \cite{Hansen:2003:RTC:772374.772376}. The former uses an evolution path and a trial path 
-
+($\color{red}{not\ step\ size\ adaptation\ COULD\ IN\ FUTURE\ WORK}$) Covariance Matrix Adaptation (CMA) \cite{Hansen:2003:RTC:772374.772376}. 
 % 1/5 rule
 
 

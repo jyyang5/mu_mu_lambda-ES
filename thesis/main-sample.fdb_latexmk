@@ -1,11 +1,11 @@
 # Fdb version 3
-["biber main-sample"] 1541346568 "main-sample.bcf" "main-sample.bbl" "main-sample" 1541456421
-  "main-bibliography.bib" 1541191261 27970 e0233f3939fb4951a1d5b4574be7b2d7 ""
-  "main-sample.bcf" 1541456420 97673 049dcbf9fb0efe2c0fe1f491337b3b19 ""
+["biber main-sample"] 1541472870 "main-sample.bcf" "main-sample.bbl" "main-sample" 1541472982
+  "main-bibliography.bib" 1541472710 28179 885c80ca720128af01c405cb7fa70a00 ""
+  "main-sample.bcf" 1541472981 97729 906dc23d4940e4ddaeb00705416b2a7f ""
   (generated)
-  "main-sample.bbl"
   "main-sample.blg"
-["pdflatex"] 1541456418 "main-sample.tex" "main-sample.pdf" "main-sample" 1541456421
+  "main-sample.bbl"
+["pdflatex"] 1541472979 "main-sample.tex" "main-sample.pdf" "main-sample" 1541472982
   "/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc" 1480098666 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-4.enc" 1480098667 7311 f1482de29b79cbe9ecc4861d6c55e906 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc" 1490133665 2921 8ca0eb0831f9bc5da080d3697cfe67bf ""
@@ -224,17 +224,17 @@
   "ACM-Reference-Format.bbx" 1540472225 18425 c755f24a02600e7dab3afb895bb9871a ""
   "ACM-Reference-Format.cbx" 1540472225 100 022318c52dbfd268aba635ca65293b8e ""
   "expectedFitGain_v1.pdf" 1541346753 64941 0bb4fefb8748ebf68b1838019073b1c1 ""
-  "main-body.tex" 1541456415 41133 e4da28edc5212e3258be79ee7069469a ""
-  "main-sample.aux" 1541456420 8756 d6a00826274a83804047eb5eeac5547a ""
-  "main-sample.bbl" 1541346569 36462 97ba5d9607993ea65c018cb35d86c2f2 "biber main-sample"
-  "main-sample.out" 1541456420 1417 c2f7029c27c032ba282cd920c54acc8b ""
-  "main-sample.run.xml" 1541456420 2521 faabd12540979f7ba19c0e7e4199c936 ""
+  "main-body.tex" 1541472973 41630 5c4655bd3f92c7434d1c689694fe3aea ""
+  "main-sample.aux" 1541472981 8878 51acdff41bb554c3eb6023d537193894 ""
+  "main-sample.bbl" 1541472871 37275 a70154be3902b656a80ad005255ec129 "biber main-sample"
+  "main-sample.out" 1541472981 1417 c2f7029c27c032ba282cd920c54acc8b ""
+  "main-sample.run.xml" 1541472981 2521 faabd12540979f7ba19c0e7e4199c936 ""
   "main-sample.tex" 1541296701 4595 f437865f816df7e1cd6030c28b9f6792 ""
   "opt_stepSize_fitGain_v1.pdf" 1541346454 262406 b539cb42f77ea56c7cba3e32117a5f27 ""
   (generated)
-  "main-sample.bcf"
-  "main-sample.log"
   "main-sample.out"
-  "main-sample.pdf"
+  "main-sample.bcf"
   "main-sample.run.xml"
+  "main-sample.log"
   "main-sample.aux"
+  "main-sample.pdf"
