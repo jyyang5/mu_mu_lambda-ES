@@ -138,13 +138,20 @@ Where D is the decrease factor for step size in occurance of emergency
       - Do it 2*2 or 1*4
       - expected fitness gain/lambda (normalized same scale)
       - opt. fitness gain and step size (log [.1,10]) 
-    - [] Medium run
+    - [x] Medium run
       - Take the run use medium objective function calls 
         - plot convergence plot
         - relative model error
         - normalized step size
-    - [] Include the progress rate and convergence rate for sphere functions (pdf or histogram as you like)
+    - [x] Include the progress rate and convergence rate for sphere functions (pdf or histogram as you like)
     - [x] When noise-to-signal ratio -> infty (model useless) -> point out random search (ultimately diverge)
+    - Figure 
+        - Could divide into row 1,2,3,4 same plot (2,3,4,same scale in x-axies)
+          - hist objective function calls
+          - convergence plot
+          - model error
+          - normalized step size
+        - Row 5,6 same plot 
 
 - Contribution 
     - Simple idea 
