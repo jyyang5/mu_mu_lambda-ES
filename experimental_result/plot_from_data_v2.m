@@ -300,6 +300,8 @@ function plot_pdf(data,T_med,figureName,fig_row,fig_col,fig_index,lambda,xNameSp
         d3 =sprintf('cubic sphere');
         title(d3,'fontsize',15);
     end
+    legend('-DynamicLegend'); 
+    legend('show');
     xlim(xLimit);
     xlabel(xNameSprintf,'FontSize',15); 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
