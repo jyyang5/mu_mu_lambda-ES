@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  7 NOV 2018 18:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  7 NOV 2018 18:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -978,14 +978,17 @@ File: english.lbx 2016/12/05 v3.7 biblatex localization (PK/JW/AB)
 LaTeX Warning: Unused global option(s):
     [sig-alternate].
 
-(./main-sample.aux)
+(./main-sample.aux
+
+LaTeX Warning: Label `alg' multiply defined.
+
+)
 \openout1 = `main-sample.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/nxlmi/m/it on input line 57.
 LaTeX Font Info:    Try loading font information for OML+nxlmi on input line 57
 .
-
-(/usr/local/texlive/2017/texmf-dist/tex/latex/newtx/omlnxlmi.fd
+ (/usr/local/texlive/2017/texmf-dist/tex/latex/newtx/omlnxlmi.fd
 File: omlnxlmi.fd 2013/11/19 Fontinst v1.933 font definitions for OML/nxlmi.
 )
 LaTeX Font Info:    ... okay on input line 57.
@@ -1314,9 +1317,9 @@ LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
 (Font)              scaled to size 8.0pt on input line 115.
 [3.3]
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.3pt on input line 129.
+(Font)              scaled to size 7.3pt on input line 128.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 5.5pt on input line 129.
+(Font)              scaled to size 5.5pt on input line 128.
 
 Underfull \vbox (badness 3965) has occurred while \output is active []
 
@@ -1324,29 +1327,27 @@ Underfull \vbox (badness 3965) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [5.5]
-<opt_stepSize_fitGain_v1.pdf, id=177, 943.96867pt x 378.84636pt>
+<opt_stepSize_fitGain_v1.pdf, id=174, 943.96867pt x 378.84636pt>
 File: opt_stepSize_fitGain_v1.pdf Graphic file (type pdf)
 
 <use opt_stepSize_fitGain_v1.pdf>
-Package pdftex.def Info: opt_stepSize_fitGain_v1.pdf used on input line 196.
+Package pdftex.def Info: opt_stepSize_fitGain_v1.pdf used on input line 195.
 (pdftex.def)             Requested size: 433.6259pt x 158.99298pt.
 
-Overfull \hbox (3.62128pt too wide) in paragraph at lines 196--197
+Overfull \hbox (3.62128pt too wide) in paragraph at lines 195--196
  [][] 
  []
 
 [6.6 <./opt_stepSize_fitGain_v1.pdf>]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 255.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 9.0pt on input line 255.
-LaTeX Font Info:    Try loading font information for T1+zi4 on input line 293.
+(Font)              scaled to size 9.0pt on input line 257.
+LaTeX Font Info:    Try loading font information for T1+zi4 on input line 261.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 File: t1zi4.fd 2016/12/29 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 9.0pt on input line 293.
+(Font)              scaled to size 9.0pt on input line 261.
 Package microtype Info: Loading generic settings for font family
 (microtype)             `zi4' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
@@ -1357,6 +1358,135 @@ Package microtype Info: Character `textendash ' is missing
 Package microtype Info: Character `textemdash ' is missing
 (microtype)             in font `T1/zi4/m/n/9'.
 (microtype)             Ignoring protrusion settings for this character.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.264 ...tt{Schwefel\' s function} &1496 & $\infty
+                                                  $ & $\infty$ & $\infty$ \\
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Extra }, or forgotten $.
+\DC@end ->$\hfil \egroup 
+                         \box \z@ \box \tw@ 
+l.264 ...Schwefel\' s function} &1496 & $\infty$ &
+                                                   $\infty$ & $\infty$ \\
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.264 ...Schwefel\' s function} &1496 & $\infty$ &
+                                                   $\infty$ & $\infty$ \\
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.264 ...Schwefel\' s function} &1496 & $\infty$ &
+                                                   $\infty$ & $\infty$ \\
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.264 ...\' s function} &1496 & $\infty$ & $\infty
+                                                  $ & $\infty$ \\
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Extra }, or forgotten $.
+\DC@end ->$\hfil \egroup 
+                         \box \z@ \box \tw@ 
+l.264 ...s function} &1496 & $\infty$ & $\infty$ &
+                                                   $\infty$ \\
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.264 ...s function} &1496 & $\infty$ & $\infty$ &
+                                                   $\infty$ \\
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.264 ...s function} &1496 & $\infty$ & $\infty$ &
+                                                   $\infty$ \\
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.264 ...on} &1496 & $\infty$ & $\infty$ & $\infty
+                                                  $ \\
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Extra }, or forgotten $.
+\DC@end ->$\hfil \egroup 
+                         \box \z@ \box \tw@ 
+l.265 \texttt
+             {quartic function}     &1244 &1006 &750&662    \\
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.265 \texttt
+             {quartic function}     &1244 &1006 &750&662    \\
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.265 \texttt
+             {quartic function}     &1244 &1006 &750&662    \\
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 357.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [7.7])
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
 (Font)              scaled to size 7.0pt on input line 140.
@@ -1369,16 +1499,20 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 142.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 142.
 Package rerunfilecheck Info: File `main-sample.out' has not changed.
 (rerunfilecheck)             Checksum: C2F7029C27C032BA282CD920C54ACC8B;1417.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package logreq Info: Writing requests to 'main-sample.run.xml'.
 \openout1 = `main-sample.run.xml'.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 142.
  ) 
 Here is how much of TeX's memory you used:
- 24168 strings out of 492995
- 391491 string characters out of 6132704
- 863933 words of memory out of 5000000
- 26645 multiletter control sequences out of 15000+600000
+ 24165 strings out of 492995
+ 391432 string characters out of 6132704
+ 864023 words of memory out of 5000000
+ 26642 multiletter control sequences out of 15000+600000
  192728 words of font info for 428 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
  60i,15n,94p,2474b,1364s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1406,10 +1540,10 @@ live/2017/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/201
 f-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2017/texmf-dist/f
 onts/type1/public/newtx/zxlr.pfb></usr/local/texlive/2017/texmf-dist/fonts/type
 1/public/newtx/zxlri.pfb>
-Output written on main-sample.pdf (10 pages, 876250 bytes).
+Output written on main-sample.pdf (10 pages, 876066 bytes).
 PDF statistics:
- 388 PDF objects out of 1000 (max. 8388607)
- 326 compressed objects within 4 object streams
+ 384 PDF objects out of 1000 (max. 8388607)
+ 322 compressed objects within 4 object streams
  99 named destinations out of 1000 (max. 500000)
  46183 words of extra memory for PDF output out of 51595 (max. 10000000)
 
