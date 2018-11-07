@@ -4,13 +4,14 @@
 %       OR CANNOT SAVE ITERTAION DATA
 % MODIFICATION 
 %       take median run values (mediean objective function calls)
-%       Plot
+%       Plot 1
 %           Row 1: histogram of objective function calls
 %           Row 2: histogram of objective function calls
 %           Row 3: histogram of objective function calls
 %           Row 4: normalized step size [mediuam run]
-%           Row 5: normalized convergence rate
-%           Row 6: normalized success rate [good step]
+%       Plot 2
+%           Row 1: normalized convergence rate
+%           Row 2: normalized success rate [good step]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 f1 = @(x) (x'*x)^(1/2);
 f2 = @(x) (x'*x);
@@ -22,8 +23,7 @@ close all;
 % TRAINING_SIZE = 40;
 % LENGTH_SCALE = 8;
 
-subplot_ROW = 6;
-subplot_COL = 5; 
+
 % 
 % t_array = zeros(5,4,NUM_OF_RUNS,1);                                           % # of iterations for the stop creteria
 % sigma_matrix = zeros(5,4,NUM_OF_RUNS,10000);                                  % store all sigma
@@ -51,7 +51,9 @@ lambda_array = [0,10,20,40];
 close all;
 for fname = 1:1:5
     for i = 1:1:length(lambda_array)
-        
+        % Subplot row and col number of fig1
+        subplot_ROW = 4;
+        subplot_COL = 5; 
 %         t_med = median(t_array(fname,i,:));
         t_max = max(t_array(fname,i,:));
         t_min = min(t_array(fname,i,:));
@@ -184,70 +186,67 @@ for fname = 1:1:5
             legend('-DynamicLegend'); 
             legend('show');
         end
+        saveas(gcf,'merged_plot_v2.fig'); 
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        % 5. histogram normalized fitness gain per iteration
-        figure(500);
-        subplot(1,subplot_COL,fname);
-        % No bar colour, bold binwidth
-        if(T_med == 5000) % early stopping
-            h2 = histogram(nonzeros(delta_matrix_temp),'Normalization','probability','DisplayName',d);hold on;
-%             h2 = histogram(nonzeros(delta_matrix_med),'Normalization','probability','DisplayName',d,'FaceColor','none','LineWidth',2);hold on;
-
-        else
-            h2 = histogram(nonzeros(delta_matrix_temp),'Normalization','probability','DisplayName',d);hold on;
-%             h2 = histogram(nonzeros(delta_matrix_med),'Normalization','probability','DisplayName',d,'FaceColor','none','LineWidth',2);hold on;
-        end
-        xlim([-3 3]);
-        if(lambda==0)
-            h2.EdgeColor= [0  0.4470 0.7410];
-%             h2.BinEdges=h2.BinEdges-0.015;
-        elseif(lambda == 10)
-            h2.EdgeColor= [0.8500  0.3250  0.0980];
-%             h2.BinEdges=h2.BinEdges-0.005;
-        elseif(lambda==20)
-            h2.EdgeColor= [0.9290  0.6940  0.1250];
-%             h2.BinEdges=h2.BinEdges+0.005;
-        elseif(lambda==40)
-            h2.EdgeColor= [0.4940  0.1840  0.5560];
-%             h2.BinEdges=h2.BinEdges+0.015;
-        end
+%         % 5. histogram normalized fitness gain per iteration
+%         figure(500);
+%         subplot(1,subplot_COL,fname);
+%         % No bar colour, bold binwidth
+%         if(T_med == 5000) % early stopping
+%             h2 = histogram(nonzeros(delta_matrix_temp),'Normalization','probability','DisplayName',d);hold on;
+%         else
+%             h2 = histogram(nonzeros(delta_matrix_temp),'Normalization','probability','DisplayName',d);hold on;
+%         end
+%         xlim([-3 3]);
+%         if(lambda==0)
+%             h2.EdgeColor= [0  0.4470 0.7410];
+%         elseif(lambda == 10)
+%             h2.EdgeColor= [0.8500  0.3250  0.0980];
+%         elseif(lambda==20)
+%             h2.EdgeColor= [0.9290  0.6940  0.1250];
+%         elseif(lambda==40)
+%             h2.EdgeColor= [0.4940  0.1840  0.5560];
+%         end
 %         h2.LineWidth=1.2;
 %         h2.BinWidth = 0.2;
         
         if(fname == 1 || fname == 2 || fname == 3)
-            figure(300);
-            subplot(subplot_ROW,subplot_COL,fname+20);
-            value = h2.Values;		% height of the bar
-            width = h2.BinWidth;				% width of the bar
-            range = h2.BinLimits;		% [startX endX]
-            disp(length(range(1)+width/2:width:range(2)-width/2)==length(value));
-            % Did not do the exact range right ends at [range(1)+width/2:width:range(2)-width/2] 
-            plot((range(1)+width/2):width:(range(2)),value,'DisplayName',d);hold on;
-            if(fname==1)
-                ylabel('Probability','FontSize',15);%
-            end
-            xlabel('Normalized fitness gain','FontSize',15); 
-            % set(gca, 'YScale', 'log');
-            % title('step size \sigma','FontSize',20);
-            legend('-DynamicLegend'); 
-            legend('show');
-            xlim([-3 3]);
+%             figure(201);
+%             subplot(2,subplot_COL,fname);
+%             value = h2.Values;		% height of the bar
+%             width = h2.BinWidth;				% width of the bar
+%             range = h2.BinLimits;		% [startX endX]
+%             disp(length(range(1)+width/2:width:range(2)-width/2)==length(value));
+%             % Did not do the exact range right ends at [range(1)+width/2:width:range(2)-width/2] 
+%             plot((range(1)+width/2):width:(range(2)),value,'DisplayName',d);hold on;
+%             if(fname==1)
+%                 ylabel('Probability','FontSize',15);%
+%             end
+%             xlabel('Normalized fitness gain','FontSize',15); 
+%             % set(gca, 'YScale', 'log');
+%             % title('step size \sigma','FontSize',20);
+%             legend('-DynamicLegend'); 
+%             legend('show');
+%             xlim([-3 3]);
 
             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-            % Success rate (good step size)
+            % Subplot row and col number of fig2
+            subplot_ROW = 4;
+            subplot_COL = 3; 
+
             xNameSprintf = sprintf('onvergence rate');
             xLimit = [0 1];
-            plot_pdf(convergence_array,T_med,200,subplot_ROW,subplot_COL,fname+20,lambda,xNameSprintf,xLimit);
+            plot_pdf(convergence_array,T_med,201,subplot_ROW,subplot_COL,fname,lambda,xNameSprintf,xLimit);
             xNameSprintf = sprintf('success rate');
             xLimit = [0 1];
-            plot_pdf(success_med,T_med,200,subplot_ROW,subplot_COL,fname+25,lambda,xNameSprintf,xLimit);
-            xNameSprintf = sprintf('fitGain per iteration');
-            xLimit = [-2 2];
+            plot_pdf(success_med,T_med,201,subplot_ROW,subplot_COL,fname+subplot_COL*2,lambda,xNameSprintf,xLimit);
+%             xNameSprintf = sprintf('fitGain per iteration');
+%             xLimit = [0 1];
     %         plot_pdf(delta_matrix_temp,T_med,300,3,5,fname+10,lambda,xNameSprintf,xLimit);
             legend('-DynamicLegend'); 
             legend('show');
-            saveas(gcf,'merged_plot_v1.fig');  
+            saveas(gcf,'success_convergence_v2.fig');  
         end
         
 
@@ -260,7 +259,10 @@ function plot_pdf(data,T_med,figureName,fig_row,fig_col,fig_index,lambda,xNameSp
 %       handler for histogram
 %  Plot:
     % No bar colour, bold binwidth
-    figure(500);
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Plot histogram 
+    figure(figureName);
+    subplot(fig_row,fig_col,fig_index);
     if lambda==0
         d = sprintf('(1+1)-ES');
     else
@@ -276,23 +278,41 @@ function plot_pdf(data,T_med,figureName,fig_row,fig_col,fig_index,lambda,xNameSp
     h2.LineWidth=0.5;
     
     if(lambda==0)
-            h2.EdgeColor= [0  0.4470 0.7410];
-        elseif(lambda == 10)
-            h2.EdgeColor= [0.8500  0.3250  0.0980];
-        elseif(lambda==20)
-            h2.EdgeColor= [0.9290  0.6940  0.1250];
-        elseif(lambda==40)
-            h2.EdgeColor= [0.4940  0.1840  0.5560];
+        h2.EdgeColor= [0  0.4470 0.7410];
+    elseif(lambda == 10)
+        h2.EdgeColor= [0.8500  0.3250  0.0980];
+    elseif(lambda==20)
+        h2.EdgeColor= [0.9290  0.6940  0.1250];
+    elseif(lambda==40)
+        h2.EdgeColor= [0.4940  0.1840  0.5560];
     end
+    if(rem(fig_index,fig_col)==1)
+        ylabel('probability','FontSize',15);%
+    end
+    % Set titles for the first row 
+    if(fig_index == 1)
+        d3 =sprintf('linear sphere');
+        title(d3,'fontsize',15);
+    elseif(fig_index == 2)
+        d3 =sprintf('quadratic sphere');
+        title(d3,'fontsize',15);
+    elseif(fig_index == 3)
+        d3 =sprintf('cubic sphere');
+        title(d3,'fontsize',15);
+    end
+    xlim(xLimit);
+    xlabel(xNameSprintf,'FontSize',15); 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Plot pdf curve
     figure(figureName);
-    subplot(fig_row,fig_col,fig_index);
+    subplot(fig_row,fig_col,fig_index+fig_col);
     value = h2.Values;		% height of the bar
     width = h2.BinWidth;				% width of the bar
     range = h2.BinLimits;		% [startX endX]
     % Did not do the exact range right ends at [range(1)+width/2:width:range(2)-width/2] 
     plot((range(1)+width/2):width:(range(2)),value,'DisplayName',d);hold on;
     if(rem(fig_index,fig_col)==1)
-        ylabel('Probability','FontSize',15);%
+        ylabel('probability','FontSize',15);%
     end
     xlim(xLimit);
     xlabel(xNameSprintf,'FontSize',15); 
