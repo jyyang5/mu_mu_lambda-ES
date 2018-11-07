@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  7 NOV 2018 15:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  7 NOV 2018 15:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -978,17 +978,14 @@ File: english.lbx 2016/12/05 v3.7 biblatex localization (PK/JW/AB)
 LaTeX Warning: Unused global option(s):
     [sig-alternate].
 
-(./main-sample.aux
-
-LaTeX Warning: Label `alg' multiply defined.
-
-)
+(./main-sample.aux)
 \openout1 = `main-sample.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/nxlmi/m/it on input line 57.
 LaTeX Font Info:    Try loading font information for OML+nxlmi on input line 57
 .
- (/usr/local/texlive/2017/texmf-dist/tex/latex/newtx/omlnxlmi.fd
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/newtx/omlnxlmi.fd
 File: omlnxlmi.fd 2013/11/19 Fontinst v1.933 font definitions for OML/nxlmi.
 )
 LaTeX Font Info:    ... okay on input line 57.
@@ -1265,6 +1262,9 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
 (Font)              scaled to size 8.0pt on input line 136.
 
 
+LaTeX Warning: Reference `TotPages' on page 1 undefined on input line 136.
+
+
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 136.
 
@@ -1302,7 +1302,7 @@ his-ti-cated for good per-for-mance, while few lit-er-a-tures have $[][]$[]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [2.2]
-<expectedFitGain_v1.pdf, id=113, 1257.0806pt x 426.67897pt>
+<expectedFitGain_v1.pdf, id=111, 1257.0806pt x 426.67897pt>
 File: expectedFitGain_v1.pdf Graphic file (type pdf)
 
 <use expectedFitGain_v1.pdf>
@@ -1324,10 +1324,27 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 Underfull \vbox (badness 3965) has occurred while \output is active []
 
  [4.4 <./expectedFitGain_v1.pdf>]
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
+(Font)              scaled to size 9.0pt on input line 159.
+
+
+LaTeX Warning: Reference `eta' on page 5 undefined on input line 159.
+
+
+LaTeX Warning: Reference `eta' on page 5 undefined on input line 165.
+
+
+LaTeX Warning: Reference `c_mu_mu_lambda' on page 5 undefined on input line 165
+.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [5.5]
-<opt_stepSize_fitGain_v1.pdf, id=174, 943.96867pt x 378.84636pt>
+
+LaTeX Warning: Reference `opt' on page 6 undefined on input line 167.
+
+<opt_stepSize_fitGain_v1.pdf, id=168, 943.96867pt x 378.84636pt>
 File: opt_stepSize_fitGain_v1.pdf Graphic file (type pdf)
 
 <use opt_stepSize_fitGain_v1.pdf>
@@ -1342,8 +1359,6 @@ Overfull \hbox (3.62128pt too wide) in paragraph at lines 195--196
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6.6 <./opt_stepSize_fitGain_v1.pdf>]
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 9.0pt on input line 280.
 LaTeX Font Info:    Try loading font information for T1+zi4 on input line 284.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/inconsolata/t1zi4.fd
@@ -1377,7 +1392,15 @@ Package rerunfilecheck Info: File `main-sample.out' has not changed.
 (rerunfilecheck)             Checksum: C2F7029C27C032BA282CD920C54ACC8B;1417.
 
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                main-sample
+(biblatex)                and rerun LaTeX afterwards.
 
 Package logreq Info: Writing requests to 'main-sample.run.xml'.
 \openout1 = `main-sample.run.xml'.
@@ -1385,13 +1408,13 @@ Package logreq Info: Writing requests to 'main-sample.run.xml'.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 142.
  ) 
 Here is how much of TeX's memory you used:
- 24159 strings out of 492995
- 391282 string characters out of 6132704
- 868023 words of memory out of 5000000
+ 24156 strings out of 492995
+ 391204 string characters out of 6132704
+ 866031 words of memory out of 5000000
  26642 multiletter control sequences out of 15000+600000
- 192182 words of font info for 424 fonts, out of 8000000 for 9000
+ 191909 words of font info for 422 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 60i,15n,94p,2474b,1298s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,15n,94p,2474b,1299s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-4.enc}{
 /usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/newtx/libertinealt.enc}{/usr
 /local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}{/usr/
@@ -1416,10 +1439,10 @@ live/2017/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/201
 f-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2017/texmf-dist/f
 onts/type1/public/newtx/zxlr.pfb></usr/local/texlive/2017/texmf-dist/fonts/type
 1/public/newtx/zxlri.pfb>
-Output written on main-sample.pdf (10 pages, 873649 bytes).
+Output written on main-sample.pdf (10 pages, 873394 bytes).
 PDF statistics:
- 384 PDF objects out of 1000 (max. 8388607)
- 322 compressed objects within 4 object streams
+ 379 PDF objects out of 1000 (max. 8388607)
+ 317 compressed objects within 4 object streams
  99 named destinations out of 1000 (max. 500000)
  46183 words of extra memory for PDF output out of 51595 (max. 10000000)
 

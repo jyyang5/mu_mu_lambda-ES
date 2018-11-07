@@ -77,13 +77,14 @@ The step size is adapated
 \begin{align}
 \sigma \leftarrow \sigma \exp \left (  \frac{c}{d}  \left( \frac{\Vert p\Vert}{E \Vert N(O,I)\Vert } \right) \right ),
 \end{align}
-where $E\| N(0,I) \|$ is the expected length of the search path $p$ and can be approximated as $E\| N(0,I) \| \approx \sqrt{n} (1-1/4n + 1/21n^2)$. In Section 4, we use the well established parameters from Hansen's CMA tutorial \cite{hansen2016cma} that follows 
-\begin{align}
-\begin{cases}
-c = (\mu+2)/(N+\mu+5)\\
-d=1+2 \max\left (0, \sqrt{(\mu-1)/(N+1)-1} \right)+c
-\end{cases}
-\end{align}
+where $E\| N(0,I) \|$ is the expected length of the search path $p$ and can be approximated as $E\| N(0,I) \| \approx \sqrt{n} (1-1/4n + 1/21n^2)$. In Section 4, the detail will be discussed.
+% we use the well established parameters from Hansen's CMA tutorial \cite{hansen2016cma} that follows 
+% \begin{align}
+% \begin{cases}
+% c = (\mu+2)/(N+\mu+5)\\
+% d=1+2 \max\left (0, \sqrt{(\mu-1)/(N+1)-1} \right)+c
+% \end{cases}
+% \end{align}
 
 
 
@@ -111,7 +112,7 @@ d=1+2 \max\left (0, \sqrt{(\mu-1)/(N+1)-1} \right)+c
 \begin{center}
 \begin{figure*}
 \includegraphics[height=2.4in, width=6.1in]{expectedFitGain_v1}
-\caption{The figures from left to right shows the expected signle step behaviour of the surrogate model assisted $(\mu/\mu,\lambda)$-ES with unbiased Gaussin distributed surrogate error with $\lambda=10,20,40$ respectively where $\mu = ceil(\lambda/4)$. The solid lines are the results obtained analytically when $n \rightarrow \infty$, while the dotted line below illustrates the corresponding performance ($n=10$) of the $(\mu/\mu,\lambda)$-ES without model assistance. The dots represents the experimental result for $n=10$ (croesses) and $n=100$ (circles).}
+\caption{The figures from left to right shows the expected signle step behaviour of the surrogate model assisted $(\mu/\mu,\lambda)$-ES with unbiased Gaussin distributed surrogate error with $\lambda=10,20,40$ respectively where $\mu = \lceil \lambda/4 \rceil$. The solid lines are the results obtained analytically when $n \rightarrow \infty$, while the dotted line below illustrates the corresponding performance ($n=10$) of the $(\mu/\mu,\lambda)$-ES without model assistance. The dots represents the experimental result for $n=10$ (croesses) and $n=100$ (circles).}
 \end{figure*}
 \end{center}
 
@@ -163,7 +164,10 @@ To obtain the opt. expected fitness gain $\eta_{opt}$ and its coresponding opt. 
 
 The expected fitness gian is normalized in terms of the population size $\lambda$ for easy comparision. The normalzied fitness gain against the normalized step size for $(\mu/\mu,\lambda)$-ES with population size $\lambda=10,20,40$ corresponding $\mu=3,5,10$ are ploted in Figure 1 from left to right respectively. The line shows the result obtained from Eqs. (\ref{eta}) (\ref{c_mu_mu_lambda}). The dots represent the experimental result for unbiased Gaussin surroagte error for $n \in \{10,100 \}$ obtained by averaging 100 runs. The result obtained for $n \rightarrow \infty$ are considered to be cases with a large normalized step size with very small noise to signal ratio. 
 
-It can be inferred from Figure 1, for a fixed population size, the expected fitness gain decreases with an increasing noise-to-signal-ratio. When $\vartheta \rightarrow \infty$, the surrogate model becomes useless and the strategy becomes a random search. For moderate noise-to-signal ratio $\vartheta$, the surrogate model assisted algorithm can acieve much larger value for expected fitness gain at a larger normalized step size. When $\vartheta = 1$, the maximal expected fitness gain achievable for $(3/3,10)$-ES,$(5/5,20)$-ES and $(10/10,40)$-ES are 0.8507, 1.841, 3.808 with $\sigma^*=2.254,4.251,8.738$ respectively. Compared with the result of the surrogate assisted (1+1)-ES \cite{DBLP:conf/ppsn/KayhaniA18} where maximal fitness gain is 0.548 achieved at $\sigma^* = 1.905$, $(\mu/\mu,\lambda)$-ES does benefit from using a larger population from the analysis. For $\vartheta=0$ (the surrogate models the objective function exactly), from equation \ref{opt} we can obatin the maximal expected fitness gain is achieved at $\sigma^*_{opt} = \ \mu c_{\mu / \mu, \lambda}$ with value $\eta_{opt} =  \mu (c_{\mu / \mu, \lambda})^2/2$. Even if this indicates the potential benefit the strategy may gain with a growing population, it is important to note the analytical results derived when $n \rightarrow \infty$ is an approximation for the finite-dimensional case. Figure 2 shows the relation of optimal expected fitness gain and the coresponding optimial normalized step size over noise-to-signal ratio derived analytically in the limit of $n \rightarrow \infty$ for three different population sizes. The optimal expected fitness gain is also measured experimentally for $n \in \{10,100 \}$. For a finite-dimension, the speed-up achieved with surrogate model assistance for small noise-to-signal ratio appears to be 
+It can be inferred from Figure 1, for a fixed population size, the expected fitness gain decreases with an increasing noise-to-signal-ratio. When $\vartheta \rightarrow \infty$, the surrogate model becomes useless and the strategy becomes a random search. For moderate noise-to-signal ratio $\vartheta$, the surrogate model assisted algorithm can acieve much larger value for expected fitness gain at a larger normalized step size. When $\vartheta = 1$, the maximal expected fitness gain achievable for $(3/3,10)$-ES,$(5/5,20)$-ES and $(10/10,40)$-ES are 0.8507, 1.841, 3.808 with $\sigma^*=2.254,4.251,8.738$ respectively. Compared with the result of the surrogate assisted (1+1)-ES \cite{DBLP:conf/ppsn/KayhaniA18} where maximal fitness gain is 0.548 achieved at $\sigma^* = 1.905$, $(\mu/\mu,\lambda)$-ES does benefit from using a larger population from the analysis. For $\vartheta=0$ (the surrogate models the objective function exactly), from equation \ref{opt} we can obatin the maximal expected fitness gain is achieved at $\sigma^*_{opt} = \ \mu c_{\mu / \mu, \lambda}$ with value $\eta_{opt} =  \mu (c_{\mu / \mu, \lambda})^2/2$. Even if this indicates the potential benefit the strategy may gain with a growing population, it is important to note the analytical results derived when $n \rightarrow \infty$ is an approximation for the finite-dimensional case. Figure 2 shows the relation of optimal expected fitness gain and the coresponding optimial normalized step size over noise-to-signal ratio derived analytically in the limit of $n \rightarrow \infty$ for three different population sizes. The optimal expected fitness gain is also measured experimentally for $n \in \{10,100 \}$. 
+$\color{red}{\text{how to calculate the speed up?}}$
+For a finite-dimension, the speed-up achieved with surrogate model assistance for small noise-to-signal ratio appears to be between ...
+
 
 
 % Figure 2 shows the relation of optimal expected fitness gain over noise-to-signal ratio derived in the limit of $n \rightarrow \infty$ for three different population sizes, followed by the coresponding optimial normalized step size over noise-to-signal ratio derived $n \rightarrow \infty$. and measured experimentally for $n \in \{10,100 \} $
@@ -232,24 +236,38 @@ there is a significant increase in expected fitness gain as the population size 
 
 \subsection{Cummulative step size adaptation}
 
-Even though the analysis in Section 3 suggests potential better performance for the surrogate-assisted $(\mu/\mu,\lambda)$-ES. There is no gaurantee the step size of the strategy can be properly adapted and further the analysis is very inaccurate in terms of finite dimension. In this section we experiemnt the surroagted model assisted $((\mu/\mu,\lambda)+(\mu/\mu,\lambda))$-ES using the cumulative step size adaptation (CSA)\cite{Ostermeier:1994:DAS:1326675.1326679}, commonly used in $(\mu/\mu,\lambda)$-ES and exploit the potential insight that it may offer. The strategy is evaluated by using a Gaussian Process based surrogate model replacing the simple model that simulates the surrogate behaviour in Section 3. Several test functions are used for testing the strategy.
+Even though the analysis in Section 3 suggests a potential better performance for the surrogate-assisted $(\mu/\mu,\lambda)$-ES. There is no gaurantee the step size of the strategy can be properly adapted and further the analysis is very inaccurate in terms of finite dimension. In this section we experiemnt the surroagted model assisted $(\mu/\mu,\lambda)$-ES using the cumulative step size adaptation described in Section 2.2 and exploit the potential insight that it may offer. The strategy is evaluated by using a Gaussian Process based surrogate model replacing the simple model that simulates the surrogate behaviour in Section 3. Several test functions are used for testing the strategy.
 
-$\color{red}{(normalized\ step\ size)}$
+Here, we use the well established parameters from Hansen's CMA tutorial \cite{hansen2016cma} that follows 
+\begin{align}
+\begin{cases}
+c = (\mu+2)/(N+\mu+5)\\
+d=1+2 \max\left (0, \sqrt{(\mu-1)/(N+1)-1} \right)+c
+\end{cases}
+\end{align}
+
+Five ten-dimensional test problems are used to test if the step size of the strategy has been appropriately adapted, namely sphere functions $f(x) = (x^Tx)^{\alpha/2}$ for $\alpha = \{1,2,3 \}$ referred to as linear, quadratic and cubic spheres, $f(x) = \sum_{i=1}^n(\sum_{j=1}^i x_j)^2$ (i.e. a convex quadratic function with condition number of the Hessian approximately equal to 175.1) referred to as Schwefel\'S Problem 1.2 \cite{Schwefel:1981:NOC:539468}) and quartic function \cite{DBLP:conf/ppsn/KayhaniA18} defined as $f(x) = \sum_{i=1}^{n-1} \left[ \beta(x_{i+1} -x_i^2)^2 + (1-x_i)^2 \right]$ where $\beta = 1$. The quartic function becomes the Rosenbrock function when the condition number of the Hessian at the optimier exceeds 3,500, making it very hard to find the global optima without adapting the shape of mutation distribution. We use the quartic function in the context with $\beta=1$  and condition number of the Hessian at the optimizer equals to 49.0. The value of global optima for all test functiosn is zero. For each test problem, 101 runs are conducted both for surrogate assisted $(1+1)$-ES and surrogate assisted $(\mu/\mu,\lambda)$-ES where a parental population size $\lambda=10,20,40$ with $\mu = \lceil \lambda / 4 \rceil$. For surrogate model, we use Gaussin process. Squard exponential kernel is used and for simplicity the length scale paramter in the kernel is set to $8 \sigma \sqrt{n}$, where $\sigma$ is the step size of the ES.  
 
 
 
-$\color{red}{table(test\ functions)}$
+The step size of $(\mu/\mu,\lambda)$-ES is commonly adapted using cumulative step size adaptation (CSA) 
 
-Table for median of test results for surrogate model assisted $(\mu/\mu,\lambda)$-ES using CSA
+% $\color{red}{(normalized\ step\ size)}$
 
 
-$\color{red}{histgram\ obejective\ function\ evaluations\ AND\ plot\ model\ error\ AND\ normalized\ step\ size)}$
 
-Figure histogram for objective function evaluations and relative surrogate model error. 
+% $\color{red}{table(test\ functions)}$
 
-$\color{red}{histgram\ success\ rate\ AND\ normalized\ convergence\ rate(3\ sphere\ functions) }$
+% Table for median of test results for surrogate model assisted $(\mu/\mu,\lambda)$-ES using CSA
 
-Figure for success rate for surroagte assisted $(\mu/\mu,\lambda)$-ES with $\lambda = 10,20,40$
+
+% $\color{red}{histgram\ obejective\ function\ evaluations\ AND\ plot\ model\ error\ AND\ normalized\ step\ size)}$
+
+% Figure histogram for objective function evaluations and relative surrogate model error. 
+
+% $\color{red}{histgram\ success\ rate\ AND\ normalized\ convergence\ rate(3\ sphere\ functions) }$
+
+% Figure for success rate for surroagte assisted $(\mu/\mu,\lambda)$-ES with $\lambda = 10,20,40$
 
 
 

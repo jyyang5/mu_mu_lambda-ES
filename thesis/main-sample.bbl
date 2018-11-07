@@ -830,6 +830,32 @@
       \field{title}{Evolutionsstrategie--Optimierung technisher Systeme nach Prinzipien der biologischen Evolution}
       \field{year}{1973}
     \endentry
+    \entry{Schwefel:1981:NOC:539468}{book}{}
+      \name{author}{1}{}{%
+        {{hash=0377be3b2119b7ee3e7c2e46ba31ee7e}{%
+           family={Schwefel},
+           familyi={S\bibinitperiod},
+           given={H.\bibnamedelimi -P.},
+           giveni={H\bibinitperiod\bibinitdelim \bibinithyphendelim \bibinithyphendelim P\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {John Wiley \& Sons, Inc.}%
+      }
+      \strng{namehash}{0377be3b2119b7ee3e7c2e46ba31ee7e}
+      \strng{fullhash}{0377be3b2119b7ee3e7c2e46ba31ee7e}
+      \strng{authornamehash}{0377be3b2119b7ee3e7c2e46ba31ee7e}
+      \strng{authorfullhash}{0377be3b2119b7ee3e7c2e46ba31ee7e}
+      \field{sortinit}{S}
+      \field{sortinithash}{3c1547c63380458f8ca90e40ed14b83e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{0471099880}
+      \field{title}{Numerical Optimization of Computer Models}
+      \field{year}{1981}
+    \endentry
     \entry{Smith:1993:NNS:583180}{book}{}
       \name{author}{1}{}{%
         {{hash=abea0164f5c13d4e53c898ebc470392c}{%
