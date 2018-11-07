@@ -130,8 +130,6 @@ Decomposition of $z$, first proposed by Rechenberg \cite{rechenberg1973evolution
 & = \frac{N}{2R^2} (-2 \sigma x^Tz_{\text{step}} - \sigma^2 \Vert z_{\text{step}}\Vert^2 ) \nonumber\\
 & \overset{N \rightarrow \infty}{=} \sigma^* z_{\text{step},1} - \frac{{\sigma^*} ^2}{2},
 \end{align}
-
- % $\color{red}{??? 1 \text{ or }\mu ???}$ assuming $\mu \ll N$
 where $z_{\text{step},1} $, the component of $z_{\text{step}}$ pointing to the negative graident of $f(x)$, is normally distributed and $\overset{ N \rightarrow \infty}{=}$ denotes the convergence of the distribution $\Vert z_{\text{step} } \Vert^N/N = 1$. We further indtroudce $\sigma_\epsilon^* = N \sigma_\epsilon / (2R^2)$, the normalized surrogate model error (also referred to as the normalized fitness noise in Noise Sphere from Arnold and Beyer \cite{1284729}). The estimate of true objective function value of $y_i$ is $f_\epsilon (y_i) = f(y_i) + \sigma_\epsilon z_\epsilon, z_\epsilon \in \mathbb{R}$ is standard normally distributed.
 
 The actual normalized fitness advantage of $y$ using the surrogate model is 
@@ -144,7 +142,6 @@ The expected value of the normalized change in objective function value
 \Delta &= -\frac{N}{2} E \left [  \log f(y) - \log {f(x)} \right ] \nonumber\\
  &= -\frac{N}{2} E \left [  \log \frac{f(x^{t+1})}{f(x^{t})} \right ], 
 \end{align}
-
 where $y^{t}$ is the centroid of parental population in timestamp $t$, the equation is normalized in terms of dimensionality.
 
 Since the fitness of $\lambda$ offspring generated are evaluated by the surrogate model with vanishing cost. The objective function evaluation per iteration is 1 instead of $\lambda$ (for $(\mu/\mu,\lambda)$-ES), therefore the normalized progress rate when dimensionality $N \rightarrow \infty$, by substituting $\lambda$ with 1 in equation (7) from \cite{ARNOLD2001127} is 
@@ -160,13 +157,25 @@ where $\Phi^{-1}$ is the inverse function of $\Phi$, the normal cumulative distr
 
 To obtain the opt. expected fitness gain $\eta_{opt}$ and its coresponding opt. normalized step size $\sigma^*_{opt}$, we take derivative of equation (\ref{eta}) over $\sigma^*$ and get the following 
 \begin{align}\label{opt}
-\eta_{opt} &= \frac{\sigma^*_{opt} c_{\mu \ \mu, \lambda}}{\sqrt {1+ \vartheta^2}} - \frac{(\sigma^*_{opt})^2}{2 \mu} \\
-\sigma^*_{opt} &= \frac{ \mu c_{\mu \ \mu, \lambda}}{\sqrt {1+ \vartheta^2}}
+\sigma^*_{opt} &= \frac{ \mu c_{\mu / \mu, \lambda}}{\sqrt {1+ \vartheta^2}}\\
+\eta_{opt} &= \frac{\sigma^*_{opt} c_{\mu / \mu, \lambda}}{\sqrt {1+ \vartheta^2}} - \frac{(\sigma^*_{opt})^2}{2 \mu} 
 \end{align}
 
 The expected fitness gian is normalized in terms of the population size $\lambda$ for easy comparision. The normalzied fitness gain against the normalized step size for $(\mu/\mu,\lambda)$-ES with population size $\lambda=10,20,40$ corresponding $\mu=3,5,10$ are ploted in Figure 1 from left to right respectively. The line shows the result obtained from Eqs. (\ref{eta}) (\ref{c_mu_mu_lambda}). The dots represent the experimental result for unbiased Gaussin surroagte error for $n \in \{10,100 \}$ obtained by averaging 100 runs. The result obtained for $n \rightarrow \infty$ are considered to be cases with a large normalized step size with very small noise to signal ratio. 
 
-It can be inferred from Figure 1, for a fixed population size, the expected fitness gain decreases with an increasing noise-to-signal-ratio. When $\vartheta \rightarrow \infty$, the surrogate model becomes useless and the strategy becomes a random search. 
+It can be inferred from Figure 1, for a fixed population size, the expected fitness gain decreases with an increasing noise-to-signal-ratio. When $\vartheta \rightarrow \infty$, the surrogate model becomes useless and the strategy becomes a random search. For moderate noise-to-signal ratio $\vartheta$, the surrogate model assisted algorithm can acieve much larger value for expected fitness gain at a larger normalized step size. When $\vartheta = 1$, the maximal expected fitness gain achievable for $(3/3,10)$-ES,$(5/5,20)$-ES and $(10/10,40)$-ES are 0.8507, 1.841, 3.808 with $\sigma^*=2.254,4.251,8.738$ respectively. Compared with the result of the surrogate assisted (1+1)-ES \cite{DBLP:conf/ppsn/KayhaniA18} where maximal fitness gain is 0.548 achieved at $\sigma^* = 1.905$, $(\mu/\mu,\lambda)$-ES does benefit from using a larger population from the analysis. For $\vartheta=0$ (the surrogate models the objective function exactly), from equation \ref{opt} we can obatin the maximal expected fitness gain is achieved at $\sigma^*_{opt} = \ \mu c_{\mu / \mu, \lambda}$ with value $\eta_{opt} =  \mu (c_{\mu / \mu, \lambda})^2/2$. Even if this indicates the potential benefit the strategy may gain with a growing population, it is important to note the analytical results derived when $n \rightarrow \infty$ is an approximation for the finite-dimensional case. Figure 2 shows the relation of optimal expected fitness gain and the coresponding optimial normalized step size over noise-to-signal ratio derived analytically in the limit of $n \rightarrow \infty$ for three different population sizes. The optimal expected fitness gain is also measured experimentally for $n \in \{10,100 \}$. For a finite-dimension, the speed-up achieved with surrogate model assistance for small noise-to-signal ratio appears to be 
+
+
+% Figure 2 shows the relation of optimal expected fitness gain over noise-to-signal ratio derived in the limit of $n \rightarrow \infty$ for three different population sizes, followed by the coresponding optimial normalized step size over noise-to-signal ratio derived $n \rightarrow \infty$. and measured experimentally for $n \in \{10,100 \} $
+
+
+% \begin{align}\label{no_noise_opt}
+% \sigma^*_{opt} &= \ \mu c_{\mu / \mu, \lambda}\\
+% \eta_{opt} &= \sigma^*_{opt} c_{\mu / \mu, \lambda} - \frac{(\sigma^*_{opt})^2}{2 \mu} \\
+% & = \mu (c_{\mu / \mu, \lambda})^2- (\mu c_{\mu / \mu, \lambda})^2/2\mu \\
+% & = \mu (c_{\mu / \mu, \lambda})^2/2
+% \end{align}
+
 % random -- the strategy becomes a $\color{red}{\text{random search?? no selection but still take average is there a name for this? }} $. The expected fitness gain increases proportionally with an increasing population size and the maximal 
 
 Compared the result obtained by the surrogate assisted (1+1)-ES (Fig 1. \cite{DBLP:conf/ppsn/KayhaniA18}), there is indeed a 
@@ -179,15 +188,15 @@ there is a significant increase in expected fitness gain as the population size 
 
 \begin{center}
 \begin{figure*}
-\includegraphics[height=2.2in, width=4.8in]{opt_stepSize_fitGain_v1}
+\includegraphics[height=2.2in, width=6in]{opt_stepSize_fitGain_v1}
 \caption{Opt. expected fitness gain and corsponding opt. normalized step size of the surrogate model assisted $(\mu/\mu,\lambda)$-ES plotted against the noise-to-signal ratio. The line and dots with colour black, blue green represent $(3/3,10)$-ES, $(3/3,10)$-ES, $(3/3,10)$-ES The solid line representa the results obtained analytically when $n\rightarrow \infty$. }
 \end{figure*}
 \end{center}
 
-$\color{red}{(log\ sclae\ size)}$
+% $\color{red}{(log\ sclae\ size)}$
 
 
-$\color{red}{graph- subplot(1,3)\ seems\ better?}$
+% $\color{red}{graph- subplot(1,3)\ seems\ better?}$
 
 % $$g(x,y,\sigma_\epsilon^*, \sigma^*)= 1/ \sqrt{2 \pi} e^{-y^2/2} p_{\alpha|z1}(x|y) \delta(x, y)$$
 
