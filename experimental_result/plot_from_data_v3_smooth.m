@@ -54,8 +54,10 @@ for fname = 1:1:5
         % Subplot row and col number of fig1
         subplot_ROW = 4;
         subplot_COL = 5; 
+%         t_med = median(t_array(fname,i,:));
         t_max = max(t_array(fname,i,:));
         t_min = min(t_array(fname,i,:));
+%         sigma_matrix_med = median(squeeze(sigma_matrix(fname,i,:,:)));
         
         % Find the index of median T 
         T_array_temp = T_array(fname,i,:);
@@ -73,7 +75,12 @@ for fname = 1:1:5
         sigma_star_matrix_med = transpose(squeeze(sigma_star_matrix(fname,i,med_index,:)));
         success_med = success_rate_array(fname,i,:);
         delta_matrix_temp =squeeze(delta_matrix(fname,i,:,:));
-
+%         f_x_med = median(squeeze((f_x_matrix(fname,i,:,:))));
+%         convergence_array = squeeze((convergence_rate_array(fname,i,:)));
+%         GP_error_matrix_med = median(squeeze(GP_error_matrix(fname,i,:,:)));
+%         sigma_star_matrix_med = median(squeeze(sigma_star_matrix(fname,i,:,:)));
+%         success_med = success_rate_array(fname,i,:);
+%         delta_matrix_temp =squeeze(delta_matrix(fname,i,:,:));
         
         lambda =  lambda_array(i);
         figure(200);
@@ -142,12 +149,16 @@ for fname = 1:1:5
             d1 = sprintf('(1+1)-ES[smoothed]');
             plot(t_start:1:T_med,smoothdata(GP_error_matrix_med(t_start:T_med),'gaussian',40),'DisplayName',d1,'LineWidth',2);hold on;
         else 
+%             GP_error_range1 = GP_error_matrix_med(1:t_start);
             GP_error_range2 = GP_error_matrix_med(t_start+1:t_med);
             plot(t_range2,GP_error_range2,'DisplayName',d);hold on;
+%             plot([t_range1 t_range2], [GP_error_range1 GP_error_range2],'DisplayName',d);hold on;
             % GP smoothed
+%             smoothed_GP_range1 = smoothdata(GP_error_range1,'gaussian',40);
             smoothed_GP_range2 = smoothdata(GP_error_range2,'gaussian',40);
             d1 = sprintf('(%d/%d,%d)-ES[smoothed]',mu,mu,lambda);
             plot(t_range2, smoothed_GP_range2,'DisplayName',d1,'LineWidth',2);hold on;
+%             plot([t_range1 t_range2],[smoothed_GP_range1 smoothed_GP_range2],'DisplayName',d1,'LineWidth',2);hold on;
         end
         if(fname==1)
             ylabel('relative model error','FontSize',15);%

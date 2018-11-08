@@ -681,50 +681,6 @@
       \field{pages}{to appear}
       \range{pages}{-1}
     \endentry
-    \entry{Hansen:2003:RTC:772374.772376}{article}{}
-      \name{author}{2}{}{%
-        {{hash=c4e0bc7efa9e51cfbf20ba10e6d92c2f}{%
-           family={N.\bibnamedelimi Hansen},
-           familyi={N\bibinitperiod\bibinitdelim H\bibinitperiod},
-           given={S.\bibnamedelimi D.\bibnamedelimi M\"{u}ller},
-           giveni={S\bibinitperiod\bibinitdelim D\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
-        {{hash=9c0de4778f99c2c1ac98af5b6f29670b}{%
-           family={Koumoutsakos},
-           familyi={K\bibinitperiod},
-           given={P.},
-           giveni={P\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {Cambridge, MA, USA}%
-      }
-      \list{publisher}{1}{%
-        {MIT Press}%
-      }
-      \strng{namehash}{6b8349bdd97694353c5174e090a741ca}
-      \strng{fullhash}{6b8349bdd97694353c5174e090a741ca}
-      \strng{authornamehash}{6b8349bdd97694353c5174e090a741ca}
-      \strng{authorfullhash}{6b8349bdd97694353c5174e090a741ca}
-      \field{sortinit}{N}
-      \field{sortinithash}{1163c28585427c673ad5a010cbf82f52}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{1063-6560}
-      \field{journaltitle}{Evol. Comput.}
-      \field{month}{3}
-      \field{number}{1}
-      \field{title}{Reducing the Time Complexity of the Derandomized Evolution Strategy with Covariance Matrix Adaptation (CMA-ES)}
-      \field{volume}{11}
-      \field{year}{2003}
-      \field{pages}{1\bibrangedash 18}
-      \range{pages}{18}
-      \verb{doi}
-      \verb 10.1162/106365603321828970
-      \endverb
-      \verb{url}
-      \verb http://dx.doi.org/10.1162/106365603321828970
-      \endverb
-      \keyw{covariance matrix adaptation,derandomized self-adaptation,evolution path,evolution strategy,parallelization}
-    \endentry
     \entry{Ostermeier:1994:DAS:1326675.1326679}{article}{}
       \name{author}{2}{}{%
         {{hash=23a7b32d4787448fc0816c1cfc996dc6}{%

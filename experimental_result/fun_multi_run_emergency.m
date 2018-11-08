@@ -272,7 +272,6 @@ if(fname<4)
     end
     xlabel('objective function calls','FontSize',15); 
     set(gca, 'YScale', 'log');
-%     title('normalized step size \sigma*','FontSize',20);
 
     legend('-DynamicLegend'); 
     legend('show');
