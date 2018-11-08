@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  7 NOV 2018 18:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  7 NOV 2018 23:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1357,11 +1357,62 @@ Package microtype Info: Character `textendash ' is missing
 Package microtype Info: Character `textemdash ' is missing
 (microtype)             in font `T1/zi4/m/n/9'.
 (microtype)             Ignoring protrusion settings for this character.
- [7.7])
+ [7.7]
+<merged_plot_v2.pdf, id=232, 1302.78822pt x 776.6305pt>
+File: merged_plot_v2.pdf Graphic file (type pdf)
+
+<use merged_plot_v2.pdf>
+Package pdftex.def Info: merged_plot_v2.pdf used on input line 306.
+(pdftex.def)             Requested size: 433.61893pt x 289.07895pt.
+
+Overfull \hbox (3.6143pt too wide) in paragraph at lines 306--307
+ [][] 
+ []
+
+<success_convergence_v2.pdf, id=233, 1154.85126pt x 790.79791pt>
+File: success_convergence_v2.pdf Graphic file (type pdf)
+
+<use success_convergence_v2.pdf>
+Package pdftex.def Info: success_convergence_v2.pdf used on input line 315.
+(pdftex.def)             Requested size: 433.61443pt x 289.07927pt.
+
+Overfull \hbox (3.6098pt too wide) in paragraph at lines 315--316
+ [][] 
+ []
+
+
+LaTeX Warning: Reference `opt_merged_plot' on page 8 undefined on input line 32
+3.
+
+[8.8 <./merged_plot_v2.pdf>] [9.9 <./success_convergence_v2.pdf>]
+<merged_plot_emergency.pdf, id=280, 1184.24428pt x 808.32458pt>
+File: merged_plot_emergency.pdf Graphic file (type pdf)
+
+<use merged_plot_emergency.pdf>
+Package pdftex.def Info: merged_plot_emergency.pdf used on input line 483.
+(pdftex.def)             Requested size: 433.62793pt x 289.07253pt.
+
+Overfull \hbox (3.6233pt too wide) in paragraph at lines 483--484
+ [][] 
+ []
+
+<success_convergence_emergency.pdf, id=281, 1121.5937pt x 776.44026pt>
+File: success_convergence_emergency.pdf Graphic file (type pdf)
+
+<use success_convergence_emergency.pdf>
+Package pdftex.def Info: success_convergence_emergency.pdf used on input line 4
+92.
+(pdftex.def)             Requested size: 433.62045pt x 289.07922pt.
+
+Overfull \hbox (3.61583pt too wide) in paragraph at lines 492--493
+ [][] 
+ []
+
+) [10.10]
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
 (Font)              scaled to size 7.0pt on input line 140.
-
-[8.8] [9.9] [10.10]
+ [11.11 <./merged_plot_emergency.pdf>] [12.12 <./success_convergence_emergency.
+pdf>] [13.13]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 142.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 142.
  (./main-sample.aux)
@@ -1369,19 +1420,23 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 142.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 142.
 Package rerunfilecheck Info: File `main-sample.out' has not changed.
 (rerunfilecheck)             Checksum: C2F7029C27C032BA282CD920C54ACC8B;1417.
+
+
+LaTeX Warning: There were undefined references.
+
 Package logreq Info: Writing requests to 'main-sample.run.xml'.
 \openout1 = `main-sample.run.xml'.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 142.
  ) 
 Here is how much of TeX's memory you used:
- 24168 strings out of 492995
- 391491 string characters out of 6132704
- 863933 words of memory out of 5000000
- 26645 multiletter control sequences out of 15000+600000
- 192728 words of font info for 428 fonts, out of 8000000 for 9000
+ 24208 strings out of 492995
+ 392480 string characters out of 6132704
+ 863239 words of memory out of 5000000
+ 26667 multiletter control sequences out of 15000+600000
+ 193274 words of font info for 432 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 60i,15n,94p,2474b,1364s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,15n,94p,2474b,1353s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-4.enc}{
 /usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/newtx/libertinealt.enc}{/usr
 /local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}{/usr/
@@ -1406,10 +1461,10 @@ live/2017/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/201
 f-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2017/texmf-dist/f
 onts/type1/public/newtx/zxlr.pfb></usr/local/texlive/2017/texmf-dist/fonts/type
 1/public/newtx/zxlri.pfb>
-Output written on main-sample.pdf (10 pages, 876250 bytes).
+Output written on main-sample.pdf (13 pages, 2480412 bytes).
 PDF statistics:
- 388 PDF objects out of 1000 (max. 8388607)
- 326 compressed objects within 4 object streams
- 99 named destinations out of 1000 (max. 500000)
- 46183 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 477 PDF objects out of 1000 (max. 8388607)
+ 388 compressed objects within 4 object streams
+ 107 named destinations out of 1000 (max. 500000)
+ 46203 words of extra memory for PDF output out of 51595 (max. 10000000)
 

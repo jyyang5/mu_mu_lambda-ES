@@ -22,7 +22,7 @@ f3 = @(x) (x'*x)^(3/2);  % cubic sphere
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-fname = 5;
+fname = 1;
 n = 10;
 
 lambda = 40;
@@ -40,7 +40,7 @@ DECREASE_FACTOR = 0.95;
 cmp_legend =0; 
 
 x0 = randn(n,mu);
-a = mml_GP_CSA_Niko(fname,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR);
+a = mml_GP_CSA_Niko(fname,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE);
 t = cell2mat(a(1));
 centroid = cell2mat(a(2));
 f_centroid = cell2mat(a(3));
@@ -52,6 +52,7 @@ error_array = cell2mat(a(8));
 sigma_satr_array = cell2mat(a(9));
 success_rate = cell2mat(a(10));
 delta_array = cell2mat(a(11));
+delta_array1 = cell2mat(a(12));
 % emergency_rate = cell2mat(a(12));
 
 % p_array = cell2mat(a(12));
@@ -178,7 +179,6 @@ disp(T1);
 mu = mean(data);
 sigma = std(data);
 
-f = exp(-(x-mu).^2./(2*sigma^2))./(sigma*sqrt(2*pi));
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Schwefel's Problem 1.2
 function val = f4(x)

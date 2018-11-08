@@ -73,6 +73,7 @@ sigma_star_array = zeros(1,10000);                                          % st
 error_array = zeros(1,10000);                                               % store similar to noise-to-signal ratio
 s_array = zeros(1,10000);
 delta_array = zeros(1,10000);                                               % for pdf of fitness gain in each iteration
+delta_array1 = zeros(1,10000);                                               % for pdf of fitness gain in each iteration
 
 y = zeros(n,lambda);                                                        % lambda offspring solution with dim n
 z = zeros(n,lambda);                                                        % random directions added for lambda offsprings dim n
@@ -191,15 +192,15 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     T = T + 1;
     sigma_array(t) = sigma;
     sigma_star_array(t) = sigma*n/norm(centroid);
-    if(t>=2)
-        if(fname==1)
-            delta_array(t) =(fcentroid_array(t)-fcentroid_array(t-1))/norm(centroid); 
-        elseif(fname==2)
-            delta_array(t) =(fcentroid_array(t)-fcentroid_array(t-1))/2/(norm(centroid))^2; 
-        else
-            delta_array(t) =(fcentroid_array(t)-fcentroid_array(t-1))/3/(norm(centroid))^3; 
-        end
-    end
+%     if(t>=2)
+%         if(fname==1)
+%             delta_array(t) =(fcentroid_array(t)-fcentroid_array(t-1))/norm(centroid); 
+%         elseif(fname==2)
+%             delta_array(t) =(fcentroid_array(t)-fcentroid_array(t-1))/2/(norm(centroid))^2; 
+%         else
+%             delta_array(t) =(fcentroid_array(t)-fcentroid_array(t-1))/3/(norm(centroid))^3; 
+%         end
+%     end
     t = t + 1;
     
     
@@ -212,17 +213,21 @@ end
     % convergence rate (overall)
     t_start = ceil(TRAINING_SIZE/lambda);
     if(fname==1)
+        delta_array(2:t) = -(fcentroid_array(2:t)-fcentroid_array(1:t-1))./vecnorm(centroid_array(:,2:t),2,1);
         convergence_rate = -n*sum(log(fcentroid_array(t_start+2:t)./fcentroid_array(t_start+1:t-1)))/length(fcentroid_array(t_start+1:t-1));
     elseif(fname==2)
+        delta_array(2:t) = -(fcentroid_array(2:t)-fcentroid_array(1:t-1))./(vecnorm(centroid_array(:,2:t),2,1)).^2/2;
         convergence_rate = -n/2*sum(log(fcentroid_array(t_start+2:t)./fcentroid_array(t_start+1:t-1)))/length(fcentroid_array(t_start+1:t-1));
     elseif(fname==3)
+        delta_array(2:t) = -(fcentroid_array(2:t)-fcentroid_array(1:t-1))./(vecnorm(centroid_array(:,2:t),2,1)).^3/3;        
         convergence_rate = -n/3*sum(log(fcentroid_array(t_start+2:t)./fcentroid_array(t_start+1:t-1)))/length(fcentroid_array(t_start+1:t-1));
     elseif(fname==4)
+        delta_array(2:t) = -(fcentroid_array(2:t)-fcentroid_array(1:t-1))./vecnorm(centroid_array(:,2:t),2,1);
         convergence_rate = -n/2*sum(log(fcentroid_array(t_start+2:t)./fcentroid_array(t_start+1:t-1)))/length(fcentroid_array(t_start+1:t-1));
     elseif(fname==5)
+        delta_array(2:t) = -(fcentroid_array(2:t)-fcentroid_array(1:t-1))./vecnorm(centroid_array(:,2:t),2,1);
     	convergence_rate = -n/2*sum(log(fcentroid_array(t_start+2:t)./fcentroid_array(t_start+1:t-1)))/length(fcentroid_array(t_start+1:t-1));
     end
-    
     % success rate
     success_rate = sum(fcentroid_array(t_start:T-1)>fcentroid_array(t_start+1:T))/length(fcentroid_array(t_start:T-1));
     delta_array = -delta_array;

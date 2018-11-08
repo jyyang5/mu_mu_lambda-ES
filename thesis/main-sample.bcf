@@ -2177,6 +2177,7 @@
     <bcf:citekey order="32">hansen2016cma</bcf:citekey>
     <bcf:citekey order="33">Schwefel:1981:NOC:539468</bcf:citekey>
     <bcf:citekey order="34">DBLP:conf/ppsn/KayhaniA18</bcf:citekey>
+    <bcf:citekey order="35">DBLP:conf/ppsn/KayhaniA18</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="nty/global/" type="entry" sortscheme="nty" sortnamekeyscheme="global" labelprefix="">
   <bcf:sorting>

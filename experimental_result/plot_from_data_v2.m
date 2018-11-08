@@ -116,6 +116,9 @@ for fname = 1:1:5
                 title(d3,'fontsize',15); 
             end
         end
+        if(fname==1)
+            ylabel('probability','FontSize',15);
+        end
         xlabel('objective function calls','FontSize',15); 
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         % 2.objective function [row 2]
@@ -160,7 +163,7 @@ for fname = 1:1:5
         if(fname==1)
             ylabel('relative model error','FontSize',15);%
         end
-        xlabel('objective function evaluations','FontSize',15); 
+        xlabel('objective function calls','FontSize',15); 
         set(gca, 'YScale', 'log');
 
         legend('-DynamicLegend'); 
@@ -179,7 +182,7 @@ for fname = 1:1:5
             if(fname==1)
                 ylabel('normalized step size \sigma*','FontSize',15);%
             end
-            xlabel('objective function evaluations','FontSize',15); 
+            xlabel('objective function calls','FontSize',15); 
             set(gca, 'YScale', 'log');
         %     title('normalized step size \sigma*','FontSize',20);
 

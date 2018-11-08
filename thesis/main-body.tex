@@ -300,11 +300,30 @@ The Gaussian process kernel is constructed using a trainijng size of 40. The tra
 \label{Tab:Test_result}
 \end{table*}
 
-The number of objective function calls needed to solve the test problems within the required accurancy are represented in the histogram first row in Fig. 3, the median objective funcation calls for each test problem is shown in Table 1. The result of surrogate assisted (1+1)-ES is also included for comparision.
+
+\begin{center}
+\begin{figure*}
+\includegraphics[height=4in, width=6in]{merged_plot_v2}
+\caption{Top row: Histogram showing the number of objective function calls needed to solve the five test problems. Second row: Convergence graphs for median runs. Third row: Relative model error obatined in median runs. Last row: normalized step size measured in median runs. }
+\label{fig:merged_plot}
+\end{figure*}
+\end{center}
+
+
+\begin{center}
+\begin{figure*}
+\includegraphics[height=4in, width=6in]{success_convergence_v2}
+\caption{The first two rows show the normalized convergence rate for each run plotted in histogram and normalized probability density function (pdf) respectively. The last two rows represent the success rate (proportion of good step size in each run) plotted in histogram and pdf respectively.}
+\label{fig:success_convergence_plot}
+\end{figure*}
+\end{center}
 
 
 
-The step size of $(\mu/\mu,\lambda)$-ES is commonly adapted using cumulative step size adaptation (CSA) 
+The histogram showing the number of objective function calls needed to solve the test problems within the required accurancy are represented in the first row in \ref{opt_merged_plot}, the median objective funcation calls for each test problem is shown in \ref{Tab:Test_result}. The result of Arash and Dirk \cite{DBLP:conf/ppsn/KayhaniA18} using surrogate assisted (1+1)-ES is also included for comparision. The results of surrogate assisted $(\mu/\mu,\lambda)$-ES do not match the performance of surrogate assisted (1+1)-ES. Despite achieving a speed up from 1.2 to 1.9 for quartic function, the surrogate assisted $(\mu/\mu,\lambda)$-ES performs worse on sphere functions and even does not convergece in Schwefel\' s function. There is a trend in quadratic sphere and quartic function that the performance improves with a growing parental population, the number of objective function evaluations needed to solve linear sphere even increass after $\lambda>20$. There are a few reasons that may explain the big gap between experimental result and analytical result in Section 3, and the relation between the expected fitness gain and parental population size. Firstly, the step size is not appropriately adapted using CSA. Secondly the 
+1. the step size is not appropriately adapted, 2. the  
+
+
 
 % $\color{red}{(normalized\ step\ size)}$
 
@@ -432,11 +451,50 @@ Propose step size adaptation in terms of emergency.
 \end{algorithmic}
 \end{algorithm}
 
+
+
+
 $\color{red}{table(test\ functions)}$
 Table for median of test results for surrogate model assisted $(\mu/\mu,\lambda)$-ES using CSA with emergency
 
+\begin{table*} 
+\caption{Median test results.}
+\begin{tabular}{ l *{5}{D{.}{.}{4}} }
+\toprule
+\textbf{} & \multicolumn{5}{c}{\textbf{Median number of objective function calls (with model assistance) }} \\
+\cmidrule(lr){2-6}
+\textbf{Test functions} & \multicolumn{1}{c}{$(1+1)$-ES} & \multicolumn{1}{c}{$(3/3,10)$-ES} & \multicolumn{1}{c}{$(5/5,20)$-ES} & \multicolumn{1}{c}{$(10/10,40)$-ES}  \\
+\midrule
+\texttt{linear sphere} 	      &505  &754  &689  &755      \\
+\texttt{quadratic sphere}     &214  &310  &245  &228    \\ 
+\texttt{cubic sphere}         &202  &274  &250  &254    \\ 
+\texttt{Schwefel\' s function}&1496 & +\infty & +\infty & +\infty\\
+\texttt{quartic function}     &1244 &1006 &750&662    \\ 
+\bottomrule             
+\end{tabular}
+\label{Tab:Test_result_emergency}
+\end{table*}
+
 
 Figure for success rate for surroagte assisted $(\mu/\mu,\lambda)$-ES with $\lambda = 10,20,40$
+
+\begin{center}
+\begin{figure*}
+\includegraphics[height=4in, width=6in]{merged_plot_emergency}
+\caption{Top row: Histogram showing the number of objective function calls needed to solve the five test problems. Second row: Convergence graphs for median runs. Third row: Relative model error obatined in median runs. Last row: normalized step size measured in median runs. }
+\label{fig:merged_plot_emergency}
+\end{figure*}
+\end{center}
+
+
+\begin{center}
+\begin{figure*}
+\includegraphics[height=4in, width=6in]{success_convergence_emergency}
+\caption{The first two rows show the normalized convergence rate for each run plotted in histogram and normalized probability density function (pdf) respectively. The last two rows represent the success rate (proportion of good step size in each run) plotted in histogram and pdf respectively.}
+\label{fig:success_convergence_emergency}
+\end{figure*}
+\end{center}
+
 
 
 
