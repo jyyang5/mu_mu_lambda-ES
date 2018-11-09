@@ -1,11 +1,11 @@
 # Fdb version 3
-["biber main-sample"] 1541739646 "main-sample.bcf" "main-sample.bbl" "main-sample" 1541749184
+["biber main-sample"] 1541739646 "main-sample.bcf" "main-sample.bbl" "main-sample" 1541754889
   "main-bibliography.bib" 1541632572 28765 2889930fd907ab9a58e6130b6dcf33f3 ""
-  "main-sample.bcf" 1541749184 97918 96b78b60b5e65dad9d829fe284adfdcf ""
+  "main-sample.bcf" 1541754888 97918 96b78b60b5e65dad9d829fe284adfdcf ""
   (generated)
-  "main-sample.bbl"
   "main-sample.blg"
-["pdflatex"] 1541749181 "main-sample.tex" "main-sample.pdf" "main-sample" 1541749184
+  "main-sample.bbl"
+["pdflatex"] 1541754886 "main-sample.tex" "main-sample.pdf" "main-sample" 1541754889
   "/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc" 1480098666 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-4.enc" 1480098667 7311 f1482de29b79cbe9ecc4861d6c55e906 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc" 1490133665 2921 8ca0eb0831f9bc5da080d3697cfe67bf ""
@@ -235,11 +235,11 @@
   "ACM-Reference-Format.bbx" 1541632572 18425 c755f24a02600e7dab3afb895bb9871a ""
   "ACM-Reference-Format.cbx" 1541632572 100 022318c52dbfd268aba635ca65293b8e ""
   "expectedFitGain_v1.pdf" 1541632572 64941 0bb4fefb8748ebf68b1838019073b1c1 ""
-  "main-body.tex" 1541749178 50517 defe9963755296be99a29493828316f9 ""
-  "main-sample.aux" 1541749184 14535 a0954509f9a75c5145add51924331567 ""
+  "main-body.tex" 1541754879 50633 43e125e3ab29396c163f590848b9213b ""
+  "main-sample.aux" 1541754888 14555 8e5f79cf887091e90c3d6df8e43471b5 ""
   "main-sample.bbl" 1541739648 36513 b3db94624b9c06dabe0b6ebeff24e97b "biber main-sample"
-  "main-sample.out" 1541749184 1612 40f8fb88b7e104b4393f47526ec1429b ""
-  "main-sample.run.xml" 1541749184 2521 faabd12540979f7ba19c0e7e4199c936 ""
+  "main-sample.out" 1541754888 1612 40f8fb88b7e104b4393f47526ec1429b ""
+  "main-sample.run.xml" 1541754888 2521 faabd12540979f7ba19c0e7e4199c936 ""
   "main-sample.tex" 1541748226 4706 98b4c7e5369b902ca7ca9309f93db845 ""
   "merged_plot_emergency_modified.pdf" 1541742001 704545 9eb8ba95930d17bfb61d7160426fb575 ""
   "merged_plot_v4.pdf" 1541741891 868384 a4cc0a63bf3f942affc9c4ac158bc6fd ""
@@ -247,9 +247,9 @@
   "success_convergence_emergency_modified.pdf" 1541741223 405497 1b9a9863f8ebdd4fdc2549f472978e53 ""
   "success_convergence_v4.pdf" 1541728783 355124 7e750d0936b27cd132bd88b6e881e79f ""
   (generated)
-  "main-sample.pdf"
-  "main-sample.log"
   "main-sample.aux"
   "main-sample.run.xml"
   "main-sample.bcf"
+  "main-sample.pdf"
   "main-sample.out"
+  "main-sample.log"
