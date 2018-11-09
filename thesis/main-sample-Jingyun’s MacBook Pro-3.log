@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  9 NOV 2018 03:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  9 NOV 2018 03:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1394,35 +1394,35 @@ Overfull \hbox (3.60272pt too wide) in paragraph at lines 259--260
 Underfull \vbox (badness 1082) has occurred while \output is active []
 
  [10.10]
-<merged_plot_emergency_modified.pdf, id=292, 1527.3322pt x 916.64485pt>
+[11.11]
+<merged_plot_emergency_modified.pdf, id=324, 1527.3322pt x 916.64485pt>
 File: merged_plot_emergency_modified.pdf Graphic file (type pdf)
 
 <use merged_plot_emergency_modified.pdf>
 Package pdftex.def Info: merged_plot_emergency_modified.pdf used on input line 
-429.
+438.
 (pdftex.def)             Requested size: 433.61623pt x 303.52876pt.
 
-Overfull \hbox (3.6116pt too wide) in paragraph at lines 429--430
+Overfull \hbox (3.6116pt too wide) in paragraph at lines 438--439
  [][] 
  []
 
 
-<success_convergence_emergency_modified.pdf, id=293, 1566.8573pt x 914.55434pt>
+<success_convergence_emergency_modified.pdf, id=325, 1566.8573pt x 914.55434pt>
 File: success_convergence_emergency_modified.pdf Graphic file (type pdf)
 <use success_convergence_emergency_modified.pdf>
 Package pdftex.def Info: success_convergence_emergency_modified.pdf used on inp
-ut line 438.
+ut line 447.
 (pdftex.def)             Requested size: 433.60068pt x 289.07693pt.
 
-Overfull \hbox (3.59605pt too wide) in paragraph at lines 438--439
+Overfull \hbox (3.59605pt too wide) in paragraph at lines 447--448
  [][] 
  []
 
-[11.11] [12.12 <./merged_plot_emergency_modified.pdf>] [13.13 <./success_conver
-gence_emergency_modified.pdf>])
+[12.12 <./merged_plot_emergency_modified.pdf>])
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
 (Font)              scaled to size 7.0pt on input line 140.
- [14.14] [15.15]
+ [13.13 <./success_convergence_emergency_modified.pdf>] [14.14]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 142.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 142.
  (./main-sample.aux)
@@ -1436,13 +1436,13 @@ Package logreq Info: Writing requests to 'main-sample.run.xml'.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 142.
  ) 
 Here is how much of TeX's memory you used:
- 24231 strings out of 492995
- 392657 string characters out of 6132704
- 866657 words of memory out of 5000000
+ 24236 strings out of 492995
+ 392803 string characters out of 6132704
+ 865657 words of memory out of 5000000
  26664 multiletter control sequences out of 15000+600000
- 209591 words of font info for 456 fonts, out of 8000000 for 9000
+ 210137 words of font info for 460 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 60i,17n,94p,2474b,1298s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,17n,94p,2474b,1360s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-4.enc}{
 /usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/newtx/libertinealt.enc}{/usr
 /local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}{/usr/
@@ -1468,10 +1468,10 @@ xlive/2017/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/20
 mf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2017/texmf-dist/
 fonts/type1/public/newtx/zxlr.pfb></usr/local/texlive/2017/texmf-dist/fonts/typ
 e1/public/newtx/zxlri.pfb>
-Output written on main-sample.pdf (15 pages, 3226209 bytes).
+Output written on main-sample.pdf (14 pages, 3225168 bytes).
 PDF statistics:
- 503 PDF objects out of 1000 (max. 8388607)
- 409 compressed objects within 5 object streams
- 109 named destinations out of 1000 (max. 500000)
+ 496 PDF objects out of 1000 (max. 8388607)
+ 403 compressed objects within 5 object streams
+ 108 named destinations out of 1000 (max. 500000)
  47227 words of extra memory for PDF output out of 51595 (max. 10000000)
 
