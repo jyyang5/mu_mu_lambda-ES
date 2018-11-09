@@ -1,31 +1,17 @@
 \section{Introduction}
 
-% \textit{Evolution strategies (ESs)} have been widely utilized to solve optimization problems where the true objective function evaluation is computationally-intensive. The use of a population of candidate solutions makes ESs invariant to moderate noise and transformation. To extend the benefit of a potential large population size, one way is to use surrogate model, a substitution of the true objective function built based on the information of previous iterations. A surrogate can be built either as a local approximation or a global approximation to the true objective function \cite{Jin:2002:FAE:2955491.2955686}. It give a more computationally efficient inaccurate estimate of the offsprings' fitness, replacing the expensive true objective function evaluation. The estimate using surrogate model yields insight into potential avoidance of poor step size. 
-
 \textit{Evolution strategies (ESs)} have been widely utilized to solve optimization problems where the true objective function evaluation is computationally-intensive. Various attempts have been made to reducte the cost by extracting the information obtained from points evaluated in previous iterations. Such information yields insights into better mutation and recombination that help generate and select promising offspring. One way is to use the cummulative step size adaptation (CSA) \cite{Ostermeier:1994:DAS:1326675.1326679} that builds an evolution path based on the history step size (mutation) of ESs, the population in the next iteration is generated based on the mutation adpated by the evolution path. 
 
 The history information could be used to construct a surrogate model, referred either as a local approximation or a global approximation to the true objective function \cite{Jin:2002:FAE:2955491.2955686}. There are a range of surrogate models and a survey of the development can be found by Jin \cite{JIN201161} and Loshchilov \cite{ECJ2016_LMCMA}. Those algorithms are usually heuristic by nature and the behaviour of each step is likely not well interpreted. Recent work in surrogate assisted EAs tend to use sophosticated algroithm where surrogates are combined or the model is updated online according to some heustic. Comparision is often made by comparing the performance using the algorithm with and without model assistance where the behaviour of the surrogate is not well simulated. In this context, an approach that could simulate the surrogate would be helpful in understanding the surrogate behaviour, leading to potential modification for surrogate update or parameter-setting. A surrogate that models the objective function with desired precise gains benefit especially for algorithms that requires a large population size for good performance.The computational saving largely lies in the saved evaluations outshine the potential poor step resulted from relative inaccurate estimation of candidate solutions. 
 
 
-% It give a more computationally efficient inaccurate estimate of the offsprings' fitness, replacing the expensive true objective function evaluation. The estimate using surrogate model yields insight into potential avoidance of poor step size resulted from poor estimation of candidate solution.  A surrogate model can either filter or rank the population generated in each iteration with vanishing cost, acting as a pre-selection of candidate solutions. The effectiveness of using surrogate model largely lies in the model accurancy that the candidate solutions can be effectively filtered or ranked. 
-
 This paper intend to improve the understanding of the impact of population size on surrogate-assisted ESs' by analyzing using simple test functions with strong theoretical basis and established baselines. The paper is organized as follows: In Section 2 we give a brief review of related background, in Section 3 we propose a local surroagte model-assisted $(\mu/\mu,\lambda)$-ES and study its behaviour on sphere functions. Based on the existing knowledge and step behaviour, in Section 4, we then propose a combined step size adaptation mechanism for the this algorithm, analyze the performance using several test functions and compare the result with a surrogate model-assisted (1+1)-ES \cite{DBLP:conf/ppsn/KayhaniA18}. The experimental result is followed by a discuession and future work in Section 5. 
 
 
-% The effectiveness of surrogate assisted model is that it either effectively filter those undesired candidate solutions (reduce the population size) so that the unnecessary objective function evaluations can be avoided. It is the reduction of the population size by filtering undesired candidate solutions rather than the surrogate mode that saves the computational cost directly \cite{ARASH}.
 
 
-% By using a similar idea to surrogated model assisted EAs, we do not use a local surrogate model to do the pre-selection in each iteration. Instead, we use it to optimize the candidate solutions obtained in each iteration by fitting a quadratic model in one dimension. By taking the lowest point of the quadratic model as the offspring of this iteration, we hope the fitness of the offspring obtained by the quadratic model would be better compared with the candidate solution directly generated from the parent. For better interpretation, we study the behavior of the proposed surrogate model assisted EAs using simple test functions, allowing comparisons with established basslines. The contributions of this paper are as follows: in Section 2, we give a brief review of related background, in Section 3, we propose a local surrogate model assisted (1+1)-ES, in Section 4, the model is evaluated on quadratic sphere following the same framework proposed by Kayhani and Arnold \cite{ARASH}. 
-
-% \begin{figure*}
-% \includegraphics[height=2.6in, width=7in]{matlabcode}
-% \caption{MATLAB code for the proposed local surrogate model }
-% \end{figure*}
-
-
-
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Related Work}
 
 \subsection{Surrogate Model} 
@@ -60,6 +46,7 @@ There is a wealth of literatures for solving black box optimization using (1+1)-
 % % The most recent offspring evaluated by true objective function is then added to the training set for Gaussian Process, replacing the oldest data point in the training set. 
 % The proposed GP based local surrogate gives a 3-time-speed-up compared with the usual (1+1)-ES on quadratic sphere. We want to construct a similar GP based local surrogate model and compare the result using the same test functions and analysis. 
  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Step size adaptation}
 % CSA
 
@@ -88,26 +75,10 @@ where $E\| N(0,I) \|$ is the expected length of the search path $p$ and can be a
 
 $\color{red}{\text{wonder if something is missing feels not sufficient}}$
 
-% ($\color{red}{not\ step\ size\ adaptation\ COULD\ IN\ FUTURE\ WORK}$) Covariance Matrix Adaptation (CMA) \cite{Hansen:2003:RTC:772374.772376}. 
-% 1/5 rule
 
 
-% \section{Description}
-
-% The first few steps of the proposed algorithm are essentially a usual (1+1)-ES where the step size of the parent is adapted using one-fifth rule. In each iteration the parent $x \in R^n$ is the best offspring (with the lowest objective function value) obtained so far. The offspring in this iteration $y$ is then generated by $y = x + \sigma z$ where $z$ is standard normally distributed n-dimensional random vector and $\sigma$ is the step size of the algorithm.
-
-
-% After $K$ iterations using usual (1+1)-ES we can get the $K$ candidate solutions  $x_{train}$ and their corresponding objective function values $fx_{train}$, referred as the training data for the surrogate model. The training data can be used to build a Gaussian Process (GP) model that makes an estimation of the true objective function value of the next iteration at a much lower cost. In each iteration, $x_{train}$ and $fx_{train}$ are updated using the most recent $K$ candidate solutions and corresponding objective function values where the GP model is updated at the same time. 
-
-% To get an offspring, we sample a standard normally distributed random vector $z \in R^n$ referred as a direction and the offspring generated in this iteration can be optimized in one dimension (the direction of $z$) by fitting a quadratic model using the value and the the corresponding objective function values of the parent, candidate solutions ($y_{\pm}$) taking the positive and negative directions $\pm z$) respectively. Then we choose the lowest point of the quadratic model as the offspring, the best candidate solution (lowest function evaluation for the quadratic model) in that direction. The basic MATLAB code is shown above (in Figure 1).
-
-% Since the estimate of GP can be precise in the neighborhoods of the parent solution, we use the GP estimates($f_{\epsilon}(y \pm)$) of the two candidate solutions taking positive and negative directions to save 2 true objective function evaluations at the cost of a small precision loss. 
-% The lowest point of the quadratic model is used as the offspring of this iteration, it is then evaluated with the true objective function where the offspring and its objective function value are added to $x_{train}$ and $fx_{train}$ respectively for GP model update. The next steps are the same as the usual (1+1)-ES where we choose the best of all candidate solutions as the parent for the next iteration. 
-
-
-
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Analysis}
 \begin{center}
 \begin{figure*}
@@ -170,19 +141,6 @@ $\color{red}{\text{how to calculate the speed up?}}$
 For a finite-dimension, the speed-up achieved with surrogate model assistance for small noise-to-signal ratio appears to be between ...
 
 
-
-% Figure 2 shows the relation of optimal expected fitness gain over noise-to-signal ratio derived in the limit of $n \rightarrow \infty$ for three different population sizes, followed by the coresponding optimial normalized step size over noise-to-signal ratio derived $n \rightarrow \infty$. and measured experimentally for $n \in \{10,100 \} $
-
-
-% \begin{align}\label{no_noise_opt}
-% \sigma^*_{opt} &= \ \mu c_{\mu / \mu, \lambda}\\
-% \eta_{opt} &= \sigma^*_{opt} c_{\mu / \mu, \lambda} - \frac{(\sigma^*_{opt})^2}{2 \mu} \\
-% & = \mu (c_{\mu / \mu, \lambda})^2- (\mu c_{\mu / \mu, \lambda})^2/2\mu \\
-% & = \mu (c_{\mu / \mu, \lambda})^2/2
-% \end{align}
-
-% random -- the strategy becomes a $\color{red}{\text{random search?? no selection but still take average is there a name for this? }} $. The expected fitness gain increases proportionally with an increasing population size and the maximal 
-
 Compared the result obtained by the surrogate assisted (1+1)-ES (Fig 1. \cite{DBLP:conf/ppsn/KayhaniA18}), there is indeed a 
 
 there is a significant increase in expected fitness gain as the population size $\lambda$ increases, the 
@@ -199,41 +157,9 @@ there is a significant increase in expected fitness gain as the population size 
 \end{figure*}
 \end{center}
 
-% $\color{red}{(log\ sclae\ size)}$
 
-
-% $\color{red}{graph- subplot(1,3)\ seems\ better?}$
-
-% $$g(x,y,\sigma_\epsilon^*, \sigma^*)= 1/ \sqrt{2 \pi} e^{-y^2/2} p_{\alpha|z1}(x|y) \delta(x, y)$$
-
-% The expected fitness gain relative to normalized step size is plotted in figure 2. The dots show the corresponding values observed in experiments with unbiased Gaussian surrogate error for $n \in \{10, 100\}$ obtained by averaging 40 runs. We tried to compute the expected fitness gain ($n \rightarrow \infty$) over the normalized step size analytically, but feailed because the function to integrate does not seem to converge over $y$. We experimented with different values of $\sigma_\epsilon^*$ and $\theta$ for $g(x,y,\sigma_\epsilon^*, \sigma^*)$ but the value obtained is a negative constant along the y-axes when $y$ exceeds a certain value for a range of $x$. An example of the plot for $g(x,y,\sigma_\epsilon^*, \sigma^*)$ over $x$ and $y$ with $\sigma_\epsilon^*=1$ and $\sigma^*=1$ is shwon in Fig.3 where two half-cylinder-shape along y-axes can be observed. $n \rightarrow \infty$ can be intepreted as a large step size with small noise-to-signal ratio.  
-
-
-
-% It can be seen from Fig.2 that for a small noise-to-signal ratio, the evaluation rate increases with an increasing step size. While for a large noise-to-signal ratio, evaluation rate decreases with an increasing step size. The strategy makes progress one out of two steps for very small step size. The strategy becomes more "wise" in generating offsprings with a large step size and a relative small noise-to-signal ratio in a sense that the candidate solution optimized in this iteration is more close to the true lowest point of the quadratic model with a relative large space for candidate generation. In the case of zero noise-to-signal ratio, the candidate solution is deemed superior to its parent by choosing the best candidate solution in the direction sampled. 
-
-% The expected fitness gain decreases as the step size increases (observed in Fig. 2 $\theta = 4$ green dots) which is contrary to the case where $\theta = 0.25$ and $\theta = 1$. One intepretation is that the strategy samples one direction in each iteration and the candidate solution is optimized in that direction using a quadratic model. The fitness gain of the candidate solution largely depends on the direction sampled and the accurancy of the estimation for the points fitting the quadratic model. The noise-to-signal ratio $\theta$ controls the precision of the optimal candidate solution estimtaed in the quadratic model relative to step size. A large $\theta$ means the estimation of the optimal candidate solution in the direction sampled is less accurate and therefore the evaluation rate decreases as the step size increases (the increasing step size also adds inaccurancy to the estimation of the optimal candidate solution).  
-
-% The direction sampled also affects the model performance. We would like to optimize the candidate solution in a direction with a potentially large fitness gain. But random sampling makes the process uncertain and according to experimental results, chances are that we do not sample a good direction in most cases i.e. the imporvement for the parent is limitted. So that a selection mechanism for the (direction of) candidate solutions in each iteration should be further considered. One possible approach is to consider the difference (distance) of the candidate solution before and after optimization using the quadratic model. Or we could possibly try unit vectors in each dimension, optimize using the quadratic model and choose the direction with the largest absolute $-2a/b$ (surrogate step size) in the optimization using the quadratic model.
-
-% % \begin{figure}
-% % \includegraphics[height=2in, width=3in]{IntXY}
-% % \caption{The function to integrate over $x$ and $y$ with $\sigma_\epsilon^*=1$ and $\sigma^*=1$ i.e. $g(x,y,1,1)$ over $x$ and $y$. Notice the two half cylinders along y-axes where the function value for each $x$ is a negative constant. }
-% % \end{figure}
-
-
-
-
-% For a fixd dimensionality $N$ the normalized progress rate \cite{ARNOLD2002629} is 
-
-
-% $$
-% \eta \approx \frac{c_{\mu/\mu,\lambda} \sigma^* (1+{\sigma^*}^2 /2\mu N)}{\sqrt{ 1+{\sigma^*}^2 /2\mu N) } \sqrt{ 1+ \vartheta^2 +{\sigma^*}^2 /2N }} - N \left [ \sqrt{1+ \frac{ {\sigma^*}^2 }{\mu N} - 1} \right ] 
-% $$
-
-
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Step size adaptation}
 
 \subsection{Cummulative step size adaptation}
@@ -277,11 +203,6 @@ d=1+2 \max\left (0, \sqrt{(\mu-1)/(N+1)-1} \right)+c.
 The one signle iteration fo the surrogate model assisted $(\mu/\mu,\lambda)$-ES is shown in Alg. \ref{alg:mml-es}.
 
 
-
-Five ten-dimensional test problems are used to test if the step size of the strategy has been appropriately adapted, namely sphere functions $f(x) = (x^Tx)^{\alpha/2}$ for $\alpha = \{1,2,3 \}$ referred to as linear, quadratic and cubic spheres, $f(x) = \sum_{i=1}^n(\sum_{j=1}^i x_j)^2$ (i.e. a convex quadratic function with condition number of the Hessian approximately equal to 175.1) referred to as Schwefel\'S Problem 1.2 \cite{Schwefel:1981:NOC:539468}) and quartic function \cite{DBLP:conf/ppsn/KayhaniA18} defined as $f(x) = \sum_{i=1}^{n-1} \left[ \beta(x_{i+1} -x_i^2)^2 + (1-x_i)^2 \right]$ where $\beta = 1$. The quartic function becomes the Rosenbrock function when the condition number of the Hessian at the optimier exceeds 3,500, making it very hard to find the global optima without adapting the shape of mutation distribution. We use the quartic function in the context with $\beta=1$  and condition number of the Hessian at the optimizer equals to 49.0. The value of global optima for all test functiosn is zero. For each test problem, 1000 runs are conducted both for surrogate assisted $(1+1)$-ES and surrogate assisted $(\mu/\mu,\lambda)$-ES where a parental population size $\lambda=10,20,40$ with $\mu = \lceil \lambda / 4 \rceil$. For surrogate model, we use Gaussin process. We use squard exponential kernel and the length scale paramter in the kernel is set proportional to the square of the dimension and the step size of the Evolution strategy. For simplicity, the length scale is $8 \sigma \sqrt{n}$.
-The Gaussian process kernel is constructed using a trainijng size of 40. The training set consists of the most recent 40 candidate so that the surrogate model approximates the local landscape of the objective function. All runs are initialized with starting point sampled from a Gaussin distribution with zero mean and unit covariance matrix and initial step size $\sigma_0=1$. The termination criteria is denfined as one solution achieves objective function value below $10^{-8}$.
-
-
 \begin{table*} 
 \caption{Median test results.}
 \begin{tabular}{ l *{5}{D{.}{.}{4}} }
@@ -300,6 +221,8 @@ The Gaussian process kernel is constructed using a trainijng size of 40. The tra
 \label{Tab:Test_result}
 \end{table*}
 
+Five ten-dimensional test problems are used to test if the step size of the strategy has been appropriately adapted, namely sphere functions $f(x) = (x^Tx)^{\alpha/2}$ for $\alpha = \{1,2,3 \}$ referred to as linear, quadratic and cubic spheres, $f(x) = \sum_{i=1}^n(\sum_{j=1}^i x_j)^2$ (i.e. a convex quadratic function with condition number of the Hessian approximately equal to 175.1) referred to as Schwefel\'S Problem 1.2 \cite{Schwefel:1981:NOC:539468}) and quartic function \cite{DBLP:conf/ppsn/KayhaniA18} defined as $f(x) = \sum_{i=1}^{n-1} \left[ \beta(x_{i+1} -x_i^2)^2 + (1-x_i)^2 \right]$ where $\beta = 1$. The quartic function becomes the Rosenbrock function when the condition number of the Hessian at the optimier exceeds 3,500, making it very hard to find the global optima without adapting the shape of mutation distribution. We use the quartic function in the context with $\beta=1$  and condition number of the Hessian at the optimizer equals to 49.0. The value of global optima for all test functiosn is zero. For each test problem, 1000 runs are conducted both for surrogate assisted $(1+1)$-ES and surrogate assisted $(\mu/\mu,\lambda)$-ES where a parental population size $\lambda=10,20,40$ with $\mu = \lceil \lambda / 4 \rceil$. For surrogate model, we use Gaussin process. We use squard exponential kernel and the length scale paramter in the kernel is set proportional to the square of the dimension and the step size of the Evolution strategy. For simplicity, the length scale is $8 \sigma \sqrt{n}$.
+The Gaussian process kernel is constructed using a trainijng size of 40. The training set consists of the most recent 40 candidate so that the surrogate model approximates the local landscape of the objective function. All runs are initialized with starting point sampled from a Gaussin distribution with zero mean and unit covariance matrix and initial step size $\sigma_0=1$. The termination criteria is denfined as one solution achieves objective function value below $10^{-8}$.
 
 \begin{center}
 \begin{figure*}
@@ -309,8 +232,9 @@ $\color{red}{\text{legend looks messy is there a way out?}}$, $\color{red}{\text
 \label{fig:merged_plot}
 \end{figure*}
 \end{center}
+Histogram showing the number of objective function calls needed to solve the test problems within the required accurancy are represented in the first row of \ref{fig:merged_plot}, the median objective funcation calls for each test problem is shown in Table \ref{Tab:Test_result}. The result of Arash and Dirk \cite{DBLP:conf/ppsn/KayhaniA18} using surrogate assisted (1+1)-ES is also included for comparision. The results of surrogate assisted $(\mu/\mu,\lambda)$-ES do not match the performance of surrogate assisted (1+1)-ES. The speed-up is defined as the median number of objective function evaluations used by the surrogate assisted (1+1)-ES \cite{DBLP:conf/ppsn/KayhaniA18} divided by the surrogate assisted $(\mu/\mu,\lambda)$-ES. Despite achieving a speed up from 1.2 to 1.9 for quartic function, the surrogate assisted $(\mu/\mu,\lambda)$-ES performs worse on sphere functions and even does not convergece in Schwefel\' s function. There is a trend in quadratic sphere and quartic function that the performance improves with a growing parental population, the number of objective function evaluations needed to solve linear sphere even increass after $\lambda>20$. 
 
-
+The second row of Fig. \ref{fig:merged_plot} shows th convergence graphs for the median runs. Linear convergence are achieved for all test functions despite the Schwefel's function uisng surrogate assisted $(\mu/\mu,\lambda)$-ES, interestingly, using a larger population does not help achieve a better convergence rate, but instead,  makes the strategy diverge. Relative model error for the median runs is shown in the third row of the figure, defined as $\|f(y)-f_{\epsilon}(y) \|/\|f(y)-f_(x) \|$ where $x$ is the parent and $y$ the offspring candidate solution for (1+1)-ES and $\text{var}(f(y)-f_\epsilon(y))/\text{var}(f(y))$, the variance of the difference between the surrogate estimate of $\lambda$ candidate solutions and their true objective function values dvided by the variance of the variance of the true objective function values of $\lambda$ candidate solutions for $(\mu/\mu,\lambda)$-ES. The relative model error is smoothed logarithmically by convolution with a Gaussin kernel with window size 40 that is represented as the bold line in the centre of the plots. This can be interpreted as the a relative constant noise-to-signal ratio. The relative model error for all surrogate assisted ES in this context is approximately 1 and according to the analysis in Section 3 should give a much larger speed up especially given a larger population. This may give indication that the step size is not appropriately adapted. The bottom row shows the normalized step size $\sigma^* = N \sigma/R$ for three sphere functions, where $N$,$R$ are the dimension of data and distance to optimal respectively is the dimension. It conincides with the knowledge that using a population in offspring generation is possible for larger step size but the potential improvement is still yet clear. 
 \begin{center}
 \begin{figure*}
 \includegraphics[height=4in, width=6in]{success_convergence_v2}
@@ -318,22 +242,22 @@ $\color{red}{\text{legend looks messy is there a way out?}}$, $\color{red}{\text
 \label{fig:success_convergence_plot}
 \end{figure*}
 \end{center}
+There is a big gap between experimental result and analytical result obtained in Section 3, and the relation between the expected fitness gain and population size is not yet clear. To better understand the relation, we plot the histogram and probability density function (pdf) for success rate (for a good step size) and convergence rate for linear, quadratic and cubic sphere functions are defined as follows
+
+\begin{align}
+c = 
+\begin{cases}
+- n \left[ \log \left( \frac{f(x_{t+1})}{f(x_t)} \right)\right],& \text{linear sphere} \\
+ - \frac{n}{2} \left[ \log \left( \frac{f(x_{t+1})}{f(x_t)} \right)\right],& \text{quadratic sphere} \\
+- \frac{n}{3} \left[ \log \left( \frac{f(x_{t+1})}{f(x_t)} \right)\right],& \text{cubic sphere}
+\end{cases}
+\end{align}
 
 
 
-Histogram showing the number of objective function calls needed to solve the test problems within the required accurancy are represented in the first row of \ref{fig:merged_plot}, the median objective funcation calls for each test problem is shown in Table \ref{Tab:Test_result}. The result of Arash and Dirk \cite{DBLP:conf/ppsn/KayhaniA18} using surrogate assisted (1+1)-ES is also included for comparision. The results of surrogate assisted $(\mu/\mu,\lambda)$-ES do not match the performance of surrogate assisted (1+1)-ES. The speed-up is defined as the median number of objective function evaluations used by the surrogate assisted (1+1)-ES \cite{DBLP:conf/ppsn/KayhaniA18} divided by the surrogate assisted $(\mu/\mu,\lambda)$-ES. Despite achieving a speed up from 1.2 to 1.9 for quartic function, the surrogate assisted $(\mu/\mu,\lambda)$-ES performs worse on sphere functions and even does not convergece in Schwefel\' s function. There is a trend in quadratic sphere and quartic function that the performance improves with a growing parental population, the number of objective function evaluations needed to solve linear sphere even increass after $\lambda>20$. 
+% Firstly, the step size is not appropriately adapted using CSA. The bias of the Gaussian process surrogate can be another problem and we will discuss these further in future work. 
 
-The second row of Fig. \ref{fig:merged_plot} shows th convergence graphs for the median runs. Linear convergence are achieved for all test functions despite the Schwefel's function uisng surrogate assisted $(\mu/\mu,\lambda)$-ES, interestingly, using a larger population does not help achieve a better convergence rate, but instead,  makes the strategy diverge. Relative model error for the median runs is shown in the third row of the figure, defined as $\|f(y)-f_{\epsilon}(y) \|/\|f(y)-f_(x) \|$ where $x$ is the parent and $y$ the offspring candidate solution for (1+1)-ES and $\text{var}(f(y)-f_\epsilon(y))/\text{var}(f(y))$, the variance of the difference between the surrogate estimate of $\lambda$ candidate solutions and their true objective function values dvided by the variance of the variance of the true objective function values of $\lambda$ candidate solutions for $(\mu/\mu,\lambda)$-ES. The relative model error is smoothed logarithmically by convolution with a Gaussin kernel with window size 40 that is represented as the bold line in the centre of the plots. This can be interpreted as the a relative constant noise-to-signal ratio. The relative model error for all surrogate assisted ES in this context is approximately 1 and according to the analysis in Section 3 should give a much larger speed up especially given a larger population. This may give indication that the step size is not appropriately adapted. The bottom row shows the normalized step size $\sigma^* = N \sigma/R$ for three sphere functions, where $N$,$R$ are the dimension of data and distance to optimal respectively is the dimension. It conincides with the knowledge that using a population in offspring generation is possible for larger step size but the potential improvement is still yet clear.  
-
-
-
-There is a big gap between experimental result and analytical result in Section 3, and the relation between the expected fitness gain and parental population size. To understand what 
-
-
-
-Firstly, the step size is not appropriately adapted using CSA. The bias of the Gaussian process surrogate can be another problem and we will discuss these further in future work. 
-
-$\color{red}{\text{I think I've got an idea, we could finish this part tonight and we could discuss tomorrow}}$
+% $\color{red}{\text{I think I've got an idea, we could finish this part tonight and we could discuss tomorrow}}$
 
 
 
@@ -418,8 +342,8 @@ $\color{red}{\text{I think I've got an idea, we could finish this part tonight a
 
 
 
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Cummulative step size adaptation with emergency}
 
