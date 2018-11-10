@@ -104,8 +104,9 @@ end
 s_start = 0.0001;
 increment =1;
 s_end = 10+s_start;
-v_array = s_start:increment:s_end;                                          % For experimental result
-v_array = 0.1*1.58489.^(1:1:10);
+v_array = s_start:increment:s_end;
+% Range from 0.1 to 10, divided evenly into 10 ranges in a log scale
+v_array = 0.1*1.58489.^(0:1:10);                                            % For experimental result
 
 v_expedted_curve_array = 0.1:0.0001:20;                                     % plot curve n -> infty
 
