@@ -485,9 +485,9 @@ INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/public/libertine/LinLibertineT
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-t1--base.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-ot1.vf
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-ot1--base.tfm
-INPUT opt_stepSize_fitGain_v1.pdf
-INPUT ./opt_stepSize_fitGain_v1.pdf
-INPUT ./opt_stepSize_fitGain_v1.pdf
+INPUT opt_stepSize_fitGain_v2.pdf
+INPUT ./opt_stepSize_fitGain_v2.pdf
+INPUT ./opt_stepSize_fitGain_v2.pdf
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/libertine/LinLibertineTB-tlf-t1.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/inconsolata/t1zi4.fd
