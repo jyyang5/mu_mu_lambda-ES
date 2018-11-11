@@ -3,6 +3,13 @@
 
 \documentclass[sig-alternate,natbib=false]{acmart}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Remove reference info
+\settopmatter{printacmref=false} % Removes citation information below abstract
+\renewcommand\footnotetextcopyrightpermission[1]{} % removes footnote with conference information in first column
+\pagestyle{plain} % removes running headers
+
+
 %drt24 hacks
 % Letter paper
 \setlength{\paperheight}{11in}
@@ -54,6 +61,11 @@
 \acmPrice{}
 
 
+\makeatletter
+\def\runningfoot{\def\@runningfoot{}}
+\def\firstfoot{\def\@firstfoot{}}
+\makeatother 
+
 \begin{document}
 \title{Design of a Surrogate Model Assisted $(\mu/\mu,\lambda)$-ES}
 %\titlenote{Produces the permission block, and copyright information}
@@ -61,9 +73,8 @@
 %\subtitlenote{The full version of the author's guide is available as
 %  \texttt{acmart.pdf} document}
 
-\
 
-\author{Jingyun Yang and Dirk V. Arnold}
+\author{Jingyun Yang }
 %\authornote{Dr.~Trovato insisted his name be first.}
 \orcid{}
 \affiliation{%
@@ -73,7 +84,19 @@
   \state{Nova Scotia}
   \postcode{B3H 4R2}
 }
-\email{jingyun.yang@dal.ca, dirk@cs.dal.ca}
+\email{jingyun.yang@dal.ca}
+
+% \author{Jingyun Yang and Dirk V. Arnold}
+% %\authornote{Dr.~Trovato insisted his name be first.}
+% \orcid{}
+% \affiliation{%
+%   \institution{Faculty of Computer Science, Dalhousie University}
+%   % \streetaddress{P.O. Box 15000}
+%   \city{Halifax}
+%   \state{Nova Scotia}
+%   \postcode{B3H 4R2}
+% }
+% \email{jingyun.yang@dal.ca, dirk@cs.dal.ca}
 
 % \author{Dirk V. Arnold }
 % %\authornote{The secretary disavows any knowledge of this author's actions.}
@@ -93,7 +116,8 @@
 
 
 \begin{abstract}
-Surrogate models have been widely used to assist evolutionary algorithms (EAs) to avoid unnecessary objective function evaluations. The cost is reduced by substituting the true objective function evaluation with a cheap but inaccurate estimate using the surrogate model. The surrogate model is built on the knowledge gained in previous iterations. Using surrogate assised (1+1)-ES for simple model and single steps have been studied, but the effect of actual inferior parent resulted from an inaccurate surrogate estimation and the corresponding poor step size are not well understood. We study the behaviour using a surrogate model assisted $(\mu/\mu,\lambda)$-ES using a population instead of a single offspring with the hope to address this issue. The bahaviours of the two strategies are compared using several test functions.
+Surrogate models have been widely used to assist evolutionary algorithms (EAs) to avoid unnecessary objective function evaluations. But those surrogate assisted EAs are usually complicated and the behaviour of the algorithm is not well understood. A recent analysis of a surrogate model assisted (1+1)=ES has helped understand the behaviour of the algorithm and resulted in a step size adaptation mechanism. The goal of this thesis is to conduct a similar analysis for $(/mu/\mu,\lambda)$-ES that potentially more fully exploits the surrogate model in a sense a population of candidate solutions are evaluated by the surrogate in each iteration. It is unclear whether any additional performance advantage can be derived from this. 
+% The cost is reduced by substituting the true objective function evaluation with a cheap but inaccurate estimate using the surrogate model. The surrogate model is built on the knowledge gained in previous iterations. Using surrogate assised (1+1)-ES for simple model and single steps have been studied, but the effect of actual inferior parent resulted from an inaccurate surrogate estimation and the corresponding poor step size are not well understood. We study the behaviour using a surrogate model assisted $(\mu/\mu,\lambda)$-ES using a population instead of a single offspring with the hope to address this issue. The bahaviours of the two strategies are compared using several test functions.
 \end{abstract}
 
 %
@@ -135,7 +159,10 @@ Surrogate models have been widely used to assist evolutionary algorithms (EAs) t
 
 \maketitle
 
+
 \input{main-body}
+
+
 
 \printbibliography
 
