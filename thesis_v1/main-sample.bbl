@@ -1,0 +1,923 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.8 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist[entry]{nty/global/}
+    \entry{Arnold:2000:EMS:645825.669117}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=ab78d001d3d468606aff3105d3c7d855}{%
+           family={Arnold},
+           familyi={A\bibinitperiod},
+           given={D.\bibnamedelimi V.},
+           giveni={D\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=96c8653d2863cf1dbe86d89643e2eeb6}{%
+           family={Beyer},
+           familyi={B\bibinitperiod},
+           given={H.\bibnamedelimi -G.},
+           giveni={H\bibinitperiod\bibinitdelim \bibinithyphendelim \bibinithyphendelim G\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {London, UK, UK}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag}%
+      }
+      \strng{namehash}{622d49e372454ccdd804be8694649ae5}
+      \strng{fullhash}{622d49e372454ccdd804be8694649ae5}
+      \strng{authornamehash}{622d49e372454ccdd804be8694649ae5}
+      \strng{authorfullhash}{622d49e372454ccdd804be8694649ae5}
+      \field{sortinit}{A}
+      \field{sortinithash}{3248043b5fe8d0a34dab5ab6b8d4309b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 6th International Conference on Parallel Problem Solving from Nature}
+      \field{isbn}{3-540-41056-2}
+      \field{series}{PPSN VI}
+      \field{title}{Efficiency and Mutation Strength Adaptation of the (Mu, muI, Lambda)-ES in a Noisy Environment}
+      \field{year}{2000}
+      \field{pages}{39\bibrangedash 48}
+      \range{pages}{10}
+      \verb{url}
+      \verb http://dl.acm.org/citation.cfm?id=645825.669117
+      \endverb
+    \endentry
+    \entry{1284729}{article}{}
+      \name{author}{2}{}{%
+        {{hash=ab78d001d3d468606aff3105d3c7d855}{%
+           family={Arnold},
+           familyi={A\bibinitperiod},
+           given={D.\bibnamedelimi V.},
+           giveni={D\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=96c8653d2863cf1dbe86d89643e2eeb6}{%
+           family={Beyer},
+           familyi={B\bibinitperiod},
+           given={H.\bibnamedelimi -G.},
+           giveni={H\bibinitperiod\bibinitdelim \bibinithyphendelim \bibinithyphendelim G\bibinitperiod}}}%
+      }
+      \strng{namehash}{622d49e372454ccdd804be8694649ae5}
+      \strng{fullhash}{622d49e372454ccdd804be8694649ae5}
+      \strng{authornamehash}{622d49e372454ccdd804be8694649ae5}
+      \strng{authorfullhash}{622d49e372454ccdd804be8694649ae5}
+      \field{sortinit}{A}
+      \field{sortinithash}{3248043b5fe8d0a34dab5ab6b8d4309b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0018-9286}
+      \field{journaltitle}{IEEE Transactions on Automatic Control}
+      \field{month}{4}
+      \field{number}{4}
+      \field{title}{Performance analysis of evolutionary optimization with cumulative step length adaptation}
+      \field{volume}{49}
+      \field{year}{2004}
+      \field{pages}{617\bibrangedash 622}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1109/TAC.2004.825637
+      \endverb
+      \keyw{evolutionary computation;optimisation;iterative methods;continuous time systems;noise;performance analysis;evolutionary optimization;cumulative step length adaptation;iterative algorithms;continuous numerical optimization;interfering noise;mutation strength;Performance analysis;Computer science;Job shop scheduling;Evolutionary computation;Filtering;Dynamic scheduling;History;Stochastic resonance;Simulated annealing;Stochastic processes}
+    \endentry
+    \entry{arnold2002noisy}{book}{}
+      \name{author}{2}{}{%
+        {{hash=ab78d001d3d468606aff3105d3c7d855}{%
+           family={Arnold},
+           familyi={A\bibinitperiod},
+           given={D.\bibnamedelimi V.},
+           giveni={D\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=e35c5b358a87eed97cfa292b659a2007}{%
+           family={Beyer},
+           familyi={B\bibinitperiod},
+           given={H.-G.},
+           giveni={H\bibinithyphendelim G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer Science \& Business Media}%
+      }
+      \strng{namehash}{07858cea381e6e4a5d0d96809c7c318e}
+      \strng{fullhash}{07858cea381e6e4a5d0d96809c7c318e}
+      \strng{authornamehash}{07858cea381e6e4a5d0d96809c7c318e}
+      \strng{authorfullhash}{07858cea381e6e4a5d0d96809c7c318e}
+      \field{sortinit}{A}
+      \field{sortinithash}{3248043b5fe8d0a34dab5ab6b8d4309b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Noisy optimization with evolution strategies}
+      \field{volume}{8}
+      \field{year}{2002}
+    \endentry
+    \entry{ARNOLD2001127}{incollection}{}
+      \name{author}{2}{}{%
+        {{hash=aeb1a96d80910b7f23835b99398a0e07}{%
+           family={Arnold},
+           familyi={A\bibinitperiod},
+           given={Dirk\bibnamedelima V.},
+           giveni={D\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=695e551c7bda7f41c62840003f872fdb}{%
+           family={Beyer},
+           familyi={B\bibinitperiod},
+           given={Hans-Georg},
+           giveni={H\bibinithyphendelim G\bibinitperiod}}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=bc23706bee32d61f73d0bfc94e45e606}{%
+           family={Martin},
+           familyi={M\bibinitperiod},
+           given={W.\bibnamedelimi N.},
+           giveni={W\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=d6c5d47c8ad2b99ba5fbf5679074e9a4}{%
+           family={Spears},
+           familyi={S\bibinitperiod},
+           given={W.\bibnamedelimi M.},
+           giveni={W\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {San Francisco}%
+      }
+      \list{publisher}{1}{%
+        {Morgan Kaufmann}%
+      }
+      \strng{namehash}{b5ae46847f65077930aac40be45790d5}
+      \strng{fullhash}{b5ae46847f65077930aac40be45790d5}
+      \strng{authornamehash}{b5ae46847f65077930aac40be45790d5}
+      \strng{authorfullhash}{b5ae46847f65077930aac40be45790d5}
+      \strng{editornamehash}{4108745a3406ae9b4e9d952a3b957a34}
+      \strng{editorfullhash}{4108745a3406ae9b4e9d952a3b957a34}
+      \field{sortinit}{A}
+      \field{sortinithash}{3248043b5fe8d0a34dab5ab6b8d4309b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Foundations of Genetic Algorithms 6}
+      \field{isbn}{978-1-55860-734-7}
+      \field{title}{Local Performance of the (Mu/Mu, Lambda)-ES in a Noisy Environment}
+      \field{year}{2001}
+      \field{pages}{127\bibrangedash 141}
+      \range{pages}{15}
+      \verb{doi}
+      \verb https://doi.org/10.1016/B978-155860734-7/50090-1
+      \endverb
+      \verb{url}
+      \verb http://www.sciencedirect.com/science/article/pii/B9781558607347500901
+      \endverb
+    \endentry
+    \entry{1424193}{article}{}
+      \name{author}{3}{}{%
+        {{hash=4fa9af29511b06981ec753af2c9cf02e}{%
+           family={Buche},
+           familyi={B\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=535962407250717ab00c0ea1d59485b5}{%
+           family={Schraudolph},
+           familyi={S\bibinitperiod},
+           given={N.\bibnamedelimi N.},
+           giveni={N\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=9c0de4778f99c2c1ac98af5b6f29670b}{%
+           family={Koumoutsakos},
+           familyi={K\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{5978937657d4cd9350d96a749dd67657}
+      \strng{fullhash}{5978937657d4cd9350d96a749dd67657}
+      \strng{authornamehash}{5978937657d4cd9350d96a749dd67657}
+      \strng{authorfullhash}{5978937657d4cd9350d96a749dd67657}
+      \field{sortinit}{B}
+      \field{sortinithash}{5f6fa000f686ee5b41be67ba6ff7962d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1094-6977}
+      \field{journaltitle}{IEEE Transactions on Systems, Man, and Cybernetics, Part C (Applications and Reviews)}
+      \field{month}{5}
+      \field{number}{2}
+      \field{title}{Accelerating evolutionary algorithms with Gaussian process fitness function models}
+      \field{volume}{35}
+      \field{year}{2005}
+      \field{pages}{183\bibrangedash 194}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1109/TSMCC.2004.841917
+      \endverb
+    \endentry
+    \entry{10.1007/978-3-319-09333-8_4}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=f889019fc61464b084bbe69847cbc904}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=9c4c7a48f8458c8a5708ada2f543f46c}{%
+           family={Zou},
+           familyi={Z\bibinitperiod},
+           given={X.},
+           giveni={X\bibinitperiod}}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=67ec15fbde31de5615b1e27b14a40d74}{%
+           family={D.\bibnamedelimi Huang},
+           familyi={D\bibinitperiod\bibinitdelim H\bibinitperiod},
+           given={V.\bibnamedelimi Bevilacqua},
+           giveni={V\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=9210de1c961c8b4607c2a636388548ad}{%
+           family={Premaratne},
+           familyi={P\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cham}%
+      }
+      \list{publisher}{1}{%
+        {Springer International Publishing}%
+      }
+      \strng{namehash}{2a51593a5eada4289bc055dcbf49ab28}
+      \strng{fullhash}{2a51593a5eada4289bc055dcbf49ab28}
+      \strng{authornamehash}{2a51593a5eada4289bc055dcbf49ab28}
+      \strng{authorfullhash}{2a51593a5eada4289bc055dcbf49ab28}
+      \strng{editornamehash}{37ea01ca523d24213d3b1e6bfa5473ef}
+      \strng{editorfullhash}{37ea01ca523d24213d3b1e6bfa5473ef}
+      \field{sortinit}{C}
+      \field{sortinithash}{095692fd22cc3c74d7fe223d02314dbd}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Intelligent Computing Theory}
+      \field{title}{Performance Analysis of a (1+1) Surrogate-Assisted Evolutionary Algorithm}
+      \field{year}{2014}
+      \field{pages}{32\bibrangedash 40}
+      \range{pages}{9}
+    \endentry
+    \entry{dunham1963design}{article}{}
+      \name{author}{4}{}{%
+        {{hash=50fa65b82be01fc31522a167e0496ebb}{%
+           family={Dunham},
+           familyi={D\bibinitperiod},
+           given={B},
+           giveni={B\bibinitperiod}}}%
+        {{hash=4449ba91063631f0638630411a85a57a}{%
+           family={Fridshal},
+           familyi={F\bibinitperiod},
+           given={D},
+           giveni={D\bibinitperiod}}}%
+        {{hash=0a0384a49875a6ed7c1fb46bb8f574f3}{%
+           family={Fridshal},
+           familyi={F\bibinitperiod},
+           given={R},
+           giveni={R\bibinitperiod}}}%
+        {{hash=3b411bf6778cc016ef39106bef6d3774}{%
+           family={North},
+           familyi={N\bibinitperiod},
+           given={JH},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{3eeae9b46f137a10bacd0220abe7a737}
+      \strng{fullhash}{3eeae9b46f137a10bacd0220abe7a737}
+      \strng{authornamehash}{3eeae9b46f137a10bacd0220abe7a737}
+      \strng{authorfullhash}{3eeae9b46f137a10bacd0220abe7a737}
+      \field{sortinit}{D}
+      \field{sortinithash}{d10b5413de1f3d197b20897dd0d565bb}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Synthese}
+      \field{number}{1}
+      \field{title}{Design by natural selection}
+      \field{volume}{15}
+      \field{year}{1963}
+      \field{pages}{254\bibrangedash 259}
+      \range{pages}{6}
+    \endentry
+    \entry{GIANNAKOGLOU200243}{article}{}
+      \name{author}{1}{}{%
+        {{hash=c5581c065a876c5382c0ca7d3790def2}{%
+           family={Giannakoglou},
+           familyi={G\bibinitperiod},
+           given={K.C.},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{c5581c065a876c5382c0ca7d3790def2}
+      \strng{fullhash}{c5581c065a876c5382c0ca7d3790def2}
+      \strng{authornamehash}{c5581c065a876c5382c0ca7d3790def2}
+      \strng{authorfullhash}{c5581c065a876c5382c0ca7d3790def2}
+      \field{sortinit}{G}
+      \field{sortinithash}{618d986594b7198ba52cf8b00d348f3f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0376-0421}
+      \field{journaltitle}{Progress in Aerospace Sciences}
+      \field{number}{1}
+      \field{title}{Design of optimal aerodynamic shapes using stochastic optimization methods and computational intelligence}
+      \field{volume}{38}
+      \field{year}{2002}
+      \field{pages}{43\bibrangedash 76}
+      \range{pages}{34}
+      \verb{doi}
+      \verb https://doi.org/10.1016/S0376-0421(01)00019-7
+      \endverb
+      \verb{url}
+      \verb http://www.sciencedirect.com/science/article/pii/S0376042101000197
+      \endverb
+    \endentry
+    \entry{Ulmer2005}{inbook}{}
+      \name{author}{2}{}{%
+        {{hash=f15ff4a9724fe0db56d06bddb1214cc2}{%
+           family={H.\bibnamedelimi Ulmer},
+           familyi={H\bibinitperiod\bibinitdelim U\bibinitperiod},
+           given={F.\bibnamedelimi Streichert},
+           giveni={F\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=9adb3920ee63b942bd00e13099f205c6}{%
+           family={Zell},
+           familyi={Z\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=d2e894da3ef2bd7c7c172a46391d08ec}{%
+           family={Jin},
+           familyi={J\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{58a12b6aaf17e4b5bc24f1b706c474fa}
+      \strng{fullhash}{58a12b6aaf17e4b5bc24f1b706c474fa}
+      \strng{authornamehash}{58a12b6aaf17e4b5bc24f1b706c474fa}
+      \strng{authorfullhash}{58a12b6aaf17e4b5bc24f1b706c474fa}
+      \strng{editornamehash}{d2e894da3ef2bd7c7c172a46391d08ec}
+      \strng{editorfullhash}{d2e894da3ef2bd7c7c172a46391d08ec}
+      \field{sortinit}{H}
+      \field{sortinithash}{2f664b453ec75da1fe3804ca92633405}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Knowledge Incorporation in Evolutionary Computation}
+      \field{isbn}{978-3-540-44511-1}
+      \field{title}{Model Assisted Evolution Strategies}
+      \field{year}{2005}
+      \field{pages}{333\bibrangedash 355}
+      \range{pages}{23}
+      \verb{doi}
+      \verb 10.1007/978-3-540-44511-1_16
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-3-540-44511-1_16
+      \endverb
+    \endentry
+    \entry{hansen2016cma}{article}{}
+      \name{author}{1}{}{%
+        {{hash=fe1b69ac870397d00b7b9cd21ce7ecd4}{%
+           family={Hansen},
+           familyi={H\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{fe1b69ac870397d00b7b9cd21ce7ecd4}
+      \strng{fullhash}{fe1b69ac870397d00b7b9cd21ce7ecd4}
+      \strng{authornamehash}{fe1b69ac870397d00b7b9cd21ce7ecd4}
+      \strng{authorfullhash}{fe1b69ac870397d00b7b9cd21ce7ecd4}
+      \field{sortinit}{H}
+      \field{sortinithash}{2f664b453ec75da1fe3804ca92633405}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1604.00772}
+      \field{title}{The CMA evolution strategy: A tutorial}
+      \field{year}{2016}
+    \endentry
+    \entry{doi:10.1080/00401706.1966.10490404}{article}{}
+      \name{author}{2}{}{%
+        {{hash=b0ec6badf105a434b264a6eb4ee586cb}{%
+           family={Hill},
+           familyi={H\bibinitperiod},
+           given={W.\bibnamedelimi J.},
+           giveni={W\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=1655c57cc44ca8c4f2328c5abbe2f160}{%
+           family={Hunter.},
+           familyi={H\bibinitperiod},
+           given={W.\bibnamedelimi G.},
+           giveni={W\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Taylor & Francis}%
+      }
+      \strng{namehash}{fccfcfb3c7520c125d11e6cdbb5069c0}
+      \strng{fullhash}{fccfcfb3c7520c125d11e6cdbb5069c0}
+      \strng{authornamehash}{fccfcfb3c7520c125d11e6cdbb5069c0}
+      \strng{authorfullhash}{fccfcfb3c7520c125d11e6cdbb5069c0}
+      \field{sortinit}{H}
+      \field{sortinithash}{2f664b453ec75da1fe3804ca92633405}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Technometrics}
+      \field{number}{4}
+      \field{title}{A Review of Response Surface Methodology: A Literature Survey}
+      \field{volume}{8}
+      \field{year}{1966}
+      \field{pages}{571\bibrangedash 590}
+      \range{pages}{20}
+      \verb{doi}
+      \verb 10.1080/00401706.1966.10490404
+      \endverb
+      \verb{eprint}
+      \verb https://amstat.tandfonline.com/doi/pdf/10.1080/00401706.1966.10490404
+      \endverb
+      \verb{url}
+      \verb https://amstat.tandfonline.com/doi/abs/10.1080/00401706.1966.10490404
+      \endverb
+    \endentry
+    \entry{loshchilov2012self}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=35e61143f978a9148c8803333e91743d}{%
+           family={I.\bibnamedelimi Loshchilov},
+           familyi={I\bibinitperiod\bibinitdelim L\bibinitperiod},
+           given={M.\bibnamedelimi Schoenauer},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=ee7301b5064a1767694da4551593ae2e}{%
+           family={Sebag},
+           familyi={S\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{d644620b5b70b1c2554045d1fabdbb1c}
+      \strng{fullhash}{d644620b5b70b1c2554045d1fabdbb1c}
+      \strng{authornamehash}{d644620b5b70b1c2554045d1fabdbb1c}
+      \strng{authorfullhash}{d644620b5b70b1c2554045d1fabdbb1c}
+      \field{sortinit}{I}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 14th annual conference on Genetic and evolutionary computation}
+      \field{title}{Self-adaptive surrogate-assisted covariance matrix adaptation evolution strategy}
+      \field{year}{2012}
+      \field{pages}{321\bibrangedash 328}
+      \range{pages}{8}
+    \endentry
+    \entry{sacks1989}{article}{}
+      \name{author}{3}{}{%
+        {{hash=7124328dadeb7a3a10e41d90d3799fe6}{%
+           family={J.\bibnamedelimi Sacks},
+           familyi={J\bibinitperiod\bibinitdelim S\bibinitperiod},
+           given={W.\bibnamedelimi J.\bibnamedelimi Welch},
+           giveni={W\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=e51b4444eb1bf550ba6c9e9d8248c125}{%
+           family={Mitchell},
+           familyi={M\bibinitperiod},
+           given={T.\bibnamedelimi J.},
+           giveni={T\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=96d1d9a89b400fba4a2b1f3d2d31dd1f}{%
+           family={Wynn.},
+           familyi={W\bibinitperiod},
+           given={H.\bibnamedelimi P.},
+           giveni={H\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {The Institute of Mathematical Statistics}%
+      }
+      \strng{namehash}{bf9c3f0fd4805c1fe5ec370d3943e29e}
+      \strng{fullhash}{bf9c3f0fd4805c1fe5ec370d3943e29e}
+      \strng{authornamehash}{bf9c3f0fd4805c1fe5ec370d3943e29e}
+      \strng{authorfullhash}{bf9c3f0fd4805c1fe5ec370d3943e29e}
+      \field{sortinit}{J}
+      \field{sortinithash}{c86bd6cced82a15683b396c2169909ef}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Statist. Sci.}
+      \field{month}{11}
+      \field{number}{4}
+      \field{title}{Design and Analysis of Computer Experiments}
+      \field{volume}{4}
+      \field{year}{1989}
+      \field{pages}{409\bibrangedash 423}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1214/ss/1177012413
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1214/ss/1177012413
+      \endverb
+    \endentry
+    \entry{JIN201161}{article}{}
+      \name{author}{1}{}{%
+        {{hash=d2e894da3ef2bd7c7c172a46391d08ec}{%
+           family={Jin},
+           familyi={J\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{d2e894da3ef2bd7c7c172a46391d08ec}
+      \strng{fullhash}{d2e894da3ef2bd7c7c172a46391d08ec}
+      \strng{authornamehash}{d2e894da3ef2bd7c7c172a46391d08ec}
+      \strng{authorfullhash}{d2e894da3ef2bd7c7c172a46391d08ec}
+      \field{sortinit}{J}
+      \field{sortinithash}{c86bd6cced82a15683b396c2169909ef}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2210-6502}
+      \field{journaltitle}{Swarm and Evolutionary Computation}
+      \field{number}{2}
+      \field{title}{Surrogate-assisted evolutionary computation: Recent advances and future challenges}
+      \field{volume}{1}
+      \field{year}{2011}
+      \field{pages}{61\bibrangedash 70}
+      \range{pages}{10}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.swevo.2011.05.001
+      \endverb
+      \verb{url}
+      \verb http://www.sciencedirect.com/science/article/pii/S2210650211000198
+      \endverb
+      \keyw{Evolutionary computation,Surrogates,Meta-models,Machine learning,Expensive optimization problems,Model management}
+    \endentry
+    \entry{Jin02aframework}{article}{}
+      \name{author}{3}{}{%
+        {{hash=d2e894da3ef2bd7c7c172a46391d08ec}{%
+           family={Jin},
+           familyi={J\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=08c3ecbc4ae967b605bd3e8ceee73d67}{%
+           family={Olhofer},
+           familyi={O\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=4575253205c7c6dd6b55747f860b006d}{%
+           family={Sendhoff},
+           familyi={S\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{7f0b4174fc17752f3e5aad1cdb59b9d8}
+      \strng{fullhash}{7f0b4174fc17752f3e5aad1cdb59b9d8}
+      \strng{authornamehash}{7f0b4174fc17752f3e5aad1cdb59b9d8}
+      \strng{authorfullhash}{7f0b4174fc17752f3e5aad1cdb59b9d8}
+      \field{sortinit}{J}
+      \field{sortinithash}{c86bd6cced82a15683b396c2169909ef}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE TRANSACTIONS ON EVOLUTIONARY COMPUTATION}
+      \field{title}{A Framework for Evolutionary Optimization with Approximate Fitness Functions}
+      \field{volume}{6}
+      \field{year}{2002}
+      \field{pages}{481\bibrangedash 494}
+      \range{pages}{14}
+    \endentry
+    \entry{Jin:2002:FAE:2955491.2955686}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=d2e894da3ef2bd7c7c172a46391d08ec}{%
+           family={Jin},
+           familyi={J\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=4575253205c7c6dd6b55747f860b006d}{%
+           family={Sendhoff},
+           familyi={S\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York City, New York}%
+      }
+      \list{publisher}{1}{%
+        {Morgan Kaufmann Publishers Inc.}%
+      }
+      \strng{namehash}{825f031c085fde2157ada71ab1cef220}
+      \strng{fullhash}{825f031c085fde2157ada71ab1cef220}
+      \strng{authornamehash}{825f031c085fde2157ada71ab1cef220}
+      \strng{authorfullhash}{825f031c085fde2157ada71ab1cef220}
+      \field{sortinit}{J}
+      \field{sortinithash}{c86bd6cced82a15683b396c2169909ef}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 4th Annual Conference on Genetic and Evolutionary Computation}
+      \field{isbn}{1-55860-878-8}
+      \field{series}{GECCO'02}
+      \field{title}{Fitness Approximation in Evolutionary Computation - a Survey}
+      \field{year}{2002}
+      \field{pages}{1105\bibrangedash 1112}
+      \range{pages}{8}
+      \verb{url}
+      \verb http://dl.acm.org/citation.cfm?id=2955491.2955686
+      \endverb
+    \endentry
+    \entry{DBLP:conf/ppsn/KayhaniA18}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=e52c92c0fd51fa9b843c08e8668e5a00}{%
+           family={Kayhani},
+           familyi={K\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=ab78d001d3d468606aff3105d3c7d855}{%
+           family={Arnold},
+           familyi={A\bibinitperiod},
+           given={D.\bibnamedelimi V.},
+           giveni={D\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \strng{namehash}{716791123eb4b0279364af58fbe62495}
+      \strng{fullhash}{716791123eb4b0279364af58fbe62495}
+      \strng{authornamehash}{716791123eb4b0279364af58fbe62495}
+      \strng{authorfullhash}{716791123eb4b0279364af58fbe62495}
+      \field{sortinit}{K}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Parallel Problem Solving from Nature - {PPSN} {XV} - 15th International Conference, Coimbra, Portugal, September 8-12, 2018, Proceedings, Part {I}}
+      \field{title}{Design of a Surrogate Model Assisted {(1} + 1)-ES}
+      \field{year}{2018}
+      \field{pages}{16\bibrangedash 28}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1007/978-3-319-99253-2\_2
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-3-319-99253-2%5C_2
+      \endverb
+    \endentry
+    \entry{ECJ2016_LMCMA}{article}{}
+      \name{author}{1}{}{%
+        {{hash=1e7a8ee9afa3752eecaa2c06aecbafbc}{%
+           family={Loshchilov},
+           familyi={L\bibinitperiod},
+           given={I.},
+           giveni={I\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cambridge, MA, USA}%
+      }
+      \list{publisher}{1}{%
+        {MIT Press}%
+      }
+      \strng{namehash}{1e7a8ee9afa3752eecaa2c06aecbafbc}
+      \strng{fullhash}{1e7a8ee9afa3752eecaa2c06aecbafbc}
+      \strng{authornamehash}{1e7a8ee9afa3752eecaa2c06aecbafbc}
+      \strng{authorfullhash}{1e7a8ee9afa3752eecaa2c06aecbafbc}
+      \field{sortinit}{L}
+      \field{sortinithash}{7bba64db83423e3c29ad597f3b682cf3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Evolutionary Computation}
+      \field{title}{{LM-CMA}: an {A}lternative to {L-BFGS} for {L}arge {S}cale {B}lack-box {O}ptimization}
+      \field{year}{2016}
+      \field{pages}{to appear}
+      \range{pages}{-1}
+    \endentry
+    \entry{Ostermeier:1994:DAS:1326675.1326679}{article}{}
+      \name{author}{2}{}{%
+        {{hash=23a7b32d4787448fc0816c1cfc996dc6}{%
+           family={O.\bibnamedelimi Andreas},
+           familyi={O\bibinitperiod\bibinitdelim A\bibinitperiod},
+           given={G.\bibnamedelimi Andreas},
+           giveni={G\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=dacf2995b89f8bdeecf8c1e1ac9f3194}{%
+           family={Nikolaus},
+           familyi={N\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cambridge, MA, USA}%
+      }
+      \list{publisher}{1}{%
+        {MIT Press}%
+      }
+      \strng{namehash}{2ba8a3eb6fe770d88d8da0db9cc6e42c}
+      \strng{fullhash}{2ba8a3eb6fe770d88d8da0db9cc6e42c}
+      \strng{authornamehash}{2ba8a3eb6fe770d88d8da0db9cc6e42c}
+      \strng{authorfullhash}{2ba8a3eb6fe770d88d8da0db9cc6e42c}
+      \field{sortinit}{O}
+      \field{sortinithash}{f5d80ef71b5b58852663ecfd775b175a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1063-6560}
+      \field{journaltitle}{Evol. Comput.}
+      \field{month}{12}
+      \field{number}{4}
+      \field{title}{A Derandomized Approach to Self-adaptation of Evolution Strategies}
+      \field{volume}{2}
+      \field{year}{1994}
+      \field{pages}{369\bibrangedash 380}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1162/evco.1994.2.4.369
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1162/evco.1994.2.4.369
+      \endverb
+      \keyw{adaptation,evolution strategy,individual step-size,mutative step-size control,scaling,self-adaptation,step-size}
+    \endentry
+    \entry{Ratle:2001:KSF:966173.966177}{article}{}
+      \name{author}{1}{}{%
+        {{hash=971de779082c774c5b17449046696d6a}{%
+           family={Ratle},
+           familyi={R\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{971de779082c774c5b17449046696d6a}
+      \strng{fullhash}{971de779082c774c5b17449046696d6a}
+      \strng{authornamehash}{971de779082c774c5b17449046696d6a}
+      \strng{authorfullhash}{971de779082c774c5b17449046696d6a}
+      \field{sortinit}{R}
+      \field{sortinithash}{c15bc8eb6936bc6b3c8baa9e8575af53}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0890-0604}
+      \field{journaltitle}{Artif. Intell. Eng. Des. Anal. Manuf.}
+      \field{month}{1}
+      \field{number}{1}
+      \field{title}{Kriging As a Surrogate Fitness Landscape in Evolutionary Optimization}
+      \field{volume}{15}
+      \field{year}{2001}
+      \field{pages}{37\bibrangedash 49}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1017/S0890060401151024
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1017/S0890060401151024
+      \endverb
+      \keyw{Evolutionary optimization,Fitness landscape,Function approximation}
+    \endentry
+    \entry{rechenberg1973evolutionsstrategie}{article}{}
+      \name{author}{1}{}{%
+        {{hash=45fb24e8e1dc73e4b8b8b59d4cb85697}{%
+           family={Rechenberg},
+           familyi={R\bibinitperiod},
+           given={I.},
+           giveni={I\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Frommann-Holzboog}%
+      }
+      \strng{namehash}{45fb24e8e1dc73e4b8b8b59d4cb85697}
+      \strng{fullhash}{45fb24e8e1dc73e4b8b8b59d4cb85697}
+      \strng{authornamehash}{45fb24e8e1dc73e4b8b8b59d4cb85697}
+      \strng{authorfullhash}{45fb24e8e1dc73e4b8b8b59d4cb85697}
+      \field{sortinit}{R}
+      \field{sortinithash}{c15bc8eb6936bc6b3c8baa9e8575af53}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Evolutionsstrategie--Optimierung technisher Systeme nach Prinzipien der biologischen Evolution}
+      \field{year}{1973}
+    \endentry
+    \entry{Schwefel:1981:NOC:539468}{book}{}
+      \name{author}{1}{}{%
+        {{hash=0377be3b2119b7ee3e7c2e46ba31ee7e}{%
+           family={Schwefel},
+           familyi={S\bibinitperiod},
+           given={H.\bibnamedelimi -P.},
+           giveni={H\bibinitperiod\bibinitdelim \bibinithyphendelim \bibinithyphendelim P\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {John Wiley \& Sons, Inc.}%
+      }
+      \strng{namehash}{0377be3b2119b7ee3e7c2e46ba31ee7e}
+      \strng{fullhash}{0377be3b2119b7ee3e7c2e46ba31ee7e}
+      \strng{authornamehash}{0377be3b2119b7ee3e7c2e46ba31ee7e}
+      \strng{authorfullhash}{0377be3b2119b7ee3e7c2e46ba31ee7e}
+      \field{sortinit}{S}
+      \field{sortinithash}{3c1547c63380458f8ca90e40ed14b83e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{0471099880}
+      \field{title}{Numerical Optimization of Computer Models}
+      \field{year}{1981}
+    \endentry
+    \entry{Smith:1993:NNS:583180}{book}{}
+      \name{author}{1}{}{%
+        {{hash=abea0164f5c13d4e53c898ebc470392c}{%
+           family={Smith},
+           familyi={S\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Thomson Learning}%
+      }
+      \strng{namehash}{abea0164f5c13d4e53c898ebc470392c}
+      \strng{fullhash}{abea0164f5c13d4e53c898ebc470392c}
+      \strng{authornamehash}{abea0164f5c13d4e53c898ebc470392c}
+      \strng{authorfullhash}{abea0164f5c13d4e53c898ebc470392c}
+      \field{sortinit}{S}
+      \field{sortinithash}{3c1547c63380458f8ca90e40ed14b83e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1st}
+      \field{isbn}{1850328420}
+      \field{title}{Neural Networks for Statistical Modeling}
+      \field{year}{1993}
+    \endentry
+    \entry{Ulmer03evolutionstrategies}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=9dcc38f92e41290a7b97a65b3851ae5f}{%
+           family={Ulmer},
+           familyi={U\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod}}}%
+        {{hash=9b3668d9e258f1484386721e68a7d42d}{%
+           family={Streichert},
+           familyi={S\bibinitperiod},
+           given={F.},
+           giveni={F\bibinitperiod}}}%
+        {{hash=9adb3920ee63b942bd00e13099f205c6}{%
+           family={Zell},
+           familyi={Z\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{c66644027d0110f0d7b82210e507c08c}
+      \strng{fullhash}{c66644027d0110f0d7b82210e507c08c}
+      \strng{authornamehash}{c66644027d0110f0d7b82210e507c08c}
+      \strng{authorfullhash}{c66644027d0110f0d7b82210e507c08c}
+      \field{sortinit}{U}
+      \field{sortinithash}{1554584e7f69d2b4fe0a645e73d50194}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{in IEEE Congress on Evolutionary Computation,CEC 2003}
+      \field{title}{Evolution Strategies assisted by Gaussian Processes with Improved Pre-Selection Criterion}
+      \field{year}{2003}
+      \field{pages}{692\bibrangedash 699}
+      \range{pages}{8}
+    \endentry
+    \entry{4033013}{article}{}
+      \name{author}{5}{}{%
+        {{hash=6bab45ccf5fcf686c1901d8a20ee405d}{%
+           family={Zhou},
+           familyi={Z\bibinitperiod},
+           given={Z.},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=c1483593c5f1b98697dcb7bbb6b9ea4f}{%
+           family={Ong},
+           familyi={O\bibinitperiod},
+           given={Y.\bibnamedelimi S.},
+           giveni={Y\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=107fb61ecaff9daf9456afaf28708266}{%
+           family={Nair},
+           familyi={N\bibinitperiod},
+           given={P.\bibnamedelimi B.},
+           giveni={P\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=3a038e50474737afc5c48fea7ca931be}{%
+           family={Keane},
+           familyi={K\bibinitperiod},
+           given={A.\bibnamedelimi J.},
+           giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=adca0d0fd7aa5ecaff600e94d630a953}{%
+           family={Lum},
+           familyi={L\bibinitperiod},
+           given={K.\bibnamedelimi Y.},
+           giveni={K\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{c8d5cfed403ece4b042dd6e8490eeb6c}
+      \strng{fullhash}{c8d5cfed403ece4b042dd6e8490eeb6c}
+      \strng{authornamehash}{c8d5cfed403ece4b042dd6e8490eeb6c}
+      \strng{authorfullhash}{c8d5cfed403ece4b042dd6e8490eeb6c}
+      \field{sortinit}{Z}
+      \field{sortinithash}{35589aa085e881766b72503e53fd4c97}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1094-6977}
+      \field{journaltitle}{IEEE Transactions on Systems, Man, and Cybernetics, Part C (Applications and Reviews)}
+      \field{month}{1}
+      \field{number}{1}
+      \field{title}{Combining Global and Local Surrogate Models to Accelerate Evolutionary Optimization}
+      \field{volume}{37}
+      \field{year}{2007}
+      \field{pages}{66\bibrangedash 76}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1109/TSMCC.2005.855506
+      \endverb
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+

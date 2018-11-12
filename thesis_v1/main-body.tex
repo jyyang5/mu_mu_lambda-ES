@@ -27,21 +27,35 @@ This thesis intend to analyze and understand the surrogate-assisted $(\mu/\mu,\l
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Background}
 \subsection{Evolution Strategies}
-\subsubsection{Evolution Strategies}
+
+Evolution strategies (ESs), an category of Evolutionary Algorithms (EAs), is a nature-inspired direct search method that address optimization problems by using stochastic variation and selection. In each iteration, new offspring are generated from the parental population by mutation, followed by a selection based on the fitness of the offspring. Offspring selected as refereed to as the parental population for the next iteration. 
+
+ES are commonly used in black-box optimization where the $N$-dimensional search space $\mathbb{R}^N$ is continuous, whereas the solution space $\mathbb{R}$ is 1-dimensional. We consider minimization of an objective function $f:\mathbb{R}^N \rightarrow \mathbb{R}$ maps the search space to the solution space i.e. maps a point (individual) in the search space to a value (its fitness) in the solution space. Despite the objective function being continuous, there is no assumption on the objective function, such optimization problem are referred to as black box optimization. 
 
 
+\subsubsection{$(\mu/\rho\overset{+}{,}\lambda)-ES$}\hfill
+ 
+A general algorithm for ES can be defined as follows. Assume a parental population size $\mu$, number of parent for recombination (each offspring generated) $\rho$ and the number of offspring generated in each iteration $\lambda$, where $\mu,\rho,\lambda$ are positive integers with $\rho \leq \mu$. $\overset{+}{,}$, plus- or comma-selection  refers to how the parental population is updated. If a plus-selection is applied, only the best $\mu$ individuals are chosen considering both the parental population and the offspring generated in this iteration (i.e. totally $\mu+\lambda$ individuals are considered for selection). Whereas a comma-selection only chooses the offspring to update the parental population, no individual from previous parental population can be chosen (i.e. only $\lambda$ individuals are considered for selection).    
 
-\subsubsection{Step size adaptation}
 
+\subsubsection{Step size adaptation}\hfill
 
+- The 1/5th Success Rule
+
+- Cumulative Step-Size Adaptation 
+
+- Covariance Matrix Adaptation 
+
+\subsubsection{Analyzing ES on sphere function}
 
 
 
 \subsection{Surrogate Model} 
-\subsection{Type}
 
 1. Polynomials/Response Surface 
+
 2. Gaussian processes/Kriging
+
 3. 
 
 
