@@ -764,6 +764,34 @@
       \endverb
       \keyw{Evolutionary optimization,Fitness landscape,Function approximation}
     \endentry
+    \entry{Rechenberg1973}{book}{}
+      \name{author}{1}{}{%
+        {{hash=45fb24e8e1dc73e4b8b8b59d4cb85697}{%
+           family={Rechenberg},
+           familyi={R\bibinitperiod},
+           given={I.},
+           giveni={I\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Stuttgart-Bad Cannstatt}%
+      }
+      \list{publisher}{1}{%
+        {Frommann-Holzboog}%
+      }
+      \strng{namehash}{45fb24e8e1dc73e4b8b8b59d4cb85697}
+      \strng{fullhash}{45fb24e8e1dc73e4b8b8b59d4cb85697}
+      \strng{authornamehash}{45fb24e8e1dc73e4b8b8b59d4cb85697}
+      \strng{authorfullhash}{45fb24e8e1dc73e4b8b8b59d4cb85697}
+      \field{sortinit}{R}
+      \field{sortinithash}{c15bc8eb6936bc6b3c8baa9e8575af53}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{15}
+      \field{series}{Problemata}
+      \field{title}{Evolutionsstrategie : Optimierung technischer Systeme nach Prinzipien der biologischen Evolution}
+      \field{year}{1973}
+      \keyw{computing evolutionary}
+    \endentry
     \entry{rechenberg1973evolutionsstrategie}{article}{}
       \name{author}{1}{}{%
         {{hash=45fb24e8e1dc73e4b8b8b59d4cb85697}{%

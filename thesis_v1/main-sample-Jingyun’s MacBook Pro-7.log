@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  12 NOV 2018 19:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  12 NOV 2018 17:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1270,40 +1270,45 @@ LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/b/n' will be
 (Font)              scaled to size 9.0pt on input line 1.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
 (Font)              scaled to size 9.0pt on input line 3.
- [1.1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 24.
+(Font)              scaled to size 9.0pt on input line 22.
+ [1.1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/it' will be
-(Font)              scaled to size 9.0pt on input line 37.
- [2.2] [3.3]
-Overfull \hbox (35.70128pt too wide) in paragraph at lines 128--129
+(Font)              scaled to size 9.0pt on input line 35.
+ [2.2]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3.3]
+Overfull \hbox (35.70128pt too wide) in paragraph at lines 126--127
 \T1/LinuxLibertineT-TLF/m/n/9 (-20) heuris-tics. These meth-ods tend to be so-p
 his-ti-cated for good per-for-mance, while few lit-er-a-tures have $[][]$[]
  []
 
-[4.4]
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.3pt on input line 135.
+(Font)              scaled to size 7.3pt on input line 133.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 5.5pt on input line 135.
- <expectedFitGain_v1.pdf, id=144, 1257.0806pt x 426.67897pt>
+(Font)              scaled to size 5.5pt on input line 133.
+[4.4] <expectedFitGain_v1.pdf, id=144, 1257.0806pt x 426.67897pt>
 File: expectedFitGain_v1.pdf Graphic file (type pdf)
 
 <use expectedFitGain_v1.pdf>
-Package pdftex.def Info: expectedFitGain_v1.pdf used on input line 167.
+Package pdftex.def Info: expectedFitGain_v1.pdf used on input line 165.
 (pdftex.def)             Requested size: 440.84798pt x 173.44858pt.
 
-Overfull \hbox (10.84335pt too wide) in paragraph at lines 167--168
+Overfull \hbox (10.84335pt too wide) in paragraph at lines 165--166
  [][] 
  []
 
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 168.
-[5.5 <./expectedFitGain_v1.pdf>] [6.6]
+(Font)              scaled to size 8.0pt on input line 166.
+[5.5 <./expectedFitGain_v1.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6.6]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [7.7]
-Overfull \hbox (36.26907pt too wide) in paragraph at lines 221--223
+Overfull \hbox (36.26907pt too wide) in paragraph at lines 219--221
 \T1/LinuxLibertineT-TLF/m/n/9 (-20) same range as is the case for $\OML/nxlmi/m
 /it/9 n \U/ntxmia/m/it/9 = \OT1/LinuxLibertineT-TLF/m/n/9 (-20) 10$\T1/LinuxLib
 ertineT-TLF/m/n/9 (-20) . $[][]$[]
@@ -1313,28 +1318,28 @@ ertineT-TLF/m/n/9 (-20) . $[][]$[]
 File: opt_stepSize_fitGain_v2.pdf Graphic file (type pdf)
 
 <use opt_stepSize_fitGain_v2.pdf>
-Package pdftex.def Info: opt_stepSize_fitGain_v2.pdf used on input line 248.
+Package pdftex.def Info: opt_stepSize_fitGain_v2.pdf used on input line 246.
 (pdftex.def)             Requested size: 433.62065pt x 173.44348pt.
 
-Overfull \hbox (3.61603pt too wide) in paragraph at lines 248--249
+Overfull \hbox (3.61603pt too wide) in paragraph at lines 246--247
  [][] 
  []
 
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 265.
+put line 263.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 9.0pt on input line 265.
+(Font)              scaled to size 9.0pt on input line 263.
 
 Underfull \vbox (badness 4859) has occurred while \output is active []
 
  [8.8 <./opt_stepSize_fitGain_v2.pdf>]
-LaTeX Font Info:    Try loading font information for T1+zi4 on input line 310.
+LaTeX Font Info:    Try loading font information for T1+zi4 on input line 308.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 File: t1zi4.fd 2016/12/29 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 9.0pt on input line 310.
+(Font)              scaled to size 9.0pt on input line 308.
 Package microtype Info: Loading generic settings for font family
 (microtype)             `zi4' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
@@ -1350,26 +1355,26 @@ Package microtype Info: Character `textemdash ' is missing
 File: merged_plot_v4.pdf Graphic file (type pdf)
 
 <use merged_plot_v4.pdf>
-Package pdftex.def Info: merged_plot_v4.pdf used on input line 327.
+Package pdftex.def Info: merged_plot_v4.pdf used on input line 325.
 (pdftex.def)             Requested size: 433.61179pt x 303.52522pt.
 
-Overfull \hbox (3.60716pt too wide) in paragraph at lines 327--329
+Overfull \hbox (3.60716pt too wide) in paragraph at lines 325--327
  [][] 
  []
 
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 6.2pt on input line 329.
+(Font)              scaled to size 6.2pt on input line 327.
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 5.5pt on input line 329.
+(Font)              scaled to size 5.5pt on input line 327.
 [10.10 <./merged_plot_v4.pdf>]
 <success_convergence_v4.pdf, id=284, 1363.83955pt x 896.31934pt>
 File: success_convergence_v4.pdf Graphic file (type pdf)
 
 <use success_convergence_v4.pdf>
-Package pdftex.def Info: success_convergence_v4.pdf used on input line 341.
+Package pdftex.def Info: success_convergence_v4.pdf used on input line 339.
 (pdftex.def)             Requested size: 433.60735pt x 289.07103pt.
 
-Overfull \hbox (3.60272pt too wide) in paragraph at lines 341--342
+Overfull \hbox (3.60272pt too wide) in paragraph at lines 339--340
  [][] 
  []
 
@@ -1379,10 +1384,10 @@ File: merged_plot_emergency_modified.pdf Graphic file (type pdf)
 
 <use merged_plot_emergency_modified.pdf>
 Package pdftex.def Info: merged_plot_emergency_modified.pdf used on input line 
-511.
+509.
 (pdftex.def)             Requested size: 433.61623pt x 303.52876pt.
 
-Overfull \hbox (3.6116pt too wide) in paragraph at lines 511--512
+Overfull \hbox (3.6116pt too wide) in paragraph at lines 509--510
  [][] 
  []
 
@@ -1391,10 +1396,10 @@ Overfull \hbox (3.6116pt too wide) in paragraph at lines 511--512
 File: success_convergence_emergency_modified.pdf Graphic file (type pdf)
 <use success_convergence_emergency_modified.pdf>
 Package pdftex.def Info: success_convergence_emergency_modified.pdf used on inp
-ut line 520.
+ut line 518.
 (pdftex.def)             Requested size: 433.60068pt x 289.07693pt.
 
-Overfull \hbox (3.59605pt too wide) in paragraph at lines 520--521
+Overfull \hbox (3.59605pt too wide) in paragraph at lines 518--519
  [][] 
  []
 
@@ -1448,7 +1453,7 @@ ve/2017/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/local/texlive/201
 f-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2017/texmf-dist/f
 onts/type1/public/newtx/zxlr.pfb></usr/local/texlive/2017/texmf-dist/fonts/type
 1/public/newtx/zxlri.pfb>
-Output written on main-sample.pdf (16 pages, 3390922 bytes).
+Output written on main-sample.pdf (16 pages, 3389938 bytes).
 PDF statistics:
  533 PDF objects out of 1000 (max. 8388607)
  435 compressed objects within 5 object streams

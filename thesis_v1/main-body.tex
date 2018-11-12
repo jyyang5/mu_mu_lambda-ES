@@ -1,6 +1,8 @@
 \section{Introduction}
 
-\textit{Evolution strategies (ESs)} have been widely utilized to solve optimization problems where the true objective function evaluation is computationally-intensive. Various attempts have been made to reduce the cost by extracting the information obtained from points evaluated in previous iterations, such information yields insights into better selection and recombination that help generate potential promising offspring. One way is to use a surrogate model, an approximation model trained based on the candidate solutions evaluated by the true objective function in previous iterations. The surrogate model acts as a substitution of the true objective function that gives an inaccurate estimate of the objective function value at much lower cost compared with using the exact objective function. The surrogate modeling can be helpful if the computational saving in using the true objective function outshines the potential poor step size resulted from the inaccurate surrogate estimation of the candidate solution. 
+\textit{Evolution strategies (ESs)} have been widely utilized to solve optimization problems where the true objective function evaluation is computationally-intensive. It is flexible and able to solve almost any optimization problems from two aspects, variation and selection. Firstly, by using a stochastic variation in generating new offspring, the landscape of the search space can be better explored and more new information can be potentially extracted that help generating better future offspring.   Secondly, search using a population of candidate solutions is more robust under moderate noise and multi-objective optimizations compared with direct search methods like quasi-Newton. Then, applying a selection of the population can help make use of the information that is more helpful in solving the optimization problem. 
+
+Various attempts have been made to reduce the cost by extracting the information obtained from points evaluated in previous iterations, such information yields insights into better selection and recombination that help generate potential promising offspring. One way is to use a surrogate model, an approximation model trained based on the candidate solutions evaluated by the true objective function in previous iterations. The surrogate model acts as a substitution of the true objective function that gives an inaccurate estimate of the objective function value at a much lower cost compared with using the exact objective function. Despite the computation saving of applying surrogate model, the estimated objective function value may contain a model bias and potentially affect the step size being adapted accordingly. Therefore, surrogate modeling can be helpful if the computational saving in using the true objective function outshines the potential poor step size resulted from the inaccurate surrogate estimation of the candidate solution. 
 
 
 
@@ -32,21 +34,54 @@ Evolution strategies (ESs), an category of Evolutionary Algorithms (EAs), is a n
 
 ES are commonly used in black-box optimization where the $N$-dimensional search space $\mathbb{R}^N$ is continuous, whereas the solution space $\mathbb{R}$ is 1-dimensional. We consider minimization of an objective function $f:\mathbb{R}^N \rightarrow \mathbb{R}$ maps the search space to the solution space i.e. maps a point (individual) in the search space to a value (its fitness) in the solution space. Despite the objective function being continuous, there is no assumption on the objective function, such optimization problem are referred to as black box optimization. 
 
-
 \subsubsection{$(\mu/\rho\overset{+}{,}\lambda)-ES$}\hfill
  
-A general algorithm for ES can be defined as follows. Assume a parental population size $\mu$, number of parent for recombination (each offspring generated) $\rho$ and the number of offspring generated in each iteration $\lambda$, where $\mu,\rho,\lambda$ are positive integers with $\rho \leq \mu$. $\overset{+}{,}$, plus- or comma-selection  refers to how the parental population is updated. If a plus-selection is applied, only the best $\mu$ individuals are chosen considering both the parental population and the offspring generated in this iteration (i.e. totally $\mu+\lambda$ individuals are considered for selection). Whereas a comma-selection only chooses the offspring to update the parental population, no individual from previous parental population can be chosen (i.e. only $\lambda$ individuals are considered for selection).    
+A general ES can be defined as follows. Assume a parental population size $\mu$, number of parent for recombination (each offspring generated) $\rho$ and the number of offspring generated in each iteration $\lambda$, where $\mu,\rho,\lambda$ are positive integers with $\rho \leq \mu$. Plus- or comma-selection ($\overset{+}{,}$) refers to how the parental population is updated. If a plus-selection is applied, only the best $\mu$ individuals are chosen considering both the parental population and the offspring generated in this iteration (i.e. totally $\mu+\lambda$ individuals are considered for selection). Whereas a comma-selection only chooses the offspring to update the parental population, no individual from previous parental population can be chosen (i.e. only $\lambda$ individuals are considered for selection).    
 
+After selection, recombination is performed, meaning the selected individuals are recombined to generate the new offspring in next iteration. There are two common recombination approaches, intermediate recombination and weight recombination. Weighted recombination simply takes the average of all selected individuals as the recombined parent, while weighted recombination uses a weighted average of all selected individuals where the weight is normalized and depends on individual's fitness ranking. We denote the parental population $X = \{x_1,x_2,...,x_\mu\}$ and offspring generated in this iteration $Y = \{y_1,y_2,...,y_{\lambda} \}$ where $x_i,y_j \in \mathbb{R}^N$ for $i=1,...,\mu$ and $j=1,...,\lambda$. When generating one offspring, a standard normally distributed mutation vector $z_i \in \mathbb{R}^N $ is generated and added to the recombined parent with a step size parameter $\sigma \in \mathbb{R}$.  
+
+Suppose we use a comma-selection with intermediate recombination, in each iteration, we take the average of $\rho$ individual randomly selected from the parental population $X$ as the recombined parent $x = 1/\rho \sum_{i=1}^{\rho}x_i$ where $x_i,x_j \in X, x_i \neq x_j$ and the offspring population $Y = \{y_j: 1 \leq j \leq \lambda\}$ is generated by  $y_j = x + \sigma z_j$, $1 \leq j \leq \lambda$.The offspring population is ranked according to each individual's fitness and the parent population is updated (replaced) by $X = \{ y_{i;\lambda}:1 \leq i \leq \mu \}$ where $f(y_{i;\lambda}) \leq f(y_{j,\lambda}), 1 \leq i < j \leq \lambda$. Consider plus-selection using weighted recombination, in each iteration, a recombined parent is obtained by taking a weighted average of the selected individuals (both parent of previous iteration and offspring generated in this iteration are considered). Suppose the parent population in timestamp $t$ (iteration) $X^{(t)}$ and offspring population generated in this iteration $Y^{(t)}$, the best $\mu$ individuals $x \prime_{i;\lambda+\mu} \in X^{(t)} \cup Y^{(t)},\  1 \leq i \leq \mu$ are selected with $ x \prime_{i;\lambda+\mu} \leq x \prime_{j;\lambda+\mu}, 1 \leq i < j \leq \lambda+\mu $ refereed to as the parental population for the next iteration $X^{(t+1)}$. The recombined parent at timestamp $t+1$ is obtained by randomly choosing $\mu$ individuals from $X^{(t+1)}$ that follows $x = 1/\rho \sum_{i=1}^{\rho} w_i x \prime _i$ where $w_i, 1 \leq i \leq \rho$ is a normalized weight directly related to offspring's fitness rank with $0 < w_i < w_j < 1$ for $f(x_i) < f(x_j),1 \leq i < j  \leq \rho$ and $\sum_{i=1}^\rho w_i = 1$.
 
 \subsubsection{Step size adaptation}\hfill
 
 - The 1/5th Success Rule
 
+The 1/5th success rule is a basic step size control for ES. The step size is adapted according to the success rate of generating a good offspring i.e. an offspring $y$ with $f(y)<f(x)$. If the success rate is lower than 1/5, the step size is decreased, otherwise increased. The 1/5 is chosen by Rechenberg \cite{Rechenberg1973} after obtaining the optimal success rate (i.e. achieving the largest fitness gain per iteration) for orridor function and quadratic sphere function to be $\approx 0.184$ and $\approx 0.270$ respectively for $n \rightarrow \infty$.  
+
+
 - Cumulative Step-Size Adaptation 
+
+The step size of $(\mu/\mu,\lambda)$-ES is commonly adapated using cumulative step size adaptation (CSA) proposed by Ostermeier et al \cite{Ostermeier:1994:DAS:1326675.1326679}. In each iteration, $(\mu/\mu,\lambda)$-ES generate $\lambda$ candidate solutions $y_i \in \mathbb{R}^N,i=1,...,\lambda$ from a parental population $x_i \in \mathbb{R}^N i=1,...,\mu$ and the centroid of the parent population is $x = 1/\mu \sum_{i=1}^\mu x_i$, where $\mu < \lambda$. The parental population is replaced by the best $\mu$ candidate solutions gennerated by $y_i = x + \sigma z$ where $\sigma \in \mathbb{R}$ is a scalar referred to as the step size and $z \in \mathbb{R}^N$ as the mutation. For a strategy with ideally adapted step size, each step should be uncorrelated. If the connective are negatively correlated, the step size should be decreased. In contrast, if the connective steps are positively correlated, meaning the steps are pointing to the same direction. Then a number of small steps can be replaced by fewer large steps and therefore, the step size should increase. 
+
+To decide the correlation, information from previous steps and mutations are cumulated. By comparing the step size with its expected length under random selection, the step size is adapted according to its expected length. Step size increases if the length is less than expected and decrease otherwise. 
+
+Define the search path as 
+\begin{align}
+p_{k+1} \leftarrow (1-c)p_k + \sqrt{\mu c (2-c)} z,
+\end{align}
+where $0<c \geq 1$ is the proportion of history information retained and passed to the evolution path in the next iteration, $ \sqrt{\mu c (2-c)}$ is a normalization constant that updates the evolution path from the mutation of this iteration and $z$, the mutation obtained by averaging the best $\mu$ candidate solutions generated. 
+
+The step size is adapated 
+\begin{align}
+\sigma \leftarrow \sigma \exp \left (  \frac{c}{d}  \left( \frac{\Vert p\Vert}{E \Vert N(O,I)\Vert } \right) \right ),
+\end{align}
+where $E\| N(0,I) \|$ is the expected length of the search path $p$ that can be approximated as $E\| N(0,I) \| \approx \sqrt{n} (1-1/4n + 1/21n^2)$. In section 4, we use the well established parameters for CSA from  Hansen \cite{hansen2016cma} that follows 
+\begin{align}
+\begin{cases}
+c = (\mu+2)/(N+\mu+5)\\
+d=1+2 \max\left (0, \sqrt{(\mu-1)/(N+1)-1} \right)+c.
+\end{cases}
+\end{align}
+
 
 - Covariance Matrix Adaptation 
 
+
+
 \subsubsection{Analyzing ES on sphere function}
+
+
+
 
 
 
@@ -111,21 +146,7 @@ There is a wealth of literatures for solving black box optimization using (1+1)-
 \subsection{Step size adaptation}
 % CSA
 
-The step size of $(\mu/\mu,\lambda)$-ES is commonly adapated using cumulative step size adaptation (CSA) proposed by Ostermeier et al \cite{Ostermeier:1994:DAS:1326675.1326679}. In each iteration, $(\mu/\mu,\lambda)$-ES generate $\lambda$ candidate solutions $y_i \in \mathbb{R}^N,i=1,...,\lambda$ from a parental population $x_i \in \mathbb{R}^N i=1,...,\mu$ and the centroid of the parent population is $x = 1/\mu \sum_{i=1}^\mu x_i$, where $\mu < \lambda$. The parental population is replaced by the best $\mu$ candidate solutions gennerated by $y_i = x + \sigma z$ where $\sigma \in \mathbb{R}$ is a scalar referred to as the step size and $z \in \mathbb{R}^N$ as the mutation. For a strategy with ideally adapted step size, each step should be uncorrelated. If the connective are negatively correlated, the step size should be decreased. In contrast, if the connective steps are positively correlated, meaning the steps are pointing to the same direction. Then a number of small steps can be replaced by fewer large steps and therefore, the step size should increase. 
 
-To decide the correlation, information from previous steps and mutations are cumulated. By comparing the step size with its expected length under random selection, the step size is adapted according to its expected length. Step size increases if the length is less than expected and decrease otherwise. 
-
-Define the search path as 
-\begin{align}
-p_{k+1} \leftarrow (1-c)p_k + \sqrt{\mu c (2-c)} z,
-\end{align}
-where $0<c \geq 1$ is the proportion of history information retained and passed to the evolution path in the next iteration, $ \sqrt{\mu c (2-c)}$ is a normalization constant that updates the evolution path from the mutation of this iteration and $z$, the mutation obtained by averaging the best $\mu$ candidate solutions generated. 
-
-The step size is adapated 
-\begin{align}
-\sigma \leftarrow \sigma \exp \left (  \frac{c}{d}  \left( \frac{\Vert p\Vert}{E \Vert N(O,I)\Vert } \right) \right ),
-\end{align}
-where $E\| N(0,I) \|$ is the expected length of the search path $p$ that can be approximated as $E\| N(0,I) \| \approx \sqrt{n} (1-1/4n + 1/21n^2)$. In Section 4, the details of parameter setting will be discussed.
 % we use the well established parameters from Hansen's CMA tutorial \cite{hansen2016cma} that follows 
 % \begin{align}
 % \begin{cases}
