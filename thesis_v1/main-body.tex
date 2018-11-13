@@ -4,6 +4,8 @@
 
 Various attempts have been made to reduce the cost by extracting the information obtained from points evaluated in previous iterations, such information yields insights into better selection and recombination that help generate potential promising offspring. One way is to use a surrogate model, an approximation model trained based on the candidate solutions evaluated by the true objective function in previous iterations. The surrogate model acts as a substitution of the true objective function that gives an inaccurate estimate of the objective function value at a much lower cost compared with using the exact objective function. Despite the computation saving of applying surrogate model, the estimated objective function value may contain a model bias and potentially affect the step size being adapted accordingly. Therefore, surrogate modeling can be helpful if the computational saving in using the true objective function outshines the potential poor step size resulted from the inaccurate surrogate estimation of the candidate solution. 
 
+There are a range of surrogate models 
+
 
 
 
@@ -61,7 +63,7 @@ p_{k+1} \leftarrow (1-c)p_k + \sqrt{\mu c (2-c)} z,
 \end{align}
 where $0<c \geq 1$ is the proportion of history information retained and passed to the evolution path in the next iteration, $ \sqrt{\mu c (2-c)}$ is a normalization constant that updates the evolution path from the mutation of this iteration and $z$, the mutation obtained by averaging the best $\mu$ candidate solutions generated. 
 
-The step size is adapated 
+The step size is adapted 
 \begin{align}
 \sigma \leftarrow \sigma \exp \left (  \frac{c}{d}  \left( \frac{\Vert p\Vert}{E \Vert N(O,I)\Vert } \right) \right ),
 \end{align}
@@ -93,6 +95,13 @@ d=1+2 \max\left (0, \sqrt{(\mu-1)/(N+1)-1} \right)+c.
 
 3. 
 
+\subsubsection{individual-based}
+
+\subsubsection{Generation-based }
+
+
+
+\subsubsection{Population-based}
 
 
 

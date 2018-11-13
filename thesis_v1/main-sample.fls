@@ -496,12 +496,6 @@ INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/libertine/LinBiolinumT
 INPUT success_convergence_v4.pdf
 INPUT ./success_convergence_v4.pdf
 INPUT ./success_convergence_v4.pdf
-INPUT merged_plot_emergency_modified.pdf
-INPUT ./merged_plot_emergency_modified.pdf
-INPUT ./merged_plot_emergency_modified.pdf
-INPUT success_convergence_emergency_modified.pdf
-INPUT ./success_convergence_emergency_modified.pdf
-INPUT ./success_convergence_emergency_modified.pdf
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/public/newtx/nxlmi5.vf
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/newtx/fxlri-5alt.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/newtx/LibertineTheta-Regular.tfm
@@ -527,6 +521,12 @@ INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/boondox/zxxrl7z.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/public/txfonts/txr.vf
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/txfonts/rtxptmr.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/txfonts/rtxr.tfm
+INPUT merged_plot_emergency_modified.pdf
+INPUT ./merged_plot_emergency_modified.pdf
+INPUT ./merged_plot_emergency_modified.pdf
+INPUT success_convergence_emergency_modified.pdf
+INPUT ./success_convergence_emergency_modified.pdf
+INPUT ./success_convergence_emergency_modified.pdf
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/libertine/LinLibertineTI-tlf-t1.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/public/libertine/LinLibertineTI-tlf-t1.vf
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/libertine/LinLibertineTI-tlf-t1--base.tfm
