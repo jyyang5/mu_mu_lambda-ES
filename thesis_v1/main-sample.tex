@@ -61,10 +61,16 @@
 \acmPrice{}
 
 
+
+
 \makeatletter
 \def\runningfoot{\def\@runningfoot{}}
 \def\firstfoot{\def\@firstfoot{}}
 \makeatother 
+% \makeatletter
+% \xpatchcmd{\ps@firstpagestyle}{Manuscript submitted to ACM}{}{\typeout{First patch succeeded}}{\typeout{first patch failed}}
+% \xpatchcmd{\ps@standardpagestyle}{Manuscript submitted to ACM}{}{\typeout{Second patch succeeded}}{\typeout{Second patch failed}}    \@ACM@manuscriptfalse% Also in titlepage
+% \makeatother
 
 \begin{document}
 \title{Design of a Surrogate Model Assisted $(\mu/\mu,\lambda)$-ES}
