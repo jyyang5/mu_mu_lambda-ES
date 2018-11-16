@@ -9,8 +9,9 @@ lambda = 40;                            % not used but for computing c_mu_lambda
 step = 0.0000001;
 x = -10:step:10;d
 
-step_end = 100;
-z = sigma_star/2:step_end;
+step_end = 10;
+z = sigma_star/2:1:step_end;
+p_eval = normcdf(-sigma_star.^2/.2./(sqrt(sigma_star.^2+sigma_ep_star.^2)));
 expected_delta = 
 % expected fitness gain for n->\infty  under mu and lambda
 c_mu_lambda = (lambda-mu)/(2*pi)*nchoosek(lambda,mu)*sum(exp(-x.^2).*(normcdf(x)).^(lambda-mu-1).*(1-normcdf(x)).^(mu-1))*step;
