@@ -216,7 +216,23 @@ The surrogate model can be applied to EAs as an approximate fitness to accelerat
 
 \paragraph{Gaussin Process (GP)}
 
-The GP is defined using the notation of $\color{red}{\text{slides by Arnold }}$: let $f(x)$ be an unkown scalar functuoon and $x \in \mathbb{R^N}$ is a point in an $N-$dimensional space. Evaluate $f$ at $K$ data points $X=(x_1,x_2,...,x_n)$ yields function values $f = (f(x_1),f(x_2),...,f(x_n))$. We want to predict new function values $f(X_*)$ of a test set $X_*$ with size $n_*$.
+A GP is a probabilistic model where the observations are in a continues domain $\mathbb{R^N}$. It is determined completely determined by its mean function 
+\begin{align}
+m(x) = E [ f(x)],
+\end{align}
+commonly assumed to be zero, and a covariance function (a positive definite kernel) follows
+\begin{align}
+\kappa(x, x \prime) = E[(f(x)-m(x))(f(x \prime)-m(x \prime))].		
+\end{align} 
+$\forall x_i \in \mathbb{R}^N, i=1,2,...,n$, the distribution of the function value $f(x_i),i=1,2,...,n$ is jointly Gaussian with mean $\mu = (m(x_1),m(x_2),...,m(x_n))$ and covariance matrix $\sum$ with entry $\sum_{ij} = \kappa (x_i,x_j)$. 
+
+Squared exponential kernel, a commonly used covariance function is applied in the context 
+\begin{align}
+\kappa(x, x \prime) = \text{exp} \left( - \frac{\|x - x \prime \|^2}{2 \theta^2} \right),
+\end{align}
+where $\theta$ is the length scale factor of the GP.
+
+The GP is defined using the notation of $\color{red}{\text{slides by Arnold }}$: let $f(x)$ be an unknown scalar function and $x \in \mathbb{R^N}$ is a point in an $N-$dimensional space. Evaluate $f$ at $K$ data points $X=(x_1,x_2,...,x_n)$ yields function values $f = (f(x_1),f(x_2),...,f(x_n))$. We want to predict new function values $f(X_*)$ of a test set $X_*$ with size $n_*$.
 
 The vector of known function values and the predicted value $(f,f_*)$ are jointly normally distributed with mean $(\mu,\mu_*)$ and covariance matrix
 
@@ -226,6 +242,7 @@ K & K_*\\
 K_*^T&K_{**}
 \end{bmatrix}
 \end{align}
+where $K = \kappa(X,X),K_* = \kappa (X,X_*)$, and $K_{**} = (X_*,X_*)$. 
 
 
 $\color{red}{\text{GP model}}$

@@ -25,28 +25,17 @@ lambda = 40;                            % not used but for computing c_mu_lambda
 
 % Iterate over v
 
-v = 0.1;
-sigma_star_array = transpose(0.1:0.01:1.8);
-z_start = 0.001;
-z_step = 0.001; 
+sigma_star_temp = transpose(1:0.1:5);
 z_end = 10;
-z_array = z_start:z_step:z_end;
-z_LENGTH = length(z_array);
-z = z_array+sigma_star_array;
-
-% sigma_star_temp = transpose(1:0.1:5);
-% sigma_star_start = 0.2;
-% z_step = 0.01;
-% z_end = 10;
-
+z_step = 0.00001;
 % only one sigma
-% z = sigma_star_temp/2:z_step:z_end;
+z = sigma_star_temp/2:z_step:z_end;
 % Probablity of making an objective function call
-p_eval = normcdf(-1./2./sqrt(v.^2));
+p_eval = normcdf(-sigma_star.^2/.2./(sqrt(sigma_star.^2+sigma_ep_star.^2)));
 
 % Expected value of change in objective function 
-sigma_star = sigma_star_array;
-fz = (sigma_star*z-sigma_star.^2/2)*exp(-z.^2/2)*normcdf(v.*(z-transpose(repmat(sigma_star,1,z_LENGTH)/2)));
+sigma_star = sigma_star_temp;
+fz = (sigma_star*z-sigma_star.^2/2)*exp(-z.^2/2)*normcdf((sigma_star.*z-sigma_star.^2./2)./sigma_ep_star);
 expected_delta = 1/sqrt(2*pi)*sum(fz)*z_step;
 
 vartheta = expected_delta./p_eval;
