@@ -291,6 +291,17 @@ saveas(gcf,'merged_plot_NO_emergency_v2.fig');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    % Plot success rate for a good step 
+    subplot_ROW = 1;
+    subplot_COL = 5;    
+    xNameSprintf = sprintf('success rate');
+    % Plot success rate for a good step
+    xLimit = [0 1];
+    plot_pdf(success_rate_array,T_med,FIGURE_NUM+1,subplot_ROW,subplot_COL,fname,lambda,xNameSprintf,xLimit);
+    legend('-DynamicLegend'); 
+    legend('show');
+    saveas(gcf,'success_NO_emergency_v2.fig'); 
     
 % Plot success rate and convergence rate for sphere functions
 % if(fname == 1 || fname == 2 || fname == 3||)
