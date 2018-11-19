@@ -135,7 +135,7 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
             fy_true(i) = f(y(:,i));                                         % for calculating the noise 
         end
         % calculate relative model error
-        error_array(t) = var(fyep-fy_true)/var(fy_true);
+        error_array(t) = sqrt(var(fyep-fy_true)/var(fy_true));
         % for simple calculation 
         fy = fyep;
         
