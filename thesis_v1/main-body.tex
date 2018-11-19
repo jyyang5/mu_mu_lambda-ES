@@ -175,7 +175,7 @@ Decomposition of $z$, first proposed by Rechenberg \cite{rechenberg1973evolution
 \end{align}
 where $z_{\text{step},1} $, the component of $z_{\text{step}}$ pointing to the negative gradient of $f(x)$ and $\overset{ N \rightarrow \infty}{=}$ denotes the convergence of the distribution $\Vert z_{\text{step} } \Vert^N/N = 1$. 
 
- \paragraph{On Noisy Sphere Function}
+\paragraph{On Noisy Sphere Function}
 The sphere is considered noisy when the fitness evaluation is inaccurate and the objective function on a fixed point may vary in a certain range in different objective function calls. The following uses the analysis and modelling proposed by Arnold and Beyer \cite{ARNOLD2001127}. 
 
 The objective function value on noisy sphere can be modeled by adding a Gaussian random variable with mean equals the true objective function value and some standard deviation referred to as noise strength $\sigma_\epsilon$. The noisy estimate of a candidate solution $y$ follows $f_{\epsilon}(y) = f(y) + \sigma_{\epsilon}z_\epsilon$ where $z_\epsilon \in \mathbb{R}$ is a standard normally distributed random variable that randomize the noise generated. By further introduces $\sigma_\epsilon^* = N \sigma_\epsilon / (2R^2)$, the normalized fitness noise \cite{1284729} and replace the accurate objective function evaluation with the noisy estimate, the normalized fitness advantage of $y$ on noisy sphere when $n \rightarrow \infty$ in Eq. (\ref{eqn:delta}) is
@@ -202,19 +202,19 @@ The normalized progress rate when dimensionality $N \rightarrow \infty$ that fol
 \end{align}
 where the $1/\lambda$ denotes the number of offspring evaluated in each iteration i.e. the objective function evaluation per iteration for $(\mu/\mu,\lambda)$-ES is $\lambda$.
 
-To obtain the final value, the expected value of $z_{\text{step},1}$ derived by Arnold \cite{ARNOLD2001127} is
+The expected value of $z_{\text{step},1}$ derived by Arnold \cite{ARNOLD2001127} is
 \begin{align}\label{eqn:expected_z_step_1}{}
 E[z_{\text{step},1}] &= \frac{1}{\mu} \int_{-\infty}^\infty x p_{k;\lambda}(x)dx \\
 & = \frac{c_{\mu/\mu,\lambda}}{\sqrt{1+ \vartheta^2}}
 \end{align}
-where $c_{\mu/\mu,\lambda}$ is the $(\mu/\mu,\lambda)$-progress coefficient derived by Arnold and Beyer \cite{Arnold:2000:EMS:645825.669117} that follows
+where $p_{k;\lambda}$ corresponds to the probability density function of $z_{k;\lambda}$ that has $f(x+z_{i;\lambda})<f(x+z_{j;\lambda}), 1 \leq i<j \leq \lambda$, $c_{\mu/\mu,\lambda}$ is the $(\mu/\mu,\lambda)$-progress coefficient derived by Arnold and Beyer \cite{Arnold:2000:EMS:645825.669117} that follows
 % $\color{red}{paper\ missing}$
 \begin{align}\label{eqn:c_mu_mu_lambda}
 c_{\mu/\mu,\lambda}  = \frac{\lambda-\mu}{2 \pi} \begin{pmatrix} \lambda \\ \mu \end{pmatrix} \int_{-\infty}^{\infty} e^{-x^2}   \left [ \Phi(x)\right]^{\lambda-\mu-1}  \left[ 1- \Phi (x) \right]^{\mu-1}  \text{d} x,
 \end{align}
 where $\Phi$ is the normal cumulative distribution function. The integral can be solved numerically.  
 
-Therefore the normalized progress rate when dimensionality $N \rightarrow \infty$ is equation (7) from \cite{ARNOLD2001127} 
+Therefore by Eq. (\ref{eqn:eta_noise_sphere_raw}) (\ref{eqn:expected_z_step_1}), the normalized progress rate when dimensionality $N \rightarrow \infty$ can be simplified as
 \begin{align}\label{eqn:eta_noise_sphere}{}
 \eta = \frac{1}{\lambda}E[ \delta_\epsilon^*] \approx \frac{1}{\lambda} \left( \frac{\sigma^* c_{\mu / \mu, \lambda}}{\sqrt {1+ \vartheta^2}} - \frac{(\sigma^*)^2}{2 \mu} \right)
 \end{align}
@@ -225,10 +225,10 @@ Therefore the normalized progress rate when dimensionality $N \rightarrow \infty
 
 Surrogate model is a computational model constructed based on the data evaluated using true objective function. The surrogate acts as am approximation to the true objective function that is costly in most cases, so that the objective function estimation using the surrogate model although inaccurate can be achieved at vanishing cost. 
 
-The surrogate model can be applied to EAs as an approximate fitness to accelerate the evolution process \cite{Ratle:1998:ACE:645824.668750}. Despite the computational saving when using a surrogate model, issues can occur when the surrogate built leads to a false optima (i.e. the optima does not exist in the true objective function). This can  leads to potential divergence and unstable optimization path where the convergence property of the ES may not be well preserved.  
+The surrogate model can be applied to EAs as an approximate fitness to accelerate the evolution process \cite{Ratle:1998:ACE:645824.668750}. Despite the computational saving when using a surrogate model, issues can occur when the surrogate built leads to a false optima (i.e. the optima does not exist in the true objective function). This can leads to potential divergence and unstable optimization path where the convergence property of the ES may not be well preserved. Two approaches will be discussed. The first approach uses an EA to optimize a surrogate model and the second uses a surrogate model to assist EA. 
 
 
-\paragraph{Gaussin Process (GP)}
+\subsubsection{Gaussian Process (GP)}\label{sssec:GP}\hfill
 
 A GP is a probabilistic model where the observations are in a continues domain $\mathbb{R^N}$. It is determined completely determined by its mean function 
 \begin{align}
@@ -268,19 +268,29 @@ By Bayes' rule, $f_*$ is normally distributed with mean and covariance
 
 
 
-$\color{red}{\text{GP model}}$
+% $\color{red}{\text{GP model}}$
 
-Illustrate GP in 1D 
+% Illustrate GP in 1D 
 
-short but copy and bunch of refs
+% short but copy and bunch of refs
 
 $\color{red}{\text{3.2 Surrogate assisted EAs, Other algorithms uses GP models}}$
 
 
-\subsubsection{Surrogate model management}\label{sssec:surrogate_model_management}\hfill
+\subsubsection{Surrogate model assisted ES}\label{sssec:surrogate_assisted_ES}\hfill
+
+% \subsubsection{Surrogate model approach}
 
 
-One remedy in prevention of the false optima introduced by the surrogate model is to use surrogate model management that controls the choice of evaluation between true objective function and the surrogate model. Surrogate model management, according to Jin \cite{Jin:2005:CSF:1039803.1039805},  can be divided into three categories, namely, individual-based, generation-based, and population-based. In individual-based surrogate, some of the individuals within a generation are evaluated using the surrogate model. Others using the true objective function. Whereas the generation-based surrogate model, all the offspring in one generations are evaluated using either the surrogate model or the true objective function. In the case of population based management, the population is divided into some subpopulations where each subpopulation has its own surrogate model. The surrogate model only evaluates the offspring generated in the population it belongs to. 
+\paragraph{Surrogate model assisted by ES}
+The first one proposed by Buche et al. \cite{1424193} uses an EA optimized surrogate that is individual-based where a fraction of individuals in the generation is evaluated depending on the surrogate model error. 
+
+\paragraph{ES assisted by surrogate model}
+The other approach , ensuring the model accuracy and the optimal can be found. The other approach proposed by Kern et al. \cite{10.1007/11844297_95} throughly evaluate the surrogate model to find a relative precise optima where the surrogate model is updated whenever the optimal solution is inconsistent in two consecutive generations, i.e. new points are evaluated and added to the training set for the surrogate model.  
+
+% \subsubsection{Surrogate model management}\label{sssec:surrogate_model_management}\hfill
+% One remedy in prevention of the false optima introduced by the surrogate model is to use surrogate model management that controls the choice of evaluation between true objective function and the surrogate model. Surrogate model management, according to Jin \cite{Jin:2005:CSF:1039803.1039805},  can be divided into three categories, namely, individual-based, generation-based, and population-based. In individual-based surrogate, some of the individuals within a generation are evaluated using the surrogate model. Others using the true objective function. Whereas the generation-based surrogate model, all the offspring in one generations are evaluated using either the surrogate model or the true objective function. In the case of population based management, the population is divided into some subpopulations where each subpopulation has its own surrogate model. The surrogate model only evaluates the offspring generated in the population it belongs to. 
+
 
 % \subsubsection{Individual-based}
 
@@ -294,14 +304,7 @@ One remedy in prevention of the false optima introduced by the surrogate model i
 
 % The population is divided into some subpopulations where each subpopulation has its own surrogate model. The surrogate model only evaluates the offspring generated in the population it belongs to.    
 
-\subsubsection{Surrogate model approach}\label{sssec:surrogate_model_appraoch}\hfill
 
-Two approaches will be discussed. The first approach uses an EA to optimize a surrogate model and the second uses a surrogate model to assist EA.
-
-The first one proposed by Buche et al. \cite{1424193} uses an EA optimized surrogate that is individual-based where a fraction of individuals in the generation is evaluated depending on the surrogate model error. 
-
-
-The other approach , ensuring the model accuracy and the optimal can be found. The other approach proposed by Kern et al. \cite{10.1007/11844297_95} throughly evaluate the surrogate model to find a relative precise optima where the surrogate model is updated whenever the optimal solution is inconsistent in two consecutive generations, i.e. new points are evaluated and added to the training set for the surrogate model.  
 
 
 
