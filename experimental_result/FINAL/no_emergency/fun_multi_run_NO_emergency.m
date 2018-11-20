@@ -42,7 +42,7 @@ function val = fun_multi_run_NO_emergency(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE
    
 % iteration number for [mmlWithGP,mmlNoGP,1+1WithGP,1+1NoGP]    
 sigma0 = 1;
-NUM_OF_ITERATIONS = 2000;        
+NUM_OF_ITERATIONS = 4000;        
 
 % lambda = 10;
 % mu = 3;

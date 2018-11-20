@@ -180,15 +180,20 @@ The sphere is considered noisy when the fitness evaluation is inaccurate and the
 
 The objective function value on noisy sphere can be modeled by adding a Gaussian random variable with mean equals the true objective function value and some standard deviation referred to as noise strength $\sigma_\epsilon$. The noisy estimate of a candidate solution $y$ follows $f_{\epsilon}(y) = f(y) + \sigma_{\epsilon}z_\epsilon$ where $z_\epsilon \in \mathbb{R}$ is a standard normally distributed random variable that randomize the noise generated. By further introduces $\sigma_\epsilon^* = N \sigma_\epsilon / (2R^2)$, the normalized fitness noise \cite{1284729} and replace the accurate objective function evaluation with the noisy estimate, the normalized fitness advantage of $y$ on noisy sphere when $n \rightarrow \infty$ in Eq. (\ref{eqn:delta}) is
 \begin{align}
-\delta_\epsilon^* & = \delta + \sigma_\epsilon z_\epsilon\\
-&=  \frac{N}{2R^2}\left( f_\epsilon (x) - f_\epsilon(y)\right)  \nonumber\\ 
-& = \frac{N}{2R^2} (x^Tx - (x+\sigma z_{\text{step}})^T (x+\sigma z_{\text{step}}) +\sigma_{x,\epsilon} z_{x,\epsilon}-\sigma_{y,\epsilon} z_{y,\epsilon}) \nonumber\\
+% \delta_\epsilon^* & = \delta + \sigma_\epsilon z_\epsilon\\
+% &=  \frac{N}{2R^2}\left( f_\epsilon (x) - f_\epsilon(y)\right)  \nonumber\\ 
+% & = \frac{N}{2R^2} (x^Tx - (x+\sigma z_{\text{step}})^T (x+\sigma z_{\text{step}}) +\sigma_{x,\epsilon} z_{x,\epsilon}-\sigma_{y,\epsilon} z_{y,\epsilon}) \nonumber\\
+\delta_\epsilon^* 
+&=  \frac{N}{2R^2}\left( f(x) - f_\epsilon(y)\right)  \nonumber\\ 
+& = \frac{N}{2R^2} (x^Tx - (x+\sigma z_{\text{step}})^T (x+\sigma z_{\text{step}}) -\sigma_{y,\epsilon} z_{y,\epsilon}) \nonumber\\
 & = \frac{N}{2R^2} (-2 \sigma x^Tz_{\text{step}} - \sigma^2 \Vert z_{\text{step}}\Vert^2 +\sigma_\epsilon z_\epsilon) \nonumber\\
+& = \delta + \sigma_\epsilon z_\epsilon\nonumber\\
 &\overset{N \rightarrow \infty}{=} \sigma^* (z_{\text{step},1} + \vartheta z_\epsilon ) - \frac{\sigma^2}{2}, \label{eqn:delta_noise}{}
 % &\overset{N \rightarrow \infty}{=} \delta+\sigma_\epsilon^* z_\epsilon, \label{eqn:delta_noise}{}
 \end{align}
-where $\vartheta = \sigma_\epsilon^*/\sigma^*$ is the noise-to-signal ratio, defined to measure the noise level relative to the algorithm's step size, the term $\sigma_{x,\epsilon} z_{x,\epsilon}$ and $\sigma_{y,\epsilon} z_{y,\epsilon}$ denote the added noise for the centroid $x_{\text{centroid}}$ and the offspring $y$ respectively. Assuming independence, $\sigma_{x,\epsilon} z_{x,\epsilon}$ and $\sigma_{y,\epsilon} z_{y,\epsilon}$ can be viewed as a vector sum denoted as $\sigma_\epsilon z_\epsilon$. By substituting the noise term, we get the simplified Eq. (\ref{eqn:delta_noise}).
-$\color{red}{\text{wonder how to get Eq. (\ref{eqn:delta_noise}), in the paper you sent me it simply add a noise term } \sigma_\epsilon z_\epsilon \text{ to Eq. (\ref{eqn:delta})}}$
+where $\vartheta = \sigma_\epsilon^*/\sigma^*$ is the noise-to-signal ratio, defined to measure the noise level relative to the algorithm's step size, the term $\sigma_{y,\epsilon} z_{y,\epsilon}$ denote the added noise. By changing of variable, $\sigma_{y,\epsilon} z_{y,\epsilon}$ can be viewed as a standard normally distributed term $\sigma_\epsilon z_\epsilon$. By adding the noise term to Eq. (\ref{eqn:delta}), we get the simplified Eq. (\ref{eqn:delta_noise}).
+% where $\vartheta = \sigma_\epsilon^*/\sigma^*$ is the noise-to-signal ratio, defined to measure the noise level relative to the algorithm's step size, the term $\sigma_{x,\epsilon} z_{x,\epsilon}$ and $\sigma_{y,\epsilon} z_{y,\epsilon}$ denote the added noise for the centroid $x_{\text{centroid}}$ and the offspring $y$ respectively. Assuming independence, $\sigma_{x,\epsilon} z_{x,\epsilon}$ and $\sigma_{y,\epsilon} z_{y,\epsilon}$ can be viewed as a vector sum denoted as $\sigma_\epsilon z_\epsilon$. By substituting the noise term, we get the simplified Eq. (\ref{eqn:delta_noise}).
+% $\color{red}{\text{wonder how to get Eq. (\ref{eqn:delta_noise}), in the paper you sent me it simply add a noise term } \sigma_\epsilon z_\epsilon \text{ to Eq. (\ref{eqn:delta})}}$
 
 % The expected value of the normalized change in objective function value  
 % \begin{align}
@@ -204,7 +209,7 @@ where the $1/\lambda$ denotes the number of offspring evaluated in each iteratio
 
 The expected value of $z_{\text{step},1}$ derived by Arnold \cite{ARNOLD2001127} is
 \begin{align}\label{eqn:expected_z_step_1}{}
-E[z_{\text{step},1}] &= \frac{1}{\mu} \int_{-\infty}^\infty x p_{k;\lambda}(x)dx \\
+E[z_{\text{step},1}] &= \frac{1}{\mu} \int_{-\infty}^\infty x p_{k;\lambda}(x)dx \nonumber\\
 & = \frac{c_{\mu/\mu,\lambda}}{\sqrt{1+ \vartheta^2}}
 \end{align}
 where $p_{k;\lambda}$ corresponds to the probability density function of $z_{k;\lambda}$ that has $f(x+z_{i;\lambda})<f(x+z_{j;\lambda}), 1 \leq i<j \leq \lambda$, $c_{\mu/\mu,\lambda}$ is the $(\mu/\mu,\lambda)$-progress coefficient derived by Arnold and Beyer \cite{Arnold:2000:EMS:645825.669117} that follows
@@ -377,14 +382,22 @@ ensuring the model accuracy and the optimal can be found.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Analysis}\label{sec:analysis}
 
-To understand the potential implications of using surrogate models in EAs with varying population size, in this section, we use a simple model for the use of a surrogate model. Specifically, we propose an EA that, in each iteration, a population of $\lambda$ offspring $Y$ are generated and then evaluated by the surrogate model instead of true objective function followed by a intermediate recombination based on the inaccurate surrogate estimate where a true objective function evaluation is made for the centroid of the selected offspring, referred to as the recombined parent $x$. Offspring generation is the same as is discussed in $(\mu/\mu,\lambda)$-ES. The major difference in analysis between $(\mu/\mu,\lambda)$-ES on noisy sphere and $(\mu/\mu,\lambda)$-ES with surrogate model assistance on sphere lies in the evaluation of recombined parent $x$ where the former applies a noisy estimate and the latter uses a true objective function call. Therefore, the normalized fitness advantage of $y$ over $x$ is
+To understand the potential implications of using surrogate models in EAs with varying population size, in this section, we use a simple model for the use of a surrogate model. Specifically, we propose an EA that, in each iteration, a population of $\lambda$ offspring $Y$ are generated and then evaluated by the surrogate model instead of true objective function followed by a intermediate recombination based on the inaccurate surrogate estimate where a true objective function evaluation is made for the centroid of individuals selected, referred to as the centroid $x_{\text{centroid}}$. Offspring generation is the same as is discussed in $(\mu/\mu,\lambda)$-ES. The major difference  between $(\mu/\mu,\lambda)$-ES on noisy sphere and $(\mu/\mu,\lambda)$-ES with surrogate model assistance on sphere lies in the evaluation of selected individuals where the former uses a noise estimate and latter the surrogate model. The analysis is the same, therefore the normalized fitness advantage of an offspring $y$ over $x_{\text{centroid}})$ is 
+
 \begin{align}
-\delta_\epsilon &=  \frac{N}{2R^2}\left( f(x) - f_\epsilon(y)\right)  \nonumber\\ 
-& = \frac{N}{2R^2} (x^Tx - (x+\sigma z_{\text{step}})^T (x+\sigma z_{\text{step}}) -\sigma_{y,\epsilon} z_{y,\epsilon}) \nonumber\\
-& = \frac{N}{2R^2} (-2 \sigma x^Tz_{\text{step}} - \sigma^2 \Vert z_{\text{step}}\Vert^2 +\sigma_\epsilon z_\epsilon) \nonumber\\
-&\overset{N \rightarrow \infty}{=} \delta+\sigma_\epsilon^* z_\epsilon, \label{eqn:delta_surrogate}{}
+\delta_{\epsilon,GP}^* &=  \frac{N}{2R^2}\left( f( x_{\text{centroid}}^{(t)} ) - f_\epsilon( y ) \right)  \nonumber\\ 
+& = \delta_\epsilon^* \\
+&\overset{N \rightarrow \infty}{=} \delta+\sigma_\epsilon^* z_\epsilon. \label{eqn:delta_surrogate}{}
 \end{align}
-where by changing variable, the noise term $-\sigma_{y,\epsilon} z_{y,\epsilon}$ can be replaced by $\sigma_\epsilon z_\epsilon$ that gives exactly the same result as Eq. （\ref{eqn:delta_noise}). The analysis in Section \ref{sssec:analysis_sphere_combined} still holds. In this context, the noise-to-signal ratio $\vartheta$ can be interpreted as the measure of the surrogate model quality relative to step size of the algorithm. This analysis could be extend to biased surrogate models where the distribution mean is different from the exact objective function value\cite{DBLP:conf/ppsn/KayhaniA18}. 
+The analysis in Section \ref{sssec:analysis_sphere_combined} still holds which gives exactly the same result in Eq. （\ref{eqn:delta_noise}). In this context, the noise-to-signal ratio $\vartheta$ can be interpreted as the measure of the surrogate model quality relative to step size of the algorithm. This analysis could be extend to biased surrogate models where the distribution mean is different from the exact objective function value\cite{DBLP:conf/ppsn/KayhaniA18}. 
+% where the former applies a noisy estimate and the latter uses a true objective function call. Therefore, the normalized fitness advantage of $y$ over $x$ is
+% \begin{align}
+% \delta_\epsilon &=  \frac{N}{2R^2}\left( f(x) - f_\epsilon(y)\right)  \nonumber\\ 
+% & = \frac{N}{2R^2} (x^Tx - (x+\sigma z_{\text{step}})^T (x+\sigma z_{\text{step}}) -\sigma_{y,\epsilon} z_{y,\epsilon}) \nonumber\\
+% & = \frac{N}{2R^2} (-2 \sigma x^Tz_{\text{step}} - \sigma^2 \Vert z_{\text{step}}\Vert^2 +\sigma_\epsilon z_\epsilon) \nonumber\\
+% &\overset{N \rightarrow \infty}{=} \delta+\sigma_\epsilon^* z_\epsilon, \label{eqn:delta_surrogate}{}
+% \end{align}
+% where by changing variable, the noise term $-\sigma_{y,\epsilon} z_{y,\epsilon}$ can be replaced by $\sigma_\epsilon z_\epsilon$ that gives exactly the same result as Eq. （\ref{eqn:delta_noise}). The analysis in Section \ref{sssec:analysis_sphere_combined} still holds. In this context, the noise-to-signal ratio $\vartheta$ can be interpreted as the measure of the surrogate model quality relative to step size of the algorithm. This analysis could be extend to biased surrogate models where the distribution mean is different from the exact objective function value\cite{DBLP:conf/ppsn/KayhaniA18}. 
 
 Since the fitness of $\lambda$ offspring generated are evaluated by the surrogate model with vanishing cost. The objective function evaluation per iteration is 1 instead of $\lambda$ (for $(\mu/\mu,\lambda)$-ES without model assistance), therefore the normalized progress rate when dimensionality $N \rightarrow \infty$, by substituting $\lambda$ with 1 in Eq. (\ref{eqn:eta_noise_sphere}), the normalized progress rate is 
 \begin{align}\label{eqn:eta_surrogate}{}

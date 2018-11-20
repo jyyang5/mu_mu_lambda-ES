@@ -1,55 +1,112 @@
-% Plot dotted line in Expected fitness gain over sigma* for [(1+1)-ES]
-% solid line in convergence rate graph
-
-% a = openfig('test.fig');
-%(3/3,10),(5/5,20), (10,40)
-mu = 10;
-lambda = 40;                            % not used but for computing c_mu_lambda
-
-
-% First attempt 
-% sigma_star_temp = transpose(1:0.1:5);
+% % Plot dotted line in Expected fitness gain over sigma* for [(1+1)-ES]
+% % solid line in convergence rate graph
+% 
+% 
+% mu = 10;
+% lambda = 40;                            % not used but for computing c_mu_lambda
+% 
+% 
+% v = 0.1;
+% sigma_star_array = transpose(0.1:0.01:1.8);
+% z_start = 0.001;
+% z_step = 0.001; 
 % z_end = 10;
-% z_step = 0.00001;
-% % only one sigma
-% z = sigma_star_temp/2:z_step:z_end;
+% z_array = z_start:z_step:z_end;
+% z_LENGTH = length(z_array);
+% z = z_array+sigma_star_array;
+% 
+% 
 % % Probablity of making an objective function call
-% p_eval = normcdf(-sigma_star.^2/.2./(sqrt(sigma_star.^2+sigma_ep_star.^2)));
+% p_eval = normcdf(-1./2./sqrt(v.^2));
 % 
 % % Expected value of change in objective function 
-% sigma_star = sigma_star_temp;
-% fz = (sigma_star*z-sigma_star.^2/2)*exp(-z.^2/2)*normcdf((sigma_star.*z-sigma_star.^2./2)./sigma_ep_star);
+% sigma_star = sigma_star_array;
+% fz = (sigma_star*z-sigma_star.^2/2)*exp(-z.^2/2)*normcdf(v.*(z-transpose(repmat(sigma_star,1,z_LENGTH)/2)));
 % expected_delta = 1/sqrt(2*pi)*sum(fz)*z_step;
 % 
 % vartheta = expected_delta./p_eval;
+% 
 
-% Iterate over v
-
-v = 0.1;
-sigma_star_array = transpose(0.1:0.01:1.8);
-z_start = 0.001;
-z_step = 0.001; 
-z_end = 10;
-z_array = z_start:z_step:z_end;
-z_LENGTH = length(z_array);
-z = z_array+sigma_star_array;
-
-% sigma_star_temp = transpose(1:0.1:5);
-% sigma_star_start = 0.2;
-% z_step = 0.01;
+% sigma_star_array = transpose(0.1:0.01:1.8);
+% z_start = 0.001;
+% z_step = 0.001; 
 % z_end = 10;
+% z_array = z_start:z_step:z_end;
+% z_LENGTH = length(z_array);
+% z = z_array+sigma_star_array;
 
-% only one sigma
-% z = sigma_star_temp/2:z_step:z_end;
-% Probablity of making an objective function call
-p_eval = normcdf(-1./2./sqrt(v.^2));
+sigma_star = 0.01:0.01:8.01;
+sigma_star_trans = transpose(sigma_star);
+z_start = 0;
+z_step = 0.1; 
+z_end = 20;
+% z_step = (z_end-z_start)/z_LENGTH; 
+z = (z_start:z_step:z_end)+sigma_star_trans./2;% sigma_star/2:(20-sigma_star/2)/z_LENGTH:20;
+z_LENGTH = length(z_start:z_step:z_end);
 
-% Expected value of change in objective function 
-sigma_star = sigma_star_array;
-fz = (sigma_star*z-sigma_star.^2/2)*exp(-z.^2/2)*normcdf(v.*(z-transpose(repmat(sigma_star,1,z_LENGTH)/2)));
-expected_delta = 1/sqrt(2*pi)*sum(fz)*z_step;
 
-vartheta = expected_delta./p_eval;
+% for v=0.1:0.1:10
+% % Probablity of making an objective function call
+% p_eval = normcdf(-sigma_star_trans./2./sqrt(1+v.^2));
+% 
+% fz = (repmat(sigma_star_trans,1,z_LENGTH).*z-repmat(sigma_star_trans.^2/2,1,z_LENGTH)).*exp(-z.^2/2).*normcdf(1./v.*(z-repmat(sigma_star_trans./2,1,z_LENGTH)));
+% expected_delta = 1/sqrt(2*pi)*sum(fz,2)*z_step;
+% result = expected_delta./p_eval;
+% fprintf("v = %d, max=%d\n",v,max(result));
+% end
+
+v = 4;
+p_eval = normcdf(-sigma_star_trans./2./sqrt(1+v.^2));
+figure(1);
+plot(sigma_star_trans,p_eval);
+
+fz = (repmat(sigma_star_trans,1,z_LENGTH).*z-repmat(sigma_star_trans,1,z_LENGTH).^2/2).*exp(-z.^2/2).*normcdf(1./v.*(z-repmat(sigma_star_trans./2,1,z_LENGTH)));
+expected_delta = 1/sqrt(2*pi)*sum(fz,2).*z_step;
+result = expected_delta./p_eval;
+figure(2);
+plot(sigma_star_trans,result);
+
+
+
+
+
+% fz = (sigma_star*z-sigma_star.^2/2)*exp(-z.^2/2)*normcdf(1./v.*(z_array-sigma_star.^2./2));
+% expected_delta = 1/sqrt(2*pi)*sum(fz)*z_step;
+
+% z_step = 0.0001;
+v=1;
+% Matrix approach
+eta1 = @(sigma_star) 1/sqrt(2*pi)*sum((repmat(transpose(sigma_star),1,length(0:z_step:20)).*((0:z_step:20)+transpose(sigma_star./2))...
+    -repmat(transpose(sigma_star),1,length(0:z_step:20)).^2/2).*exp(-((0:z_step:20)+...
+    transpose(sigma_star)).^2/2).*normcdf(1./v.*(((0:z_step:20)+transpose(sigma_star./2))-...
+    repmat(transpose(sigma_star),1,length(0:z_step:20))./2)),2).*z_step./normcdf(-transpose(sigma_star)./2./sqrt(1+v.^2));
+% sigma_star = 1:2:5;
+% sigma_star = 2;
+v=1;
+fminsearch(eta1,3)
+% eta1 = @(sigma_star,v) 1/sqrt(2*pi)*sum((sigma_star.*z_array-sigma_star.^2/2)*exp(-z_array.^2/2)*normcdf(1./v.*(z_array-sigma_star.^2./2)))*z_step./normcdf(-1./2./sqrt(v.^2));
+% temp = 1/sqrt(2*pi)*sum((sigma_star.*(sigma_star/2:(20-sigma_star/2)/z_LENGTH:20)-sigma_star.^2/2)*exp(-(sigma_star/2:(20-sigma_star/2)/z_LENGTH:20).^2/2)*normcdf(1./v.*((sigma_star/2:(20-sigma_star/2)/z_LENGTH:20)-sigma_star.^2./2)))*((20-sigma_star/2)/z_LENGTH)./normcdf(-1./2./sqrt(v.^2))
+% eta1 = @(sigma_star,v) 1/sqrt(2*pi)*sum((sigma_star.*(sigma_star/2:(20-sigma_star/2)/z_LENGTH:20)-sigma_star.^2/2)*exp(-(sigma_star/2:(20-sigma_star/2)/z_LENGTH:20).^2/2)*normcdf(1./v.*((sigma_star/2:(20-sigma_star/2)/z_LENGTH:20)-sigma_star.^2./2)))*((20-sigma_star/2)/z_LENGTH)./normcdf(-1./2./sqrt(v.^2));
+
+
+% sigma_star = [0,2];
+% fminsearch(eta1,sigma_star)
+
+
+function val = eta(sigma_star,v)
+    z_start = sigma_star/2;
+    z_LENGTH = 10000;
+    z_end = 20;
+    z_step = (z_end-z_start)/z_LENGTH; 
+    z_array = z_start:z_step:z_end;
+    % Probablity of making an objective function call
+    p_eval = normcdf(-1./2./sqrt(v.^2));
+    
+    fz = (sigma_star*z-sigma_star.^2/2)*exp(-z.^2/2)*normcdf(1./v.*(z_array-sigma_star.^2./2));
+    expected_delta = 1/sqrt(2*pi)*sum(fz)*z_step;
+    val = expected_delta./p_eval;
+    
+end
 
 
 
