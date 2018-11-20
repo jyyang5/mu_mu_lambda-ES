@@ -12,7 +12,7 @@
 %            error
 %            save file
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function val = fun_multi_run_NOGP(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR,FIGURE_NUM)
+function val = fun_multi_run_NO_GP(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,DECREASE_FACTOR,FIGURE_NUM)
 %Input:
 %   fname:          an index 
 %                       1 for linear
@@ -70,17 +70,18 @@ sigma_matrix = zeros(NUM_OF_RUNS,10000);           % store all sigma
 T_array = zeros(NUM_OF_RUNS,1);                    % # of objective function evaluations for the stop creteria
 f_x_matrix = zeros(NUM_OF_RUNS,10000);             % store all fx
 convergence_rate_array = zeros(NUM_OF_RUNS,1);     % convergence rate 
-% GP_error_matrix = zeros(NUM_OF_RUNS,10000);        % store similar to noise-to-signal ratio
+GP_error_matrix = zeros(NUM_OF_RUNS,10000);        % store similar to noise-to-signal ratio
 sigma_star_matrix = zeros(NUM_OF_RUNS,10000);      % normalized step size 
 success_rate_array = zeros(NUM_OF_RUNS,1);         % success rate 
-% delta_matrix = zeros(NUM_OF_RUNS,10000);           % each [i,j] stores a delta array 
-% emergency_rate_array = zeros(NUM_OF_RUNS,1);                    % # of objective function evaluations for the stop creteria
+delta_matrix = zeros(NUM_OF_RUNS,10000);           % each [i,j] stores a delta array 
+emergency_rate_array = zeros(NUM_OF_RUNS,1);                    % # of objective function evaluations for the stop creteria
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Replicates for NUM_OF_RUNS
 
 mu = ceil(lambda/4);
 for i = 1:NUM_OF_RUNS
+    x0 = randn(n,mu);
     a = mml_noGP_CSA_Niko(fname,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE);
     t_array(i) = cell2mat(a(1));
     sigma_matrix(i,:) = cell2mat(a(4));
@@ -168,8 +169,6 @@ hold on;
 mu = ceil(lambda/4);
 d = sprintf('(%d/%d,%d)-ES',mu,mu,lambda);
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 1.objective function [row 1]
 subplot(subplot_ROW,subplot_COL,fname);
@@ -202,18 +201,13 @@ xlabel('objective function calls','FontSize',15);
 
 % 2.objective function [row 2]
 subplot(subplot_ROW,subplot_COL,fname+5);
-t_range = (1:1:t_med).*(lambda+1);
-if lambda==0
-    t_start = TRAINING_SIZE+1+2;
-    plot(1:1:t_med,f_x_med(1:T_med),'DisplayName',d);hold on;
-else 
-    t_start = ceil(TRAINING_SIZE/lambda);
-    fx_range1 = f_x_med(1:t_start);
-    fx_range2 = f_x_med(t_start+1:t_med);
-    t_range1 = 1:lambda:lambda*t_start;
-    t_range2 = lambda*t_start+1:lambda*t_start+length(fx_range2);
-    plot([t_range1 t_range2], [fx_range1 fx_range2],'DisplayName',d);hold on;% mml with GP
-end
+t_start = 1;
+t_range1 = 1;
+t_range2 = (2:1:t_med).*(lambda+1);
+fx_range1 = f_x_med(1:t_start);
+fx_range2 = f_x_med(t_start+1:t_med);
+plot([t_range1 t_range2], [fx_range1 fx_range2],'DisplayName',d);hold on;% mml noGP
+
 if(fname==1)
     ylabel('objective function value','FontSize',15);%
 end
@@ -226,13 +220,9 @@ legend('show');
 % 3.normalized step size [row 4](only makes sense for sphere functions)
 if(fname<4)
     subplot(subplot_ROW,subplot_COL,fname+10);
-    if lambda==0
-        plot(1:1:T_med,sigma_star_matrix_med(1:T_med),'DisplayName',d);hold on;
-    else 
-        sigma_star_range1 = sigma_star_matrix_med(1:t_start);
-        sigma_star_range2 = sigma_star_matrix_med(t_start+1:t_med);
-        plot([t_range1 t_range2], [sigma_star_range1 sigma_star_range2],'DisplayName',d);hold on;
-    end
+    sigma_star_range1 = sigma_star_matrix_med(1:t_start);
+    sigma_star_range2 = sigma_star_matrix_med(t_start+1:t_med);
+    plot([t_range1 t_range2], [sigma_star_range1 sigma_star_range2],'DisplayName',d);hold on;
     if(fname==1)
         ylabel('normalized step size \sigma*','FontSize',15);%
     end
@@ -242,8 +232,101 @@ if(fname<4)
     legend('-DynamicLegend'); 
     legend('show');
 end
-saveas(gcf,'merged_plot_emergency_v1.fig'); 
+saveas(gcf,'merged_plot_noGP_v2.fig'); 
 
+    subplot_ROW = 1;
+    subplot_COL = 5;    
+    xNameSprintf = sprintf('success rate');
+    % Plot success rate for a good step
+    xLimit = [0 1];
+    plot_pdf(success_rate_array,T_med,FIGURE_NUM+1,subplot_ROW,subplot_COL,fname,lambda,xNameSprintf,xLimit);
+    legend('-DynamicLegend'); 
+    legend('show');
+    saveas(gcf,'success_NO_GP_v2.fig'); 
+    
+    
+    function plot_pdf(data,T_med,figureName,fig_row,fig_col,fig_index,lambda,xNameSprintf,xLimit)
+%  Input: 
+%       handler for histogram
+%  Plot:
+    % Histogram and pdf function
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % For compact subplots 
+    make_it_tight = true;
+    subplot = @(m,n,p) subtightplot (m, n, p, [0.05 0.03], [0.05 0.03], [0.05 0.03]);
+    if ~make_it_tight,  clear subplot;  end
+    
+    
+    figure(figureName);
+    subplot(fig_row,fig_col,fig_index);
+    if lambda==0
+        d = sprintf('(1+1)-ES');
+    else
+        mu = ceil(lambda/4);
+        d = sprintf('(%d/%d,%d)-ES',mu,mu,lambda);
+    end
+    if(T_med == 2000) % early stopping
+        h2 = histogram(nonzeros(data),'Normalization','probability','DisplayName',d);hold on;
+    else
+        h2 = histogram(nonzeros(data),'Normalization','probability','DisplayName',d);hold on;
+    end
+    
+    h2.LineWidth=0.5;
+    
+    if(lambda==0)
+        h2.EdgeColor= [0  0.4470 0.7410];
+    elseif(lambda == 10)
+        h2.EdgeColor= [0.8500  0.3250  0.0980];
+    elseif(lambda==20)
+        h2.EdgeColor= [0.9290  0.6940  0.1250];
+    elseif(lambda==40)
+        h2.EdgeColor= [0.4940  0.1840  0.5560];
+    end
+    if(rem(fig_index,fig_col)==1)
+        ylabel('probability','FontSize',15);%
+    end
+    % Set titles for the first row 
+    if(fig_index == 1)
+        d3 =sprintf('linear sphere');
+        title(d3,'fontsize',15);
+    elseif(fig_index == 2)
+        d3 =sprintf('quadratic sphere');
+        title(d3,'fontsize',15);
+    elseif(fig_index == 3)
+        d3 =sprintf('cubic sphere');
+        title(d3,'fontsize',15);
+    elseif(fig_index == 4)
+        d3 =sprintf('Schwefel function');
+        title(d3,'fontsize',15);
+    elseif(fig_index == 5)
+        d3 =sprintf('quartic function');
+        title(d3,'fontsize',15);
+    end
+    legend('-DynamicLegend'); 
+    legend('show');
+    xlim(xLimit);
+    xlabel(xNameSprintf,'FontSize',15); 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Plot pdf curve
+    figure(figureName);
+    subplot(fig_row,fig_col,fig_index+fig_col);
+    value = h2.Values;		% height of the bar
+    width = h2.BinWidth;				% width of the bar
+    range = h2.BinLimits;		% [startX endX]
+    % Did not do the exact range right ends at [range(1)+width/2:width:range(2)-width/2] 
+    plot((range(1)+width/2):width:(range(2)),value,'DisplayName',d);hold on;
+    if(rem(fig_index,fig_col)==1)
+        ylabel('probability','FontSize',15);%
+    end
+    xlim(xLimit);
+    xlabel(xNameSprintf,'FontSize',15); 
+    % set(gca, 'YScale', 'log');
+    % title('step size \sigma','FontSize',20);
+    legend('-DynamicLegend'); 
+    legend('show');
+    
+
+end
 
 
 val = {t_array,sigma_matrix,T_array,f_x_matrix,convergence_rate_array,GP_error_matrix,sigma_star_matrix,success_rate_array,delta_matrix,emergency_rate_array};

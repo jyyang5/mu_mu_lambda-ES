@@ -246,7 +246,7 @@ Squared exponential kernel, a commonly used covariance function is applied in th
 \end{align}
 where $\theta$ is the length scale factor of the GP.
 
-The GP is defined using the notation of $\color{red}{\text{slides by Arnold }}$: let $f(x)$ be an unknown scalar function and $x \in \mathbb{R^N}$ is a point in an $N-$dimensional space. Evaluate $f$ at $K$ data points $X=(x_1,x_2,...,x_n)$ yields function values $f = (f(x_1),f(x_2),...,f(x_n))$. We want to predict new function values $f(X_*)$ of a test set $X_*$ with size $n_*$.
+The GP is defined using the notation and content from [$\color{red}{\text{slides by Arnold }}$]: let $f(x)$ be an unknown scalar function and $x \in \mathbb{R^N}$ is a point in an $N-$dimensional space. Evaluate $f$ at $K$ data points $X=(x_1,x_2,...,x_n)$ yields function values $f = (f(x_1),f(x_2),...,f(x_n))$. We want to predict new function values $f(X_*)$ of a test set $X_*$ with size $n_*$.
 
 The vector of known function values and the predicted value $(f,f_*)$ are jointly normally distributed with mean $(\mu,\mu_*)$ and covariance matrix
 
@@ -285,19 +285,17 @@ By Bayes' rule, $f_*$ is normally distributed with mean and covariance
 \paragraph{Surrogate model assisted by ES}
 Gaussian Process Optimization Procedure (GPOP) proposed by Buche et al. \cite{1424193} uses an EA optimized surrogate where the surrogate is individual-based, meaning a fraction of individuals in each generation is evaluated depending on the surrogate model error. 
 
-A GP is constructed using a set of evaluated points from random sampling in previous iterations, a Covariance Matrix Adaptation Evolution Strategy (CMA-ES) is used for parameter search in order to find the minimum of the GP prediction. To avoid false optima, a merit function is used to help explore new regions of decision space, regarded as the fitness function for the CMA-ES.   
-Standard deviation is used as the merit function that follows 
+A GP is constructed using a set of evaluated points from random sampling in previous iterations, a Covariance Matrix Adaptation Evolution Strategy (CMA-ES) is used for parameter search in order to find the minimum of the GP prediction. To avoid false optima, a merit function is used to help explore new regions of the decision space, regarded as the fitness function for the CMA-ES.   
+Predicted standard deviation  is used as the merit function that follows 
 \begin{align}
 f_M (x) = \hat f(x) - \alpha \sigma_{\text{GP}} (x),
 \end{align}
-where $\hat f(x)$ and $\sigma_{\text{GP}} (x)=\sqrt{\sum_*}$ (considered a single input in Eq. \ref{eqn:GP_cov}) are the GP estimate and standard deviation for data $x$, $\alpha \geq 0$ balances the two terms via scaling the density measure, a larger $\alpha$ pushes the search harder into unexplored region. 4 merit functions with $\alpha =0,1,2,4$ are optimized in the context. Finally, the resulting minimum is added to the training set.
+where $\hat f(x)$ and $\sigma_{\text{GP}} (x)=\sqrt{\sum_*}$ (considered a single input $x \prime$ in Eq. (\ref{eqn:GP_cov})) are the GP estimate and standard deviation for data $x$, $\alpha \geq 0$ balances the two terms via scaling the density measure where a larger $\alpha$ pushes the search harder into unexplored region. 4 merit functions with $\alpha =0,1,2,4$ are used and being optimized in the context. Finally, the resulting minimum is added to the training set.
 
-To approximate the true objective function with arbitrary precision, a local model is preferred in the sense it uses less training points and more precise local approximation compared with a global model. A local model considers a limited region that is well-approximated as opposed to a 
-global approximation using all evaluated points to fit the overall landscape of the search space.
-The search space moves around the current best solution and is restricted to a local neighbourhood of the current best point evaluated for the sake of model accuracy, meaning only points within the region estimated by the model are regarded reliable. In each iteration, $N_C$ points are sampled. If more than half of the sampled points are not evaluated successfully (falls out the well-approximated region of GP), $N_C/2$ points are generated using the $(2,10)-CMAES$ and evaluated using the true objective function followed by a model update that chooses the best evaluated point $x_{\text{best}}$ and re-builds the training set using $N_C$ closest points to $x_{\text{best}}$ and $N_R$ most recent successfully evaluated points. The GP parameter is then optimized by ES and each predicted optima is found using the corresponding merit function. The unevaluated optima is evaluated using the true objective function and the process repeats.
+To approximate the true objective function with arbitrary precision, a local model is preferred regarding a smaller number of training points and more precise local approximation compared with a global model. A local model considers a limited region that is well-approximated as opposed to a global approximation using all evaluated points to fit the overall landscape of the search space. In the local model, the search space moves around the current best solution and is restricted to a local neighbourhood of the current best point evaluated for the sake of model accuracy, meaning only points estimated within the region are considered reliable. In each iteration, $N_C$ points are sampled. If more than half of the sampled points are not evaluated successfully (falls out the well-approximated region of GP), another $N_C/2$ points are generated using the $(2,10)-CMAES$ and evaluated using the true objective function followed by a model update that chooses the best evaluated point $x_{\text{best}}$ and re-builds the training set using the $N_C$ closest points to $x_{\text{best}}$ and $N_R$ most recent successfully evaluated points. The GP parameter is then optimized by ES, each predicted optima is found using the corresponding merit function where the unevaluated optima is evaluated using the true objective function and the process repeats.
 
-
-
+Experimental results show GPOP can be effective in solving unimodal functions and can achieve an average speed-up (number of objective function evaluations to solve the optimization problem within required precision using CMA divided by that of using GPOP) of 3 to 6 for quadratic sphere, Schwefel problem and Rosenbrock's function. It shows that the GPOP cannot determine the global minima for $n>2$ given the large number of local minima and the high oscillation of the function value between minima. GPOP is problem-specific in terms of setting training set size 
+The main problem with GPOP is its higher computational cost of the optimization procedure that scales $O(N^3)$ and $O(N)$ with training size and problem dimension respectively, therefore GPOP should be considered mainly for computational expensive problems.
 
 
 
@@ -485,22 +483,40 @@ One signle iteration fo the surrogate model assisted $(\mu/\mu,\lambda)$-ES usin
 
 Five ten-dimensional test problems are used to test if the step size of the strategy has been appropriately adapted, namely sphere functions $f(x) = (x^Tx)^{\alpha/2}$ for $\alpha = \{1,2,3 \}$ referred to as linear, quadratic and cubic spheres, $f(x) = \sum_{i=1}^n(\sum_{j=1}^i x_j)^2$ (i.e. a convex quadratic function with condition number of the Hessian approximately equal to 175.1) referred to as Schwefel's Problem 1.2 \cite{Schwefel:1981:NOC:539468}) and quartic function \cite{DBLP:conf/ppsn/KayhaniA18} defined as $f(x) = \sum_{i=1}^{n-1} \left[ \beta(x_{i+1} -x_i^2)^2 + (1-x_i)^2 \right]$ where $\beta = 1$. The quartic function becomes the Rosenbrock function when the condition number of the Hessian at the optimizer exceeds 3,500, making it very hard to find the global optima without adapting the shape of mutation distribution. We use the quartic function in the context with $\beta=1$  and condition number of the Hessian at the optimizer equals to 49.0. The value of global optima for all test functiosn is zero. For each test problem, 1000 runs are conducted both for surrogate assisted $(1+1)$-ES and surrogate assisted $(\mu/\mu,\lambda)$-ES where a parental population size $\lambda=10,20,40$ with $\mu = \lceil \lambda / 4 \rceil$ are used. 
 
-For surrogate model, we use Gaussian process with squared exponential kernel and the length scale parameter in the kernel is set proportional to the square of the dimension and the step size of the ES. For simplicity, the length scale is set to $16 \sigma \sqrt{n}$ opposed to $8$ from the surrogate assisted (1+1)-ES \cite{DBLP:conf/ppsn/KayhaniA18}. In our experience, using a smaller or larger value by a factor of two i.e. $2,4,8$ and $32$ does not give a significant improvement, so we use to $16$ in the context.
+For surrogate model, we use Gaussian process with squared exponential kernel and the length scale parameter in the kernel is set proportional to the square of the dimension and the step size of the ES. For simplicity, the length scale is set to $8 \sigma \sqrt{n}$ as is used in the surrogate assisted (1+1)-ES \cite{DBLP:conf/ppsn/KayhaniA18}. In our experience, using a smaller or larger value by a factor of two i.e. $2,4$ and $16,32$ does not give a significant improvement, so we stick to $8$ in the context.
+
+\begin{table*} 
+\caption{Median test results without model assistance.}
+\begin{tabular}{ l *{4}{D{.}{.}{4}} }
+\toprule
+\textbf{} & \multicolumn{4}{c}{\textbf{Median number of objective function calls  }} \\
+\cmidrule(lr){2-5}
+\textbf{Test functions} &  \multicolumn{1}{c}{$(3/3,10)$-ES} & \multicolumn{1}{c}{$(5/5,20)$-ES} & \multicolumn{1}{c}{$(10/10,40)$-ES}  \\
+\midrule
+\texttt{linear sphere} 	      &3300  &4809  &8405      \\
+\texttt{quadratic sphere}     &1694  &2436  &4182   \\ 
+\texttt{cubic sphere}         &1166  &1659  &2788    \\ 
+\texttt{Schwefel' s function}&6259 & 8064 &13325 \\
+\texttt{quartic function}     &6600 &8442 &14637   \\ 
+\bottomrule             
+\end{tabular}
+\label{Tab:Test_result_noGP_mml}
+\end{table*}
 
 
 \begin{table*} 
-\caption{Median test results using CSA.}
+\caption{Median test results with model assistance.}
 \begin{tabular}{ l *{5}{D{.}{.}{4}} }
 \toprule
 \textbf{} & \multicolumn{5}{c}{\textbf{Median number of objective function calls (speed-up) }} \\
 \cmidrule(lr){2-6}
 \textbf{Test functions} & \multicolumn{1}{c}{$(1+1)$-ES} & \multicolumn{1}{c}{$(3/3,10)$-ES} & \multicolumn{1}{c}{$(5/5,20)$-ES} & \multicolumn{1}{c}{$(10/10,40)$-ES}  \\
 \midrule
-\texttt{linear sphere} 	      &505  &754(0.67)  &689(0.73)  &755(0.67)      \\
-\texttt{quadratic sphere}     &214  &310(0.69)  &245(0.87)  &228(0.93)    \\ 
-\texttt{cubic sphere}         &202  &274(0.74)  &250(0.81)  &254(0.80)    \\ 
-\texttt{Schwefel' s function}&1496 & +\infty(/) & +\infty(/) & +\infty(/)\\
-\texttt{quartic function}     &1244 &1006(1.2) &750(1.7) &662(1.9)    \\ 
+\texttt{linear sphere} 	      &502  &756(4.4)  &696(6.9)  &761(11.0)      \\
+\texttt{quadratic sphere}     &214  &309(5.5)  &245(9.9)  &231(18.1)    \\ 
+\texttt{cubic sphere}         &205  &273(4.3)  &249(6.7)  &253(6.7)    \\ 
+\texttt{Schwefel' s function}&1503 & +\infty(/) & +\infty(/) & +\infty(/)\\
+\texttt{quartic function}     &1265 &1000(6.6) &746(11.3) &667(21.9)    \\ 
 \bottomrule             
 \end{tabular}
 \label{Tab:Test_result}
@@ -678,18 +694,18 @@ Given a success rate approximately 0.48 for all population size in all sphere fu
 
 
 \begin{table*} 
-\caption{Median test results (CSA with emergency).}
+\caption{Median test results (safeguard of plus-selection).}
 \begin{tabular}{ l *{5}{D{.}{.}{4}} }
 \toprule
 \textbf{} & \multicolumn{5}{c}{\textbf{Median number of objective function calls (speed-up) }} \\
 \cmidrule(lr){2-6}
 \textbf{Test functions} & \multicolumn{1}{c}{$(1+1)$-ES} & \multicolumn{1}{c}{$(3/3,10)$-ES} & \multicolumn{1}{c}{$(5/5,20)$-ES} & \multicolumn{1}{c}{$(10/10,40)$-ES}  \\
 \midrule
-\texttt{linear sphere} 	      &505  &364(1.4)  &315(1.6)  &322(1.6)      \\
-\texttt{quadratic sphere}     &214  &211(1.0)  &162(1.3)  &146(1.5)    \\ 
-\texttt{cubic sphere}         &203  &213(1.0)  &177(1.1)  &176(1.2)    \\ 
-\texttt{Schwefel' s function}&1496 & 2002(0.747) &1352(1.1)  & 1067(1.4)\\
-\texttt{quartic function}     &1244 &1509(0.8) &987(1.3)&797(1.6)    \\ 
+\texttt{linear sphere} 	      &505  &367(9.0)  &319(15.1)  &319(26.3)      \\
+\texttt{quadratic sphere}     &214  &211(8.0)  &164(14.9)  &146(29.0)    \\ 
+\texttt{cubic sphere}         &203  &213(5.5)  &176(9.4)  &176(15.8)    \\ 
+\texttt{Schwefel's function}&1496 & +\infty(/) &1355(6.0) & 1051(12.7)\\
+\texttt{quartic function}     &1244 &1511(4.4) &1016(8.3)&796(18.4)    \\ 
 \bottomrule             
 \end{tabular}
 \label{Tab:Test_result_emergency}
