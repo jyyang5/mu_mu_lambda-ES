@@ -106,7 +106,7 @@ y_i = x_{\text{centroid}} + \sigma z_i, 1\leq i \leq \lambda
 \end{align}
 where $z_i$ represents the mutation, $x_{\text{centroid}}$ is the centroid obtained after recombination in each iteration. 
 
-Here we consider two special cases for the general ES, namely (1+1)-ES and $(\mu/\mu,\lambda)$-ES. The (1+1)-ES ($\mu = \rho = \lambda=1 $ with plus-selection) generates a single offspring $y = x + \sigma z$ in each generation ($x=x_{\text{centroid}}$, the parental population $Y = \{y\}$), the fitness of $y$ is evaluated and compared with its parent $x$. The parent population $X$ is updated iff. the offspring is superior to its parent i.e. $f(y)<f(x)$. Whereas the $(\mu/\mu,\lambda)$-ES ($\mu=\rho$ with comma-selection) generates $\lambda$ offspring with offspring population $Y = \{ y_i: y_i = x_{\text{centroid}} + \sigma z_i, 1\leq i \leq \lambda \}$, the parental population $X$ is updated by selecting the best $\mu$ individuals from $Y$ i.e. $X = \text{select\_best}(\mu,Y,fY)$ where $fY = \{f(y_i):y_i \in Y \}$.
+Here we consider two special cases for the general ES, namely (1+1)-ES and $(\mu/\mu,\lambda)$-ES. The (1+1)-ES ($\mu = \rho = \lambda=1 $ with plus-selection) generates a single offspring $y = x + \sigma z$ in each generation ($x=x_{\text{centroid}}$, the parental population $Y = \{y\}$), the fitness of $y$ is evaluated and compared with its parent $x$. The parent population $X$ is updated iff. the offspring is superior to its parent i.e. $f(y)<f(x)$. Whereas the $(\mu/\mu,\lambda)$-ES ($\mu=\rho$ with comma-selection) generates $\lambda$ offspring with offspring population $Y = \{ y_i: y_i = x_{\text{centroid}} + \sigma z_i, 1\leq i \leq \lambda \}$, the parental population $X$ is updated by selecting the best $\mu$ individuals from $Y$ i.e. $X = \text{select\_best}(\mu,Y,fY)$ where $fY = \{f(y_i):y_i \in Y \}$. A Covariance Matrix Adaptation Evolution Strategy (CMA-ES) can be viewed as a $(\mu/\mu,\lambda)$-ES with a covariance matrix where the covariance matrix models the distribution of the objective function that helps to generate mutation under the distribution of the problem. It is very helpful in dealing with ill-conditioning ($\color{red}{\text{def of ill-conditioning}}$). 
 
 % $\color{red}{\text{giva an algorithm -> repeat 3 times}}$
 
@@ -191,7 +191,7 @@ The objective function value on noisy sphere can be modeled by adding a Gaussian
 &\overset{N \rightarrow \infty}{=} \sigma^* (z_{\text{step},1} + \vartheta z_\epsilon ) - \frac{\sigma^2}{2}, \label{eqn:delta_noise}{}
 % &\overset{N \rightarrow \infty}{=} \delta+\sigma_\epsilon^* z_\epsilon, \label{eqn:delta_noise}{}
 \end{align}
-where $\vartheta = \sigma_\epsilon^*/\sigma^*$ is the noise-to-signal ratio, defined to measure the noise level relative to the algorithm's step size, the term $\sigma_{y,\epsilon} z_{y,\epsilon}$ denote the added noise. By changing of variable, $\sigma_{y,\epsilon} z_{y,\epsilon}$ can be viewed as a standard normally distributed term $\sigma_\epsilon z_\epsilon$. By adding the noise term to Eq. (\ref{eqn:delta}), we get the simplified Eq. (\ref{eqn:delta_noise}).
+where $\vartheta = \sigma_\epsilon^*/\sigma^*$ is the noise-to-signal ratio, defined to measure the noise level relative to the algorithm's step size, the term $\sigma_{y,\epsilon} z_{y,\epsilon}$ denotes the added noise. By changing of variable, $\sigma_{y,\epsilon} z_{y,\epsilon}$ can be viewed as a standard normally distributed term $\sigma_\epsilon z_\epsilon$ and by adding the noise term to Eq. (\ref{eqn:delta}), we get the simplified Eq. (\ref{eqn:delta_noise}).
 % where $\vartheta = \sigma_\epsilon^*/\sigma^*$ is the noise-to-signal ratio, defined to measure the noise level relative to the algorithm's step size, the term $\sigma_{x,\epsilon} z_{x,\epsilon}$ and $\sigma_{y,\epsilon} z_{y,\epsilon}$ denote the added noise for the centroid $x_{\text{centroid}}$ and the offspring $y$ respectively. Assuming independence, $\sigma_{x,\epsilon} z_{x,\epsilon}$ and $\sigma_{y,\epsilon} z_{y,\epsilon}$ can be viewed as a vector sum denoted as $\sigma_\epsilon z_\epsilon$. By substituting the noise term, we get the simplified Eq. (\ref{eqn:delta_noise}).
 % $\color{red}{\text{wonder how to get Eq. (\ref{eqn:delta_noise}), in the paper you sent me it simply add a noise term } \sigma_\epsilon z_\epsilon \text{ to Eq. (\ref{eqn:delta})}}$
 
@@ -205,7 +205,7 @@ The normalized progress rate when dimensionality $N \rightarrow \infty$ follows
 \begin{align}\label{eqn:eta_noise_sphere_raw}{}
 \eta = \frac{1}{\lambda}E[ \delta_\epsilon^*] \approx \frac{1}{\lambda} E \left[ \sigma^* (z_{\text{step},1} + \vartheta z_\epsilon ) - \frac{\sigma^2}{2}  \right]
 \end{align}
-where the $1/\lambda$ denotes the number of offspring evaluated in each iteration i.e. the objective function evaluation per iteration for $(\mu/\mu,\lambda)$-ES is $\lambda$.
+where $1/\lambda$ denotes the number of offspring evaluated in each iteration i.e. the objective function evaluation per iteration for $(\mu/\mu,\lambda)$-ES is $\lambda$.
 
 The expected value of $z_{\text{step},1}$ derived by Arnold \cite{ARNOLD2001127} is
 \begin{align}\label{eqn:expected_z_step_1}{}
@@ -290,12 +290,12 @@ By Bayes' rule, $f_*$ is normally distributed with mean and covariance
 \paragraph{Surrogate model assisted by ES}
 Gaussian Process Optimization Procedure (GPOP) proposed by Buche et al. \cite{1424193} uses an EA optimized surrogate where the surrogate is individual-based, meaning a fraction of individuals in each generation is evaluated depending on the surrogate model error. 
 
-A GP is constructed using a set of evaluated points from random sampling in previous iterations, a Covariance Matrix Adaptation Evolution Strategy (CMA-ES) is used for parameter search in order to find the minimum of the GP prediction. To avoid false optima, a merit function is used to help explore new regions of the decision space, regarded as the fitness function for the CMA-ES.   
+A GP is constructed using a set of evaluated points from random sampling in previous iterations, a CMA-ES (briefly described in Section \ref{sssec:def_ES}) is used for parameter search in order to find the minimum of the GP prediction. To avoid false optima, a merit function is used to help explore new regions of the decision space, regarded as the fitness function for the CMA-ES.   
 Predicted standard deviation  is used as the merit function that follows 
 \begin{align}
 f_M (x) = \hat f(x) - \alpha \sigma_{\text{GP}} (x),
 \end{align}
-where $\hat f(x)$ and $\sigma_{\text{GP}} (x)=\sqrt{\sum_*}$ (considered a single input $x \prime$ in Eq. (\ref{eqn:GP_cov})) are the GP estimate and standard deviation for data $x$, $\alpha \geq 0$ balances the two terms via scaling the density measure where a larger $\alpha$ pushes the search harder into unexplored region. 4 merit functions with $\alpha =0,1,2,4$ are used and being optimized in the context. Finally, the resulting minimum is added to the training set.
+where $\hat f(x)$ and $\sigma_{\text{GP}} (x)=\sqrt{\sum_*}$ (considering a single input $x \prime$ in Eq. (\ref{eqn:GP_cov})) are the GP estimate and standard deviation for data $x$, $\alpha \geq 0$ balances the two terms via scaling the density measure where a larger $\alpha$ pushes the search harder into unexplored region. 4 merit functions with $\alpha =0,1,2,4$ are used and being optimized in the context. Finally, the resulting minimum is added to the training set.
 
 To approximate the true objective function with arbitrary precision, a local model is preferred regarding a smaller number of training points and more precise local approximation compared with a global model. A local model considers a limited region that is well-approximated as opposed to a global approximation using all evaluated points to fit the overall landscape of the search space. In the local model, the search space moves around the current best solution and is restricted to a local neighbourhood of the current best point evaluated for the sake of model accuracy, meaning only points estimated within the region are considered reliable. In each iteration, $N_C$ points are sampled. If more than half of the sampled points are not evaluated successfully (falls out the well-approximated region of GP), another $N_C/2$ points are generated using the $(2,10)-CMAES$ and evaluated using the true objective function followed by a model update that chooses the best evaluated point $x_{\text{best}}$ and re-builds the training set using the $N_C$ closest points to $x_{\text{best}}$ and $N_R$ most recent successfully evaluated points. The GP parameter is then optimized by ES, each predicted optima is found using the corresponding merit function where the unevaluated optima is evaluated using the true objective function and the process repeats.
 
@@ -305,7 +305,13 @@ The main problem with GPOP is its higher computational cost of the optimization 
 
 
 \paragraph{ES assisted by surrogate model}
-The other approach proposed by Kern et al. \cite{10.1007/11844297_95} throughly evaluate the surrogate model to find a relative precise optima where the surrogate model is updated whenever the optimal solution is inconsistent in two consecutive generations i.e. new points are evaluated and added to the training set for the surrogate model.  
+The other approach Local Metamodel Covariance Matrix Adaptation ES (lmm-CMA) proposed by Kern et al. \cite{10.1007/11844297_95} throughly evaluate the surrogate model (metamodel) to find a relative precise optima predicted by the model where the model is updated whenever the ranking of the best $\mu$ solutions is inconsistent in two consecutive generations.
+
+To ensure the model accuracy, an approximate ranking procedure is applied where the true ranking of the complete population is not required. Same offspring generation and selection in $(\mu/\mu,\lambda)$-ES in Section \ref{sssec:def_ES}, $\lambda$ offspring is generated in generation $g$ where the best $\mu$ offspring $y_{1:\mu,\lambda}^{(g)}$ are selected according to the predicted fitness by the model. The ranking of the $\mu$ selected offspring is recorded as $\text{ranking}_{1-\mu;\lambda}^{(g)}$ and the best $n_{\text{init}}$ selected individuals are evaluated using the true objective function and added to update the training set $S$. Then $y_{1:\mu,\lambda}^{(g)}$ are evaluated again by the model that gives a new ranking $\text{ranking}_{1-\mu;\lambda}^{(g \prime)}$, if $\text{ranking}_{1-\mu;\lambda}^{(g)} = \text{ranking}_{1-\mu;\lambda}^{(g \prime)}$, the model is regarded as reliable, otherwise, the next $n_b$ best unevaluated points based on the model prediction is evaluated and added to training set.  
+
+A local weighted regression (LWR) is used as the surrogate model
+
+the predicted optima point is added to the training set and the whole population is evaluated again to see if there is a change in predicted optima    
 
 
 
@@ -537,7 +543,7 @@ For surrogate model, we use Gaussian process with squared exponential kernel and
 
 \begin{center}
 \begin{figure*}
-\includegraphics[height=4.2in, width=6in]{merged_plot_v4}
+\includegraphics[height=4.3in, width=6.1in]{merged_plot_NO_emergency_v3_final}
 \caption
 {Result obtained by adapting step size using CSA. Top row: Histogram showing the number of objective function calls needed to solve the five test problems. Second row: Convergence graphs for median runs. Third row: Relative model error obtained in median runs ([S] denotes the smoothed plot). Last row: normalized step size measured in median runs.
 } 
@@ -554,10 +560,11 @@ Despite achieving a speed up between 1.2 and 1.9 for quartic function, the surro
 
 \begin{center}
 \begin{figure*}
-\includegraphics[height=4in, width=6in]{success_convergence_v4}
-\caption{Result obtained by adapting step size using CSA. The first two rows show the normalized convergence rate for each run plotted in histogram and normalized probability density function (pdf) respectively. The last two rows represent the success rate (proportion of good step size in each run) plotted in histogram and pdf respectively.$\color{red}{\text{1. cannot say histogram of convergence [logarithm of the equation, 2. duplicated fig.s 3. step size is properly adapted [CSA only works when noise is acceptable] 4. just in the right range}}$
+\includegraphics[height=1.7in, width=6in]{success_NO_emergency_v3_final}
+\caption{Histogram of the success rate (proportion of good steps in a single run) for each test function where the step size is adapted using CSA. 
 }
 \label{fig:success_convergence_plot}
+% The first two rows show the normalized convergence rate for each run plotted in histogram and normalized probability density function (pdf) respectively. The last two rows represent the success rate (proportion of good step size in each run) plotted in histogram and pdf respectively.$\color{red}{\text{1. cannot say histogram of convergence [logarithm of the equation, 2. duplicated fig.s 3. step size is properly adapted [CSA only works when noise is acceptable] 4. just in the right range}}$
 
 \end{figure*}
 \end{center}
@@ -726,7 +733,7 @@ Given a success rate approximately 0.48 for all population size in all sphere fu
 
 \begin{center}
 \begin{figure*}
-\includegraphics[height=4.2in, width=6in]{merged_plot_emergency_modified}
+\includegraphics[height=4.3in, width=6.1in]{merged_plot_emergency_v3_final}
 \caption{Result obtained by adapting step size using CSA with emergency (denoted with CSAE). Top row: Histogram showing the number of objective function calls needed to solve the five test problems. Second row: Convergence graphs for median runs. Third row: Relative model error obtained in median runs ([S] denotes the smoothed plot). Last row: normalized step size measured in median runs. }
 \label{fig:merged_plot_emergency}
 \end{figure*}
@@ -735,7 +742,7 @@ Given a success rate approximately 0.48 for all population size in all sphere fu
 
 \begin{center}
 \begin{figure*}
-\includegraphics[height=4in, width=6in]{success_convergence_emergency_modified}
+\includegraphics[height=1.7in, width=6in]{success_emergency_v3_final}
 \caption{Result obtained by adapting step size using CSA with emergency. The first two rows show the normalized convergence rate for each run plotted in histogram and normalized probability density function (pdf) respectively. The last two rows represent the success rate (proportion of good step size in each run) plotted in histogram and pdf respectively. $\color{red}{\text{is a problem but will be solved as more texts are added}}$}
 \label{fig:success_convergence_emergency}
 \end{figure*}
