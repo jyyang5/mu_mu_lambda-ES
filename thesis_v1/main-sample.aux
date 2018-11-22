@@ -72,6 +72,7 @@
 \newlabel{eqn:c_mu_mu_lambda}{{12}{6}{On Noisy Sphere Function}{equation.2.12}{}}
 \newlabel{eqn:eta_noise_sphere}{{13}{6}{On Noisy Sphere Function}{equation.2.13}{}}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Surrogate Model}{6}{subsection.2.2}}
+\newlabel{ssec:surrogate_model}{{2.2}{6}{Surrogate Model}{subsection.2.2}{}}
 \abx@aux@cite{1424193}
 \abx@aux@segm{0}{0}{1424193}
 \newlabel{sssec:GP}{{2.2.1}{7}{Gaussian Process (GP)}{subsubsection.2.2.1}{}}
@@ -84,33 +85,38 @@
 \abx@aux@cite{10.1007/11844297_95}
 \abx@aux@segm{0}{0}{10.1007/11844297_95}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {paragraph}{ES assisted by surrogate model}{8}{section*.7}}
+\abx@aux@cite{atkeson1997locally}
+\abx@aux@segm{0}{0}{atkeson1997locally}
+\abx@aux@cite{hansen2004evaluating}
+\abx@aux@segm{0}{0}{hansen2004evaluating}
+\abx@aux@segm{0}{0}{DBLP:conf/ppsn/KayhaniA18}
 \abx@aux@segm{0}{0}{DBLP:conf/ppsn/KayhaniA18}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {3}Analysis}{9}{section.3}}
 \newlabel{sec:analysis}{{3}{9}{Analysis}{section.3}{}}
-\newlabel{eqn:delta_surrogate}{{22}{9}{Analysis}{equation.3.22}{}}
-\newlabel{eqn:eta_surrogate}{{23}{9}{Analysis}{equation.3.23}{}}
-\newlabel{eqn:opt_surrogate}{{24}{9}{Analysis}{equation.3.24}{}}
+\newlabel{eqn:delta_surrogate}{{21}{9}{Analysis}{equation.3.21}{}}
+\newlabel{eqn:eta_surrogate}{{22}{9}{Analysis}{equation.3.22}{}}
 \abx@aux@segm{0}{0}{DBLP:conf/ppsn/KayhaniA18}
-\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The figures from left to right shows the expected single step behaviour of the surrogate model assisted $(\mu /\mu ,\lambda )$-ES with unbiased Gaussian distributed surrogate error with $\lambda =10,20,40$ respectively where $\mu = \delimiter "4264306 \lambda /4 \delimiter "5265307 $. The solid lines are the results obtained analytically when $n \rightarrow \infty $, while the dotted line below illustrates the corresponding performance ($n\rightarrow \infty $) of the $(\mu /\mu ,\lambda )$-ES without model assistance. The dots represents the experimental result for $n=10$ (crosses) and $n=100$ (circles).\relax }}{10}{figure.caption.8}}
-\newlabel{fig:expectedFitGain}{{1}{10}{The figures from left to right shows the expected single step behaviour of the surrogate model assisted $(\mu /\mu ,\lambda )$-ES with unbiased Gaussian distributed surrogate error with $\lambda =10,20,40$ respectively where $\mu = \lceil \lambda /4 \rceil $. The solid lines are the results obtained analytically when $n \rightarrow \infty $, while the dotted line below illustrates the corresponding performance ($n\rightarrow \infty $) of the $(\mu /\mu ,\lambda )$-ES without model assistance. The dots represents the experimental result for $n=10$ (crosses) and $n=100$ (circles).\relax }{figure.caption.8}{}}
-\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Opt. expected fitness gain and corresponding opt. normalized step size of the surrogate model assisted $(\mu /\mu ,\lambda )$-ES plotted against the noise-to-signal ratio. The line and dots with colour black, blue, magenta represent $(3/3,10)$-ES, $(3/3,10)$-ES, $(3/3,10)$-ES The solid line represents the results obtained analytically when $n\rightarrow \infty $. \relax }}{11}{figure.caption.9}}
-\newlabel{fig:opt_stepSize_fitGain}{{2}{11}{Opt. expected fitness gain and corresponding opt. normalized step size of the surrogate model assisted $(\mu /\mu ,\lambda )$-ES plotted against the noise-to-signal ratio. The line and dots with colour black, blue, magenta represent $(3/3,10)$-ES, $(3/3,10)$-ES, $(3/3,10)$-ES The solid line represents the results obtained analytically when $n\rightarrow \infty $. \relax }{figure.caption.9}{}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {4}Step size adaptation}{11}{section.4}}
-\newlabel{sec:step_size_adaptation}{{4}{11}{Step size adaptation}{section.4}{}}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Cumulative step size adaptation}{11}{subsection.4.1}}
-\@writefile{loa}{\defcounter {refsection}{0}\relax }\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces A Surrogate Assisted $(\mu /\mu ,\lambda )$-ES\relax }}{11}{algorithm.2}}
-\newlabel{alg:mml-es}{{2}{11}{A Surrogate Assisted $(\mu /\mu ,\lambda )$-ES\relax }{algorithm.2}{}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The figures from left to right shows the expected single step behaviour of the surrogate model assisted $(\mu /\mu ,\lambda )$-ES with unbiased Gaussian distributed surrogate error with $\lambda =10,20,40$ respectively where $\mu = \delimiter "4264306 \lambda /4 \delimiter "5265307 $. The solid lines are the results obtained analytically when $n \rightarrow \infty $, while the dotted line below illustrates the corresponding performance of the $(\mu /\mu ,\lambda )$-ES without model assistance ($N\rightarrow \infty $). The dots represents the experimental result for $n=10$ (crosses) and $n=100$ (circles).\relax }}{10}{figure.caption.8}}
+\newlabel{fig:expectedFitGain}{{1}{10}{The figures from left to right shows the expected single step behaviour of the surrogate model assisted $(\mu /\mu ,\lambda )$-ES with unbiased Gaussian distributed surrogate error with $\lambda =10,20,40$ respectively where $\mu = \lceil \lambda /4 \rceil $. The solid lines are the results obtained analytically when $n \rightarrow \infty $, while the dotted line below illustrates the corresponding performance of the $(\mu /\mu ,\lambda )$-ES without model assistance ($N\rightarrow \infty $). The dots represents the experimental result for $n=10$ (crosses) and $n=100$ (circles).\relax }{figure.caption.8}{}}
+\newlabel{eqn:opt_surrogate}{{23}{10}{Analysis}{equation.3.23}{}}
 \abx@aux@cite{Schwefel:1981:NOC:539468}
 \abx@aux@segm{0}{0}{Schwefel:1981:NOC:539468}
 \abx@aux@segm{0}{0}{DBLP:conf/ppsn/KayhaniA18}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Opt. expected fitness gain and corresponding opt. normalized step size of the surrogate model assisted $(\mu /\mu ,\lambda )$-ES and (1+1)-ES plotted against the noise-to-signal ratio. Colour black, blue, magenta and red represent the result for $(3/3,10)$-ES, $(3/3,10)$-ES, $(3/3,10)$-ES and (1+1)-ES respectively.The solid line represents the results obtained analytically when $n\rightarrow \infty $. The dots are the experimental result for n = 10 (crosses) and n = 100. \relax }}{11}{figure.caption.9}}
+\newlabel{fig:opt_stepSize_fitGain}{{2}{11}{Opt. expected fitness gain and corresponding opt. normalized step size of the surrogate model assisted $(\mu /\mu ,\lambda )$-ES and (1+1)-ES plotted against the noise-to-signal ratio. Colour black, blue, magenta and red represent the result for $(3/3,10)$-ES, $(3/3,10)$-ES, $(3/3,10)$-ES and (1+1)-ES respectively.The solid line represents the results obtained analytically when $n\rightarrow \infty $. The dots are the experimental result for n = 10 (crosses) and n = 100. \relax }{figure.caption.9}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {4}Step size adaptation}{11}{section.4}}
+\newlabel{sec:step_size_adaptation}{{4}{11}{Step size adaptation}{section.4}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Cumulative step size adaptation}{11}{subsection.4.1}}
 \abx@aux@segm{0}{0}{DBLP:conf/ppsn/KayhaniA18}
+\@writefile{loa}{\defcounter {refsection}{0}\relax }\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces A Surrogate Assisted $(\mu /\mu ,\lambda )$-ES\relax }}{12}{algorithm.2}}
+\newlabel{alg:mml-es}{{2}{12}{A Surrogate Assisted $(\mu /\mu ,\lambda )$-ES\relax }{algorithm.2}{}}
 \@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Median test results without model assistance.\relax }}{12}{table.caption.10}}
 \newlabel{Tab:Test_result_noGP_mml}{{1}{12}{Median test results without model assistance.\relax }{table.caption.10}{}}
-\@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Median test results with model assistance.\relax }}{12}{table.caption.11}}
-\newlabel{Tab:Test_result}{{2}{12}{Median test results with model assistance.\relax }{table.caption.11}{}}
-\abx@aux@segm{0}{0}{DBLP:conf/ppsn/KayhaniA18}
+\@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Median test results with model assistance.\relax }}{13}{table.caption.11}}
+\newlabel{Tab:Test_result}{{2}{13}{Median test results with model assistance.\relax }{table.caption.11}{}}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Result obtained by adapting step size using CSA. Top row: Histogram showing the number of objective function calls needed to solve the five test problems. Second row: Convergence graphs for median runs. Third row: Relative model error obtained in median runs ([S] denotes the smoothed plot). Last row: normalized step size measured in median runs. \relax }}{13}{figure.caption.12}}
 \newlabel{fig:merged_plot}{{3}{13}{Result obtained by adapting step size using CSA. Top row: Histogram showing the number of objective function calls needed to solve the five test problems. Second row: Convergence graphs for median runs. Third row: Relative model error obtained in median runs ([S] denotes the smoothed plot). Last row: normalized step size measured in median runs. \relax }{figure.caption.12}{}}
+\abx@aux@segm{0}{0}{DBLP:conf/ppsn/KayhaniA18}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Histogram of the success rate (proportion of good steps in a single run) for each test function where the step size is adapted using CSA. \relax }}{14}{figure.caption.13}}
 \newlabel{fig:success_convergence_plot}{{4}{14}{Histogram of the success rate (proportion of good steps in a single run) for each test function where the step size is adapted using CSA. \relax }{figure.caption.13}{}}
 \abx@aux@segm{0}{0}{DBLP:conf/ppsn/KayhaniA18}
@@ -119,10 +125,11 @@
 \newlabel{alg:CSA_with_emergency}{{3}{15}{Cumulative Step Size Adaptation with Emergency\relax }{algorithm.3}{}}
 \@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Median test results (safeguard of plus-selection).\relax }}{16}{table.caption.14}}
 \newlabel{Tab:Test_result_emergency}{{3}{16}{Median test results (safeguard of plus-selection).\relax }{table.caption.14}{}}
-\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Result obtained by adapting step size using CSA with emergency (denoted with CSAE). Top row: Histogram showing the number of objective function calls needed to solve the five test problems. Second row: Convergence graphs for median runs. Third row: Relative model error obtained in median runs ([S] denotes the smoothed plot). Last row: normalized step size measured in median runs. \relax }}{16}{figure.caption.15}}
-\newlabel{fig:merged_plot_emergency}{{5}{16}{Result obtained by adapting step size using CSA with emergency (denoted with CSAE). Top row: Histogram showing the number of objective function calls needed to solve the five test problems. Second row: Convergence graphs for median runs. Third row: Relative model error obtained in median runs ([S] denotes the smoothed plot). Last row: normalized step size measured in median runs. \relax }{figure.caption.15}{}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Result obtained by adapting step size using CSA with emergency (denoted with CSAE). Top row: Histogram showing the number of objective function calls needed to solve the five test problems. Second row: Convergence graphs for median runs. Third row: Relative model error obtained in median runs ([S] denotes the smoothed plot). Last row: normalized step size measured in median runs. \relax }}{17}{figure.caption.15}}
+\newlabel{fig:merged_plot_emergency}{{5}{17}{Result obtained by adapting step size using CSA with emergency (denoted with CSAE). Top row: Histogram showing the number of objective function calls needed to solve the five test problems. Second row: Convergence graphs for median runs. Third row: Relative model error obtained in median runs ([S] denotes the smoothed plot). Last row: normalized step size measured in median runs. \relax }{figure.caption.15}{}}
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Result obtained by adapting step size using CSA with emergency. The first two rows show the normalized convergence rate for each run plotted in histogram and normalized probability density function (pdf) respectively. The last two rows represent the success rate (proportion of good step size in each run) plotted in histogram and pdf respectively. $\color  {red}{\text  {is a problem but will be solved as more texts are added}}$\relax }}{17}{figure.caption.16}}
 \newlabel{fig:success_convergence_emergency}{{6}{17}{Result obtained by adapting step size using CSA with emergency. The first two rows show the normalized convergence rate for each run plotted in histogram and normalized probability density function (pdf) respectively. The last two rows represent the success rate (proportion of good step size in each run) plotted in histogram and pdf respectively. $\color {red}{\text {is a problem but will be solved as more texts are added}}$\relax }{figure.caption.16}{}}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusions}{18}{section.5}}
 \newlabel{tocindent-1}{0pt}
 \newlabel{tocindent0}{0pt}
 \newlabel{tocindent1}{4.185pt}
@@ -132,9 +139,11 @@
 \abx@aux@defaultrefcontext{0}{Arnold:2000:EMS:645825.669117}{nty/global/}
 \abx@aux@defaultrefcontext{0}{1284729}{nty/global/}
 \abx@aux@defaultrefcontext{0}{ARNOLD2001127}{nty/global/}
+\abx@aux@defaultrefcontext{0}{atkeson1997locally}{nty/global/}
 \abx@aux@defaultrefcontext{0}{1424193}{nty/global/}
 \abx@aux@defaultrefcontext{0}{hansen2016cma}{nty/global/}
 \abx@aux@defaultrefcontext{0}{hansen2015evolution}{nty/global/}
+\abx@aux@defaultrefcontext{0}{hansen2004evaluating}{nty/global/}
 \abx@aux@defaultrefcontext{0}{JIN201161}{nty/global/}
 \abx@aux@defaultrefcontext{0}{DBLP:conf/ppsn/KayhaniA18}{nty/global/}
 \abx@aux@defaultrefcontext{0}{10.1007/11844297_95}{nty/global/}
@@ -144,5 +153,4 @@
 \abx@aux@defaultrefcontext{0}{Rechenberg1973}{nty/global/}
 \abx@aux@defaultrefcontext{0}{rechenberg1973evolutionsstrategie}{nty/global/}
 \abx@aux@defaultrefcontext{0}{Schwefel:1981:NOC:539468}{nty/global/}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusions}{18}{section.5}}
-\newlabel{TotPages}{{18}{18}{}{page.18}{}}
+\newlabel{TotPages}{{19}{19}{}{page.19}{}}

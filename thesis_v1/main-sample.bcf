@@ -2160,13 +2160,16 @@
     <bcf:citekey order="15">JIN201161</bcf:citekey>
     <bcf:citekey order="16">1424193</bcf:citekey>
     <bcf:citekey order="17">10.1007/11844297_95</bcf:citekey>
-    <bcf:citekey order="18">DBLP:conf/ppsn/KayhaniA18</bcf:citekey>
-    <bcf:citekey order="19">DBLP:conf/ppsn/KayhaniA18</bcf:citekey>
-    <bcf:citekey order="20">Schwefel:1981:NOC:539468</bcf:citekey>
+    <bcf:citekey order="18">atkeson1997locally</bcf:citekey>
+    <bcf:citekey order="19">hansen2004evaluating</bcf:citekey>
+    <bcf:citekey order="20">DBLP:conf/ppsn/KayhaniA18</bcf:citekey>
     <bcf:citekey order="21">DBLP:conf/ppsn/KayhaniA18</bcf:citekey>
     <bcf:citekey order="22">DBLP:conf/ppsn/KayhaniA18</bcf:citekey>
-    <bcf:citekey order="23">DBLP:conf/ppsn/KayhaniA18</bcf:citekey>
+    <bcf:citekey order="23">Schwefel:1981:NOC:539468</bcf:citekey>
     <bcf:citekey order="24">DBLP:conf/ppsn/KayhaniA18</bcf:citekey>
+    <bcf:citekey order="25">DBLP:conf/ppsn/KayhaniA18</bcf:citekey>
+    <bcf:citekey order="26">DBLP:conf/ppsn/KayhaniA18</bcf:citekey>
+    <bcf:citekey order="27">DBLP:conf/ppsn/KayhaniA18</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="nty/global/" type="entry" sortscheme="nty" sortnamekeyscheme="global" labelprefix="">
   <bcf:sorting>

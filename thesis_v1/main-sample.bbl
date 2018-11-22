@@ -134,6 +134,41 @@
       \field{pages}{127\bibrangedash 141}
       \range{pages}{15}
     \endentry
+    \entry{atkeson1997locally}{incollection}{}
+      \name{author}{3}{}{%
+        {{hash=edb7d601fd6482b8d0b0beaca51f9527}{%
+           family={Atkeson},
+           familyi={A\bibinitperiod},
+           given={C.\bibnamedelimi G.},
+           giveni={C\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=3aef73feba5921a4879d0d04905e5928}{%
+           family={Moore},
+           familyi={M\bibinitperiod},
+           given={A.\bibnamedelimi W.},
+           giveni={A\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=3d95a8040339c5deb2054f437256204b}{%
+           family={Schaal},
+           familyi={S\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{17080c438e9389f0e94edd985e7fae36}
+      \strng{fullhash}{17080c438e9389f0e94edd985e7fae36}
+      \strng{authornamehash}{17080c438e9389f0e94edd985e7fae36}
+      \strng{authorfullhash}{17080c438e9389f0e94edd985e7fae36}
+      \field{sortinit}{A}
+      \field{sortinithash}{3248043b5fe8d0a34dab5ab6b8d4309b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Lazy learning}
+      \field{title}{Locally weighted learning for control}
+      \field{year}{1997}
+      \field{pages}{75\bibrangedash 113}
+      \range{pages}{39}
+    \endentry
     \entry{1424193}{article}{}
       \name{author}{3}{}{%
         {{hash=4fa9af29511b06981ec753af2c9cf02e}{%
@@ -224,6 +259,36 @@
       \field{year}{2015}
       \field{pages}{871\bibrangedash 898}
       \range{pages}{28}
+    \endentry
+    \entry{hansen2004evaluating}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=fe1b69ac870397d00b7b9cd21ce7ecd4}{%
+           family={Hansen},
+           familyi={H\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod}}}%
+        {{hash=cb8d33bc8cf9246456004052fec29a01}{%
+           family={Kern},
+           familyi={K\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{a74c7e2a43ba8cb88022a577516339da}
+      \strng{fullhash}{a74c7e2a43ba8cb88022a577516339da}
+      \strng{authornamehash}{a74c7e2a43ba8cb88022a577516339da}
+      \strng{authorfullhash}{a74c7e2a43ba8cb88022a577516339da}
+      \field{sortinit}{H}
+      \field{sortinithash}{2f664b453ec75da1fe3804ca92633405}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{International Conference on Parallel Problem Solving from Nature}
+      \field{title}{Evaluating the CMA evolution strategy on multimodal test functions}
+      \field{year}{2004}
+      \field{pages}{282\bibrangedash 291}
+      \range{pages}{10}
     \endentry
     \entry{JIN201161}{article}{}
       \name{author}{1}{}{%

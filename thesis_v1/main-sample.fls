@@ -467,9 +467,6 @@ INPUT expectedFitGain_v2.pdf
 INPUT ./expectedFitGain_v2.pdf
 INPUT ./expectedFitGain_v2.pdf
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/libertine/LinBiolinumT-tlf-t1.tfm
-INPUT opt_stepSize_fitGain_v2.pdf
-INPUT ./opt_stepSize_fitGain_v2.pdf
-INPUT ./opt_stepSize_fitGain_v2.pdf
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/public/libertine/LinBiolinumT-tlf-t1.vf
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/libertine/LinBiolinumT-tlf-t1--base.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/public/newtx/nxlmia.vf
@@ -492,6 +489,9 @@ INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/txfonts/rtxptmr.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/txfonts/rtxr.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-ot1.vf
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-ot1--base.tfm
+INPUT opt_stepSize_fitGain_final.pdf
+INPUT ./opt_stepSize_fitGain_final.pdf
+INPUT ./opt_stepSize_fitGain_final.pdf
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/inconsolata/t1-zi4r-4.tfm
