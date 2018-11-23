@@ -77,7 +77,12 @@ T = 1;                                    % # of distinct parent solution
 
 
 
-while(t < NUM_OF_ITERATIONS && f(x_array(:,T))>10^(-8))%(norm(x_array(:,T)-OPTIMAL(:,1)) > TARGET_DISTANCE))
+while(t < NUM_OF_ITERATIONS && fx>10^(-8))%(norm(x_array(:,T)-OPTIMAL(:,1)) > TARGET_DISTANCE))
+    if(t>100000 || fx>200)
+        convergence_rate = 0;
+        val = {t, x_array(:,T), fx, sigma_array, T, f_x, convergence_rate};
+        return 
+    end
     % initial sigma_satr 
     dist = norm(x);                         % distance to optimal
     sigma = sigma_star/n*dist;              % mutation strength/step size(temp)  
@@ -90,10 +95,6 @@ while(t < NUM_OF_ITERATIONS && f(x_array(:,T))>10^(-8))%(norm(x_array(:,T)-OPTIM
         x = y;
         fx = f(x);
         T = T+1;
-    else
-        y = x + sigma*randn(n,1);
-        sigma_ep = sigma_ep_star/n*2*dist^2;      % Gaussian noise 
-        fy_ep = f(y)+ sigma_ep * randn();
     end
     x_array(:,T) = x;
     f_x(T) = fx;
@@ -102,21 +103,12 @@ while(t < NUM_OF_ITERATIONS && f(x_array(:,T))>10^(-8))%(norm(x_array(:,T)-OPTIM
     % new iteration     
     t = t + 1;
 end 
-    
-
-
-
-
-
- 
     % convergence rate (overall)
     t_start = 1;
     convergence_rate = -n/2*sum(log(f_x(t_start+1:T)./f_x(t_start:T-1)))/length(f_x(t_start:T-1));
-    
+%     % success rate
+%     success_rate = sum(f_x(t_start:T-1)>f_x(t_start+1:T))/length(f_x(t_start:T-1));
 
-        % success rate
-    success_rate = sum(f_x(t_start:T-1)>f_x(t_start+1:T))/length(f_x(t_start:T-1));
-%     GP_error(1:length(t_start+2:T)) = abs(fep_x(t_start+2:T)-f_x(t_start+2:T))./abs(f_x(t_start+1:T-1)-f_x(t_start+2:T));
     val = {t, x_array(:,T), fx, sigma_array, T, f_x, convergence_rate};
 
 

@@ -4,7 +4,7 @@ sigma_star_trans = transpose(sigma_star);
 % Z for E[\Delta] integral
 z_start = 0;
 z_step = 0.001; 
-z_end = 50;
+z_end = 20;
 z = (z_start:z_step:z_end)+sigma_star_trans./2;    % Put into a matrix strating 
 z_LENGTH = length(z_start:z_step:z_end);
 

@@ -21,14 +21,14 @@ NUM_OF_ITERATIONS = 3000;
 % NUM_OF_RUNS = 1;
 
 % matrix for different sigma* matrix(sigma_i,median of NUM_OF_RUNS)
-s_start = 0.2;
-increment =0.1;
-s_end = 20.2;
-
-sigma_success_rate_array = zeros(1,(s_end-s_start)/increment+1);
-sigma_T_array = zeros(1,(s_end-s_start)/increment+1);
-sigma_f_x_array = zeros((s_end-s_start)/increment+1,6000);
-sigma_counvergence_rate_array = zeros(1,(s_end-s_start)/increment+1);
+s_start = 0.01;
+increment =0.05;
+s_end = 10+s_start;
+L = ceil((s_end-s_start)/increment+1);
+sigma_success_rate_array = zeros(1,L);
+sigma_T_array = zeros(1,L);
+sigma_f_x_array = zeros(L,6000);
+sigma_counvergence_rate_array = zeros(1,L);
 
 % temp_sigma_success_rate_array = zeros(1,NUM_OF_RUNS);
 % temp_sigma_T_array = zeros(1,NUM_OF_RUNS);
@@ -37,17 +37,17 @@ sigma_counvergence_rate_array = zeros(1,(s_end-s_start)/increment+1);
 % 
 
 
-sigma_array = 0.2:0.2:12;
+sigma_array = 0.2:0.1:9;
 SIGMA_LENGTH = length(sigma_array);
 
 sigma_success_rate_array = zeros(1,SIGMA_LENGTH);
-sigma_T_array = zeros(1,SIGMA_LENGTH);
+% sigma_T_array = zeros(1,SIGMA_LENGTH);                                      
 sigma_f_x_array = zeros(SIGMA_LENGTH,6000);
 sigma_counvergence_rate_array = zeros(1,SIGMA_LENGTH);                      % store convergence rate over sigma
 
 v_convergence_rate_array = zeros(1,V_LENGTH);                               % store the max median c over v
 index_convergence_rate_array = zeros(1,V_LENGTH);                           % store the max median c over v
-
+v_sigma_star_array = zeros(1,V_LENGTH);                                     % store opt. step size
 for k = 1:1:V_LENGTH 
     v_temp = v_array(k); 
     i = 1;
@@ -74,11 +74,13 @@ for k = 1:1:V_LENGTH
             end
         end
         sigma_counvergence_rate_array(i) = median(temp_sigma_counvergence_rate_array);
-        sigma_T_array(i) = median(temp_sigma_T_array);
+%         sigma_T_array(i) = sigma_star(median(temp_sigma_T_array));
         i = i + 1;
         
     end
     [v_convergence_rate_array(k) index_convergence_rate_array(k)] = max(sigma_counvergence_rate_array);
+    s_array_temp = s_start:increment:s_end;
+    v_sigma_star_array(k) = s_array_temp(index_convergence_rate_array(k));
     % STORE MAX index 
 end
 
@@ -123,6 +125,9 @@ legend('-DynamicLegend');
 % % scatter(v_array, v_convergence_rate_array,typeDot,scatterColour,'DisplayName',d); hold on; 
 % scatter(v_array, sigma_max_exp,typeDot,scatterColour,'DisplayName',d); hold on; 
 
+% opt. fitGain over noise-to-signal ratio
+figure(FIG_NUM);hold on;
+subplot(1,2,subplotNum_step-1);hold on;
 d =sprintf('N = %.0f',n);
 scatter(v_array, v_convergence_rate_array,typeDot,scatterColour,'DisplayName',d); hold on; 
 legend('-DynamicLegend'); 
@@ -134,7 +139,29 @@ title(leg,'Dimension of data');
 ylim([0,inf]);  % y starts from 0
 xlim([0.1 10]);   % set y = 0-10
 xlabel('noise-to-signal ratio \vartheta','fontsize',20);
+set(gca, 'XScale', 'log')
 ylabel('opt. expected fitness gain \eta_{opt}','FontSize',15); 
+set(gca,'FontSize',15);
+% d = sprintf("Opt. expected fitness gain");
+% title(d,'FontSize', 20);
+xlim([0 10]);   % set y = 0-10
+
+% opt. normalized step size over noise-to-signal ratio
+figure(FIG_NUM);hold on;
+subplot(1,2,subplotNum_step);hold on;
+d =sprintf('N = %.0f',n);
+scatter(v_array, v_sigma_star_array,typeDot,scatterColour,'DisplayName',d); hold on; 
+legend('-DynamicLegend'); 
+legend('show');
+leg = legend();
+leg.FontSize = 10;
+title(leg,'Dimension of data');
+% ylabel('convergnece rate c','fontsize',20);
+ylim([0,inf]);  % y starts from 0
+xlim([0.1 10]);   % set y = 0-10
+xlabel('noise-to-signal ratio \vartheta','fontsize',20);
+set(gca, 'XScale', 'log')
+ylabel('opt. normalized step size \sigma^*','FontSize',15); 
 set(gca,'FontSize',15);
 % d = sprintf("Opt. expected fitness gain");
 % title(d,'FontSize', 20);
@@ -145,38 +172,51 @@ xlim([0 10]);   % set y = 0-10
 % noise-to-signal ratio
 
 % solve the plot by numerically 
-if(n==100)
-    v_array = v_expected_curve_array;
-    v_length = length(v_array);
-    opt_eta_array = zeros(v_length,1);
-    opt_sigma_star_array = zeros(v_length,1);
-
-    for i = 1:1:v_length
-        v = v_array(i);
-        p_eval = normcdf(-sigma_star_trans./2./sqrt(1+v.^2));
-        fz = (repmat(sigma_star_trans,1,z_LENGTH).*z-...
-            repmat(sigma_star_trans,1,z_LENGTH).^2/2).*exp(-z.^2/2).*...
-            normcdf(1./v.*(z-repmat(sigma_star_trans./2,1,z_LENGTH)));
-        expected_delta = 1/sqrt(2*pi)*sum(fz,2).*z_step;
-        eta = expected_delta./p_eval;
-
-        % Find opt. eta & step size 
-        opt_index = find(eta == max(eta));
-        opt_eta_array(i) = eta(opt_index);
-        opt_sigma_star_array(i) = sigma_star(opt_index);
-    end
-    % For opt. fitGain
-    d =sprintf('N \\rightarrow \\infty');
-    plot(v_array,opt_eta_array,'Color',scatterColour,'DisplayName',d);
-    set(gca,'FontSize',15);
-    xlim([0.1 10]);   % set y = 0-10
-    set(gca, 'XScale', 'log');
-    
-    % For opt. fitGain
-    figure(FIG_NUM);hold on;
-    subplot(1,2,subplotNum_step);hold on;
-    plot(v_array,opt_sigma_star_array,'Color',opt_plot_colour);
-end
+% if(n==100)
+%     sigma_star = 0.01:0.01:8.01;
+%     sigma_star_trans = transpose(sigma_star);
+%     % Z for E[\Delta] integral
+%     z_start = 0;
+%     z_step = 0.001; 
+%     z_end = 20;
+%     z = (z_start:z_step:z_end)+sigma_star_trans./2;    % Put into a matrix strating 
+%     z_LENGTH = length(z_start:z_step:z_end);
+% 
+%     % Range to find opt. v
+%     v_array = exp(-2.302585092994046: 0.0461:2.302585092994046+0.01);
+%     v_length = length(v_array);
+%     opt_eta_array = zeros(v_length,1);
+%     opt_sigma_star_array = zeros(v_length,1);
+% 
+%     for i = 1:1:v_length
+%         v = v_array(i);
+%         p_eval = normcdf(-sigma_star_trans./2./sqrt(1+v.^2));
+%         fz = (repmat(sigma_star_trans,1,z_LENGTH).*z-...
+%             repmat(sigma_star_trans,1,z_LENGTH).^2/2).*exp(-z.^2/2).*...
+%             normcdf(1./v.*(z-repmat(sigma_star_trans./2,1,z_LENGTH)));
+%         expected_delta = 1/sqrt(2*pi)*sum(fz,2).*z_step;
+%         eta = expected_delta./p_eval;
+% 
+%         % Find opt. eta & step size 
+%         opt_index = find(eta == max(eta));
+%         opt_eta_array(i) = eta(opt_index);
+%         opt_sigma_star_array(i) = sigma_star(opt_index);
+%     end
+%     % For opt. fitGain
+%     figure(FIG_NUM);hold on;
+%     subplot(1,2,subplotNum_step-1);hold on;
+%     d =sprintf('N \\rightarrow \\infty');
+%     plot(v_array,opt_eta_array,'Color',scatterColour,'DisplayName',d);
+%     set(gca,'FontSize',15);
+%     xlim([0.1 10]);   % set y = 0-10
+%     set(gca, 'XScale', 'log');
+%     
+%     % For opt. fitGain
+%     figure(FIG_NUM);hold on;
+%     subplot(1,2,subplotNum_step);hold on;
+%     plot(v_array,opt_sigma_star_array,'Color',scatterColour);
+%     set(gca, 'XScale', 'log');
+% end
 
 % % save all fig
 % p2 = sprintf('1opt_fitGain_%d_%d_%d_ES.fig',mu,mu,lambda);

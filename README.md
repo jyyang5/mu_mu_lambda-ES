@@ -358,7 +358,13 @@ New step size adaptation mechinisum (decrease in emergency)
 
     
 
-
+- 20181123
+    - General ES
+       - CMA-ES
+         - Covariance matrix ideally approaches the inverse of the Hessian
+    -  Step size 
+       - CSA (only for mml-ES) 
+         - Compare the length of search path  
 
 
 
