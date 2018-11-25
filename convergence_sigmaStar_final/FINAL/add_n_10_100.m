@@ -43,11 +43,6 @@ for i = 1:1:v_LENGTH
     c_n_10(i) = -n/2*log(1-2.*E_delta./n)./p_eval;
     n=100;
     c_n_100(i) = -n/2*log(1-2.*E_delta./n)./p_eval;
-%     
-%     (repmat(sigma_star_trans,1,z_LENGTH).*z-...
-%         repmat(sigma_star_trans,1,z_LENGTH).^2/2).*exp(-z.^2/2).*...
-%         normcdf(1./transpose(repmat(v,z_LENGTH,1)).*...
-%         (z-repmat(sigma_star_trans./2,1,z_LENGTH)));
     
 end
 

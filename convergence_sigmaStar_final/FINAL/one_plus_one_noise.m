@@ -92,9 +92,13 @@ while(t < NUM_OF_ITERATIONS && fx>10^(-8))%(norm(x_array(:,T)-OPTIMAL(:,1)) > TA
     sigma_ep = sigma_ep_star/n*2*dist^2;      % Gaussian noise 
     fy_ep = f(y)+ sigma_ep * randn();
     if(fy_ep<fx)
-        x = y;
-        fx = f(x);
+        fy = f(y)
         T = T+1;
+        if(fy<fx)
+            x = y;
+            fx = f(x);
+        end
+        
     end
     x_array(:,T) = x;
     f_x(T) = fx;

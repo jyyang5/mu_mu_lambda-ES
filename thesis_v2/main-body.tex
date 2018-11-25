@@ -187,20 +187,20 @@ where $z_{\text{step},1} $ is the component of $z_{\text{step}}$ pointing to the
 \paragraph{On Noisy Sphere Function}
 The sphere is considered noisy when the fitness evaluation is inaccurate and the objective function on a fixed point may vary in a certain range in different objective function calls. The following uses the analysis and modelling proposed by Arnold and Beyer \cite{ARNOLD2001127}. 
 
-The objective function value on noisy sphere can be modeled by adding a Gaussian random variable with mean equals the true objective function value and some standard deviation referred to as noise strength $\sigma_\epsilon$. The noisy estimate of a candidate solution $y$ follows $f_{\epsilon}(y) = f(y) + \sigma_{\epsilon}z_\epsilon$ where $z_\epsilon \in \mathbb{R}$ is a standard normally distributed random variable that randomize the noise generated. By further introduces $\sigma_\epsilon^* = N \sigma_\epsilon / (2R^2)$, the normalized fitness noise \cite{1284729} and replace the accurate objective function evaluation with the noisy estimate, the normalized fitness advantage of $y$ on noisy sphere when $n \rightarrow \infty$ in Eq. (\ref{eqn:delta}) is
+The objective function value on noisy sphere can be modeled by adding a Gaussian random variable with mean equals the true objective function value and some standard deviation referred to as noise strength $\sigma_\epsilon$. The noisy estimate of a candidate solution $y$ follows $f_{\epsilon}(y) = f(y) + \sigma_{\epsilon}z_\epsilon$ where $z_\epsilon \in \mathbb{R}$ is a standard normally distributed random variable that randomize the noise generated. By further introduces $\sigma_\epsilon^* = N \sigma_\epsilon / (2R^2)$, the normalized fitness noise \cite{1284729} and replace the accurate objective function evaluation with the noisy estimate, the normalized fitness advantage of $y$ given mutation $z$ on noisy sphere when $n \rightarrow \infty$ in Eq. (\ref{eqn:delta_z_step}) is
 \begin{align}
 % \delta_\epsilon^* & = \delta + \sigma_\epsilon z_\epsilon\\
 % &=  \frac{^2}\left( f_\epsilon (x) - f_\epsilon(y)\right)  \nonumber\\ 
 % & = \frac{N}{2R^2} (x^Tx - (x+\sigma z_{\text{step}})^T (x+\sigma z_{\text{step}}) +\sigma_{x,\epsilon} z_{x,\epsilon}-\sigma_{y,\epsilon} z_{y,\epsilon}) \nonumber\\
-\delta_\epsilon^* 
+\delta_\epsilon^* (z)
 &=  \frac{N}{2R^2}\left( f(x) - f_\epsilon(y)\right)  \nonumber\\ 
 & = \frac{N}{2R^2} (x^Tx - (x+\sigma z_{\text{step}})^T (x+\sigma z_{\text{step}}) +\sigma_\epsilon z_\epsilon) \nonumber\\
 & = \frac{N}{2R^2} (-2 \sigma x^Tz_{\text{step}} - \sigma^2 \Vert z_{\text{step}}\Vert^2 -\sigma_\epsilon z_\epsilon) \nonumber\\
-& = \delta + \sigma_\epsilon z_\epsilon\nonumber\\
-&\overset{N \rightarrow \infty}{=} \sigma^* (z_{\text{step},1} + \vartheta z_\epsilon ) - \frac{\sigma^2}{2\mu}, \label{eqn:delta_noise}{}
+& = \delta(z) + \sigma_\epsilon z_\epsilon\nonumber\\
+&\overset{N \rightarrow \infty}{=} \sigma^* (z_1 + \vartheta z_\epsilon ) - \frac{\sigma^2}{2}, \label{eqn:delta_noise}{}
 % &\overset{N \rightarrow \infty}{=} \delta+\sigma_\epsilon^* z_\epsilon, \label{eqn:delta_noise}{}
 \end{align}
-where $\vartheta = \sigma_\epsilon^*/\sigma^*$ is the noise-to-signal ratio, defined to measure the noise level relative to the algorithm's step size, the term $+\sigma_\epsilon z_\epsilon$ denotes the added noise. Since $z_\epsilon$ is standard normally distributed, so is $-z_\epsilon$, by substituting $z_\epsilon = -z_\epsilon$ and adding the noise term to Eq. (\ref{eqn:delta}), we get the simplified Eq. (\ref{eqn:delta_noise}).
+where $\vartheta = \sigma_\epsilon^*/\sigma^*$ is the noise-to-signal ratio, defined to measure the noise level relative to the algorithm's step size, the term $+\sigma_\epsilon z_\epsilon$ denotes the added noise. Since $z_\epsilon$ is standard normally distributed, so is $-z_\epsilon$, by substituting $z_\epsilon = -z_\epsilon$ and adding the noise term to Eq. (\ref{eqn:delta_z_step}), we get the simplified Eq. (\ref{eqn:delta_noise}).
 % where $\vartheta = \sigma_\epsilon^*/\sigma^*$ is the noise-to-signal ratio, defined to measure the noise level relative to the algorithm's step size, the term $\sigma_{x,\epsilon} z_{x,\epsilon}$ and $\sigma_{y,\epsilon} z_{y,\epsilon}$ denote the added noise for the centroid $x_{\text{centroid}}$ and the offspring $y$ respectively. Assuming independence, $\sigma_{x,\epsilon} z_{x,\epsilon}$ and $\sigma_{y,\epsilon} z_{y,\epsilon}$ can be viewed as a vector sum denoted as $\sigma_\epsilon z_\epsilon$. By substituting the noise term, we get the simplified Eq. (\ref{eqn:delta_noise}).
 % $\color{red}{\text{wonder how to get Eq. (\ref{eqn:delta_noise}), in the paper you sent me it simply add a noise term } \sigma_\epsilon z_\epsilon \text{ to Eq. (\ref{eqn:delta})}}$
 
@@ -218,10 +218,13 @@ where $1/\lambda$ denotes the number of offspring evaluated in each iteration i.
 
 The expected value of $z_{\text{step},1}$ derived by Arnold \cite{ARNOLD2001127} is
 \begin{align}\label{eqn:expected_z_step_1}{}
-E[z_{\text{step},1}] &= \frac{1}{\mu} \int_{-\infty}^\infty x p_{k;\lambda}(x)dx \nonumber\\
+E[z_{\text{step},1}] 
+&= E[\frac{1}{\mu}\sum_{i=1}^\mu z_{(i;\lambda),1}] \nonumber\\
+&= \frac{1}{\mu} \sum_{i=1}^\mu E [ z_{(i; \lambda),1} ] \nonumber\\
+&=  \frac{1}{\mu} \sum_{i=1}^\mu \int_{-\infty}^\infty x p_{i;\lambda}(x)dx \nonumber\\
 & = \frac{c_{\mu/\mu,\lambda}}{\sqrt{1+ \vartheta^2}}
 \end{align}
-where $p_{k;\lambda}$ corresponds to the probability density function of $z_{k;\lambda}$ that has $f(x+z_{i;\lambda})<f(x+z_{j;\lambda}), 1 \leq i<j \leq \lambda$, $c_{\mu/\mu,\lambda}$ is the $(\mu/\mu,\lambda)$-progress coefficient derived by Arnold and Beyer \cite{Arnold:2000:EMS:645825.669117} that follows
+where $p_{k;\lambda}$ corresponds to the probability density function of $z_{(k;\lambda),1}$ that has $f(x+z_{i;\lambda})<f(x+z_{j;\lambda}), 1 \leq i<j \leq \lambda$, $c_{\mu/\mu,\lambda}$ is the $(\mu/\mu,\lambda)$-progress coefficient derived by Arnold and Beyer \cite{Arnold:2000:EMS:645825.669117} that follows
 % $\color{red}{paper\ missing}$
 \begin{align}\label{eqn:c_mu_mu_lambda}
 c_{\mu/\mu,\lambda}  = \frac{\lambda-\mu}{2 \pi} \begin{pmatrix} \lambda \\ \mu \end{pmatrix} \int_{-\infty}^{\infty} e^{-x^2}   \left [ \Phi(x)\right]^{\lambda-\mu-1}  \left[ 1- \Phi (x) \right]^{\mu-1}  \text{d} x,
@@ -230,7 +233,7 @@ where $\Phi$ is the normal cumulative distribution function. The integral can be
 
 Therefore by Eq. (\ref{eqn:eta_noise_sphere_raw}) (\ref{eqn:expected_z_step_1}), the normalized progress rate when dimensionality $N \rightarrow \infty$ can be simplified as
 \begin{align}{}\label{eqn:eta_noise_sphere}{}
-\eta = \frac{1}{\lambda}E[ \delta_\epsilon^*] \approx \frac{1}{\lambda} \left( \frac{\sigma^* c_{\mu / \mu, \lambda}}{\sqrt {1+ \vartheta^2}} - \frac{(\sigma^*)^2}{2 \mu} \right)
+\eta = \frac{1}{\lambda}E[ \delta^*(z_{\text{step}})] \approx \frac{1}{\lambda} \left( \frac{\sigma^* c_{\mu / \mu, \lambda}}{\sqrt {1+ \vartheta^2}} - \frac{(\sigma^*)^2}{2 \mu} \right)
 \end{align}
 
 
@@ -399,10 +402,10 @@ The performance is evaluated using a local weighted regression (LWR) \cite{atkes
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Analysis}\label{sec:analysis}
 
-To understand the potential implications of using surrogate model assisted $(\mu/\mu,\lambda)$-ES with varying population size, in this section, we use the same simple model proposed by Kayhani and Arnold \cite{DBLP:conf/ppsn/KayhaniA18} for the use of a surrogate model. Specifically, we propose an EA that, in each iteration, a population $Y$ of $\lambda$ offspring are generated and then evaluated by the surrogate model instead of true objective function followed by a intermediate recombination based on the inaccurate surrogate estimate where the centroid of the $\mu$ selected individuals are evaluated by the true objective function, referred to as the centroid $x_{\text{centroid}}$. The analysis for $(\mu/\mu,\lambda)$-ES on noisy sphere and $(\mu/\mu,\lambda)$-ES using simple model is the same but the former uses a noise estimate for ranking offspring as opposed to a surrogate model at vanishing cost (by assumption in Section \ref{ssec:surrogate_model}). Therefore the normalized fitness advantage of an offspring $y$ over $x_{\text{centroid}}$ is 
+To understand the potential implications of using surrogate model assisted $(\mu/\mu,\lambda)$-ES with varying population size, in this section, we use the same simple model proposed by Kayhani and Arnold \cite{DBLP:conf/ppsn/KayhaniA18} for the use of a surrogate model. Specifically, we propose an EA that, in each iteration, a population $Y$ of $\lambda$ offspring are generated and then evaluated by the surrogate model instead of true objective function followed by a intermediate recombination based on the inaccurate surrogate estimate where the centroid of the $\mu$ selected individuals are evaluated by the true objective function, referred to as the centroid $x_{\text{centroid}}$. The analysis for $(\mu/\mu,\lambda)$-ES on noisy sphere and $(\mu/\mu,\lambda)$-ES using simple model is the same but the former uses a noise estimate for ranking offspring as opposed to a surrogate model at vanishing cost (by assumption in Section \ref{ssec:surrogate_model}). Therefore the normalized fitness advantage of $x_{\text{centroid}}^{(g+1)}$ over $x_{\text{centroid}}^{(g)}$ is 
 \begin{align}
-\delta_{\epsilon,GP}^* &=  \frac{N}{2R^2}\left( f( x_{\text{centroid}}^{(t)} ) - f_\epsilon( y ) \right)  \nonumber\\ 
-& = \delta_\epsilon^* \nonumber\\ 
+\delta_{GP}^* &=  \frac{N}{2R^2}\left( f( x_{\text{centroid}}^{(g+1)} ) - f( x_{\text{centroid}}^{(g)} ) \right)  \nonumber\\ 
+& = \delta^*(z_{\text{step}}) \nonumber\\ 
 &\overset{N \rightarrow \infty}{=} \sigma^* (z_{\text{step},1} + \vartheta z_\epsilon ) - \frac{\sigma^2}{2}. \label{eqn:delta_surrogate}{}
 \end{align}
 The analysis in Section \ref{sssec:analysis_sphere_combined} still holds which gives exactly the same result in Eq. (\ref{eqn:delta_noise}). In this context, the noise-to-signal ratio $\vartheta$ can be interpreted as the measure of the surrogate model quality relative to step size of the algorithm. This analysis could be extend to biased surrogate models where the distribution mean is different from the exact objective function value\cite{DBLP:conf/ppsn/KayhaniA18}. 
@@ -427,17 +430,17 @@ To obtain the opt. expected fitness gain $\eta_{opt}$ and its corresponding opt.
 
 \begin{center}
 \begin{figure*}
-\includegraphics[height=2.1in, width=6.0in]{expectedFitGain_v2}
-\caption{The figures from left to right shows the expected single step behaviour of the surrogate model assisted $(\mu/\mu,\lambda)$-ES with unbiased Gaussian distributed surrogate error with $\lambda=10,20,40$ respectively where $\mu = \lceil \lambda/4 \rceil$. The solid lines are the results obtained analytically when $n \rightarrow \infty$, while the dotted line below illustrates the corresponding performance of the $(\mu/\mu,\lambda)$-ES without model assistance ($N\rightarrow \infty$). The dots represents the experimental result for $n=10$ (crosses) and $n=100$ (circles).}
+\includegraphics[height=2.1in, width=6.0in]{expectedFitGain_final_1}
+\caption{The figures from left to right show the expected single step behaviour of the surrogate model assisted $(\mu/\mu,\lambda)$-ES with unbiased Gaussian distributed surrogate error with $\lambda=10,20,40$ respectively where $\mu = \lceil \lambda/4 \rceil$. The solid lines are the results obtained analytically when $n \rightarrow \infty$, while the dotted line below illustrates the corresponding performance of the $(\mu/\mu,\lambda)$-ES without model assistance ($N\rightarrow \infty$). The dots represents the experimental result for $n=10$ (crosses) and $n=100$ (circles).}
 \label{fig:expectedFitGain}
 \end{figure*}
 \end{center}
 
-The expected fitness gain is normalized in terms of the population size $\lambda$ for easy comparison. The normalized fitness gain against the normalized step size for $(\mu/\mu,\lambda)$-ES with population size $\lambda=10,20,40$ and corresponding $\mu=3,5,10$ are plotted in Fig. \ref{fig:expectedFitGain} from left to right respectively. The line shows the result obtained from Eqs. (\ref{eqn:eta_surrogate}) (\ref{eqn:c_mu_mu_lambda}). The dots represent the experimental result for unbiased Gaussian surrogate error for $n \in \{10,100 \}$ obtained by averaging 100 runs. The result obtained for $n \rightarrow \infty$ are considered to be the case with a large normalized step size and very small noise-to-signal ratio. 
+The expected fitness gain is normalized in terms of the population size $\lambda$ for easy comparison. The normalized fitness gain against the normalized step size for $(\mu/\mu,\lambda)$-ES with population size $\lambda=10,20,40$ and corresponding $\mu=3,5,10$ are plotted in Fig. \ref{fig:expectedFitGain} from left to right respectively. The line shows the result obtained from Eqs. (\ref{eqn:eta_surrogate}) (\ref{eqn:c_mu_mu_lambda}). The dots represent the experimental results for unbiased Gaussian surrogate error for $N \in \{10,100 \}$ obtained by averaging 100 runs. The results obtained for $N \rightarrow \infty$ are cases with a large normalized step size and very small noise-to-signal ratio. 
 
 It can be inferred from Fig. \ref{fig:expectedFitGain}, for a fixed population size, the expected fitness gain decreases with an increasing noise-to-signal-ratio. When $\vartheta \rightarrow \infty$, the surrogate model becomes useless and the strategy becomes a random search. For moderate noise-to-signal ratio $\vartheta$, the surrogate model assisted algorithm can achieve much larger value for expected fitness gain at a larger normalized step size. When $\vartheta = 1$, the maximal expected fitness gain achievable for $(3/3,10)$-ES,$(5/5,20)$-ES and $(10/10,40)$-ES are 0.8507, 1.841, 3.808 with $\sigma^*=2.254,4.251,8.738$ respectively. Compared with the result of the surrogate assisted (1+1)-ES \cite{DBLP:conf/ppsn/KayhaniA18} where maximal fitness gain is 0.548 achieved at $\sigma^* = 1.905$, $(\mu/\mu,\lambda)$-ES does benefit from using a larger population from this analysis. For $\vartheta=0$ (the surrogate models the objective function exactly), from equation (\ref{eqn:opt_surrogate}) we can obtain the maximal expected fitness gain is achieved at $\sigma^*_{opt} = \ \mu c_{\mu / \mu, \lambda}$ with value $\eta_{opt} =  \mu (c_{\mu / \mu, \lambda})^2/2$. Even if this indicates the potential benefit of using a growing population size, it is important to note the analytical results derived when $N \rightarrow \infty$ is an approximation for the finite-dimensional case. Fig. \ref{fig:opt_stepSize_fitGain} shows the relation of optimal expected fitness gain and the corresponding optimal normalized step size over noise-to-signal ratio derived analytically in the limit of $n \rightarrow \infty$ for three different population sizes and (1+1)-ES. The optimal expected fitness gain is also measured experimentally for $n \in \{10,100 \}$. 
    
-The speed-up is defined as the median number of objective function evaluations used by the strategy specifically $(\mu/\mu,\lambda)$-ES without model assistance divide by that with model assistance. For a finite-dimension, the speed-up achieved with surrogate model assistance for small noise-to-signal ratio with $n=10$ appears to be around one and two for a population size equals 10, two and three for $\lambda = 20$, four and five for $\lambda=40$ respectively. The speed-up for $n=100$ using three different population almost falls into the same range as is the case for $n=10$.  
+The speed-up is defined as the median number of objective function evaluations used to solve the test problem using one strategy and $(\mu/\mu,\lambda)$-ES with model assistance. For comparison, we define two $speed-up_{\text{self}}$ for $(\mu/\mu,\lambda)$-ES without and with model assistance and $speed-up_{\text{model}}$ for (1+1)-ES and $(\mu/\mu,\lambda)$-ES both with model assistance. For a finite-dimension, the $speed-up_{\text{model}}$ achieved with surrogate model assistance for small noise-to-signal ratio with $n=10$ appears to be around one and two for a population size equals 10, two and three for $\lambda = 20$, four and five for $\lambda=40$ respectively. The speed-up for $n=100$ using three different population almost falls into the same range as is the case for $n=10$.  
 % $\color{red}{\text{Wonder if the speed up should be calculated as (1+1)-ES/mml-ES both with model assistance}}$ 
 % $ \color{red}{\text{and could it be reported in the table later as in each cell numOfObjFunCalls(speed-up)}}$
 
@@ -466,7 +469,7 @@ There is a significant speed-up following the analysis and it seems the expected
 \begin{center}
 \begin{figure*}
 \includegraphics[height=2.4in, width=6in]{opt_stepSize_fitGain_final}
-\caption{Opt. expected fitness gain and corresponding opt. normalized step size of the surrogate model assisted $(\mu/\mu,\lambda)$-ES and (1+1)-ES plotted against the noise-to-signal ratio. Colour black, blue, magenta and red represent the result for $(3/3,10)$-ES, $(3/3,10)$-ES, $(3/3,10)$-ES and (1+1)-ES respectively.The solid line represents the results obtained analytically when $n\rightarrow \infty$. The dots are the experimental result for n = 10 (crosses) and n = 100.
+\caption{Opt. expected fitness gain and corresponding opt. normalized step size of the surrogate model assisted $(\mu/\mu,\lambda)$-ES and (1+1)-ES plotted against the noise-to-signal ratio. Colour black, blue, magenta and red represent the result for $(3/3,10)$-ES, $(5/5,20)$-ES, $(10/10,40)$-ES and (1+1)-ES respectively.The solid line represents the results obtained analytically when $N\rightarrow \infty$. The dots are the experimental result for N = 10 (crosses) and N = 100.
 }
 \label{fig:opt_stepSize_fitGain}
 \end{figure*}

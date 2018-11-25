@@ -58,20 +58,15 @@ for sigma_star = s_start:increment:s_end
         else 
             a = mml_noise(f,x0,sigma_star,sigma_ep_star,lambda,NUM_OF_ITERATIONS);
         end
-        %temp_parent_not_lowest_of_quadratic_array(j) = cell2mat(a(6));
-        %temp_sigma_counvergence_rate_array(j) = cell2mat(a(7));
-        %temp_sigma_T_array(j) = cell2mat(a(1));
-        %temp_sigma_success_rate_array(j) = cell2mat(a(5));
+        
         temp_sigma_f_x_array(j,:) = cell2mat(a(3));
         % avoid nan in fx (if nan appears -> set 0)
         if(sum(isnan(temp_sigma_f_x_array(j,:))) == 0)
             temp_sigma_counvergence_rate_array(j) = cell2mat(a(7));
             temp_sigma_T_array(j) = cell2mat(a(1));
-            %temp_sigma_success_rate_array(j) = cell2mat(a(5));
         else 
             temp_sigma_counvergence_rate_array(j) = 0;
             temp_sigma_T_array(j) = 0;
-            %temp_sigma_success_rate_array(j) = 0;
         end
     end
     for j = 1:1:6000
@@ -92,20 +87,12 @@ end
 figure(4);
 legend('-DynamicLegend'); 
 hold on
-% dotted line (normal mml-ES)
-if(typeDot == '.')
-    d = sprintf('Without model N=%d',n);
-    plot(s_start:increment:s_end, sigma_counvergence_rate_array,':','DisplayName',d); hold on; 
-%     plot(s_start:increment:s_end, sigma_counvergence_rate_array,':','DisplayName',d); hold on; 
-
 % need scatter plots (through experiemnt runs different noise-to signal ratio and dim)
-else
-    hold on;
-    scatter_range=(1:5:(s_end-s_start)/increment+1);
-    sigma_temp_array = s_start:increment:s_end;
-    d = sprintf('\\vartheta = %.2f N=%d',ita,n);
-    scatter(sigma_temp_array(scatter_range), sigma_counvergence_rate_array(scatter_range),typeDot,scatterColour,'DisplayName',d); hold on; 
-end
+scatter_range=(1:5:(s_end-s_start)/increment+1);
+sigma_temp_array = s_start:increment:s_end;
+d = sprintf('\\vartheta = %.2f N=%d',ita,n);
+scatter(sigma_temp_array(scatter_range), sigma_counvergence_rate_array(scatter_range),typeDot,scatterColour,'DisplayName',d); hold on; 
+
 % if n -> \infty plot the curve(expected fitness gain)
 if LINE_OR_NOT==1
     hold on;
@@ -114,8 +101,15 @@ if LINE_OR_NOT==1
     expected_cure = sigma_star*(c_mu_lambda)./sqrt(1+ita^2)-sigma_star.^2./(2*mu);
     d1 = sprintf('\\vartheta = %.2f N \\rightarrow \\infty',ita);
     plot(sigma_star,expected_cure./lambda,'Color',scatterColour,'DisplayName',d1); hold on; 
-%     plot(sigma_star,expected_cure,'Color',scatterColour,'DisplayName',d1); hold on; 
-
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Plot curve for mml-ES without model assistance [simply /lambda]
+    if(ita==0)   
+        d5 = sprintf('No model N \\rightarrow \\infty');
+        plot(sigma_star,expected_cure./lambda./lambda,':','Color','k','DisplayName',d5); hold on;
+        d5 = sprintf('No model');
+        text(5, max(sigma_counvergence_rate_array./lambda),d5, 'Color', 'k', 'fontsize',15);
+    end
 end
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -133,11 +127,7 @@ end
 
 % each ita plot theta = some n
 if n ==10
-    if typeDot== '.'
-        d = sprintf('Without model');
-    else
-        d = sprintf('\\vartheta = %.2f', ita);
-    end
+    d = sprintf('\\vartheta = %.2f', ita);
     text(5, max(sigma_counvergence_rate_array), d, 'Color', scatterColour, 'fontsize',15);
 end
 
@@ -154,6 +144,8 @@ xlabel('normalized step size \sigma^*','fontsize',20);
 set(gca,'FontSize',15);
 ylim([0,inf])
 xlim([0 10]);
+box on;
+
 % d = sprintf("expected normalized step size (%d/%d,%d)-ES",mu,mu,lambda);
 % title(d,'FontSize', 20);
 % p2 = sprintf('1fitGain_%d_%d_%d_ES.fig',mu,mu,lambda);
