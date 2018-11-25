@@ -85,9 +85,9 @@ X^{(g+1)} =
 \text{select\_best}(\mu,Y^{(g)},fY^{(g)}) , & \text{comma-selection},
 \end{cases}
 \end{align}
-where the $g$ in the parenthesis on the top right denotes the generation number, $fX^{(g)}$, $fY^{(g)}$ are objective function value for each individuals in population $X^{(g)}$ and $Y^{(g)}$, $\text{select\_best}(\mu,X^{(g)},fX)^{(g)}$ selects the best $\mu$ individuals from $X^{(g)}$ according to their fitness recorded in $fX^{(g)}$ i.e. $\text{select\_best}(\mu,X^{(g)},fX^{(g)}) = \{x_{i;\lambda}^{(g)}: 1 \leq i \leq \mu \}$ where $f(x_{i;\lambda}^{(g)}) < f(x_{j;\lambda})^{(g)}$, $1 \leq i < j \leq \lambda$.
+where the $(g)$ on the top right denotes generation, $fX^{(g)}$ and $fY^{(g)}$ are objective function values for each individuals in population $X^{(g)}$ and $Y^{(g)}$, $\text{select\_best}(\mu,X^{(g)},fX^{(g)})$ selects the best $\mu$ individuals from $X^{(g)}$ according to their fitness recorded in $fX^{(g)}$ i.e. $\text{select\_best}(\mu,X^{(g)},fX^{(g)}) = \{x_{i;\lambda}^{(g)}: 1 \leq i \leq \mu \}$ where $f(x_{i;\lambda}^{(g)}) < f(x_{j;\lambda}^{(g)})$, $1 \leq i < j \leq \lambda$.
 
-After selection, recombination is performed, meaning $\rho$ individuals are randomly chosen from $X^{(g+1)}$ and recombined to generate the new offspring. There are two common recombination approaches, intermediate recombination and weight recombination. Intermediate recombination simply takes the average of $\rho$ randomly selected individuals from $X^{(g+1)}$ where the point obtained after recombination is referred to as the centroid $x_{\text{centroid}}$, while weighted recombination uses a weighted average of $\rho$ selected individuals from $X$ where the weights are normalized and directly related to individuals' fitness ranking. The centroid $x_{\text{centroid}}^{(g+1)}$ obtained from recombination in generation $g+1$ is defined as
+After selection, recombination is performed, meaning $\rho$ individuals are randomly chosen from $X^{(g+1)}$ and recombined to generate the new offspring. There are two common recombination approaches, intermediate recombination and weight recombination. Intermediate recombination simply takes the average of $\rho$ randomly selected individuals from $X^{(g+1)}$ where the point obtained after recombination is referred to as the centroid $x_{\text{centroid}}^{(g+1)}$, while weighted recombination uses a weighted average of $\rho$ selected individuals from $X^{(g+1)}$ where the weights are normalized and directly related to individuals' fitness ranking. The centroid $x_{\text{centroid}}^{(g+1)}$ obtained from recombination in generation $g+1$ is defined as
 \begin{align}
 x_{\text{centroid}}^{(g+1)} = 
 \begin{cases}
@@ -98,11 +98,11 @@ x_{\text{centroid}}^{(g+1)} =
 \end{align}
 where $\text{select\_random}(\rho,X^{(g+1)})$ randomly selects $\rho$ individuals from $X^{(g+1)}$ without replacement, $0 \leq w_i \leq 1, 1 \leq i \leq \rho$ is a normalized weight related to the fitness of corresponding $x_i$ that has $\sum_{i=1}^\rho w_i = 1$ and $0\leq w_i < w_j \leq 1,f(x_i) > f(x_j)$. 
 
-We denote the parental population $X^{(g+1)} = \{x_1,x_2,...,x_\mu\}$ and offspring generated in generation $g+1$ $Y^{(g+1)} = \{y_1,y_2,...,y_{\lambda} \}$ where $x_i,y_j \in \mathbb{R}^N$ for $i=1,...,\mu$ and $j=1,...,\lambda$. When generating one offspring, a standard normally distributed mutation vector $z_i \in \mathbb{R}^N $ is generated and added to the centroid with a step size parameter $\sigma \in \mathbb{R}$ and we have 
+In generation $(g+1)$, we denote the parental population $X^{(g+1)} = \{x_1,x_2,...,x_\mu\}$ and offspring generated $Y^{(g+1)} = \{y_1,y_2,...,y_{\lambda} \}$, where $x_i,y_j \in \mathbb{R}^N$ for $i=1,...,\mu$ and $j=1,...,\lambda$. In offspring generation, a standard normally distributed mutation vector $z_i \in \mathbb{R}^N $ is generated and added to the centroid with a step size parameter $\sigma \in \mathbb{R}$ and we have 
 \begin{align}
 y_i^{(g+1)} = x_{\text{centroid}}^{(g+1)} + \sigma z_i, 1\leq i \leq \lambda
 \end{align}
-where $z_i$ represents the mutation, $x_{\text{centroid}}^{(g+1)}$ is the centroid obtained after recombination in each iteration. 
+where $z_i$ represents the mutation, $x_{\text{centroid}}^{(g+1)}$ is the centroid obtained after recombination in generation $(g+1)$. 
 
 Here we consider two special cases of the general ES, namely (1+1)-ES and $(\mu/\mu,\lambda)$-ES. The (1+1)-ES ($\mu = \rho = \lambda=1 $ with plus-selection) generates a single offspring $y = x + \sigma z$ in each generation ($x=x_{\text{centroid}}$, the parental population $Y = \{y\}$), the fitness of $y$ is evaluated and compared with its parent $x$. The parent population $X$ is updated iff. the offspring is superior to its parent i.e. $f(y)<f(x)$. Whereas the $(\mu/\mu,\lambda)$-ES ($\mu=\rho$ with comma-selection) generates $\lambda$ offspring with offspring population $Y = \{ y_i: y_i = x_{\text{centroid}} + \sigma z_i, 1\leq i \leq \lambda \}$, the parental population $X$ is updated by selecting the best $\mu$ individuals from $Y$ i.e. $X = \text{select\_best}(\mu,Y,fY)$ where $fY = \{f(y_i):y_i \in Y \}$. A Covariance Matrix Adaptation Evolution Strategy (CMA-ES) adds a covariance matrix to a general ES where the mutation is generated from the covariance matrix that approximates the inverse of the Hessian and is updated in each generation. It is very helpful in dealing with ill-conditioning (the condition number of the Hessian matrix is very large). 
 
@@ -122,22 +122,22 @@ The step size of $(\mu/\mu,\lambda)$-ES is commonly adapted using cumulative ste
 % In each iteration, $(\mu/\mu,\lambda)$-ES generate $\lambda$ candidate solutions $y_i \in \mathbb{R}^N,i=1,...,\lambda$ from a parental population $x_i \in \mathbb{R}^N i=1,...,\mu$ and the centroid of the parent population is $x = 1/\mu \sum_{i=1}^\mu x_i$, where $\mu < \lambda$. The parental population is replaced by the best $\mu$ candidate solutions gennerated by $y_i = x + \sigma z$ where $\sigma \in \mathbb{R}$ is a scalar referred to as the step size and $z \in \mathbb{R}^N$ as the mutation. 
 
 
-To decide the correlation, information from previous steps and mutations are cumulated. By comparing the search path with the expected step length under random selection, the search path is adapted according to the expected length. Step size increases if the length is less than expected and decrease otherwise. 
+To decide the correlation, information from previous steps and mutations are cumulated. By comparing the search path with the expected step length under random selection, the search path is adapted according to the expected length. Step size decreases if the length is less than expected and increases otherwise. 
 
 Define the search path as 
 \begin{align}
 p^{(g+1)} \leftarrow (1-c)p^{(g)} + \sqrt{\mu c (2-c)} z_{\text{step}},
 \end{align}
-where $0<c \leq 1$ helps retain the history information (in generation $(g)$) and pass that to the evolution path in the next generation $(g+1)$, $ \sqrt{\mu c (2-c)}$ is a normalization constant that updates the evolution path via the information obtained in this generation and $z_{\text{step}}$ is the direction vector obtained by averaging the directions of $\rho$ randomly chosen individuals after selection is applied. The $z_{\text{step}}$ follows
+where $0<c \leq 1$ helps retain the history information (in generation $(g)$) and pass that to the evolution path in the next generation $(g+1)$, $ \sqrt{\mu c (2-c)}$ is a normalization constant that updates the evolution path via the information obtained in generation $g$ and $z_{\text{step}}^{(g)}$ is the direction vector obtained by averaging the directions of $\rho$ randomly chosen individuals after selection is applied. The $z_{\text{step}}^{(g)}$ follows
 \begin{align}
-z_{\text{step}} = 
+z_{\text{step}}^{g} = 
 \begin{cases}
 % X_{\text{selected}} = 
- \frac{1}{\rho} \sum_{i=1}^\rho z_{i;\lambda},& \text{comma-selection}\\
-\frac{1}{\rho} \sum_{i=1}^\rho z_{i;\lambda+\mu} & \text{plus-selection}
+ \frac{1}{\rho} \sum_{i=1}^\rho z_{i;\lambda}^{(g)},& \text{comma-selection}\\
+\frac{1}{\rho} \sum_{i=1}^\rho z_{i;\lambda+\mu}^{(g)} & \text{plus-selection}
 \end{cases},
 \end{align}
-where $y_{i;\lambda} = x_{\text{centroid}} +\sigma z_{i;\lambda}$ with $f(y_{i;\lambda})< f(y_{j;\lambda}), 1 \leq i < j \leq \lambda$ and $x_{\text{centroid}} + z_{i;\lambda} \in X,x_{\text{centroid}} + z_{i;\lambda+\mu} \in X \cup Y $. 
+where $y_{i;\lambda}^{(g)} = x_{\text{centroid}}^{(g)} +\sigma z_{i;\lambda}^{(g)}$ with $f(y_{i;\lambda}^{(g)} )< f(y_{j;\lambda}^{(g)}), 1 \leq i < j \leq \lambda$ and $x_{\text{centroid}}^{(g)} + z_{i;\lambda}^{(g)} \in X^{(g)},x_{\text{centroid}}^{(g)} + z_{i;\lambda+\mu}^{(g)} \in X \cup Y $. 
 
 The step size is adapted 
 \begin{align}
@@ -154,7 +154,7 @@ d=1+2 \max\left (0, \sqrt{(\mu-1)/(N+1)-1} \right)+c.
 
 \subsubsection{Analyzing ES}\label{sssec:analysis_sphere_combined}\hfill
 
-To understand the behaviour of EAs, we first introduce analyzing ES on simple test functions where the step behaviours of the algorithm are more likely to be understood, specifically on sphere function where . Then proceed to the analysis on noisy sphere where the same analysis can be used to model the surrogate assisted $(\mu/\mu.\lambda)$-ES. Specifically, the $(\mu/\mu.\lambda)$-ES is first analyzed on quadratic sphere and then noisy sphere that models the ideal performance of surrogate model assisted $(\mu/\mu.\lambda)$-ES.    
+To understand the behaviour of EAs, we first introduce analyzing ES on simple test functions where the step behaviours of the algorithm are more likely to be understood, specifically on sphere function where . Then proceed to the analysis on noisy sphere where the same analysis can be used to model the surrogate assisted $(\mu/\mu.\lambda)$-ES. Specifically, the $(\mu/\mu.\lambda)$-ES is first analyzed on quadratic sphere defined as $f(x) = \sum_{i=1}^n x_i^2$ and then noisy sphere that models the ideal performance of surrogate model assisted $(\mu/\mu.\lambda)$-ES.
 
  \paragraph{On Sphere Function}
 
@@ -164,14 +164,25 @@ To understand the behaviour of EAs, we first introduce analyzing ES on simple te
 % In each iteration, $\lambda$ offspring $y_i \in \mathbb{R}^N,i = 1,...,\lambda $ are generated from the parental population $X$ with size $ \left| X \right| = \mu$ and the offspring population denoted as $Y$ has size $\left| Y \right| =\lambda$, each individual in the parental population follows $x_i \in \mathbb{R}^N, i=1,...,\mu$, where $\lambda>\mu$. Since $(\mu/\mu.\lambda)$-ES is the case where $\rho = \mu$ and uses comma-selection, the selection is based solely on the offspring population $Y$ i.e. the old parental population $X$ dies out and is replaced by the best $\mu$ candidate solutions $y_{i;\lambda},i = 1,2,...,\mu$ evaluated by the objective function with fitness $f(y_{i;\lambda}) \leq f(y_{j,\lambda}), 1 \leq i < j \leq \lambda$. Each  offspring is generated by $y_i = x + \sigma z$, where the recombined parent $x = \sum_{i=1}^n x_i/\mu$ also the centroid of the parental population $X$ is obtained through intermediate recombination discussed in Section \ref{sssec:def_ES}, $z \in  \mathbb R^N$ is a standard normally distributed random vector, $\sigma > 0$ is the step size of the strategy, the adaptation using CSA in this context has been described in previous Section \ref{sssec:step_size_adaptation}. 
 
 % The expected fitness gain over noise-to-signal ratio
-Decomposition of $z$, first proposed by Rechenberg \cite{rechenberg1973evolutionsstrategie} can be used to study the expected step size of the strategy. Vector $z$ can be decomposed as a vector sum $z = z_1 + z_2$, where $z_1$ is in the direction of the negative gradient of the objective function $\nabla f(x)$ with $z_2$ orthogonal to $z_1$. We have $z_1$ standard normally distributed, while $\Vert z_2\Vert^2$ $\chi^2$-distributed with $N-1$ degree of freedom and $ \Vert z_2\Vert^2 /N \overset{N \rightarrow \infty }{=} 0$ (see reference theorem [$\color{red}{dirk's\ slides }$]). Denote $\delta = N (f(x) - f(y))/(2R^2)$, where $R = \Vert x \Vert$ is the euclidean distance to the optimal, we further introduce normalized step size $\sigma^* = N \sigma/R$ and $z_{\text{step}} = \sum_{i=1}^\mu z_{i;\lambda}$ (the averaged $z$ taken by the best $mu$ candidate solutions). The normalized fitness advantage of $y$ over $x$ follows
+Decomposition of $z$, first proposed by Rechenberg \cite{rechenberg1973evolutionsstrategie} can be used to study the expected step size of the strategy. Vector $z$ can be decomposed as a vector sum $z = z_1 + z_2$, where $z_1$ is in the direction of the negative gradient of the objective function $\nabla f(x)$ with $z_2$ orthogonal to $z_1$. We have $z_1$ standard normally distributed, $\Vert z_2\Vert^2$ $\chi^2$-distributed with $N-1$ degree of freedom and $ \Vert z_2\Vert^2 /N \overset{N \rightarrow \infty }{=} 1$ (see \cite{beyer2013theory}). Denote $\delta = N (f(x) - f(y))/(2R^2)$, where $R = \Vert x \Vert$ is the euclidean distance to the optimal, we further introduce normalized step size $\sigma^* = N \sigma/R$. The normalized fitness advantage of $y$ over $x$ given mutation $z$ follows
 \begin{align}{}
-\delta^* & = \frac{N}{2R^2}\left( f(x) - f(y)\right)  \nonumber\\
-& = \frac{N}{2R^2} (x^Tx - (x+\sigma z_{\text{step}})^T (x+\sigma z_{\text{step}})) \nonumber\\
-& = \frac{N}{2R^2} (-2 \sigma x^Tz_{\text{step}} - \sigma^2 \Vert z_{\text{step}}\Vert^2 ) \nonumber\\
-& \overset{N \rightarrow \infty}{=} \sigma^* z_{\text{step},1} - \frac{{\sigma^*} ^2}{2\mu} \label{eqn:delta}{},
+\delta^*(z) & = \frac{N}{2R^2}\left( f(x) - f(y)\right)  \nonumber\\
+& = \frac{N}{2R^2} (x^Tx - (x+\sigma z)^T (x+\sigma z)) \nonumber\\
+& = \frac{N}{2R^2} (-2 \sigma x^Tz - \sigma^2 \Vert z \Vert^2 ) \nonumber\\
+& \overset{N \rightarrow \infty}{=} \sigma^* z_{1} - \frac{{\sigma^*} ^2}{2} \label{eqn:delta_z}{},
 \end{align}
-where $z_{\text{step},1} $, the component of $z_{\text{step}}$ pointing to the negative gradient of $f(x)$ and $\overset{ N \rightarrow \infty}{=}$ denotes the convergence of the distribution $\Vert z_{\text{step} } \Vert^N/N = 1$. 
+where $z_{1} $is the component of $z$ pointing to the negative gradient of $f(x)$ and $\overset{ N \rightarrow \infty}{=}$ denotes the convergence of the distribution $\Vert z \Vert^N/N = 1$. 
+
+
+In the case of $(\mu/\mu.\lambda)$-ES, the mutation vector $z_{\text{step}} = \sum_{i=1}^\mu z_{i;\lambda}$ is the averaged $z$ taken by the best $mu$ candidate solutions. So the normalized fitness advantage given $z_{\text{step}}$ is
+
+\begin{align}{}
+\delta^*(z_{\text{step}}) & = \frac{N}{2R^2} (x^Tx - (x+\sigma z_{\text{step}})^T (x+\sigma z_{\text{step}})) \nonumber\\
+& = \frac{N}{2R^2} (-2 \sigma x^Tz_{\text{step}} - \sigma^2 \Vert z_{\text{step}}\Vert^2 ) \nonumber\\
+& \overset{N \rightarrow \infty}{=} \sigma^* z_{\text{step},1} - \frac{{\sigma^*} ^2}{2\mu} \label{eqn:delta_z_step}{},
+\end{align}
+where $z_{\text{step},1} $ is the component of $z_{\text{step}}$ pointing to the negative gradient of $f(x)$ and $\overset{ N \rightarrow \infty}{=}$ denotes the convergence of the distribution $\Vert z_{\text{step,1} } \Vert^N/N = 1/\mu$. 
+
 
 \paragraph{On Noisy Sphere Function}
 The sphere is considered noisy when the fitness evaluation is inaccurate and the objective function on a fixed point may vary in a certain range in different objective function calls. The following uses the analysis and modelling proposed by Arnold and Beyer \cite{ARNOLD2001127}. 

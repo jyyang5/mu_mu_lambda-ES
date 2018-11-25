@@ -66,18 +66,13 @@ c_n_100 = -n/2*log(1-2*expected_delta/n)./p_eval;
 
 figure(1);
 subplot(1,2,1);
-
-n=10;
 d = sprintf('N=%d',n);
-typeDot = 'x';
 scatter(exp_v_array,c_n_10,typeDot,scatterColour,'DisplayName',d); hold on; 
 
-n=100;
-d = sprintf('N=%d',n);
-typeDot = 'o';
-scatter(exp_v_array,c_n_100,typeDot,scatterColour,'DisplayName',d); hold on;
-
-
+ylabel('opt. expected fitness gain \eta','FontSize',15);
+xlabel('noise-to-signal-ratio \upsilon','FontSize',15); 
+set(gca, 'XScale', 'log');
+set(gca,'FontSize',15);
 
 
 
