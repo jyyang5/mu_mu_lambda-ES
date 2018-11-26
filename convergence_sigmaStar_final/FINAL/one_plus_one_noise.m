@@ -78,7 +78,7 @@ T = 1;                                    % # of distinct parent solution
 
 
 while(t < NUM_OF_ITERATIONS && fx>10^(-8))%(norm(x_array(:,T)-OPTIMAL(:,1)) > TARGET_DISTANCE))
-    if(t>100000 || fx>200)
+    if(t>100000 || fx>500)
         convergence_rate = 0;
         val = {t, x_array(:,T), fx, sigma_array, T, f_x, convergence_rate};
         return 
