@@ -2,7 +2,7 @@
 % plot opt. normalized step size & opt. expected fitness gain over v 
 % For (1+1)-ES
 
-function fun_precise_optFitGain_over_v_ONE(f,NUM_OF_RUNS,FIG_NUM,subplotNum_step,v_array,n,scatterColour,typeDot,c_mu_lambda,v_expected_curve_array)
+function val=fun_precise_optFitGain_over_v_ONE(f,NUM_OF_RUNS,FIG_NUM,subplotNum_step,v_array,n,scatterColour,typeDot,c_mu_lambda,v_expected_curve_array)
 %Input
 %   v_array:              experimental result array noise-to-signal ratio = sigma_ep_star /sigma_star
 %   n:                    dim of data 
@@ -137,14 +137,13 @@ leg.FontSize = 10;
 title(leg,'Dimension of data');
 % ylabel('convergnece rate c','fontsize',20);
 ylim([0,inf]);  % y starts from 0
-xlim([0.1 10]);   % set y = 0-10
 xlabel('noise-to-signal ratio \vartheta','fontsize',20);
 set(gca, 'XScale', 'log')
 ylabel('opt. expected fitness gain \eta_{opt}','FontSize',15); 
 set(gca,'FontSize',15);
 % d = sprintf("Opt. expected fitness gain");
 % title(d,'FontSize', 20);
-xlim([0 10]);   % set y = 0-10
+xlim([0 10.05]);   % set y = 0-10
 
 % opt. normalized step size over noise-to-signal ratio
 figure(FIG_NUM);hold on;
@@ -158,15 +157,16 @@ leg.FontSize = 10;
 title(leg,'Dimension of data');
 % ylabel('convergnece rate c','fontsize',20);
 ylim([0,inf]);  % y starts from 0
-xlim([0.1 10]);   % set y = 0-10
 xlabel('noise-to-signal ratio \vartheta','fontsize',20);
 set(gca, 'XScale', 'log')
 ylabel('opt. normalized step size \sigma^*','FontSize',15); 
 set(gca,'FontSize',15);
 % d = sprintf("Opt. expected fitness gain");
 % title(d,'FontSize', 20);
-xlim([0 10]);   % set y = 0-10
+xlim([0 10.05]);   % set y = 0-10
 
+
+val = {v_convergence_rate_array};
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % plot expected convergence rate for n-> infty
 % noise-to-signal ratio

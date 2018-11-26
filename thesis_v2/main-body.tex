@@ -420,9 +420,9 @@ The analysis in Section \ref{sssec:analysis_sphere_combined} still holds which g
 
 Since the fitness of $\lambda$ offspring generated are evaluated by the surrogate model with previous assumption at vanishing cost. The objective function evaluation per iteration is 1 instead of $\lambda$ (for $(\mu/\mu,\lambda)$-ES without model assistance), therefore the normalized progress rate when dimensionality $N \rightarrow \infty$, by substituting $\lambda$ with 1 in Eq. (\ref{eqn:delta_noise}), the normalized progress rate is 
 \begin{align}\label{eqn:eta_surrogate}{}
-\eta = \frac{1}{1}E[ \delta_{\epsilon,GP}^*] \approx  \frac{\sigma^* c_{\mu / \mu, \lambda}}{\sqrt {1+ \vartheta^2}} - \frac{(\sigma^*)^2}{2 \mu} ,
+\eta = \frac{1}{1}E[ \delta_{GP}^*] \approx  \frac{\sigma^* c_{\mu / \mu, \lambda}}{\sqrt {1+ \vartheta^2}} - \frac{(\sigma^*)^2}{2 \mu} ,
 \end{align}
-To obtain the opt. expected fitness gain $\eta_{opt}$ and its corresponding opt. normalized step size $\sigma^*_{opt}$ over a fixed noise-to-signal ratio $\vartheta$, we take derivative of equation (\ref{eqn:eta_surrogate}) over $\sigma^*$ and get the following 
+To obtain the opt. expected fitness gain $\eta_{opt}$ and its corresponding opt. normalized step size $\sigma^*_{opt}$ over a fixed noise-to-signal ratio $\vartheta$, assuming $\vartheta$ and $\sigma$ we take derivative of equation (\ref{eqn:eta_surrogate}) over $\sigma^*$ and get the following 
 \begin{align}\label{eqn:opt_surrogate}
 \sigma^*_{opt} &= \frac{ \mu c_{\mu / \mu, \lambda}}{\sqrt {1+ \vartheta^2}}\\
 \eta_{opt} &= \frac{\sigma^*_{opt} c_{\mu / \mu, \lambda}}{\sqrt {1+ \vartheta^2}} - \frac{(\sigma^*_{opt})^2}{2 \mu} 
@@ -431,7 +431,7 @@ To obtain the opt. expected fitness gain $\eta_{opt}$ and its corresponding opt.
 \begin{center}
 \begin{figure*}
 \includegraphics[height=2.1in, width=6.0in]{expectedFitGain_final_1}
-\caption{The figures from left to right show the expected single step behaviour of the surrogate model assisted $(\mu/\mu,\lambda)$-ES with unbiased Gaussian distributed surrogate error with $\lambda=10,20,40$ respectively where $\mu = \lceil \lambda/4 \rceil$. The solid lines are the results obtained analytically when $n \rightarrow \infty$, while the dotted line below illustrates the corresponding performance of the $(\mu/\mu,\lambda)$-ES without model assistance ($N\rightarrow \infty$). The dots represents the experimental result for $n=10$ (crosses) and $n=100$ (circles).}
+\caption{The figures from left to right show the expected single step behaviour of the surrogate model assisted $(\mu/\mu,\lambda)$-ES with unbiased Gaussian distributed surrogate error with $\lambda=10,20,40$ respectively where $\mu = \lceil \lambda/4 \rceil$. The solid lines are the results obtained analytically when $n \rightarrow \infty$, while the dotted lines below illustrate the corresponding performance of the $(\mu/\mu,\lambda)$-ES without model assistance ($N\rightarrow \infty$). The dots represents the experimental result for $n=10$ (crosses) and $n=100$ (circles).}
 \label{fig:expectedFitGain}
 \end{figure*}
 \end{center}
