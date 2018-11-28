@@ -1,3 +1,8 @@
+% Experimental result for crosses and circles (1+1)-ES
+% Use simulation
+
+
+f = @(x) (x'*x);        % quadratic sphere
 
 NUM_OF_RUNS = 50;
 NUM_OF_ITERATIONS = 10000;

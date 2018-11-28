@@ -49,7 +49,7 @@ xTrain = zeros(n, 10000);                 % parent solution with dim n
 % TRAINING_SIZE = 40;
 
 % for graphing
-sigma_funEva_array = zeros(1,10000);      % store all sigma over function evaluations
+sigma_array = zeros(1,10000);      % store all sigma over function evaluations
 x_array = zeros(n,10000);                 % store all best candiate solution
 f_x = zeros(1,10000);                     % store all objective function val of candaite solution
 sigma_iterate_array = zeros(1,10000);     % store sigma over iterations   
@@ -78,7 +78,7 @@ T = 1;                                    % # of distinct parent solution
 
 
 while(t < NUM_OF_ITERATIONS && fx>10^(-8))%(norm(x_array(:,T)-OPTIMAL(:,1)) > TARGET_DISTANCE))
-    if(t>100000 || fx>500)
+    if(t>1000000 || fx>5000)
         convergence_rate = 0;
         val = {t, x_array(:,T), fx, sigma_array, T, f_x, convergence_rate};
         return 
