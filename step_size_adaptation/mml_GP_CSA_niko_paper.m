@@ -88,7 +88,9 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     % early stopping 
     if(f_centroid > 500)
         % if diverge -> convergence rate = 0
-        val = {9999999,mean(x0, 2),99999,sigma_array, 9999999, fcentroid_array,-1,error_array,s_array}; 
+        success_rate = 0;
+        t = t-1;
+        val = {9999999,mean(x0, 2),99999,sigma_array, 9999999, fcentroid_array,-1,error_array,sigma_star_array,success_rate,factor_array}; 
         return 
     end
 %     dist = norm(centroid);                                                 % distance to optimal

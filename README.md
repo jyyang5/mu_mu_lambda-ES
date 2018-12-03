@@ -131,12 +131,63 @@ Where D is the decrease factor for step size in occurance of emergency
 |   (12/12,50)		    | 2      | ||0.96(3.0)   |
 
 ## 	Schedule 
+- Thesis write-up
+    - [x] Send the paper needed for computing c_{\mu/\mu,\lambda}
+      - Include those equations for probbaility  
+    - [x] Graph 
+      - Do it 2*2 or 1*4
+      - expected fitness gain/lambda (normalized same scale)
+      - opt. fitness gain and step size (log [.1,10]) 
+    - [x] Medium run
+      - Take the run use medium objective function calls 
+        - plot convergence plot
+        - relative model error
+        - normalized step size
+    - [x] Include the progress rate and convergence rate for sphere functions (pdf or histogram as you like)
+    - [x] When noise-to-signal ratio -> infty (model useless) -> point out random search (ultimately diverge)
+    - Figure 
+        - Could divide into row 1,2,3,4 same plot (2,3,4,same scale in x-axies)
+          - hist objective function calls
+          - convergence plot
+          - model error
+          - normalized step size
+        - Row 5,6 same plot 
 
-Thesis write-up
+- Contribution 
+    - Simple idea 
+    - Systematic evaluations 
+
+    recent paper introduces (1+1)-ES exploiting GP surrogate models, we wonder whether mml-ES could work better
+    1. Model using GP noise, fig. and Eqns. 
+    2. Even though suggest potential better performance 
+      - no gaurantee step size adaptation
+      - very inaccurate finite of n, practical analysis (experimental result)
+    3. Runs, many steps in the iteration deterior the candidate solutions -> simplily not using those-> we can get significant advantage 
+
+- Paper
+    wonder (1+1)-ES benefit get better direction 
+    - MATH
+    - Insight any step size adaptation without CSA 
+
+
+
+
+- Thesis write-up
+
+Surrogate-assisted $(\mu/\mu,\lambda)$-ES
+
+Just in last section. Say could do...
+
+Plot just n-> \infty, remove precise approximation for n=10,100
+
+- Paper write-up
+
+Still call it (1+1)-ES
 
 New step size adaptation mechinisum (decrease in emergency)
 
-Intuitive, figures
+
+
 
 
 
@@ -307,7 +358,13 @@ Intuitive, figures
 
     
 
-
+- 20181123
+    - General ES
+       - CMA-ES
+         - Covariance matrix ideally approaches the inverse of the Hessian
+    -  Step size 
+       - CSA (only for mml-ES) 
+         - Compare the length of search path  
 
 
 
