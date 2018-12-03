@@ -3,12 +3,13 @@
 ## Overview
 
 - Performance for dark art
+
 | strategy        |  linear| quadratic | cubic | schwefel|quartic|
-| :---------------|-------:| ------------------:|--------------:|------------:|--------:|
+| :---------------|-------:| ---------:|------:|--------:|------:|
 | Baseline (Arash's) |  503  | 214       | 198   |1503|1236|
-|CSA $\lambda=40$| 759|226|252 | $\infty$|668|
-|Emergency CSA $D=0.72$| 304|142|184| 916.5|717.5|
-|Emergency CSA $D=0.68$| 299|144|178| 949|720|
+|CSA \lambda=40| 759|226|252 | \infty|668|
+|Emergency CSA D=0.72| 304|142|184| 916.5|717.5|
+|Emergency CSA D=0.68| 299|144|178| 949|720|
 
 Where D is the decrease factor for step size in occurance of emergency
 
