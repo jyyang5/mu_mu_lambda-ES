@@ -44,12 +44,12 @@ for fname = 1:1:5
         
         if lambda==0
             t_start = TRAINING_SIZE+3;
-            plot(t_start:1:T_med,GP_error_matrix_med(t_start:T_med),'DisplayName',d);hold on;
+%             plot(t_start:1:T_med,GP_error_matrix_med(t_start:T_med),'DisplayName',d);hold on;
 %             smoothed_GP = smoothdata(GP_error_matrix_med(t_start:T_med),'gaussian',40);
                 
-            smoothed_GP = exp(conv(log(GP_error_matrix_med(t_start:t_med)), kernel, 'same'));
+            smoothed_GP = exp(conv(log(GP_error_matrix_med(t_start:T_med)), kernel, 'same'));
             d1 = sprintf('(1+1)-ES[smoothed]');
-            plot(t_start:1:t_med,smoothed_GP,'DisplayName',d1,'LineWidth',2);hold on;
+            plot(t_start:1:T_med,smoothed_GP,'DisplayName',d1,'LineWidth',2);hold on;
 %             set(gca, 'YScale', 'log');
         else 
 %             GP_error_range1 = GP_error_matrix_med(1:t_start);
@@ -57,7 +57,7 @@ for fname = 1:1:5
             fx_range2 = f_x_med(t_start+1:t_med);
             t_range2 = lambda*t_start+1:lambda*t_start+length(fx_range2);
             GP_error_range2 = GP_error_matrix_med(t_start+1:t_med);
-            plot(t_range2,GP_error_range2,'DisplayName',d);hold on;
+%             plot(t_range2,GP_error_range2,'DisplayName',d);hold on;
 %             plot([t_range1 t_range2], [GP_error_range1 GP_error_range2],'DisplayName',d);hold on;
             % GP smoothed
 %             smoothed_GP_range1 = smoothdata(GP_error_range1,'gaussian',40);
@@ -66,7 +66,7 @@ for fname = 1:1:5
 
             d1 = sprintf('(%d/%d,%d)-ES[smoothed]',mu,mu,lambda);
             plot(t_range2, smoothed_GP_range2,'DisplayName',d1,'LineWidth',2);hold on;
-            set(gca, 'YScale', 'log');
+%             set(gca, 'YScale', 'log');
 
 %             plot([t_range1 t_range2],[smoothed_GP_range1 smoothed_GP_range2],'DisplayName',d1,'LineWidth',2);hold on;
         end
