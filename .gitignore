@@ -18,3 +18,5 @@ experimental_result/emergency_v0/data_emergency.mat
 experimental_result/emergency_v0/data_emergency.mat
 thesis_v3/Jingyun_Nov29.pdf
 thesis_v3/Jingyun_Nov30.pdf
+*.mat
+experimental_result/emergency_v0/data_emergency.mat
