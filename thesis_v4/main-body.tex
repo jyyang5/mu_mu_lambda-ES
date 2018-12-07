@@ -916,12 +916,38 @@ Similarly, the histograms of success rates (the proportion of a good step size i
 
 
 \section{Conclusions}
-In this thesis, we applied the simple model \cite{DBLP:conf/ppsn/KayhaniA18} of unbiased Gaussian distributed noise for surrogate modelling approach and analyzed the behaviours of the strategy on a simple test function. We first replicated the analytical and experimental results obtained from the surrogate model assisted (1+1)-ES \cite{DBLP:conf/ppsn/KayhaniA18}. By doing the mentioned, we understood the use of this modelling approach (on Gaussian Process surrogate model) and testing ESs on simple test functions (specifically, quadratic sphere function) where the behaviours of the surrogate model and the strategy can be well interpreted. Then we analyzed the behaviours of the proposed surrogate model assisted $(\mu/\mu,\lambda)$-ES on the quadratic sphere function using the same approach and attempted to interpret the analytical and experimental results. Despite a potential improvement compared with the surrogate model assisted (1+1)-ES \cite{DBLP:conf/ppsn/KayhaniA18}, there is a gap about a factor of four between the analytical results and experimental results obtained. We tried to interpret the cause of the gap from the single step behaviour of the strategy and observed an increase in success rate but a potential decrease in the quality of a good step. Based on the analysis and the observations of the GP-$(\mu/\mu,\lambda)$-ES, we proposed GP-cross-ES and a corresponding step size adaptation mechanism taking benefit of the plus-selection where the bad steps are rejected. The strategy is evaluated numerically using a set of test functions. It shows that the step size adaptation mechanism adapted the step size successfully in all runs and the GP-cross-ES achieves an overall $\text{speed-up}_{\text{model}}$ about 1.4 to 1.6 for a population size $\lambda \geq 20$ in all five test functions.
+In this thesis, we applied the simple model of unbiased Gaussian distributed noise for surrogate modelling approach from Kayhani and Arnold \cite{DBLP:conf/ppsn/KayhaniA18} to analyze the surrogate model. By using this approach, we analyzed the behaviours of the proposed GP-$(\mu/\mu,\lambda)$-ES on the quadratic sphere function and observed a very significant $\text{speed-up}_{\text{self}}$ as the surrogate model is more fully exploited compared with the surrogate model assisted (1+1)-ES. If the surrogate model is accurate, we would expect a $\text{speed-up}_{\text{self}}$ equals to the population size $\lambda$. In experiments, the $\text{speed-up}_{\text{self}}$ achieved is about half the expected value for quadratic sphere and quartic function, a factor between two and six of the expected value for linear sphere and cubic sphere. In the Schwefel’ s function, the GP-$(\mu/\mu,\lambda)$-ES does not even converge when $\lambda \geq 20$. In most cases except in the quartic function, the performance of the GP-$(\mu/\mu,\lambda)$-ES is inferior to the surrogate model assisted $(1+1)$-ES. There is a factor approximately four between the analytical results and the experimental results for $\text{speed-up}_{\text{model}}$ in quadratic sphere function. One possibility is the assumption that the Gaussian noise are uncorrelated which may not hold in the case of generating multiple offspring in each iteration as is happened in $(\mu/\mu,\lambda)$-ES, but can be valid when generating a single offspring in (1+1)-ES. 
+
+We tried to interpret the cause of the gap from the single step behaviour of the strategy. One observation is the increased success rate but a potential decreased quality of a good step compared with the surrogate model assisted (1+1)-ES, indicating many of the steps generated do not give much improvement (fitness gain). Based on the analysis and the observations of the GP-$(\mu/\mu,\lambda)$-ES, we proposed the GP-cross-ES and a corresponding step size adaptation mechanism taking benefit of the plus-selection where the bad steps are rejected. The strategy is evaluated numerically using a set of test functions. It shows that the step size adaptation mechanism adapted the step size successfully in all runs and the GP-cross-ES achieves an overall $\text{speed-up}_{\text{model}}$ about 1.4 to 1.6 for a population size $\lambda \geq 20$ in all five test functions. 
+
+
+
+% We first replicated the analytical and experimental results obtained from the surrogate-model-assisted (1+1)-ES \cite{DBLP:conf/ppsn/KayhaniA18}. By doing the mentioned, we understood the use of this modelling approach (on Gaussian Process surrogate model) and testing ESs on simple test functions (specifically, quadratic sphere function) where the behaviours of the surrogate model and the strategy can be well interpreted. 
+
+
+% Take the model from there, analyze the 
+
+% found that using the simple model for surrogate model from K
+% very significant speed-up observed, as the surrogate model assisted $(\mu/\mu,\lambda)$-ES more fully exploit the surrogate model. If the model is accurate, we would expect a speed-up of the population size $\lambda$. We then run experiements 
+
+% many cases, performance inferiior to (1+1)-ES
+
+% many of the step does not give improvements.
+
+% Uncorrelated Gaussian noise is not 
+
+% speed-up inferior to what have been hoped.
+
+% Come up with the idea that plus-selection.
+
+% primarily for those functions but not significant on the others.
+
+
 
 In future work, we will study the behaviours of surrogate assisted CMA-ES using the same analysis that can potentially handle ill-conditioned problems. Further goals include length scale adaptation mechanism in the Gaussian Process and surrogate model accuracy control that can possibly further reduce the gap between the expected analytical results and the experimental results. 
 
 \section*{Acknowledgment}
-I would like to express my sincere gratitude my supervisor Dr. Dirk V. Arnold for the continuous support during the past two semesters, for his patience, motivation, and passion that motivates me all the time both in study and beyond. Besides my supervisor, I would like to thank my parents for their love and unconditional support during the past years without whom I would never have been where I am now.
+I would like to express my sincere gratitude my supervisor Dr. Dirk V. Arnold for his continuous support during the past two semesters, as well as his patience, motivation, and passion that motivates me all the time both in study and beyond. Besides my supervisor, I would like to thank my parents for their love and unconditional support during the past years without which I would not be where I am now. 
 
 % For future work, we will work on a selection mechanism for candidate solutions deciding what candidate solutions to choose based on the fitness gain it may bring. Further, a step size adaptation mechanism for the surrogate model assisted (1 + 1)-ES should be considered. 
 
