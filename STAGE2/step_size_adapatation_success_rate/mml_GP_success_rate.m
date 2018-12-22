@@ -175,12 +175,13 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     if fTrain(T) < fTrain(T-1) % centroid successful [offfspring superior to parent] 
         sigma = sigma*exp(0.4/D);
     else
-        sigma = sigma*exp(0.6/D);
+        sigma = sigma*exp(-0.6/D);
     end
  
     T = T + 1;
     fcentroid_array(t) = f_centroid;
     sigma_array(t) = sigma;
+    sigma_star_array(t) = n*sigma/norm(centroid);
 %     if(t>=2)
 %         if(fname==1)
 %             delta_array(t) =(fcentroid_array(t)-fcentroid_array(t-1))/norm(centroid); 

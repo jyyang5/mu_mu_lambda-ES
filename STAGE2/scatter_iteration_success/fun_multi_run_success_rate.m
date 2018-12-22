@@ -1,7 +1,7 @@
 % Objective [for normalized step size to update step size]
 % 1 Plot
-%     Scatter plot: [# of iterations] vs. [success rate]
-%     NOTE: each individual run uses one SIGMA_STAR 
+%     Convergence plot 
+%     Normalized step size
 % 2. Save
 %     Plots & Data     
 %
@@ -11,7 +11,7 @@
 %            error
 %            save file
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function val = fun_multi_run_SIGMA_STAR(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,FIGURE_NUM,SIGMA_STAR_array,subplot_ROW,subplot_COL,ROW_num)
+function val = fun_multi_run_success_rate(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,FIGURE_NUM,SIGMA_STAR_array,subplot_ROW,subplot_COL,ROW_num)
 %Input:
 %   fname:            an index 
 %                        1 for linear
