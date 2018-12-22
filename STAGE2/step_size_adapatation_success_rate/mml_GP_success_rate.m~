@@ -1,8 +1,8 @@
-% Using normalized step size and GP model 
+% Using success rate and GP model 
 % function evaluation for lambda offsprings with GP estimate 
 % In each iteration only centroid is evaluated use true objective Function
 
-function val = mml_GP_SIGMA_STAR(fname,x0,SIGMA_STAR,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE)
+function val = mml_GP_success_rate(fname,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE)
 % initialization
 % fname:              an index 
 %                       1 for linear
@@ -11,7 +11,7 @@ function val = mml_GP_SIGMA_STAR(fname,x0,SIGMA_STAR,lambda,NUM_OF_ITERATIONS,TR
 %                       4 for schwefel
 %                       5 for quartic
 % x0:                 mu initial point size [n, mu]
-% SIGMA_STAR:         normalized step size
+% sigma0:             initial step size
 % lambda:             # of offsprings genenerated in each itertaion  
 % mu:                 parent size
 % NUM_OF_ITERATIONS:  number of maximum iterations
@@ -159,7 +159,6 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
         % for simple calculation 
         fy = fyep;
         
-    
     end
   
     % sort fyep (smaller first)
@@ -174,7 +173,7 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     fTrain(T) = f_centroid;
     R = norm(centroid);
     sigma = SIGMA_STAR*R/n;
-    sigma_star_array(t) = sigma
+ 
         
     
     

@@ -160,33 +160,18 @@ end
 figure(FIGURE_NUM);
 legend('-DynamicLegend'); 
 hold on;
-mu = ceil(lambda/4);
-d = sprintf('GP-(%d/%d,%d)-ES',mu,mu,lambda);
-d_noGP = sprintf('(%d/%d,%d)-ES',mu,mu,lambda);
-scatter(success_rate_med,t_med,'DisplayName',d);hold on;
-scatter(success_rate_med_noGP,t_med_noGP,'DisplayName',d_noGP);hold on;
-if(fname==1)
-    ylabel('number of iterations','FontSize',15);%
-end
-    xlabel('iteration','FontSize',15); 
-
-
 subplot(subplot_ROW,subplot_COL,(ROW_num-1)*subplot_COL+fname);
-scatter();
-for i=1:1:LEN_SIGMA_STAR
-    % Mamually specify 
-    
-   
-        
-    plot(1:t_med(i), f_x_med(i,1:t_med(i)),'DisplayName',d);hold on; % mml with GP
-    plot(1:t_med_noGP(i), f_x_med_noGP(i,1:t_med_noGP(i)),'DisplayName',d_noGP);hold on; % mml with GP
+    mu = ceil(lambda/4);
+    d = sprintf('GP-(%d/%d,%d)-ES',mu,mu,lambda);
+    d_noGP = sprintf('(%d/%d,%d)-ES',mu,mu,lambda);
+    scatter(success_rate_med,t_med,'DisplayName',d);hold on;
+    scatter(success_rate_med_noGP,t_med_noGP,'DisplayName',d_noGP);hold on;
     if(fname==1)
-        ylabel('objective function value','FontSize',15);%
+        ylabel('number of iterations','FontSize',15);%
     end
-    xlabel('iteration','FontSize',15); 
-    set(gca, 'YScale', 'log');
-    
-    if lambda==10 && i==1
+    xlabel('success rate','FontSize',15); 
+
+    if lambda==10 
         if(fname == 1)
             dt =sprintf('linear sphere');
             title(dt,'fontsize',15);
@@ -196,29 +181,28 @@ for i=1:1:LEN_SIGMA_STAR
         elseif(fname == 3)
             dt =sprintf('cubic sphere');
             title(dt,'fontsize',15);
-%         elseif(fname == 4)
-%             dt =sprintf('Schwefel function');
-%             title(dt,'fontsize',15);
-%         elseif(fname == 5)
-%             dt =sprintf('quartic function');
-%             title(dt,'fontsize',15); 
         end
     end
-    
     legend('-DynamicLegend'); 
     legend('show');
-end
+    saveas(gcf,'iteration_success_SIGMA_STAR.fig'); 
 
-
-% % success rate
-% figure(FIGURE_NUM+1);
-% legend('-DynamicLegend'); 
-% hold on;
-% d = sprintf('GP-(%d/%d,%d)-ES',mu,mu,lambda);
-% d_noGP = sprintf('(%d/%d,%d)-ES',mu,mu,lambda);
+% 
+% scatter();
 % for i=1:1:LEN_SIGMA_STAR
+%     % Mamually specify 
 %     
-%     if i==1
+%    
+%         
+%     plot(1:t_med(i), f_x_med(i,1:t_med(i)),'DisplayName',d);hold on; % mml with GP
+%     plot(1:t_med_noGP(i), f_x_med_noGP(i,1:t_med_noGP(i)),'DisplayName',d_noGP);hold on; % mml with GP
+%     if(fname==1)
+%         ylabel('objective function value','FontSize',15);%
+%     end
+%     xlabel('iteration','FontSize',15); 
+%     set(gca, 'YScale', 'log');
+%     
+%     if lambda==10 && i==1
 %         if(fname == 1)
 %             dt =sprintf('linear sphere');
 %             title(dt,'fontsize',15);
@@ -228,135 +212,166 @@ end
 %         elseif(fname == 3)
 %             dt =sprintf('cubic sphere');
 %             title(dt,'fontsize',15);
-%         elseif(fname == 4)
-%             dt =sprintf('Schwefel function');
-%             title(dt,'fontsize',15);
-%         elseif(fname == 5)
-%             dt =sprintf('quartic function');
-%             title(dt,'fontsize',15); 
+% %         elseif(fname == 4)
+% %             dt =sprintf('Schwefel function');
+% %             title(dt,'fontsize',15);
+% %         elseif(fname == 5)
+% %             dt =sprintf('quartic function');
+% %             title(dt,'fontsize',15); 
 %         end
 %     end
 %     
-%     subplot(subplot_ROW,subplot_COL,(i-1)*subplot_COL+fname);
-%     bar(success_rate_med,'DisplayName',d);hold on; % mml with GP
-%     bar(success_rate_med_noGP,'DisplayName',d_noGP);hold on; % mml with GP
-%     
-% %     plot(1:t_med(i), f_x_med(i,1:t_med(i))
-% %     plot(1:t_med_noGP(i), f_x_med_noGP(i,1:t_med_noGP(i)),'DisplayName',d_noGP);hold on; % mml with GP
-%     if(fname==1)
-%         ylabel('Success rate','FontSize',15);%
-%     end
-% %     xlabel('iteration','FontSize',15); 
-% %     set(gca, 'YScale', 'log');
 %     legend('-DynamicLegend'); 
 %     legend('show');
 % end
-
-%     
-% % end
-% % if lambda==0
-% %     d = sprintf('(1+1)-ES');
-% % else
-% %     d = sprintf('(%d/%d,%d)-ES',mu,mu,lambda);
-% % end
 % 
 % 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % 1.objective function [row 1]
-% subplot(subplot_ROW,subplot_COL,fname);
-% h = histogram(T_array,'Normalization','probability','DisplayName',d);hold on;
-% % h.BinWidth = 20;
-
-% % if(fname==1)
-% %     ylabel('probability','FontSize',15);%
-% % end
-% xlabel('objective function calls','FontSize',15); 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 
-% % 2.objective function [row 2]
-% subplot(subplot_ROW,subplot_COL,fname+5);
-% if lambda==0
-%     t_start = TRAINING_SIZE+1+2;
-%     plot(1:1:t_med,f_x_med(1:T_med),'DisplayName',d);hold on;
-% else 
-%     t_start = ceil(TRAINING_SIZE/lambda);
-%     fx_range1 = f_x_med(1:t_start);
-%     fx_range2 = f_x_med(t_start+1:t_med);
-%     t_range1 = 1:lambda:lambda*t_start;
-%     t_range2 = lambda*t_start+1:lambda*t_start+length(fx_range2);
-%     plot([t_range1 t_range2], [fx_range1 fx_range2],'DisplayName',d);hold on;% mml with GP
-% end
-% if(fname==1)
-%     ylabel('objective function value','FontSize',15);%
-% end
-% xlabel('objective function calls','FontSize',15); 
-% set(gca, 'YScale', 'log');
-% legend('-DynamicLegend'); 
-% legend('show');
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % 3.GP error [row 3]
-% subplot(subplot_ROW,subplot_COL,fname+10);
-% if lambda==0
-%     plot(t_start:1:T_med,GP_error_matrix_med(t_start:T_med),'DisplayName',d);hold on;
-%     d1 = sprintf('(1+1)-ES[S]');
-%     plot(t_start:1:T_med,exp(conv(log(GP_error_matrix_med(t_start:T_med)), kernel, 'same')),'DisplayName',d1,'LineWidth',2);hold on;
-% %     plot(t_start:1:T_med,smoothdata(GP_error_matrix_med(t_start:T_med),'gaussian',40),'DisplayName',d1,'LineWidth',2);hold on;
-% else 
-% %     GP_error_range1 = GP_error_matrix_med(1:t_start);
-%     GP_error_range2 = GP_error_matrix_med(t_start+1:t_med);
-%     plot(t_range2,GP_error_range2,'DisplayName',d);hold on;
-%     % GP smoothed
-% %     smoothed_GP_range1 = smoothdata(GP_error_range1,'gaussian',40);
-%     smoothed_GP_range2 = exp(conv(log(GP_error_range2), kernel, 'same'));
-%     d1 = sprintf('(%d/%d,%d)-ES[S]',mu,mu,lambda);
-%     plot(t_range2, smoothed_GP_range2,'DisplayName',d1,'LineWidth',2);hold on;
-% %     plot([t_range1 t_range2],[smoothed_GP_range1 smoothed_GP_range2],'DisplayName',d1,'LineWidth',2);hold on;
-% end
-% if(fname==1)
-%     ylabel('relative model error','FontSize',15);%
-% end
-% xlabel('objective function calls','FontSize',15); 
-% set(gca, 'YScale', 'log');
-% 
-% legend('-DynamicLegend'); 
-% legend('show');
-% % title('Logarithmic relative model error','FontSize',20);
-% 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % % 4.normalized step size [row 4](only makes sense for sphere functions)
-% % if(fname<4)
-% %     subplot(subplot_ROW,subplot_COL,fname+15);
-% %     if lambda==0
-% %         plot(1:1:T_med,sigma_star_matrix_med(1:T_med),'DisplayName',d);hold on;
-% %     else 
-% %         sigma_star_range1 = sigma_star_matrix_med(1:t_start);
-% %         sigma_star_range2 = sigma_star_matrix_med(t_start+1:t_med);
-% %         plot([t_range1 t_range2], [sigma_star_range1 sigma_star_range2],'DisplayName',d);hold on;
+% % % success rate
+% % figure(FIGURE_NUM+1);
+% % legend('-DynamicLegend'); 
+% % hold on;
+% % d = sprintf('GP-(%d/%d,%d)-ES',mu,mu,lambda);
+% % d_noGP = sprintf('(%d/%d,%d)-ES',mu,mu,lambda);
+% % for i=1:1:LEN_SIGMA_STAR
+% %     
+% %     if i==1
+% %         if(fname == 1)
+% %             dt =sprintf('linear sphere');
+% %             title(dt,'fontsize',15);
+% %         elseif(fname == 2)
+% %             dt =sprintf('quadratic sphere');
+% %             title(dt,'fontsize',15);
+% %         elseif(fname == 3)
+% %             dt =sprintf('cubic sphere');
+% %             title(dt,'fontsize',15);
+% %         elseif(fname == 4)
+% %             dt =sprintf('Schwefel function');
+% %             title(dt,'fontsize',15);
+% %         elseif(fname == 5)
+% %             dt =sprintf('quartic function');
+% %             title(dt,'fontsize',15); 
+% %         end
 % %     end
+% %     
+% %     subplot(subplot_ROW,subplot_COL,(i-1)*subplot_COL+fname);
+% %     bar(success_rate_med,'DisplayName',d);hold on; % mml with GP
+% %     bar(success_rate_med_noGP,'DisplayName',d_noGP);hold on; % mml with GP
+% %     
+% % %     plot(1:t_med(i), f_x_med(i,1:t_med(i))
+% % %     plot(1:t_med_noGP(i), f_x_med_noGP(i,1:t_med_noGP(i)),'DisplayName',d_noGP);hold on; % mml with GP
 % %     if(fname==1)
-% %         ylabel('normalized step size \sigma*','FontSize',15);%
+% %         ylabel('Success rate','FontSize',15);%
 % %     end
-% %     xlabel('objective function calls','FontSize',15); 
-% %     set(gca, 'YScale', 'log');
-% % 
+% % %     xlabel('iteration','FontSize',15); 
+% % %     set(gca, 'YScale', 'log');
 % %     legend('-DynamicLegend'); 
 % %     legend('show');
 % % end
-% saveas(gcf,'merged_plot_NO_emergency_v2.fig'); 
 % 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %     
+% % % end
+% % % if lambda==0
+% % %     d = sprintf('(1+1)-ES');
+% % % else
+% % %     d = sprintf('(%d/%d,%d)-ES',mu,mu,lambda);
+% % % end
+% % 
+% % 
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % 1.objective function [row 1]
+% % subplot(subplot_ROW,subplot_COL,fname);
+% % h = histogram(T_array,'Normalization','probability','DisplayName',d);hold on;
+% % % h.BinWidth = 20;
 % 
-%     % Plot success rate for a good step 
-%     subplot_ROW = 1;
-%     subplot_COL = 5;    
-%     xNameSprintf = sprintf('success rate');
-%     % Plot success rate for a good step
-%     xLimit = [0 1];
-%     plot_pdf(success_rate_array,T_med,FIGURE_NUM+1,subplot_ROW,subplot_COL,fname,lambda,xNameSprintf,xLimit);
-%     legend('-DynamicLegend'); 
-%     legend('show');
-    saveas(gcf,'convergence_plot_SIGMA_STAR.fig'); 
+% % % if(fname==1)
+% % %     ylabel('probability','FontSize',15);%
+% % % end
+% % xlabel('objective function calls','FontSize',15); 
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % 
+% % % 2.objective function [row 2]
+% % subplot(subplot_ROW,subplot_COL,fname+5);
+% % if lambda==0
+% %     t_start = TRAINING_SIZE+1+2;
+% %     plot(1:1:t_med,f_x_med(1:T_med),'DisplayName',d);hold on;
+% % else 
+% %     t_start = ceil(TRAINING_SIZE/lambda);
+% %     fx_range1 = f_x_med(1:t_start);
+% %     fx_range2 = f_x_med(t_start+1:t_med);
+% %     t_range1 = 1:lambda:lambda*t_start;
+% %     t_range2 = lambda*t_start+1:lambda*t_start+length(fx_range2);
+% %     plot([t_range1 t_range2], [fx_range1 fx_range2],'DisplayName',d);hold on;% mml with GP
+% % end
+% % if(fname==1)
+% %     ylabel('objective function value','FontSize',15);%
+% % end
+% % xlabel('objective function calls','FontSize',15); 
+% % set(gca, 'YScale', 'log');
+% % legend('-DynamicLegend'); 
+% % legend('show');
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % 3.GP error [row 3]
+% % subplot(subplot_ROW,subplot_COL,fname+10);
+% % if lambda==0
+% %     plot(t_start:1:T_med,GP_error_matrix_med(t_start:T_med),'DisplayName',d);hold on;
+% %     d1 = sprintf('(1+1)-ES[S]');
+% %     plot(t_start:1:T_med,exp(conv(log(GP_error_matrix_med(t_start:T_med)), kernel, 'same')),'DisplayName',d1,'LineWidth',2);hold on;
+% % %     plot(t_start:1:T_med,smoothdata(GP_error_matrix_med(t_start:T_med),'gaussian',40),'DisplayName',d1,'LineWidth',2);hold on;
+% % else 
+% % %     GP_error_range1 = GP_error_matrix_med(1:t_start);
+% %     GP_error_range2 = GP_error_matrix_med(t_start+1:t_med);
+% %     plot(t_range2,GP_error_range2,'DisplayName',d);hold on;
+% %     % GP smoothed
+% % %     smoothed_GP_range1 = smoothdata(GP_error_range1,'gaussian',40);
+% %     smoothed_GP_range2 = exp(conv(log(GP_error_range2), kernel, 'same'));
+% %     d1 = sprintf('(%d/%d,%d)-ES[S]',mu,mu,lambda);
+% %     plot(t_range2, smoothed_GP_range2,'DisplayName',d1,'LineWidth',2);hold on;
+% % %     plot([t_range1 t_range2],[smoothed_GP_range1 smoothed_GP_range2],'DisplayName',d1,'LineWidth',2);hold on;
+% % end
+% % if(fname==1)
+% %     ylabel('relative model error','FontSize',15);%
+% % end
+% % xlabel('objective function calls','FontSize',15); 
+% % set(gca, 'YScale', 'log');
+% % 
+% % legend('-DynamicLegend'); 
+% % legend('show');
+% % % title('Logarithmic relative model error','FontSize',20);
+% % 
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % % 4.normalized step size [row 4](only makes sense for sphere functions)
+% % % if(fname<4)
+% % %     subplot(subplot_ROW,subplot_COL,fname+15);
+% % %     if lambda==0
+% % %         plot(1:1:T_med,sigma_star_matrix_med(1:T_med),'DisplayName',d);hold on;
+% % %     else 
+% % %         sigma_star_range1 = sigma_star_matrix_med(1:t_start);
+% % %         sigma_star_range2 = sigma_star_matrix_med(t_start+1:t_med);
+% % %         plot([t_range1 t_range2], [sigma_star_range1 sigma_star_range2],'DisplayName',d);hold on;
+% % %     end
+% % %     if(fname==1)
+% % %         ylabel('normalized step size \sigma*','FontSize',15);%
+% % %     end
+% % %     xlabel('objective function calls','FontSize',15); 
+% % %     set(gca, 'YScale', 'log');
+% % % 
+% % %     legend('-DynamicLegend'); 
+% % %     legend('show');
+% % % end
+% % saveas(gcf,'merged_plot_NO_emergency_v2.fig'); 
+% % 
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % 
+% %     % Plot success rate for a good step 
+% %     subplot_ROW = 1;
+% %     subplot_COL = 5;    
+% %     xNameSprintf = sprintf('success rate');
+% %     % Plot success rate for a good step
+% %     xLimit = [0 1];
+% %     plot_pdf(success_rate_array,T_med,FIGURE_NUM+1,subplot_ROW,subplot_COL,fname,lambda,xNameSprintf,xLimit);
+% %     legend('-DynamicLegend'); 
+% %     legend('show');
 
 function plot_pdf(data,T_med,figureName,fig_row,fig_col,fig_index,lambda,xNameSprintf,xLimit)
 %  Input: 
@@ -417,7 +432,7 @@ function plot_pdf(data,T_med,figureName,fig_row,fig_col,fig_index,lambda,xNameSp
     end
     legend('-DynamicLegend'); 
     legend('show');
-    xlim(xLimit);???
+    xlim(xLimit);
     xlabel(xNameSprintf,'FontSize',15); 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Plot pdf curve
@@ -440,6 +455,6 @@ function plot_pdf(data,T_med,figureName,fig_row,fig_col,fig_index,lambda,xNameSp
     
 
 end
-    val = {success_rate_med,success_rate_med_noGP};
+    val = {};
 % val = {t_array,sigma_matrix,T_array,f_x_matrix,convergence_rate_array,GP_error_matrix,sigma_star_matrix,success_rate_array,delta_matrix};
 end

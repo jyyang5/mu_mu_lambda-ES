@@ -7,7 +7,7 @@ f1 = @(x) (x'*x)^(1/2);
 f2 = @(x) (x'*x);
 f3 = @(x) (x'*x)^(3/2);
 
-% close all;
+close all;
 FIGURE_NUM = 1;
 NUM_OF_RUNS = 2;
 % NUM_OF_RUNS = 2;
@@ -33,15 +33,14 @@ success_rate = zeros(3,length(lambda_array),2,LEN_SIGMA_STAR);
 for fname = 1:1:3
     for i = 1:1:length(lambda_array)
         lambda = lambda_array(i);
-        temp = cell2mat(fun_multi_run_SIGMA_STAR(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,FIGURE_NUM,SIGMA_STAR_array));         
-        success_rate(fname,i,1,:) = temp(1,:);
-        success_rate(fname,i,2,:) = temp(2,:);
+        temp = fun_multi_run_SIGMA_STAR(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,FIGURE_NUM,SIGMA_STAR_array);         
+        success_rate(fname,i,1,:) = cell2mat(temp(1));
+        success_rate(fname,i,2,:) = cell2mat(temp(2));
     end   
 end
 
-
-subplot_ROW
-
+subplot_ROW = 4;
+subplot_COL = 3;
 figure(FIGURE_NUM+1);
 legend('-DynamicLegend'); 
 hold on;
@@ -51,6 +50,11 @@ d_noGP = sprintf('(%d/%d,%d)-ES',mu,mu,lambda);
 c = categorical({'(3/3,10)-ES','(5/5,20)-ES','(10/10,40)-ES'});
 for fname = 1:1:3
     for i=1:1:LEN_SIGMA_STAR
+
+        subplot(subplot_ROW,subplot_COL,(i-1)*subplot_COL+fname);
+        bar(squeeze(success_rate(fname,:,:,i)));
+        legend('with GP','no GP');
+        set(gca,'xticklabel',{'(3/3,10)-ES','(5/5,20)-ES','(10/10,40)-ES'});
         if i==1
             if(fname == 1)
                 dt =sprintf('linear sphere');
@@ -69,20 +73,17 @@ for fname = 1:1:3
                 title(dt,'fontsize',15); 
             end
         end
-
-        subplot(subplot_ROW,subplot_COL,(i-1)*subplot_COL+fname);
-        bar(squeeze(success_rate(fname,i,:,:)),);
-        plot(1:t_med(i), f_x_med(i,1:t_med(i)),'DisplayName',d);hold on; % mml with GP
-        plot(1:t_med_noGP(i), f_x_med_noGP(i,1:t_med_noGP(i)),'DisplayName',d_noGP);hold on; % mml with GP
+%         plot(1:t_med(i), f_x_med(i,1:t_med(i)),'DisplayName',d);hold on; % mml with GP
+%         plot(1:t_med_noGP(i), f_x_med_noGP(i,1:t_med_noGP(i)),'DisplayName',d_noGP);hold on; % mml with GP
         if(fname==1)
-            ylabel('objective function value','FontSize',15);%
+            ylabel('Success rate','FontSize',15);%
         end
-        xlabel('iteration','FontSize',15); 
-        set(gca, 'YScale', 'log');
         legend('-DynamicLegend'); 
         legend('show');
+        ylim([0 1]);
     end
 end
+saveas(gcf,'success_rate_SIGMA_STAR.fig'); 
 
 % save('data_SIGMA_STAR.mat','NUM_OF_RUNS','TRAINING_SIZE','LENGTH_SCALE','SIGMA_STAR',...
 %     't_array','sigma_matrix','T_array','f_x_matrix','convergence_rate_array','GP_error_matrix',...

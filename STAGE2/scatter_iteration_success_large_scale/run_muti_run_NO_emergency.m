@@ -9,7 +9,7 @@ f3 = @(x) (x'*x)^(3/2);
 
 close all;
 FIGURE_NUM = 1;
-NUM_OF_RUNS = 2;
+NUM_OF_RUNS = 30;
 % NUM_OF_RUNS = 2;
 TRAINING_SIZE = 40;
 LENGTH_SCALE = 16;
@@ -27,7 +27,9 @@ delta_matrix = zeros(5,4,NUM_OF_RUNS,10000);                                  % 
 
 lambda_array = [10,20,40];
 % lambda_array = [0,10,20,40];
-SIGMA_STAR_array = [1,3,5,10];
+% SIGMA_STAR_array = [1,3,5,10];
+SIGMA_STAR_array = 1:0.5:8;
+
 LEN_SIGMA_STAR = length(SIGMA_STAR_array);
 success_rate = zeros(3,length(lambda_array),2,LEN_SIGMA_STAR);
 
@@ -36,7 +38,7 @@ subplot_ROW = length(lambda_array); % # of lambda used
 for fname = 1:1:3
     for i = 1:1:length(lambda_array)
         lambda = lambda_array(i);
-        fun_multi_run_SIGMA_STAR(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,FIGURE_NUM,SIGMA_STAR_array,subplot_ROW,subplot_COL,i);         
+        temp = fun_multi_run_SIGMA_STAR(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,FIGURE_NUM,SIGMA_STAR_array,subplot_ROW,subplot_COL,i);         
 %         success_rate(fname,i,1,:) = cell2mat(temp(1));
 %         success_rate(fname,i,2,:) = cell2mat(temp(2));
     end   
