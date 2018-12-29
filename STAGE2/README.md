@@ -15,7 +15,14 @@
 		One explanation is that the steps are much cheaper (one function evaluation rather than lambda per generation)
 
 - 20181220
-	- [] Scatter plot (\# of iterations vs. success rate, one dot per run using one $\sigma^* $)
+	- [x] Scatter plot (\# of iterations vs. success rate, one dot per run using one $\sigma^* $)
+
+- 20181223
+	- [x] Use success-rate-based step size adaptation with 0.6 success rate
+
+- 20181224
+	- [] Use various success rate to update step size 
+
 
 
 ### 1. Step size adaptation 
@@ -23,3 +30,7 @@
 #### 1.1 Normalized step size 
 
 Use fixed normalized step size to update step size.	
+
+#### 1.2 Success rate 
+
+Adapt step size depending on the success rate.
