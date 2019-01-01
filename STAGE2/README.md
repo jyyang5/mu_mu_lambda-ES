@@ -17,10 +17,10 @@
 - 20181220
 	- [x] Scatter plot (\# of iterations vs. success rate, one dot per run using one $\sigma^* $)
 
-- 20181223
+- [20181223](https://github.com/jyyang5/mu_mu_lambda-ES/tree/STAGE2/STAGE2/mml-different_success_rate)
 	- [x] Use success-rate-based step size adaptation for mml-ES with S=0.5:0.1:0.9 
 
-- 20181230
+- [20181230](https://github.com/jyyang5/mu_mu_lambda-ES/tree/STAGE2/STAGE2/(1%2B1)_different_success_rate) 
 	- [x] Use success-rate-based step size adaptation for (1+1)-ES with S=0.1:0.1:0.6 
 
 
@@ -37,14 +37,14 @@ Use fixed normalized step size to update step size.
 
 Adapt step size depending on the success rate.
 
-- mml-ES
-
+- [mml-ES](https://github.com/jyyang5/mu_mu_lambda-ES/tree/STAGE2/STAGE2/mml-different_success_rate)
 	- Increase S (large success rate 0.6-0.9)
 		- better performance for the last two test functions 
 		- worse on sphere functions
 
 
-- (1+1)-ES
+- [(1+1)-ES](https://github.com/jyyang5/mu_mu_lambda-ES/tree/STAGE2/STAGE2/(1%2B1)_different_success_rate) 
+
 
 	- reduce S (small success rate 0.6-0.9)
 		- better performance for sphere functions
