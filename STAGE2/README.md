@@ -1,7 +1,7 @@
 ## STAGE 2
 - Faster speed-up
 
-
+- Simple and elegant step size adaptation mechanism 
 
 ### Schedule 
 - 20181218
@@ -18,10 +18,12 @@
 	- [x] Scatter plot (\# of iterations vs. success rate, one dot per run using one $\sigma^* $)
 
 - 20181223
-	- [x] Use success-rate-based step size adaptation with 0.6 success rate
+	- [x] Use success-rate-based step size adaptation for mml-ES with S=0.5:0.1:0.9 
 
-- 20181224
-	- [] Use various success rate to update step size 
+- 20181230
+	- [x] Use success-rate-based step size adaptation for (1+1)-ES with S=0.1:0.1:0.6 
+
+
 
 
 
@@ -34,3 +36,16 @@ Use fixed normalized step size to update step size.
 #### 1.2 Success rate 
 
 Adapt step size depending on the success rate.
+
+- mml-ES
+
+	- Increase S (large success rate 0.6-0.9)
+		- better performance for the last two test functions 
+		- worse on sphere functions
+
+
+- (1+1)-ES
+
+	- reduce S (small success rate 0.6-0.9)
+		- better performance for sphere functions
+		- worse for the other two
