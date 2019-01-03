@@ -1,9 +1,9 @@
-% Plus-selection
+% Choose the best centroid of the current and the most recent (best of the two)
 % Using different success rate to update step size and GP model 
 % function evaluation for lambda offsprings with GP estimate 
 % In each iteration only centroid is evaluated use true objective Function
 
-function val = cross_GP_change_success_rate(fname,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE,SUCCESS_RATE)
+function val = bestOfTwo_GP_change_success_rate(fname,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE,SUCCESS_RATE)
 % initialization
 % fname:              an index 
 %                       1 for linear
@@ -174,7 +174,7 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     % update train set
     xTrain(:, T) = centroid_temp;                
     fTrain(T) = f_centroid_temp;
-    if f_centroid_temp < f_centroid % centroid successful [offfspring superior to parent] 
+    if fTrain(T) < fTrain(T-1) % centroid successful [offfspring superior to parent] 
         sigma = sigma*exp((1-SUCCESS_RATE)/D);
         centroid = centroid_temp;
         f_centroid = f_centroid_temp;

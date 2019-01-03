@@ -579,6 +579,6 @@ function plot_pdf(data,T_med,figureName,fig_row,fig_col,fig_index,lambda,xNameSp
     
 
 end
-    val = {success_rate_med,success_rate_med_noGP};
+    val = {T_med};
 % val = {t_array,sigma_matrix,T_array,f_x_matrix,convergence_rate_array,GP_error_matrix,sigma_star_matrix,success_rate_array,delta_matrix};
 end
