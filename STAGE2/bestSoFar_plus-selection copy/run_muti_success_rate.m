@@ -31,7 +31,7 @@ delta_matrix = zeros(5,4,NUM_OF_RUNS,10000);                                  % 
 % lambda_array = [0,10,20,40];
 % success_rate = zeros(3,length(lambda_array),2,LEN_SIGMA_STAR);
 lambda_array = [10,20,40];
-SUCCESS_RATIO_array = 0.1:0.1:0.5;
+SUCCESS_RATIO_array = 0.6:0.1:0.8;
 subplot_ROW = length(lambda_array);
 subplot_COL = 5;
 
@@ -42,7 +42,7 @@ for j=1:1:length(SUCCESS_RATIO_array)
     for fname = 1:1:5
         for i = 1:1:length(lambda_array)
             lambda = lambda_array(i);
-            temp = fun_multi_run_change_success_rate(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,SUCCESS_RATE,FIGURE_NUM,subplot_ROW,subplot_COL,i);         
+            temp = fun_multi_run_change_success_rate_FUNCALLS(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,SUCCESS_RATE,FIGURE_NUM,subplot_ROW,subplot_COL,i);         
             T_matrix(j,i,fname) = cell2mat(temp);
     %         success_rate(fname,i,1,:) = cell2mat(temp(1));
     %         success_rate(fname,i,2,:) = cell2mat(temp(2));

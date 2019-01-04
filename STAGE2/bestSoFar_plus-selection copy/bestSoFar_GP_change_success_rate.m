@@ -1,9 +1,9 @@
-% Plus-selection
+% Choose the best centroid so far
 % Using different success rate to update step size and GP model 
 % function evaluation for lambda offsprings with GP estimate 
 % In each iteration only centroid is evaluated use true objective Function
 
-function val = cross_GP_change_success_rate(fname,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE,SUCCESS_RATE)
+function val = bestSoFar_GP_change_success_rate(fname,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE,SUCCESS_RATE)
 % initialization
 % fname:              an index 
 %                       1 for linear
@@ -84,7 +84,8 @@ convergence_rate = 0;
 
 t = 1;       
 T = 1;
-
+xTrain(:, T) = centroid;                
+fTrain(T) = f_centroid;
 centroid_array(:,t) = centroid;
 fcentroid_array(t) = f_centroid;
 
@@ -117,6 +118,8 @@ fcentroid_array(t) = f_centroid;
 % R = norm(centroid);
 sigma = sigma0;
 D = sqrt(1+n);
+t_start = ceil(TRAINING_SIZE/lambda);
+
 
 while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     % early stopping 
@@ -171,21 +174,24 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     z = mean(z(:,1:mu),2);
     centroid_temp = centroid + sigma*z;
     f_centroid_temp = f(centroid_temp);
+    T = T + 1;
     % update train set
     xTrain(:, T) = centroid_temp;                
     fTrain(T) = f_centroid_temp;
-    if f_centroid_temp < f_centroid % centroid successful [offfspring superior to parent] 
+    if f_centroid_temp < f_centroid   % centroid successful [offfspring superior to parent] 
         sigma = sigma*exp((1-SUCCESS_RATE)/D);
         centroid = centroid_temp;
         f_centroid = f_centroid_temp;
     else
         sigma = sigma*exp(-SUCCESS_RATE/D);
     end
- 
-    T = T + 1;
+%     disp(1 + (lambda+1)*t_start + (t-t_start) - T);
+    t = t + 1;
     fcentroid_array(t) = f_centroid;
     sigma_array(t) = sigma;
     sigma_star_array(t) = n*sigma/norm(centroid);
+%     fprintf('iteartion %d: %d\n',t,T);
+
 %     if(t>=2)
 %         if(fname==1)
 %             delta_array(t) =(fcentroid_array(t)-fcentroid_array(t-1))/norm(centroid); 
@@ -195,13 +201,12 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
 %             delta_array(t) =(fcentroid_array(t)-fcentroid_array(t-1))/3/(norm(centroid))^3; 
 %         end
 %     end
-    t = t + 1;
-    fcentroid_array(t) = f_centroid;
-    sigma_array(t) = sigma;
-    sigma_star_array(t) = n*sigma/norm(centroid);
+    
     
 end
 
+%     t = t - 1;
+%     T = T - 1; 
 
     % convergence rate (overall)
     t_start = ceil(TRAINING_SIZE/lambda);
@@ -222,7 +227,7 @@ end
     	convergence_rate = -n/2*sum(log(fcentroid_array(t_start+2:t)./fcentroid_array(t_start+1:t-1)))/length(fcentroid_array(t_start+1:t-1));
     end
     % success rate
-    success_rate = sum(fcentroid_array(t_start:T-1)>fcentroid_array(t_start+1:T))/length(fcentroid_array(t_start:T-1));
+    success_rate = sum(fcentroid_array(t_start:t-1)>fcentroid_array(t_start+1:t))/length(fcentroid_array(t_start:t-1));
     delta_array = -delta_array;
     val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,error_array,sigma_star_array,success_rate,delta_array};
 

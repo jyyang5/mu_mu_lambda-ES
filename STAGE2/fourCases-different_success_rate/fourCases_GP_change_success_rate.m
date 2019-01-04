@@ -195,9 +195,7 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     else
         sigma = sigma*exp(-SUCCESS_RATE/D);
     end
-    fcentroid_array(t) = f_centroid;
-    sigma_array(t) = sigma;
-    sigma_star_array(t) = n*sigma/norm(centroid);
+    
 %     if(t>=2)
 %         if(fname==1)
 %             delta_array(t) =(fcentroid_array(t)-fcentroid_array(t-1))/norm(centroid); 
@@ -208,12 +206,13 @@ while((t < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
 %         end
 %     end
     t = t + 1;
-    
+    fcentroid_array(t) = f_centroid;
+    sigma_array(t) = sigma;
+    sigma_star_array(t) = n*sigma/norm(centroid);
     
 end
 
-    t = t - 1;
-    T = T - 1; 
+
 
     % convergence rate (overall)
     t_start = ceil(TRAINING_SIZE/lambda);
@@ -235,6 +234,7 @@ end
     end
     % success rate
     success_rate = sum(fcentroid_array(t_start:T-1)>fcentroid_array(t_start+1:T))/length(fcentroid_array(t_start:T-1));
+%     success_rate = sum(fcentroid_array(t_start:t-1)>fcentroid_array(t_start+1:t))/length(fcentroid_array(t_start:t-1));
     delta_array = -delta_array;
     val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,error_array,sigma_star_array,success_rate,delta_array};
 

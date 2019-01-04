@@ -170,9 +170,7 @@ while((T < NUM_OF_ITERATIONS) && fx > 10^(-8))
     
     
 end
-
-    t = t - 1;
-    T = T - 1; 
+ 
 
     % convergence rate (overall)
     t_start = ceil(TRAINING_SIZE);

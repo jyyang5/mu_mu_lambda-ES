@@ -1,5 +1,5 @@
 % Objective [update step size using different success rate]
-% 1 Plot [over objective function calls]
+% 1 Plot
 %     1. convergence plot
 %     2. step size 
 %     3. normalized step size
@@ -13,7 +13,7 @@
 % difficulty: 
 %            
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function val = fun_multi_run_change_success_rate_FUNCALLS(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,SUCCESS_RATE,FIGURE_NUM,subplot_ROW,subplot_COL,row_index)
+function val = fun_multi_run_change_success_rate_ITERATION(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,SUCCESS_RATE,FIGURE_NUM,subplot_ROW,subplot_COL,row_index)
 %Input:
 %   fname:          an index 
 %                       1 for linear
@@ -102,6 +102,9 @@ f_x_med_noGP = zeros(1,10000);
 t_med_noGP = 0;
 success_rate_med_noGP = 0;
 
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Replicates for NUM_OF_RUNS
 mu = ceil(lambda/4);
@@ -135,12 +138,6 @@ t_med = t_array(med_index);
 T_med = T_array(med_index);
 success_rate_med = success_rate_array(med_index);
 sigma_star_med = sigma_star_matrix(med_index,:);
-
-% Range of T for ploting
-t_start = TRAINING_SIZE/lambda;
-T_range_1 = (0:1:t_start).*(lambda+1)+1;
-T_range_2 = (t_start+2:t_med)+lambda*t_start;
-T_range = [T_range_1 T_range_2];
 % sorted_T_noGP = sort(T_array_noGP);
 % temp_index_noGP = find(T_array_noGP == sorted_T_noGP(ceil(length(sorted_T_noGP)/2)));
 % med_index_noGP = temp_index_noGP(1);
@@ -169,12 +166,12 @@ legend('-DynamicLegend');
 hold on;
 
 subplot(subplot_ROW,subplot_COL,(row_index-1)*subplot_COL+fname);
-plot(T_range, f_x_med(1:t_med),'DisplayName',d);hold on; % mml with GP
+plot(1:t_med, f_x_med(1:t_med),'DisplayName',d);hold on; % mml with GP
 % plot(1:t_med_noGP, f_x_med_noGP(i,1:t_med_noGP),'DisplayName',d_noGP);hold on; % mml with GP
 if(fname==1)
     ylabel(sprintf('Objective function value (\\lambda=%d)',lambda),'FontSize',15);
 end
-xlabel('Objective function calls','FontSize',15); 
+xlabel('iteration','FontSize',15); 
 set(gca, 'YScale', 'log');
 
 if lambda==10 
@@ -209,12 +206,12 @@ legend('-DynamicLegend');
 hold on;
 
 subplot(subplot_ROW,subplot_COL,(row_index-1)*subplot_COL+fname);
-plot(T_range, sigma_matrix_med(1:t_med),'DisplayName',d);hold on; % mml with GP
+plot(1:t_med, sigma_matrix_med(1:t_med),'DisplayName',d);hold on; % mml with GP
 % plot(1:t_med_noGP, f_x_med_noGP(i,1:t_med_noGP),'DisplayName',d_noGP);hold on; % mml with GP
 if(fname==1)
     ylabel(sprintf('Step size (\\lambda=%d)',lambda),'FontSize',15);
 end
-xlabel('Objective function calls','FontSize',15); 
+xlabel('iteration','FontSize',15); 
 set(gca, 'YScale', 'log');
 
 if lambda==10 
@@ -248,12 +245,12 @@ hold on;
 
 if fname<=3
     subplot(subplot_ROW,subplot_COL,(row_index-1)*subplot_COL+fname);
-    plot(T_range, sigma_star_med(1:t_med),'DisplayName',d);hold on; % mml with GP
+    plot(1:t_med, sigma_star_med(1:t_med),'DisplayName',d);hold on; % mml with GP
     % plot(1:t_med_noGP, f_x_med_noGP(i,1:t_med_noGP),'DisplayName',d_noGP);hold on; % mml with GP
     if(fname==1)
         ylabel(sprintf('Normalized step size (\\lambda=%d)',lambda),'FontSize',15);
     end
-    xlabel('Objective function calls','FontSize',15); 
+    xlabel('iteration','FontSize',15); 
     set(gca, 'YScale', 'log');
     
     if lambda==10 
@@ -321,7 +318,7 @@ saveas(gcf,'hist_success_rate.fig');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 figure(FIGURE_NUM+4);
 subplot(subplot_ROW,subplot_COL,(row_index-1)*subplot_COL+fname);
-bar(SUCCESS_RATE,success_rate_med,'DisplayName',d);hold on;
+bar(SUCCESS_RATE,success_rate_med);hold on;
 % histogram(success_rate_array,'DisplayName',d_noGP);hold on;
 % plot(1:t_med_noGP, f_x_med_noGP(i,1:t_med_noGP),'DiplayName',d_noGP);hold on; % mml with GP
 if(fname==1)
