@@ -1,8 +1,8 @@
-% Using normalized step size AND true objective function calls
+% Using normalized step size and GP model COUNT four prob.s [mml-ES]
 % function evaluation for lambda offsprings with GP estimate 
 % In each iteration only centroid is evaluated use true objective Function
 
-function val = mml_noGP_SIGMA_STAR(fname,x0,SIGMA_STAR,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE)
+function val = mml_fourProb_GP_SIGMA_STAR(fname,x0,SIGMA_STAR,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE)
 % initialization
 % fname:              an index 
 %                       1 for linear
@@ -34,6 +34,7 @@ function val = mml_noGP_SIGMA_STAR(fname,x0,SIGMA_STAR,lambda,NUM_OF_ITERATIONS,
 %                       quadratic: factor = 2*R^2
 %                       cubic: factor = 3*R^3
 %                       where R=dist(centroid)
+% 12. FOUR_COUNT        [TN,FP,FN,TP]
 
 % OPTIMAL:            global optima
 % example input:      f = @(x) x' * x
@@ -114,6 +115,11 @@ fcentroid_array(t) = f_centroid;
 
 R = norm(centroid);
 sigma = SIGMA_STAR*R/n;
+TN = 0;
+TP = 0;
+FN = 0;
+FP = 0;
+FOUR_COUNT = zeros(1,4);
 
 while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     % early stopping 
@@ -121,22 +127,47 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
         % if diverge -> convergence rate = 0 success rate = 0
         success_rate = 0;
 %         val = {9999,mean(x0, 2),9999,sigma_array, 9999, fcentroid_array,-1,error_array,sigma_star_array,success_rate,delta_array}; 
-        val = {t,centroid,f_centroid,sigma_array, 2000, fcentroid_array,convergence_rate,error_array,sigma_star_array,success_rate,delta_array};
+        val = {t,centroid,f_centroid,sigma_array, 9999, fcentroid_array,convergence_rate,error_array,sigma_star_array,success_rate,delta_array,FOUR_COUNT};
+
 
         return 
     end
-
-    % offspring genneration 
-    for i = 1:1:lambda
-        % offspring = mean(parent) + stepsize*z
-        z(:,i) = randn(n,1);
-        y(:,i) = centroid + sigma*z(:,i);
-        fy(i) = f(y(:,i)); 
+%     dist = norm(centroid);                                                 % distance to optimal
+%     /n*dist;                                             % mutation strength/step size(temp)  
+    
+    % (mu/mu, lambda)-ES 4 times to obtain GP traning set
+    if T <= TRAINING_SIZE
+        % offspring genneration 
+        for i = 1:1:lambda
+            % offspring = mean(parent) + stepsize*z
+            z(:,i) = randn(n,1);
+            y(:,i) = centroid + sigma*z(:,i);
+            fy(i) = f(y(:,i)); 
+        end
+        xTrain(:,T:T+lambda-1) = y;
+        fTrain(T:T+lambda-1) = fy;
+        T = T + lambda;
+            
+    % (mu/mu, lambda)-ES use GP estiate 
+    else  
+        % update theta  
+        theta = sigma*LENGTH_SCALE*sqrt(n);                          % length scale for GP
+        fy_true = zeros(lambda,1);                                          % for calculating the noise 
+        % offspring_generation (lambda offspring) 
+        for i = 1:1:lambda
+            % offspring = mean(parent) + stepsize*z
+            z(:,i) = randn(n,1);
+            y(:,i) = centroid + sigma*z(:,i);
+            fyep(i) = gp(xTrain(:,T-TRAINING_SIZE:T-1), fTrain(T-TRAINING_SIZE:T-1), y(:,i), theta); 
+            fy_true(i) = f(y(:,i));                                         % for calculating the noise 
+        end
+        % calculate relative error
+        error_array(t) = var(fyep-fy_true)/var(fy_true);
+        % for simple calculation 
+        fy = fyep;
+        
+    
     end
-    xTrain(:,T:T+lambda-1) = y;
-    fTrain(T:T+lambda-1) = fy;
-    T = T + lambda;
-  
     % sort fyep (smaller first)
     [index, sorted_order] = sort(fy);
     z = z(:,sorted_order);
@@ -144,23 +175,50 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     z = mean(z(:,1:mu),2);
     centroid = centroid + sigma*z;
     f_centroid = f(centroid);
+    if(T > TRAINING_SIZE+TRAINING_SIZE/lambda+1)
+        fep_centroid = gp(xTrain(:,T-TRAINING_SIZE:T-1), fTrain(T-TRAINING_SIZE:T-1), y(:,i), theta);
+        % four cases
+        if(f_centroid < fcentroid_array(t))       % [actual superior]
+            if(fep_centroid < fcentroid_array(t)) % Predicted superior
+                TP = TP + 1;
+            else                                  % Predicted inferior
+                FN = FN + 1;
+            end
+        else                                      % [actual inferior]
+            if(fep_centroid < fcentroid_array(t)) % Predicted superior
+                FP = FP + 1;
+            else                                  % Predicted inferior
+                TN = TN + 1;
+            end
+        end
+    end
+    % update train set
+    xTrain(:, T) = centroid;                
+    fTrain(T) = f_centroid;
     R = norm(centroid);
     sigma = SIGMA_STAR*R/n;
- 
+
     T = T + 1;
+    
+%     if(t>=2)
+%         if(fname==1)
+%             delta_array(t) =(fcentroid_array(t)-fcentroid_array(t-1))/norm(centroid); 
+%         elseif(fname==2)
+%             delta_array(t) =(fcentroid_array(t)-fcentroid_array(t-1))/2/(norm(centroid))^2; 
+%         else
+%             delta_array(t) =(fcentroid_array(t)-fcentroid_array(t-1))/3/(norm(centroid))^3; 
+%         end
+%     end
+    t = t + 1;
     fcentroid_array(t) = f_centroid;
     sigma_array(t) = sigma;
-
-    t = t + 1;
     
-   
+    
 end
 
-    t = t - 1;
-    T = T - 1; 
 
     % convergence rate (overall)
-    t_start = 1;
+    t_start = ceil(TRAINING_SIZE/lambda);
     if(fname==1)
         delta_array(2:t) = -(fcentroid_array(2:t)-fcentroid_array(1:t-1))./vecnorm(centroid_array(:,2:t),2,1);
         convergence_rate = -n*sum(log(fcentroid_array(t_start+2:t)./fcentroid_array(t_start+1:t-1)))/length(fcentroid_array(t_start+1:t-1));
@@ -180,7 +238,8 @@ end
     % success rate
     success_rate = sum(fcentroid_array(t_start:t-1)>fcentroid_array(t_start+1:t))/length(fcentroid_array(t_start:t-1));
     delta_array = -delta_array;
-    val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,error_array,sigma_star_array,success_rate,delta_array};
+    FOUR_COUNT = [TN,FP,FN,TP];
+    val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,error_array,sigma_star_array,success_rate,delta_array,FOUR_COUNT};
 
 end
 

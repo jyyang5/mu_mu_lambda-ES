@@ -38,7 +38,7 @@ subplot_COL = 5;
 for j=1:1:length(SUCCESS_RATIO_array)
     SUCCESS_RATE = SUCCESS_RATIO_array(j);
     for fname = 1:1:5
-            temp = fun_multi_run_change_success_rate(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,SUCCESS_RATE,FIGURE_NUM,subplot_ROW,subplot_COL);         
+            temp = fun_multi_run_change_success_rate(fname,NUM_OF_RUNS,lambda_array,TRAINING_SIZE,LENGTH_SCALE,SUCCESS_RATE,FIGURE_NUM,subplot_ROW,subplot_COL);         
     %         success_rate(fname,i,1,:) = cell2mat(temp(1));
     %         success_rate(fname,i,2,:) = cell2mat(temp(2));
     end

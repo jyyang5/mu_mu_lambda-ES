@@ -1,5 +1,5 @@
 n=10;
-lambda = 0;
+lambda = 40;
 mu=ceil(lambda/4);
 NUM_OF_ITERATIONS = 2000;
 x0 = randn(n,mu);
@@ -17,6 +17,7 @@ f_x_matrix = cell2mat(a(6));
 success_rate_array = cell2mat(a(10));
 sigma_star_matrix = cell2mat(a(9));
 
+four_categories = cell2mat(a(12));
 
 
 t_start = ceil(TRAINING_SIZE/lambda);
