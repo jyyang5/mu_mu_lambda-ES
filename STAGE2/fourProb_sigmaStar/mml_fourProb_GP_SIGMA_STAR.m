@@ -115,6 +115,7 @@ fcentroid_array(t) = f_centroid;
 
 R = norm(centroid);
 sigma = SIGMA_STAR*R/n;
+sigma_array(t) = sigma;
 TN = 0;
 TP = 0;
 FN = 0;

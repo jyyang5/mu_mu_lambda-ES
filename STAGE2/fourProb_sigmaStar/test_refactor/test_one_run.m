@@ -8,8 +8,9 @@ LENGTH_SCALE = 16;
 TRAINING_SIZE = 40;
 SUCCESS_RATE = 0.8;
 fname = 2;
+SIGMA_STAR = 2;
 
-a = bestSoFar_GP_change_success_rate(fname,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE,SUCCESS_RATE);
+a = bestSoFar_fourProb_GP_SIGMA_STAR(fname,x0,SIGMA_STAR,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE);
 t_array = cell2mat(a(1));
 sigma_matrix = cell2mat(a(4));
 T_array = cell2mat(a(5));
@@ -25,7 +26,13 @@ T_range_1 = (0:1:t_start).*(lambda+1)+1;
 T_range_2 = (t_start+2:t_array)+lambda*t_start;
 T_range = [T_range_1 T_range_2];
 
+figure(10)
+subplot(1,2,1)
 plot(T_range,f_x_matrix(1:t_array));
+set(gca, 'YScale', 'log');
+
+subplot(1,2,2)
+plot(T_range,sigma_matrix(1:t_array));
 set(gca, 'YScale', 'log');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

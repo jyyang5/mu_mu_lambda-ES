@@ -9,7 +9,7 @@ f3 = @(x) (x'*x)^(3/2);
 
 close all;
 FIGURE_NUM = 1;
-NUM_OF_RUNS = 2;
+NUM_OF_RUNS = 11;
 % NUM_OF_RUNS = 2;
 TRAINING_SIZE = 40;
 LENGTH_SCALE = 8;
@@ -27,14 +27,15 @@ success_rate_array = zeros(5,4,NUM_OF_RUNS,1);                                % 
 delta_matrix = zeros(5,4,NUM_OF_RUNS,10000);                                  % each [i,j] stores a delta array 
 % emergency_rate_matrix = zeros(5,4,NUM_OF_RUNS);                             % proportion of emergency [:,1,:] all 0 
 
-
 % lambda_array = [0,10,20,40];
 % success_rate = zeros(3,length(lambda_array),2,LEN_SIGMA_STAR);
 lambda_array = [10,20,40];
 SIGMA_STAR_array = 2.^(-1:1:3);
 subplot_ROW = 4;
-subplot_COL = 3;
+subplot_COL = 5;
 str_cell_SIGMA_STAR = cellstr(num2str(SIGMA_STAR_array'));
+
+T_fianl = zeros(length(SIGMA_STAR_array),length(lambda_array),5);             % dim = [sigmaStar, lambda, fname]
 % str_cell_SIGMA_STAR = [];       % store sigmaStar in a cell
 % for i = 1:1:length(2.^(0:1:3))
 %     temp = SIGMA_STAR_array(i);
@@ -45,8 +46,11 @@ str_cell_SIGMA_STAR = cellstr(num2str(SIGMA_STAR_array'));
 for i=1:1:length(lambda_array)
     lambda = lambda_array(i);
 	FIGURE_NUM = i;
-    for fname = 1:1:3
-            temp = fun_multi_run_change_success_rate(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,SIGMA_STAR_array,FIGURE_NUM,subplot_ROW,subplot_COL,str_cell_SIGMA_STAR);         
-
+    for fname = 1:1:5
+        temp = fun_multi_run_change_success_rate_FUNCALLS(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,SIGMA_STAR_array,FIGURE_NUM,subplot_ROW,subplot_COL,str_cell_SIGMA_STAR);         
+        T_matrix(:,i,fname) = cell2mat(temp);
     end
 end
+
+save('med_T.mat','lambda_array','SIGMA_STAR_array','T_matrix','LENGTH_SCALE','TRAINING_SIZE','NUM_OF_RUNS');
+

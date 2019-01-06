@@ -118,6 +118,7 @@ fcentroid_array(t) = f_centroid;
 
 R = norm(centroid);
 sigma = SIGMA_STAR*R/n;
+sigma_array(t) = sigma;
 TN = 0;
 TP = 0;
 FN = 0;
@@ -180,6 +181,7 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     f_centroid_temp = f(centroid_temp);
     if(T > TRAINING_SIZE+TRAINING_SIZE/lambda+1)
         fep_centroid_temp = gp(xTrain(:,T-TRAINING_SIZE:T-1), fTrain(T-TRAINING_SIZE:T-1), y(:,i), theta);
+        fepcentroid_array(t+1) = fep_centroid_temp;
         % four cases
         if(f_centroid_temp < f_centroid)       % [actual superior]
             if(fep_centroid_temp < f_centroid) % Predicted superior
@@ -209,7 +211,6 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     t = t + 1;
     fcentroid_array(t) = f_centroid;
     %%%%%%%%%%%%%%%%%%%%%%%
-    fepcentroid_array(t) = fep_centroid_temp;
     ftemp_centroid_array(t) = f_centroid_temp;
 
     sigma_array(t) = sigma;
@@ -242,7 +243,7 @@ end
     FOUR_COUNT = [TN,FP,FN,TP];
     %%%%%%%%%%%%%%%%%%%%%%%
     true_range = t_start+1:t;
-    FOUR_COUNT_simplified = []
+%     FOUR_COUNT_simplified = []
     
     val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,error_array,sigma_star_array,success_rate,delta_array,FOUR_COUNT};
 

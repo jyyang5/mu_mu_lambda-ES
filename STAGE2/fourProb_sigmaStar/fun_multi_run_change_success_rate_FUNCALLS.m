@@ -68,6 +68,7 @@ kernel = kernel/sum(kernel);        % Normalized
 % Four probs for each SIGMA_STAR in SIGMA_STAR_array
 four_prob_final_med = zeros(length(SIGMA_STAR_array),4);
 success_rate_final_med = zeros(length(SIGMA_STAR_array),1);
+T_final_med = zeros(length(SIGMA_STAR_array),1);
 
 figure(FIGURE_NUM);
 for q = 1:1:length(SIGMA_STAR_array)
@@ -127,7 +128,9 @@ for q = 1:1:length(SIGMA_STAR_array)
     success_rate_med = success_rate_array(med_index);
     sigma_star_med = sigma_star_matrix(med_index,:);
 	success_rate_final_med(q) = success_rate_med;
-    four_prob_final_med(q,:) = four_prob_matrix(med_index,:); 
+    four_prob_final_med(q,:) = four_prob_matrix(med_index,:);
+    T_final_med(q) = T_array(med_index); 
+
     % sorted_T_noGP = sort(T_array_noGP);
     % temp_index_noGP = find(T_array_noGP == sorted_T_noGP(ceil(length(sorted_T_noGP)/2)));
     % med_index_noGP = temp_index_noGP(1);
@@ -165,7 +168,7 @@ for q = 1:1:length(SIGMA_STAR_array)
     if(fname==1)
         ylabel(sprintf('Objective function value'),'FontSize',15);
     end
-    xlabel('iteration','FontSize',15); 
+    xlabel('function calls','FontSize',15); 
     set(gca, 'YScale', 'log');
 
         if(fname == 1)
@@ -198,7 +201,7 @@ for q = 1:1:length(SIGMA_STAR_array)
     if(fname==1)
         ylabel(sprintf('Step size'),'FontSize',15);
     end
-    xlabel('iteration','FontSize',15); 
+    xlabel('function calls','FontSize',15);
     set(gca, 'YScale', 'log');
 
     legend('-DynamicLegend'); 
@@ -267,6 +270,6 @@ end
     fig_name = sprintf('merged_%d.fig',lambda);
     saveas(gcf,fig_name); 
 
-    val = {};
+    val = {T_final_med};
 % val = {t_array,sigma_matrix,T_array,f_x_matrix,convergence_rate_array,GP_error_matrix,sigma_star_matrix,success_rate_array,delta_matrix};
 end
