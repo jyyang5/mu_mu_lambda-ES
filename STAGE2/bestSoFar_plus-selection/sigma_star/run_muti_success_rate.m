@@ -9,10 +9,10 @@ f3 = @(x) (x'*x)^(3/2);
 
 close all;
 FIGURE_NUM = 1;
-NUM_OF_RUNS = 3;
+NUM_OF_RUNS = 11;
 % NUM_OF_RUNS = 2;
 TRAINING_SIZE = 40;
-LENGTH_SCALE = 16;
+LENGTH_SCALE = 8;
 
 
 
@@ -31,7 +31,7 @@ delta_matrix = zeros(5,4,NUM_OF_RUNS,10000);                                  % 
 % lambda_array = [0,10,20,40];
 % success_rate = zeros(3,length(lambda_array),2,LEN_SIGMA_STAR);
 lambda_array = [10,20,40];
-SUCCESS_RATIO_array = 0.6:0.1:0.8;
+SUCCESS_RATIO_array = 0.1:0.2:0.9;
 subplot_ROW = length(lambda_array);
 subplot_COL = 5;
 
