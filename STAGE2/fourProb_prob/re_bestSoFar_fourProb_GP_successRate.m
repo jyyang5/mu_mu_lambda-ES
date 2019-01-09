@@ -104,7 +104,7 @@ FOUR_COUNT = zeros(1,4);
 
 while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     % early stopping 
-    if(f_centroid > 50000)
+    if(f_centroid > 500)
         % if diverge -> convergence rate = 0 success rate = 0
         success_rate = 0;
         FOUR_COUNT = [0,0,0,0];
@@ -186,9 +186,9 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     T = T + 1;
     t = t + 1;
     fcentroid_array(t) = f_centroid;
+    sigma_array(t) = sigma;
     %%%%%%%%%%%%%%%%%%%%%%%
     ftemp_centroid_array(t) = f_centroid_temp;
-    sigma_array(t) = sigma;
     sigma_star_array(t) = n*sigma/norm(centroid);
     
     
