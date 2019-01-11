@@ -81,4 +81,13 @@ f_centroid: true objective function value of best centroid so far
 
 
 
+## 1.4 Step size adaptation using prob. with four cases 
+
+
+
+### BestSoFar
+
+### mml
+
+
 

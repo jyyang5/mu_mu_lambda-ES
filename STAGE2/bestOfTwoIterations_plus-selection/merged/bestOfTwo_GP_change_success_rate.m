@@ -118,7 +118,6 @@ fcentroid_array(t) = f_centroid;
 sigma = sigma0;
 sigma_array(t) = sigma;
 D = sqrt(1+n);
-t_start = ceil(TRAINING_SIZE/lambda);
 
 
 while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
@@ -189,21 +188,12 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     T = T + 1;
     
     
-%     if(t>=2)
-%         if(fname==1)
-%             delta_array(t) =(fcentroid_array(t)-fcentroid_array(t-1))/norm(centroid); 
-%         elseif(fname==2)
-%             delta_array(t) =(fcentroid_array(t)-fcentroid_array(t-1))/2/(norm(centroid))^2; 
-%         else
-%             delta_array(t) =(fcentroid_array(t)-fcentroid_array(t-1))/3/(norm(centroid))^3; 
-%         end
-%     end
-    disp(1 + (lambda+1)*t_start + (t-t_start) - T);
+
     t = t + 1;
     fcentroid_array(t) = f_centroid;
     sigma_array(t) = sigma;
     sigma_star_array(t) = n*sigma/norm(centroid);
-    fprintf('iteartion %d: %d\n',t,T);
+%     fprintf('iteartion %d: %d\n',t,T);
     
 end
 
@@ -213,19 +203,14 @@ end
     % convergence rate (overall)
     t_start = ceil(TRAINING_SIZE/lambda);
     if(fname==1)
-        delta_array(2:t) = -(fcentroid_array(2:t)-fcentroid_array(1:t-1))./vecnorm(centroid_array(:,2:t),2,1);
         convergence_rate = -n*sum(log(fcentroid_array(t_start+2:t)./fcentroid_array(t_start+1:t-1)))/length(fcentroid_array(t_start+1:t-1));
     elseif(fname==2)
-        delta_array(2:t) = -(fcentroid_array(2:t)-fcentroid_array(1:t-1))./(vecnorm(centroid_array(:,2:t),2,1)).^2/2;
         convergence_rate = -n/2*sum(log(fcentroid_array(t_start+2:t)./fcentroid_array(t_start+1:t-1)))/length(fcentroid_array(t_start+1:t-1));
     elseif(fname==3)
-        delta_array(2:t) = -(fcentroid_array(2:t)-fcentroid_array(1:t-1))./(vecnorm(centroid_array(:,2:t),2,1)).^3/3;        
         convergence_rate = -n/3*sum(log(fcentroid_array(t_start+2:t)./fcentroid_array(t_start+1:t-1)))/length(fcentroid_array(t_start+1:t-1));
     elseif(fname==4)
-        delta_array(2:t) = -(fcentroid_array(2:t)-fcentroid_array(1:t-1))./vecnorm(centroid_array(:,2:t),2,1);
         convergence_rate = -n/2*sum(log(fcentroid_array(t_start+2:t)./fcentroid_array(t_start+1:t-1)))/length(fcentroid_array(t_start+1:t-1));
     elseif(fname==5)
-        delta_array(2:t) = -(fcentroid_array(2:t)-fcentroid_array(1:t-1))./vecnorm(centroid_array(:,2:t),2,1);
     	convergence_rate = -n/2*sum(log(fcentroid_array(t_start+2:t)./fcentroid_array(t_start+1:t-1)))/length(fcentroid_array(t_start+1:t-1));
     end
     % success rate

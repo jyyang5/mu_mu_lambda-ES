@@ -104,8 +104,6 @@ while(t < NUM_OF_ITERATIONS && f(x_array(:,T))>10^(-8))%(norm(x_array(:,T)-OPTIM
     % if GP already built compare
     if(T > TRAINING_SIZE && fy_ep >= fx)             % bad offspring
         sigma = sigma * exp(-c1/D);
-        % relative GP error
-        y_temp = f(y);
         
     % GP not built || offspring inferior
     else
