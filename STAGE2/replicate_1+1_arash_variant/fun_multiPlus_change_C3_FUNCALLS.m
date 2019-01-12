@@ -1,4 +1,4 @@
-% Objective [update step size C1,C2,C3]
+% Objective [update step size C1,C2,C3] add hist of objFunCalls
 % 1 Plot
 %     1. histgoram of objFunCalls
 %     2. convergence plot
@@ -14,7 +14,7 @@
 % difficulty: 
 %            
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function val = fun_multi_change_C3_FUNCALLS(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,C1,C2,C3_array,FIGURE_NUM,subplot_ROW,subplot_COL,str_cell_SIGMA_STAR)
+function val = fun_multiPlus_change_C3_FUNCALLS(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,C1,C2,C3_array,FIGURE_NUM,subplot_ROW,subplot_COL,str_cell_SIGMA_STAR)
 %Input:
 %   fname:          an index 
 %                       1 for linear
@@ -29,9 +29,9 @@ function val = fun_multi_change_C3_FUNCALLS(fname,NUM_OF_RUNS,lambda,TRAINING_SI
 %                   40 for (10/10,40)-ES
 %    TRAINING_SIZE  GP training size
 %    LENGTH_SCALE   length scale factor for GP
-%    C1
+%    C1             C1/(C1+C2) \approx success rate
 %    C2
-%    C3_array       an array of C3s 
+%    C3_array       array of C3s exp(-C3) when bad step estimated by model
 %    FIGURE_NUM     the first fig. number
 %    subplot_ROW    # of rows in each plot [here # of lambda used]
 %    subplot_COL    # of cols in each plot [here # of test functions]
@@ -89,8 +89,6 @@ for q = 1:1:length(PROB_RATE_array)
     f_x_matrix = zeros(NUM_OF_RUNS,10000);             % store all fx
     success_rate_array = zeros(NUM_OF_RUNS,1);         % success rate 
     eval_rate_array = zeros(NUM_OF_RUNS,1);            % evaluation rate 
-    % convergence_rate_array = zeros(NUM_OF_RUNS,1);     % convergence rate 
-    % GP_error_matrix = zeros(NUM_OF_RUNS,10000);        % store similar to noise-to-signal ratio
     sigma_star_matrix = zeros(NUM_OF_RUNS,10000);      % normalized step size 
     sigma_matrix_med = zeros(1,10000);
     f_x_med = zeros(1,10000);
@@ -149,10 +147,40 @@ for q = 1:1:length(PROB_RATE_array)
     hold on;
     
     d = sprintf('(%d/%d,%d)-ES,C=%.2f,%.2f,%.2f',mu,mu,lambda,C1,C2,C3);
-
-    % Fig 1: convergence plots [FIGURE_NUM.fig]
+    
+    % Fig 1: histgragm of objFunCalls
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     subplot(subplot_ROW,subplot_COL,(0)*subplot_COL+fname);
+    h = histogram(T_array);hold on; % mml with GP
+    
+    if(fname == 1)
+        dt =sprintf('linear sphere');
+        title(dt,'fontsize',15);
+        h.BinWidth = 10;
+    elseif(fname == 2)
+        dt =sprintf('quadratic sphere');
+        title(dt,'fontsize',15);
+        h.BinWidth = 5;
+    elseif(fname == 3)
+        dt =sprintf('cubic sphere');
+        title(dt,'fontsize',15);
+        h.BinWidth = 5;
+    elseif(fname == 4)
+        dt =sprintf('Schwefel function');
+        title(dt,'fontsize',15);
+        h.BinWidth = 40;
+    elseif(fname == 5)
+        dt =sprintf('quartic function');
+        title(dt,'fontsize',15); 
+        h.BinWidth = 20;
+    end
+    xlabel('Objective function calls','FontSize',15); 
+    
+    
+    
+    % Fig 2: convergence plots [FIGURE_NUM.fig]
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    subplot(subplot_ROW,subplot_COL,(1)*subplot_COL+fname);
     plot(T_range, f_x_med(1:t_med),'DisplayName',d);hold on; % mml with GP
     if(fname==1)
         ylabel(sprintf('Objective function value'),'FontSize',15);
@@ -179,9 +207,9 @@ for q = 1:1:length(PROB_RATE_array)
     legend('show');
 
 
-    % Fig 2: step size [FIGURE_NUM+1.fig]
+    % Fig 3: step size [FIGURE_NUM+1.fig]
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    subplot(subplot_ROW,subplot_COL,(2-1)*subplot_COL+fname);
+    subplot(subplot_ROW,subplot_COL,(2)*subplot_COL+fname);
     plot(T_range, sigma_matrix_med(1:t_med),'DisplayName',d);hold on; % mml with GP
     % plot(1:t_med_noGP, f_x_med_noGP(i,1:t_med_noGP),'DisplayName',d_noGP);hold on; % mml with GP
     if(fname==1)
@@ -192,9 +220,9 @@ for q = 1:1:length(PROB_RATE_array)
     legend('-DynamicLegend'); 
     legend('show');
 
-    % Fig 3: Normalized step size [FIGURE_NUM+2.fig]
+    % Fig 4: Normalized step size [FIGURE_NUM+2.fig]
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    subplot(subplot_ROW,subplot_COL,(3-1)*subplot_COL+fname);
+    subplot(subplot_ROW,subplot_COL,(3)*subplot_COL+fname);
     plot(T_range, sigma_star_med(1:t_med),'DisplayName',d);hold on; % mml with GP
     % plot(1:t_med_noGP, f_x_med_noGP(i,1:t_med_noGP),'DisplayName',d_noGP);hold on; % mml with GP
     if(fname==1)
@@ -207,20 +235,27 @@ for q = 1:1:length(PROB_RATE_array)
 
 end
     figure(FIGURE_NUM);
-    % Fig 4:med success rate & evaluation rate [bar][bar]
+    subplot(subplot_ROW,subplot_COL,(0)*subplot_COL+fname);
+    legendCell = {};
+    for i = 1:1:length(PROB_RATE_array)
+        legendCell{i} = sprintf('C3=%.2f',PROB_RATE_array(i));
+    end
+    legend(legendCell);
+    
+    % Fig 5:med success rate & evaluation rate [bar][bar]
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    subplot(subplot_ROW,subplot_COL,(4-1)*subplot_COL+fname);
+    subplot(subplot_ROW,subplot_COL,(4)*subplot_COL+fname);
     bar([success_rate_final_med, eval_rate_final_med]);hold on;
     set(gca,'xticklabel',str_cell_SIGMA_STAR);
     if(fname==1)
         ylabel(sprintf('Probabilities'),'FontSize',15);
     end
     legend({'success rate','evaluation rate'});
-    xlabel('C1','FontSize',15); 
+    xlabel('C3','FontSize',15); 
 
-    % Fig 5: four probs TP, TN, FP, FN
+    % Fig 6: four probs TP, TN, FP, FN
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    subplot(subplot_ROW,subplot_COL,(5-1)*subplot_COL+fname);
+    subplot(subplot_ROW,subplot_COL,(5)*subplot_COL+fname);
     bar(four_prob_final_med./sum(four_prob_final_med,2));hold on;
     legend({'TN','FP','FN','TP'})
     set(gca,'xticklabel',str_cell_SIGMA_STAR);

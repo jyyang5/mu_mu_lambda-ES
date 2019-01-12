@@ -61,7 +61,8 @@ elseif(fname==5)
     f=@f5;
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-[n, mu] = size(x0);
+[n, ~] = size(x0);
+mu = ceil(lambda/4);
 % TRAINING_SIZE = 40;
 % TRAINING_SIZE = 4*lambda;
 xTrain = zeros(n,10000);            % training data for GP size 4*mu
@@ -115,7 +116,7 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
         % if diverge -> convergence rate = 0 success rate = 0
         success_rate = 0;
         FOUR_COUNT = [0,0,0,0];
-        val = {t,centroid,f_centroid,sigma_array, 9999, fcentroid_array,convergence_rate,error_array,sigma_star_array,success_rate,delta_array,FOUR_COUNT};
+        val = {t,centroid,f_centroid,sigma_array, 9999, fcentroid_array,convergence_rate,error_array,sigma_star_array,success_rate,delta_array,FOUR_COUNT,0};
         return 
     end
     

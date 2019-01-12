@@ -2,7 +2,7 @@ n=10;
 lambda = 10;
 mu=ceil(lambda/4);
 NUM_OF_ITERATIONS = 2000;
-x0 = randn(n,mu);
+x0 = randn(n,3);
 sigma0 = 1;
 LENGTH_SCALE = 16;
 TRAINING_SIZE = 40;
@@ -10,9 +10,9 @@ SUCCESS_RATE = 0.4;
 SIGMA_STAR = 1;
 
 fname = 5;
-C1 = 1.2;
+C1 = 0.8;
 C2 = 0.8;
-C3 = 0.2;
+C3 = 0.1;
 
 a = bestSoFar_fourProb_GP_arashVariant(fname,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE,C1,C2,C3);
 t_array = cell2mat(a(1));
@@ -33,6 +33,7 @@ t_start = ceil(TRAINING_SIZE/lambda);
 T_range_1 = (0:1:t_start).*(lambda+1)+1;
 T_range_2 = (t_start+2:t_array)+lambda*t_start;
 T_range = [T_range_1 T_range_2];
+T_range = 1:t_array;
 
 figure(10)
 subplot(1,4,1)

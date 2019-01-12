@@ -5,10 +5,10 @@ c1 = 0.8;
 c2 = 0.8;
 c3 = 0.1;
 
-lambda = 10;
+lambda = 40;
 mu = ceil(lambda/4);
 
-LENGTH_SCALE = 32;
+LENGTH_SCALE = 16;
 
 f1 = @(x) sqrt(x'*x);
 f2 = @(x) x'*x;
