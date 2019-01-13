@@ -1,4 +1,4 @@
-% Objective [update step size C1,C2,C3] add hist of objFunCalls
+% Objective [update step size C1,C2,C3] add hist of objFunCalls [over DF]
 % 1 Plot
 %     1. histgoram of objFunCalls
 %     2. convergence plot
@@ -14,7 +14,7 @@
 % difficulty: 
 %            
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function val = fun_multiPlus_change_successRate_FUNCALLS(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,SUCCESS_RATE_array,DF,C3,FIGURE_NUM,subplot_ROW,subplot_COL,str_cell_SIGMA_STAR)
+function val = fun_multiPlus_change_DF_FUNCALLS(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,SUCCESS_RATE,DF_array,C3,FIGURE_NUM,subplot_ROW,subplot_COL,str_cell_SIGMA_STAR)
 %Input:
 %   fname:          an index 
 %                       1 for linear
@@ -68,7 +68,7 @@ window_length = 40;
 kernel = exp(-(-3*window_length:3*window_length).^2/window_length^2/2);
 kernel = kernel/sum(kernel);        % Normalized    
 
-PROB_RATE_array = SUCCESS_RATE_array;
+PROB_RATE_array = DF_array;
 
 % Four probs for each SIGMA_STAR in SIGMA_STAR_array
 four_prob_final_med = zeros(length(PROB_RATE_array),4);
@@ -78,9 +78,9 @@ T_final_med = zeros(length(PROB_RATE_array),1);
 
 figure(FIGURE_NUM);
 for q = 1:1:length(PROB_RATE_array)
-    PROB_RATE = PROB_RATE_array(q);
-    C1 = PROB_RATE*DF;
-    C2 = (1-PROB_RATE)*DF;
+    DF = PROB_RATE_array(q);
+    C1 = SUCCESS_RATE*DF;
+    C2 = (1-SUCCESS_RATE)*DF;
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Def of variables
 
@@ -174,7 +174,7 @@ for q = 1:1:length(PROB_RATE_array)
     elseif(fname == 5)
         dt =sprintf('quartic function');
         title(dt,'fontsize',15); 
-        h.BinWidth = 5;
+        h.BinWidth = 10;
     end
     xlabel('Objective function calls','FontSize',15); 
     
@@ -240,7 +240,7 @@ end
     subplot(subplot_ROW,subplot_COL,(0)*subplot_COL+fname);
     legendCell = {};
     for i = 1:1:length(PROB_RATE_array)
-        legendCell{i} = sprintf('S=%.2f,DF=%.1f',PROB_RATE_array(i),DF);
+        legendCell{i} = sprintf('S=%.1f,DF=%.1f',SUCCESS_RATE,PROB_RATE_array(i));
     end
     legend(legendCell);
     
@@ -253,7 +253,7 @@ end
         ylabel(sprintf('Probabilities'),'FontSize',15);
     end
     legend({'success rate','evaluation rate'});
-    xlabel('SUCCESS RATE(S)','FontSize',15); 
+    xlabel('DF','FontSize',15); 
 
     % Fig 6: four probs TP, TN, FP, FN
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -264,7 +264,7 @@ end
     if(fname==1)
         ylabel(sprintf('Probabilities'),'FontSize',15);
     end
-    xlabel('SUCCESS RATE(S)','FontSize',15); 
+    xlabel('DF','FontSize',15); 
     fig_name = sprintf('merged%d_%.1f,_%.1f_%.1f.fig',lambda,C1,C2,C3);
     saveas(gcf,fig_name); 
 

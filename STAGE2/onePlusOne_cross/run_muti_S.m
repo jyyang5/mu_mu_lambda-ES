@@ -9,7 +9,7 @@ f3 = @(x) (x'*x)^(3/2);
 
 close all;
 FIGURE_NUM = 1;
-NUM_OF_RUNS = 2;
+NUM_OF_RUNS = 51;
 % NUM_OF_RUNS = 2;
 TRAINING_SIZE = 40;
 LENGTH_SCALE = 16;
@@ -30,15 +30,13 @@ delta_matrix = zeros(5,4,NUM_OF_RUNS,10000);                                  % 
 % lambda_array = [0,10,20,40];
 % success_rate = zeros(3,length(lambda_array),2,LEN_SIGMA_STAR);
 % lambda_array = [10,20,40];
+lambda_array = [10,20,40];
 
-
-% SIGMA_STAR_array = 2.^(-2:1:2);
-% C1 = 0.8;
-% C2 = 0.8;
-C3 = 0.1;
-SUCCESS_RATE = 0.5;
-DF_array = 1:0.5:3;
-PROB_array = DF_array;
+SIGMA_STAR_array = 2.^(-2:1:2);
+C1 = 0.8;
+C2 = 0.8;
+S_array = 0.6:0.06:0.9;
+PROB_array = S_array;
 
 subplot_ROW = 6;
 subplot_COL = 5;
@@ -55,10 +53,10 @@ for i=1:1:length(lambda_array)
     lambda = lambda_array(i);
 	FIGURE_NUM = i;
     for fname = 1:1:5
-        temp = fun_multiPlus_change_DF_FUNCALLS(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,SUCCESS_RATE,DF_array,C3,FIGURE_NUM,subplot_ROW,subplot_COL,str_cell_PROB_RATE);
+        temp = fun_multiPlus_change_S_FUNCALLS(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,S_array,FIGURE_NUM,subplot_ROW,subplot_COL,str_cell_PROB_RATE);
         T_matrix(:,i,fname) = cell2mat(temp);
     end
 end
 
-save('med_T_over_DF.mat','lambda_array','SIGMA_STAR_array','T_matrix','LENGTH_SCALE','TRAINING_SIZE','NUM_OF_RUNS','C1','C2','C3_array','NUM_OF_RUNS');
+save('med_T.mat','lambda_array','SIGMA_STAR_array','T_matrix','LENGTH_SCALE','TRAINING_SIZE','NUM_OF_RUNS','S_array','NUM_OF_RUNS');
 

@@ -14,7 +14,7 @@
 % difficulty: 
 %            
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function val = fun_multiPlus_change_DF_FUNCALLS(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE,SUCCESS_RATE,DF_array,C3,FIGURE_NUM,subplot_ROW,subplot_COL,str_cell_SIGMA_STAR)
+function val = fun_multiPlus_change_lengthScale_FUNCALLS(fname,NUM_OF_RUNS,lambda,TRAINING_SIZE,LENGTH_SCALE_array,SUCCESS_RATE,DF,C3,FIGURE_NUM,subplot_ROW,subplot_COL,str_cell_SIGMA_STAR)
 %Input:
 %   fname:          an index 
 %                       1 for linear
@@ -68,7 +68,7 @@ window_length = 40;
 kernel = exp(-(-3*window_length:3*window_length).^2/window_length^2/2);
 kernel = kernel/sum(kernel);        % Normalized    
 
-PROB_RATE_array = DF_array;
+PROB_RATE_array = LENGTH_SCALE_array;
 
 % Four probs for each SIGMA_STAR in SIGMA_STAR_array
 four_prob_final_med = zeros(length(PROB_RATE_array),4);
@@ -78,7 +78,7 @@ T_final_med = zeros(length(PROB_RATE_array),1);
 
 figure(FIGURE_NUM);
 for q = 1:1:length(PROB_RATE_array)
-    DF = PROB_RATE_array(q);
+    LENGTH_SCALE = PROB_RATE_array(q);
     C1 = SUCCESS_RATE*DF;
     C2 = (1-SUCCESS_RATE)*DF;
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -148,7 +148,7 @@ for q = 1:1:length(PROB_RATE_array)
     legend('-DynamicLegend'); 
     hold on;
     
-    d = sprintf('(%d/%d,%d)-ES,C=%.2f,%.2f,%.2f',mu,mu,lambda,C1,C2,C3);
+    d = sprintf('(%d/%d,%d)-ES,C=%.2f,%.2f,%.2f,LS=%d',mu,mu,lambda,C1,C2,C3,LENGTH_SCALE);
     
     % Fig 1: histgragm of objFunCalls
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -174,7 +174,7 @@ for q = 1:1:length(PROB_RATE_array)
     elseif(fname == 5)
         dt =sprintf('quartic function');
         title(dt,'fontsize',15); 
-        h.BinWidth = 5;
+        h.BinWidth = 10;
     end
     xlabel('Objective function calls','FontSize',15); 
     
@@ -265,7 +265,7 @@ end
         ylabel(sprintf('Probabilities'),'FontSize',15);
     end
     xlabel('DF','FontSize',15); 
-    fig_name = sprintf('merged%d_%.1f,_%.1f_%.1f.fig',lambda,C1,C2,C3);
+    fig_name = sprintf('merged%d_LS.fig',lambda);
     saveas(gcf,fig_name); 
 
     val = {T_final_med};

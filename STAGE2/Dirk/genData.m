@@ -1,14 +1,15 @@
+function genData(c1,c2,c3,lambda,LENGTH_SCALE)
 N=21;    % number of runs
 evals = @(x) x(end, 1);
 
-c1 = 0.8;
-c2 = 0.8;
-c3 = 0.1;
+% c1 = 0.8;
+% c2 = 0.8;
+% c3 = 0.1;
+% LENGTH_SCALE = 20;
+% lambda = 10;
 
-lambda = 40;
 mu = ceil(lambda/4);
 
-LENGTH_SCALE = 16;
 
 f1 = @(x) sqrt(x'*x);
 f2 = @(x) x'*x;
@@ -37,23 +38,7 @@ fEvals = median(Nevals)
 T = [502,212,202,1503,1250];
 T./fEvals
 
-% LENGTH_SCALE = 32;
-% rec1 = cell(N, 5);
-% for k=1:N
-%     [~, rec1{k, 1}] = ES(f1, mu, lambda, 1.0e+00*randn(10, 1), 1.0, LENGTH_SCALE, 40, c1, c2, c3);
-%     [~, rec1{k, 2}] = ES(f2, mu, lambda, 1.0e+00*randn(10, 1), 1.0, LENGTH_SCALE, 40, c1, c2, c3);
-%     [~, rec1{k, 3}] = ES(f3, mu, lambda, 1.0e+00*randn(10, 1), 1.0, LENGTH_SCALE, 40, c1, c2, c3);
-%     [~, rec1{k, 4}] = ES(f4, mu, lambda, 1.0e+00*randn(10, 1), 1.0, LENGTH_SCALE, 40, c1, c2, c3);
-%     [~, rec1{k, 5}] = ES(f5, mu, lambda, 1.0e+00*randn(10, 1), 1.0, LENGTH_SCALE, 40, c1, c2, c3);
-% end
-% 
-% Nevals1 = cellfun(evals, rec1);
-% [~, idx] = sort(Nevals1);
-% for k=1:5
-%     r1(k) = rec1(idx((N+1)/2, k), k);
-% end
-% 
-% T1 = median(Nevals1) 
-% T./T1
+end
+
 
 
