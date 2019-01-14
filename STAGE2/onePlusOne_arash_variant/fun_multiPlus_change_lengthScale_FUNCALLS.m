@@ -148,7 +148,7 @@ for q = 1:1:length(PROB_RATE_array)
     legend('-DynamicLegend'); 
     hold on;
     
-    d = sprintf('(%d/%d,%d)-ES,C=%.2f,%.2f,%.2f,LS=%d',mu,mu,lambda,C1,C2,C3,LENGTH_SCALE);
+    d = sprintf('(%d/%d,%d)-ES,S=%.1f,DF=%.1f,LS=%d',mu,mu,lambda,SUCCESS_RATE,DF,LENGTH_SCALE);
     
     % Fig 1: histgragm of objFunCalls
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -240,7 +240,7 @@ end
     subplot(subplot_ROW,subplot_COL,(0)*subplot_COL+fname);
     legendCell = {};
     for i = 1:1:length(PROB_RATE_array)
-        legendCell{i} = sprintf('S=%.1f,DF=%.1f',SUCCESS_RATE,PROB_RATE_array(i));
+        legendCell{i} = sprintf('S=%.1f,LS=%.1f',SUCCESS_RATE,PROB_RATE_array(i));
     end
     legend(legendCell);
     
@@ -253,7 +253,7 @@ end
         ylabel(sprintf('Probabilities'),'FontSize',15);
     end
     legend({'success rate','evaluation rate'});
-    xlabel('DF','FontSize',15); 
+    xlabel('length scale (LS)','FontSize',15);  
 
     % Fig 6: four probs TP, TN, FP, FN
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -264,7 +264,7 @@ end
     if(fname==1)
         ylabel(sprintf('Probabilities'),'FontSize',15);
     end
-    xlabel('DF','FontSize',15); 
+    xlabel('length scale (LS)','FontSize',15); 
     fig_name = sprintf('merged%d_LS.fig',lambda);
     saveas(gcf,fig_name); 
 
