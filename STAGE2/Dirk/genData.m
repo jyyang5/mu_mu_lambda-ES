@@ -1,4 +1,4 @@
-function genData(c1,c2,c3,lambda,LENGTH_SCALE)
+function genData(c1,c2,c3,mu,lambda,LENGTH_SCALE)
 N=21;    % number of runs
 evals = @(x) x(end, 1);
 
@@ -8,7 +8,7 @@ evals = @(x) x(end, 1);
 % LENGTH_SCALE = 20;
 % lambda = 10;
 
-mu = ceil(lambda/4);
+% mu = ceil(lambda/4);
 
 
 f1 = @(x) sqrt(x'*x);

@@ -11,6 +11,7 @@ function val = bestSoFar_fourProb_GP_arashVariant(fname,x0,sigma0,lambda,NUM_OF_
 %                       3 for cubic 
 %                       4 for schwefel
 %                       5 for quartic
+%                       6 for Rosenbrock
 % x0:                 mu initial point size [n, mu]
 % sigma0:             initial step size
 % lambda:             # of offsprings genenerated in each itertaion  
@@ -59,6 +60,8 @@ elseif(fname==4)
     f=@f4;
 elseif(fname==5)
     f=@f5;
+elseif(fname==6)
+    f=@f6;
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 [n, ~] = size(x0);
@@ -112,7 +115,7 @@ f_x_array = zeros(1,50000);     % true function value of parent
 
 while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     % early stopping 
-    if(f_centroid > 500)
+    if(f_centroid > 5000)
         % if diverge -> convergence rate = 0 success rate = 0
         success_rate = 0;
         FOUR_COUNT = [0,0,0,0];
@@ -280,5 +283,23 @@ function val = f5(x)
     val = 0;
     for i = 1:1:length(x)-1
         val = val + beta*(x(i+1)-x(i).^2)^2+(1-x(i))^2;
+    end
+end
+
+% quartic function with varying beta
+function val = f6(x,beta)
+%     beta = 100;
+    val = 0;
+    for i = 1:1:length(x)-1
+        val = val + beta*(x(i+1)-x(i).^2)^2+(1-x(i))^2;
+    end
+end
+
+% Ellipsoids function with varying beta
+function val = f7(x,alpha)
+    if length(x) == 1
+        val = x'.*alpha.*x;
+    elseif length(x) >= 2
+        val = x'*diag([alpha, ones(1,length(x)-1)])*x;
     end
 end

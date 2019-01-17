@@ -1,0 +1,84 @@
+## STAGE 3
+- Round experiments 
+	- Test functions
+		- Sphere: varying exp 
+		- Quartic: varying \alpha 
+		- ellipsoids & sewechfel: varying \beta 
+
+	- Dimensions
+		- n = 4,8,10,16
+
+- Plot the speed-ups 
+	- Base: (1+1)-ES
+	- Compare
+		- GP-(1+1)-ES
+		- GP-(3/3,10)-ES
+		- GP-(5/5,20)-ES
+		- GP-(10/10,40)-ES
+
+## Files
+
+### A. Strategies 
+- (1+1)-ES [onePlusOne.m]
+	- Step size adaptation: 1/5-rule
+	- Fitness evaluated by: true objective function 
+	- Selection: plus-selection 
+- GP-(1+1)-ES[withGP.m]
+	- Step size adaptation: 1/5-rule + c1,c2,c3
+	- Fitness evaluated by: true objective function(train) + GP
+	- Selection: plus-selection 
+- GP-mml-ES [bestSoFar_arashVariant.m]
+	- Step size adaptation: 1/5-rule + c1,c2,c3
+	- Fitness evaluated by: true objective function(train) + GP
+	- Selection: plus-selection 
+
+### B. Graphing Function 
+- Plot speed-ups for all test functions over dimension [fun_multi_over_dim.M]
+	- Input:
+		- f6_range: exponents in sphere function 
+			(x'*x)^(exp/2)
+		- f7_range: $\beta$ in quartic function
+			```
+			val = 0;
+			for i = 1:1:length(x)-1
+    			val = val + beta*(x(i+1)-x(i).^2)^2+(1-x(i))^2;
+			end
+			``` 
+		- f8_range: $\alpha$ in ellipsoids
+			```
+			if length(x) == 1
+			    val = x'.*alpha.*x;
+			elseif length(x) >= 2
+			    val = x'*diag([alpha, ones(1,length(x)-1)])*x;
+			end
+			``` 
+	- Return
+		- Save fig 
+		- Save data [med_dim=X.mat] 
+			- T_med_f6[strategyName, parameterUsedInf6]: objective function calls in median run
+			- eval_rate_med_f6[strategyName, parameterUsedInf6]: evaluation rate in median run
+			- f_x_med_f6[strategyName, parameterUsedInf6],:]: fx array in median run
+- Runner [run_multi_over_dim.m]
+	- Input:
+		- n: dimension of data 
+		- range of parameters
+	- Obtain:
+		- Each call 
+
+### C. Test strategies files
+- Test all strategies once [test_one_run_merged.m]
+	- Convergence plots, sigma, sigmaStar, four probs.
+- Test (1+1)-ES [test_one_run_noGP.m]
+- Test strategies with GP [test_one_run_GP.m]
+
+## Schedule
+
+- [x] 20190116
+	- Speed-ups for all strategies with GP over
+		- test functions 
+		1. Sphere: varying exp 
+		2. Quartic: varying \alpha 
+		3. ellipsoids & sewechfel: varying \beta 
+		- Dimension of data
+		n = 4,8,10,16
+

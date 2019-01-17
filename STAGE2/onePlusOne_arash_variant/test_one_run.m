@@ -1,7 +1,7 @@
 n=10;
 lambda = 10;
 mu=ceil(lambda/4);
-NUM_OF_ITERATIONS = 2000;
+NUM_OF_ITERATIONS = 5000;
 x0 = randn(n,3);
 sigma0 = 1;
 LENGTH_SCALE = 16;
@@ -9,10 +9,10 @@ TRAINING_SIZE = 40;
 SUCCESS_RATE = 0.4;
 SIGMA_STAR = 1;
 
-fname = 5;
-C1 = 0.8;
-C2 = 0.8;
-C3 = 0.1;
+fname = 6;
+C1 = 1.0;
+C2 = 1.0;
+C3 = 0.2;
 
 a = bestSoFar_fourProb_GP_arashVariant(fname,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE,C1,C2,C3);
 t_array = cell2mat(a(1));

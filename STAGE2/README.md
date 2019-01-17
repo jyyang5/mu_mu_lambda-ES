@@ -143,6 +143,39 @@
 
 		if C1 = C2 (1/2-success rate)
 
+- [20190114]
+	- [] Weighted recombination 
+	- [] Boarder test functions (e.g., mutimodal )
+		- Different $n$, e.g., 4 TRAINING_SIZE = 16
+		    - parameters C1,C2,C3 depends on $\lambda$
+		- Three set of test functions 
+
+		1. Sphere: exponent (1:1:5)./2 
+		2. Quartic function: $\alpha = 1:2:10$ (speed-up over \beta, (1+1)-ES, arash's)
+		3. Convex quadratic: schewfel, Ellipsoids (cigar, Discus) (variable is condition number) 
+		- Different n
+
+	- [] Training size (after 40 first iterations -> model goes terrible then recover) 
+
+- [2019016]
+	1. Sphere: exponent (1:1:5)./2 
+	2. Quartic function: $\alpha = 1:2:10$ (speed-up over \beta, (1+1)-ES, arash's)
+		- $\alpha=10$
+		    - (1+1)-ES: T = 30,000
+		    - GP-(1+1)-ES: T = 8,000
+		    - GP-(3/3,10)-ES: T = 5,000
+		- range = 1:2:10;
+	3. Convex quadratic: schewfel, Ellipsoids (cigar, Discus) (variable is condition number)  
+		- $\beta = 1000$
+			- (1+1)-ES: T = 8,000
+		    - GP-(1+1)-ES: T = 7,600
+		    - GP-(3/3,10)-ES: T = 5,800
+		- $\beta = 0.005$
+
+		- range = 10^(-2:0.5:2);
+
+
+
 
 
 ### 1. Step size adaptation 
