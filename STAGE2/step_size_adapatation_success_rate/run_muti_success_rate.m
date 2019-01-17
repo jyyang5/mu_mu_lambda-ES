@@ -9,11 +9,11 @@ f3 = @(x) (x'*x)^(3/2);
 
 close all;
 FIGURE_NUM = 1;
-NUM_OF_RUNS = 5;
+NUM_OF_RUNS = 2;
 % NUM_OF_RUNS = 2;
 TRAINING_SIZE = 40;
-LENGTH_SCALE = 8;
-subplot_ROW = 3;
+LENGTH_SCALE = 16;
+subplot_ROW = 4;
 subplot_COL = 5;
 
 
@@ -43,7 +43,7 @@ end
 % subplot_ROW = 4;
 % subplot_COL = 3;
 % figure(FIGURE_NUM+1);
-% legend('-DynamicLegend'); 
+% legend('-DynamicLegend'); ??????
 % hold on;
 % mu = ceil(lambda/4);
 % d = sprintf('GP-(%d/%d,%d)-ES',mu,mu,lambda);

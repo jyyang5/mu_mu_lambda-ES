@@ -162,8 +162,10 @@ mu = ceil(lambda/4);
 d = sprintf('GP-(%d/%d,%d)-ES',mu,mu,lambda);
 d_noGP = sprintf('(%d/%d,%d)-ES',mu,mu,lambda);
 
-% Fig 1: convergence plots
+% Fig. 1: convergence plots in [FIGURE_NUM]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 subplot(subplot_ROW,subplot_COL,0*subplot_COL+fname);
 plot(1:t_med, f_x_med(1:t_med),'DisplayName',d);hold on; % mml with GP
 % plot(1:t_med_noGP, f_x_med_noGP(i,1:t_med_noGP),'DisplayName',d_noGP);hold on; % mml with GP
@@ -197,8 +199,9 @@ legend('show');
 
 
 
-% Fig 2: step size
+% Fig. 2: step size in [FIGURE_NUM+1]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 subplot(subplot_ROW,subplot_COL,1*subplot_COL+fname);
 plot(1:t_med, sigma_matrix_med(1:t_med),'DisplayName',d);hold on; % mml with GP
 % plot(1:t_med_noGP, f_x_med_noGP(i,1:t_med_noGP),'DisplayName',d_noGP);hold on; % mml with GP
@@ -214,14 +217,32 @@ legend('show');
 
 % Fig 3: Normalized step size
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-subplot(subplot_ROW,subplot_COL,2*subplot_COL+fname);
-plot(1:t_med, sigma_star_med(1:t_med),'DisplayName',d);hold on; % mml with GP
+
+if fname<=3
+    subplot(subplot_ROW,subplot_COL,2*subplot_COL+fname);
+    plot(1:t_med, sigma_star_med(1:t_med),'DisplayName',d);hold on; % mml with GP
+    % plot(1:t_med_noGP, f_x_med_noGP(i,1:t_med_noGP),'DisplayName',d_noGP);hold on; % mml with GP
+    if(fname==1)
+        ylabel('Normalized step size','FontSize',15);%
+    end
+    xlabel('iteration','FontSize',15); 
+    set(gca, 'YScale', 'log');
+
+    legend('-DynamicLegend'); 
+    legend('show');
+end
+
+% Fig 4:Success rate
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+subplot(subplot_ROW,subplot_COL,3*subplot_COL+fname);
+histogram(success_rate_array,'DisplayName',d_noGP);hold on;
 % plot(1:t_med_noGP, f_x_med_noGP(i,1:t_med_noGP),'DisplayName',d_noGP);hold on; % mml with GP
 if(fname==1)
-    ylabel('Normalized step size','FontSize',15);%
+    ylabel('Success rate','FontSize',15);%
 end
-xlabel('iteration','FontSize',15); 
-set(gca, 'YScale', 'log');
+xlabel('number of iterations','FontSize',15); 
+% set(gca, 'YScale', 'log');
 
 legend('-DynamicLegend'); 
 legend('show');
