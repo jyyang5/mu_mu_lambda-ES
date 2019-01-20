@@ -1,6 +1,6 @@
 n=10;
 mu=ceil(lambda/4);
-NUM_OF_ITERATIONS = 10000;
+NUM_OF_ITERATIONS = 20000;
 sigma0 = 1;
 TRAINING_SIZE = 40;
 SUCCESS_RATE = 0.4;
@@ -9,8 +9,8 @@ SIGMA_STAR = 1;
 close all;
 
 
-fname = 6;
-para = 3.1623;
+fname = 8;
+para = 0.6;
 
 
 x0 = randn(n,1);
@@ -18,18 +18,23 @@ a = onePlusOne(fname,para,x0,sigma0,50000);
 LENGTH_SCALE = 8;
 b = withGP(fname,para,x0,sigma0,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE);
 
-x0 = randn(n,mu);
 C1 = 1.0;
 C2 = 1.0;
 C3 = 0.2;
 LENGTH_SCALE = 20;
+kappa = 2;
 
 lambda = 10;
 c1 = bestSoFar_arashVariant(fname,para,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE,C1,C2,C3);
+d1 = bestSoFar_arashVariant_w(fname,para,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE,C1,C2,C3,kappa);
 lambda = 20;
 c2 = bestSoFar_arashVariant(fname,para,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE,C1,C2,C3);
+d2 = bestSoFar_arashVariant_w(fname,para,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE,C1,C2,C3,kappa);
+
 lambda = 40;
 c3 = bestSoFar_arashVariant(fname,para,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE,C1,C2,C3);
+d3 = bestSoFar_arashVariant_w(fname,para,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE,C1,C2,C3,kappa);
+
 
 
 t = cell2mat(a(1));
@@ -77,15 +82,44 @@ sigma_star_matrix3 = cell2mat(c3(9));
 four_categories3 = cell2mat(c3(12));
 eval_ratio3 = cell2mat(c3(13));
 
+T4 = cell2mat(d1(5));
+T5 = cell2mat(d2(5));
+T6 = cell2mat(d3(5));
+f_x_matrix4 = cell2mat(d1(6));
+f_x_matrix5 = cell2mat(d1(6));
+f_x_matrix6 = cell2mat(d1(6));
+
+
+
 
 fprintf('Evaluation rate = %.2f,%.2f\n',eval_ratio1,eval_ratio2);
 
+if T == 99999
+    T_range = 50000;
+else
+    T_range = 1:T;
+end
+if T_b == 99999
+    T_range_b = 50000;
+else
+    T_range_b = 1:T_b;
+end
+if T1 == 99999
+    T_range1 = 50000;
+else
+    T_range1 = 1:T1;
+end
+if T2 == 99999
+    T_range2 = 50000;
+else
+    T_range2 = 1:T2;
+end
+if T3 == 99999
+    T_range3 = 50000;
+else
+    T_range3 = 1:T3;
+end
 
-T_range = 1:T;
-T_range_b = 1:T_b;
-T_range1 = 1:T1;
-T_range2 = 1:T2;
-T_range3 = 1:T3;
 
 figure(10)
 subplot(1,4,1)

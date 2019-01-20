@@ -13,7 +13,7 @@
 % difficulty: 
 %            
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function fun_multi_over_dim(n,NUM_OF_RUNS,f6_range, f7_range, f8_range,TRAINING_SIZE,LS_onePlusOne,LS_mml,NUM_OF_ITERATIONS,FIGURE_NUM,subplot_ROW,subplot_COL,fig_row_index,C1,C2,C3)
+function fun_multi_over_dim_w(n,NUM_OF_RUNS,f6_range, f7_range, f8_range,TRAINING_SIZE,LS_onePlusOne,LS_mml,NUM_OF_ITERATIONS,FIGURE_NUM,subplot_ROW,subplot_COL,fig_row_index,C1,C2,C3,kappa)
 %Input:
 %    n:                     dim of data
 %    NUM_OF_RUNS:           # of replicates 
@@ -51,7 +51,7 @@ window_length = 40;
 kernel = exp(-(-3*window_length:3*window_length).^2/window_length^2/2);
 kernel = kernel/sum(kernel);        % Normalized    
 
-NUM_OF_STRATEGIES = 5;
+NUM_OF_STRATEGIES = 8;
 
 T_med_f6 = zeros(NUM_OF_STRATEGIES,length(f6_range));
 f_x_med_f6 = zeros(NUM_OF_STRATEGIES,length(f6_range),50000);
@@ -119,11 +119,16 @@ for fname = 6:9
             x0 = randn(n,1);
             lambda = 10;
             c1 = bestSoFar_arashVariant(fname,para,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LS_mml,C1,C2,C3);
+            d1 = bestSoFar_arashVariant_w(fname,para,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LS_mml,C1,C2,C3,kappa);
+
             lambda = 20;
             c2 = bestSoFar_arashVariant(fname,para,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LS_mml,C1,C2,C3);
+            d2 = bestSoFar_arashVariant_w(fname,para,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LS_mml,C1,C2,C3,kappa);
+
             lambda = 40;
             c3 = bestSoFar_arashVariant(fname,para,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LS_mml,C1,C2,C3);
-            
+            d3 = bestSoFar_arashVariant_w(fname,para,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LS_mml,C1,C2,C3,kappa);
+
             
             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             % Assignment
@@ -166,11 +171,36 @@ for fname = 6:9
             sigma_star_matrix(5,i,:) = cell2mat(c3(9));
             four_prob_matrix(5,i,:) = cell2mat(c3(12));
             eval_rate_array(5,i) = cell2mat(c3(13));
+            
+            sigma_matrix(6,i,:) = cell2mat(d1(4));
+            T_array(6,i) = cell2mat(d1(5));
+            f_x_matrix(6,i,:) = cell2mat(d1(6));
+            success_rate_array(6,i) = cell2mat(d1(10));
+            sigma_star_matrix(6,i,:) = cell2mat(d1(9));
+            four_prob_matrix(6,i,:) = cell2mat(d1(12));
+            eval_rate_array(6,i) = cell2mat(d1(13));
+            
+            
+            sigma_matrix(7,i,:) = cell2mat(d2(4));
+            T_array(7,i) = cell2mat(d2(5));
+            f_x_matrix(7,i,:) = cell2mat(d2(6));
+            success_rate_array(7,i) = cell2mat(d2(10));
+            sigma_star_matrix(7,i,:) = cell2mat(d2(9));
+            four_prob_matrix(7,i,:) = cell2mat(d2(12));
+            eval_rate_array(7,i) = cell2mat(d2(13));
+            
+            sigma_matrix(8,i,:) = cell2mat(d3(4));
+            T_array(8,i) = cell2mat(d3(5));
+            f_x_matrix(8,i,:) = cell2mat(d3(6));
+            success_rate_array(8,i) = cell2mat(d3(10));
+            sigma_star_matrix(8,i,:) = cell2mat(d3(9));
+            four_prob_matrix(8,i,:) = cell2mat(d3(12));
+            eval_rate_array(8,i) = cell2mat(d3(13));
         end 
         
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         % Take median run
-        for strategy_i = 1:1:5
+        for strategy_i = 1:1:NUM_OF_STRATEGIES 
             temp_T_array = squeeze(T_array(strategy_i,:));
             sorted_T = sort(temp_T_array);
             temp_index = find(temp_T_array == sorted_T(ceil(length(sorted_T)/2)));
@@ -240,11 +270,15 @@ figure(FIGURE_NUM);
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 % Fig. 1
 subplot(subplot_ROW,subplot_COL,(fig_row_index-1)*subplot_COL+1)
-plot(f6_range, T_med_f6(1,:)./T_med_f6(2,:));hold on;
-plot(f6_range, T_med_f6(1,:)./T_med_f6(3,:));hold on;
-plot(f6_range, T_med_f6(1,:)./T_med_f6(4,:));hold on;
-plot(f6_range, T_med_f6(1,:)./T_med_f6(5,:));hold on;
-legend({'GP-(1+1)-ES','GP-(3/3,10)-ES','GP-(5/5,20)-ES','GP-(10/10,40)-ES'});
+for i = 2:1:NUM_OF_STRATEGIES
+    if NUM_OF_STRATEGIES >= 6
+        plot(f6_range, T_med_f6(1,:)./T_med_f6(i,:),'--');hold on;
+    else
+        plot(f6_range, T_med_f6(1,:)./T_med_f6(i,:));hold on;
+    end
+end
+legend({'GP-(1+1)-ES','GP-(3/3,10)-ES','GP-(5/5,20)-ES','GP-(10/10,40)-ES',...
+    'K-(3/3,10)-ES','K-(5/5,20)-ES','K-(10/10,40)-ES'});
 if fig_row_index==1
     title('spheres','fontsize',15);
 end
@@ -256,11 +290,15 @@ ylabel(sprintf('speed-up over (1+1)-ES N=%d',n),'FontSize',13);
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 % Fig. 2
 subplot(subplot_ROW,subplot_COL,(fig_row_index-1)*subplot_COL+2)
-plot(f7_range, T_med_f7(1,:)./T_med_f7(2,:));hold on;
-plot(f7_range, T_med_f7(1,:)./T_med_f7(3,:));hold on;
-plot(f7_range, T_med_f7(1,:)./T_med_f7(4,:));hold on;
-plot(f7_range, T_med_f7(1,:)./T_med_f7(5,:));hold on;
-legend({'GP-(1+1)-ES','GP-(3/3,10)-ES','GP-(5/5,20)-ES','GP-(10/10,40)-ES'});
+for i = 2:1:NUM_OF_STRATEGIES
+    if NUM_OF_STRATEGIES >= 6
+        plot(f7_range, T_med_f7(1,:)./T_med_f7(i,:),'--');hold on;
+    else
+        plot(f7_range, T_med_f7(1,:)./T_med_f7(i,:));hold on;
+    end
+end
+legend({'GP-(1+1)-ES','GP-(3/3,10)-ES','GP-(5/5,20)-ES','GP-(10/10,40)-ES',...
+    'K-(3/3,10)-ES','K-(5/5,20)-ES','K-(10/10,40)-ES'});
 if fig_row_index==1
     title('quartic','fontsize',15);
 end
@@ -271,14 +309,19 @@ xlabel('\alpha','FontSize',15);
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 % Fig. 3
 subplot(subplot_ROW,subplot_COL,(fig_row_index-1)*subplot_COL+3)
-plot(f8_range, T_med_f8(1,:)./T_med_f8(2,:));hold on;
-plot(f8_range, T_med_f8(1,:)./T_med_f8(3,:));hold on;
-plot(f8_range, T_med_f8(1,:)./T_med_f8(4,:));hold on;
-plot(f8_range, T_med_f8(1,:)./T_med_f8(5,:));hold on;
+for i = 2:1:NUM_OF_STRATEGIES
+    if NUM_OF_STRATEGIES >= 6
+        plot(f8_range, T_med_f8(1,:)./T_med_f8(i,:),'--');hold on;
+    else
+        plot(f8_range, T_med_f8(1,:)./T_med_f8(i,:));hold on;
+    end
+    
+end
 set(gca, 'YScale', 'log');
 set(gca, 'XScale', 'log');
 ylim([1 40]);
-legend({'GP-(1+1)-ES','GP-(3/3,10)-ES','GP-(5/5,20)-ES','GP-(10/10,40)-ES'});
+legend({'GP-(1+1)-ES','GP-(3/3,10)-ES','GP-(5/5,20)-ES','GP-(10/10,40)-ES',...
+    'K-(3/3,10)-ES','K-(5/5,20)-ES','K-(10/10,40)-ES'});
 if fig_row_index==1
     title('ellipsoids','fontsize',15);
 end

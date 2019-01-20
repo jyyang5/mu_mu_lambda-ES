@@ -3,7 +3,7 @@
 % function evaluation for lambda offsprings with GP estimate 
 % In each iteration only centroid is evaluated use true objective Function
 
-function val = bestSoFar_arashVariant(fname,para,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE,C1,C2,C3)
+function val = bestSoFar_arashVariant_w(fname,para,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE,C1,C2,C3,kappa)
 % initialization
 % fname:              an index 
 %                       1 for linear
@@ -122,6 +122,10 @@ fep_y_array = zeros(1,50000);   % predicted function value of offspring
 f_y_array = zeros(1,50000);     % true function value of offspring 
 f_x_array = zeros(1,50000);     % true function value of parent 
 
+% weighted recombination
+weights = log((lambda+1)/2)-log(1:mu);
+weights = kappa*weights/sum(weights);
+
 while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     % early stopping 
     % early stopping 
@@ -178,7 +182,8 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
         % sort fyep (smaller first)
         [~, sorted_order] = sort(fyep);
         z = z(:,sorted_order);
-        centroid_temp = centroid + sigma*mean(z(:,1:mu),2);
+        centroid_temp = centroid + sigma*sum(repmat(weights,n,1).*z(:,1:mu),2);
+%         centroid_temp = centroid + sigma*mean(z(:,1:mu),2);
         fep_centroid_temp = gp(xTrain(:,T-TRAINING_SIZE+1:T), fTrain(T-TRAINING_SIZE+1:T), centroid_temp, f_centroid, theta);
             % To calculate four probs 
             fep_y_array(iteration) = fep_centroid_temp;

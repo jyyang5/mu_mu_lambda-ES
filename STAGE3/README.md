@@ -16,7 +16,7 @@
 		- GP-(5/5,20)-ES
 		- GP-(10/10,40)-ES
 
-## Files
+## 1. Files
 
 ### A. Strategies 
 - (1+1)-ES [onePlusOne.m]
@@ -71,6 +71,47 @@
 - Test (1+1)-ES [test_one_run_noGP.m]
 - Test strategies with GP [test_one_run_GP.m]
 
+## 2. Folders
+
+### A. Base setting 
+- Setting 
+	- C1=1, C2=1, C3=0.1, LS=20 
+- *range=5_11replicates*
+- *rangeLen=10_31replicates*
+
+### [*kappa*]
+- Weights do not sum to 1, but $\kappa$
+- Weights use settiing from niko's CMA Tutorial  
+```
+weights = weights = log((lambda+1)/2)-log(1:mu);
+weights = kappa*weights/sum(weights);
+```
+
+### [*lengthScale*]
+
+
+### B. Save all run data
+- Objective 
+	- Save data of all runs 
+    - Test if all runs converge 
+- Observation
+	- Diverge 
+		- sphere (1+1)-ES, GP-(1+1)-ES
+
+#### a. [*save_all_data*]
+#### b. [*saveAllData_rangeLen=10_31replicates*]
+- Setting 
+	- C1=1, C2=1, C3=0.2, LS=20, replicates=31
+- Variables 
+	- Median 
+	    - T_med_fX: [strategyIndex, f6ParaIndex]
+	    - f_x_med_fX: [strategyIndex, f6ParaIndex, 50000]
+	- AllData
+		- T_fX: [strategyIndex, f6ParaIndex, runIndex]
+		- f_x_fX: [strategyIndex, f6ParaIndex, runIndex, 50000]
+
+
+
 ## Schedule
 
 - [x] 20190116
@@ -81,4 +122,40 @@
 		3. ellipsoids & sewechfel: varying \beta 
 		- Dimension of data
 		n = 4,8,10,16
+
+- [x] 20190117 
+	- Curious 
+		- weighted recombination 
+	    	- mml: 1/4, mu=1, close 
+	    	- middle in between 
+	    	- should be in the middle  
+
+		- Spheres 
+			- Whether large values for exp (speed-up < 1 does not like it)
+			- Tune length scale 
+		- Quartic
+			- Length scale may be independent  
+			- 
+		- Ellipsoids 
+			- Dim: N=4 -> goes up 
+				N=10 -> goes up again would be nice 
+		- Swefel
+			-  
+	- Parameter setting 
+		- Tune a little bit 
+		- Sphere: End N = 8
+		- s.t. gain does not lose 
+	- Dimension 
+		- N = 4,8,16
+	- Matrix in GP usually a sign -> diverge (maybe with initialization)
+
+- [x] 20190118
+	- Kappa 
+		- Weighted recombination 
+		- All weights not sums to 1 (but to $\kappa$) i.e. weights = weights * $\kappa$
+	- Experiments 
+		- Seems larger $\kappa$ improves performance on sphere functions 
+		- Not significantly different, GP-(1+1)-ES still outperform all when dim n grows 
+
+
 

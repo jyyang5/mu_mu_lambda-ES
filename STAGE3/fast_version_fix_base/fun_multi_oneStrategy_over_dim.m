@@ -1,6 +1,5 @@
 % Objective [update step size C1,C2,C3] add hist of objFunCalls [over lambda]
-% 1 Plot speed-ups of over (1+1)-ES
-%      GP-(1+1)-ES
+% 1 Plot speed-ups of over 
 %      GP-(3/3,10)-ES
 %      GP-(5/5,20)-ES
 %      GP-(10/10,40)-ES
@@ -13,7 +12,7 @@
 % difficulty: 
 %            
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function fun_multi_over_dim(n,NUM_OF_RUNS,f6_range, f7_range, f8_range,TRAINING_SIZE,LS_onePlusOne,LS_mml,NUM_OF_ITERATIONS,FIGURE_NUM,subplot_ROW,subplot_COL,fig_row_index,C1,C2,C3)
+function fun_multi_oneStrategy_over_dim(n,NUM_OF_RUNS,f6_range, f7_range, f8_range,TRAINING_SIZE,LS_onePlusOne,LS_mml,NUM_OF_ITERATIONS,FIGURE_NUM,subplot_ROW,subplot_COL,fig_row_index,C1,C2,C3)
 %Input:
 %    n:                     dim of data
 %    NUM_OF_RUNS:           # of replicates 
@@ -51,7 +50,7 @@ window_length = 40;
 kernel = exp(-(-3*window_length:3*window_length).^2/window_length^2/2);
 kernel = kernel/sum(kernel);        % Normalized    
 
-NUM_OF_STRATEGIES = 5;
+NUM_OF_STRATEGIES = 3;
 
 T_med_f6 = zeros(NUM_OF_STRATEGIES,length(f6_range));
 f_x_med_f6 = zeros(NUM_OF_STRATEGIES,length(f6_range),50000);
@@ -114,9 +113,6 @@ for fname = 6:9
         
         for i = 1:NUM_OF_RUNS
             x0 = randn(n,1);
-            a = onePlusOne(fname,para,x0,sigma0,NUM_OF_ITERATIONS);
-            b = withGP(fname,para,x0,sigma0,NUM_OF_ITERATIONS,TRAINING_SIZE,LS_onePlusOne);
-            x0 = randn(n,1);
             lambda = 10;
             c1 = bestSoFar_arashVariant(fname,para,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LS_mml,C1,C2,C3);
             lambda = 20;
@@ -127,50 +123,36 @@ for fname = 6:9
             
             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             % Assignment
-            sigma_matrix(1,i,:) = cell2mat(a(4));
-            T_array(1,i) = cell2mat(a(5));
-            f_x_matrix(1,i,:) = cell2mat(a(6));
-            success_rate_array(1,i) = cell2mat(a(10));
-            sigma_star_matrix(1,i,:) = cell2mat(a(9)); 
-            
-            sigma_matrix(2,i,:) = cell2mat(b(4));
-            T_array(2,i) = cell2mat(b(5));
-            f_x_matrix(2,i,:) = cell2mat(b(6));
-            success_rate_array(2,i) = cell2mat(b(10));
-            sigma_star_matrix(2,i,:) = cell2mat(b(9)); 
-            four_prob_matrix(2,i,:) = cell2mat(b(12));
-            eval_rate_array(2,i) = cell2mat(b(13));
             
             
-            sigma_matrix(3,i,:) = cell2mat(c1(4));
-            T_array(3,i) = cell2mat(c1(5));
-            f_x_matrix(3,i,:) = cell2mat(c1(6));
-            success_rate_array(3,i) = cell2mat(c1(10));
-            sigma_star_matrix(3,i,:) = cell2mat(c1(9));
-            four_prob_matrix(3,i,:) = cell2mat(c1(12));
-            eval_rate_array(3,i) = cell2mat(c1(13));
+            sigma_matrix(1,i,:) = cell2mat(c1(4));
+            T_array(1,i) = cell2mat(c1(5));
+            f_x_matrix(1,i,:) = cell2mat(c1(6));
+            success_rate_array(1,i) = cell2mat(c1(10));
+            sigma_star_matrix(1,i,:) = cell2mat(c1(9));
+            four_prob_matrix(1,i,:) = cell2mat(c1(12));
+            eval_rate_array(1,i) = cell2mat(c1(13));
             
+            sigma_matrix(2,i,:) = cell2mat(c2(4));
+            T_array(2,i) = cell2mat(c2(5));
+            f_x_matrix(2,i,:) = cell2mat(c2(6));
+            success_rate_array(2,i) = cell2mat(c2(10));
+            sigma_star_matrix(2,i,:) = cell2mat(c2(9));
+            four_prob_matrix(2,i,:) = cell2mat(c2(12));
+            eval_rate_array(2,i) = cell2mat(c2(13));
             
-            sigma_matrix(4,i,:) = cell2mat(c2(4));
-            T_array(4,i) = cell2mat(c2(5));
-            f_x_matrix(4,i,:) = cell2mat(c2(6));
-            success_rate_array(4,i) = cell2mat(c2(10));
-            sigma_star_matrix(4,i,:) = cell2mat(c2(9));
-            four_prob_matrix(4,i,:) = cell2mat(c2(12));
-            eval_rate_array(4,i) = cell2mat(c2(13));
-            
-            sigma_matrix(5,i,:) = cell2mat(c3(4));
-            T_array(5,i) = cell2mat(c3(5));
-            f_x_matrix(5,i,:) = cell2mat(c3(6));
-            success_rate_array(5,i) = cell2mat(c3(10));
-            sigma_star_matrix(5,i,:) = cell2mat(c3(9));
-            four_prob_matrix(5,i,:) = cell2mat(c3(12));
-            eval_rate_array(5,i) = cell2mat(c3(13));
+            sigma_matrix(3,i,:) = cell2mat(c3(4));
+            T_array(3,i) = cell2mat(c3(5));
+            f_x_matrix(3,i,:) = cell2mat(c3(6));
+            success_rate_array(3,i) = cell2mat(c3(10));
+            sigma_star_matrix(3,i,:) = cell2mat(c3(9));
+            four_prob_matrix(3,i,:) = cell2mat(c3(12));
+            eval_rate_array(3,i) = cell2mat(c3(13));
         end 
         
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         % Take median run
-        for strategy_i = 1:1:5
+        for strategy_i = 1:1:3
             temp_T_array = squeeze(T_array(strategy_i,:));
             sorted_T = sort(temp_T_array);
             temp_index = find(temp_T_array == sorted_T(ceil(length(sorted_T)/2)));
@@ -181,47 +163,39 @@ for fname = 6:9
                 sigma_med_f6(strategy_i,para_i,:) = sigma_matrix(strategy_i,med_index,:);
                 sigma_star__med_f6(strategy_i,para_i,:) = sigma_star_matrix(strategy_i,med_index,:);
                 success_med_f6(strategy_i,para_i) = success_rate_array(strategy_i,med_index);
-                if strategy_i ~= 1
-                    four_prob_med_f6(strategy_i,para_i,:) = four_prob_matrix(strategy_i,med_index,:);
-                    eval_rate_med_f6(strategy_i,para_i) = eval_rate_array(strategy_i,med_index);
-                end
+                four_prob_med_f6(strategy_i,para_i,:) = four_prob_matrix(strategy_i,med_index,:);
+                eval_rate_med_f6(strategy_i,para_i) = eval_rate_array(strategy_i,med_index);
             elseif fname == 7
                 T_med_f7(strategy_i,para_i) = T_array(strategy_i,med_index);
                 f_x_med_f7(strategy_i,para_i,:) = f_x_matrix(strategy_i,med_index,:);
                 sigma_med_f7(strategy_i,para_i,:) = sigma_matrix(strategy_i,med_index,:);
                 sigma_star__med_f7(strategy_i,para_i,:) = sigma_star_matrix(strategy_i,med_index,:);
                 success_med_f7(strategy_i,para_i) = success_rate_array(strategy_i,med_index);
-                if strategy_i ~= 1
-                    four_prob_med_f7(strategy_i,para_i,:) = four_prob_matrix(strategy_i,med_index,:);
-                    eval_rate_med_f7(strategy_i,para_i) = eval_rate_array(strategy_i,med_index);
-                end
+                four_prob_med_f7(strategy_i,para_i,:) = four_prob_matrix(strategy_i,med_index,:);
+                eval_rate_med_f7(strategy_i,para_i) = eval_rate_array(strategy_i,med_index);
             elseif fname == 8
                 T_med_f8(strategy_i,para_i) = T_array(strategy_i,med_index);
                 f_x_med_f8(strategy_i,para_i,:) = f_x_matrix(strategy_i,med_index,:);
                 sigma_med_f8(strategy_i,para_i,:) = sigma_matrix(strategy_i,med_index,:);
                 sigma_star__med_f8(strategy_i,para_i,:) = sigma_star_matrix(strategy_i,med_index,:);
                 success_med_f8(strategy_i,para_i) = success_rate_array(strategy_i,med_index);
-                if strategy_i ~= 1
-                    four_prob_med_f8(strategy_i,para_i,:) = four_prob_matrix(strategy_i,med_index,:);
-                    eval_rate_med_f8(strategy_i,para_i) = eval_rate_array(strategy_i,med_index);
-                end
+                four_prob_med_f8(strategy_i,para_i,:) = four_prob_matrix(strategy_i,med_index,:);
+                eval_rate_med_f8(strategy_i,para_i) = eval_rate_array(strategy_i,med_index);
             elseif fname == 9
                 T_med_f9(strategy_i,para_i) = T_array(strategy_i,med_index);
                 f_x_med_f9(strategy_i,para_i,:) = f_x_matrix(strategy_i,med_index,:);
                 sigma_med_f9(strategy_i,para_i,:) = sigma_matrix(strategy_i,med_index,:);
                 sigma_star__med_f9(strategy_i,para_i,:) = sigma_star_matrix(strategy_i,med_index,:);
                 success_med_f9(strategy_i,para_i) = success_rate_array(strategy_i,med_index);
-                if strategy_i ~= 1
-                    four_prob_med_f9(strategy_i,para_i,:) = four_prob_matrix(strategy_i,med_index,:);
-                    eval_rate_med_f9(strategy_i,para_i) = eval_rate_array(strategy_i,med_index);
-                end
+                four_prob_med_f9(strategy_i,para_i,:) = four_prob_matrix(strategy_i,med_index,:);
+                eval_rate_med_f9(strategy_i,para_i) = eval_rate_array(strategy_i,med_index);
             end            
         end
     end
-    fprintf('fname = %d done\n',fname);
+    fprintf('dim N = %d done\n',n);
 end
 
-save_name_sprint = sprintf('med_dim=%d.mat',n);
+save_name_sprint = sprintf('med_dim=%d_3lambda.mat',n);
 save(save_name_sprint,'NUM_OF_STRATEGIES','n','NUM_OF_RUNS','f6_range','f7_range', 'f8_range',...
     'TRAINING_SIZE','LS_onePlusOne','LS_mml', 'NUM_OF_ITERATIONS','C1','C2','C3',...
     'T_med_f6','f_x_med_f6','sigma_med_f6','sigma_star__med_f6','success_med_f6','four_prob_med_f6','eval_rate_med_f6',...
@@ -234,9 +208,6 @@ save(save_name_sprint,'NUM_OF_STRATEGIES','n','NUM_OF_RUNS','f6_range','f7_range
 % Plots 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 figure(FIGURE_NUM);
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 % Fig. 1
 subplot(subplot_ROW,subplot_COL,(fig_row_index-1)*subplot_COL+1)

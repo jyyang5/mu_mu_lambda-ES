@@ -134,7 +134,7 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
             return 
                         
         end
-    elseif(f_centroid > 5000 || iteration >= 500000)
+    elseif(f_centroid > 5000 || iteration >= 500000 || sigma <  10^-30)
         % if diverge -> convergence rate = 0 success rate = 0
         success_rate = 0;
         FOUR_COUNT = [0,0,0,0];

@@ -8,15 +8,14 @@ TRAINING_SIZE = 40;
 SUCCESS_RATE = 0.4;
 SIGMA_STAR = 1;
 
-fname = 7;
-para = 10;
+fname = 6;
+para = 8;
 C1 = 1.0;
 C2 = 1.0;
 C3 = 0.2;
 
 x0 = randn(n,1);
 a = withGP(fname,para,x0,sigma0,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE);
-x0 = randn(n,mu);
 b = bestSoFar_arashVariant(fname,para,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE,C1,C2,C3);
 
 t = cell2mat(a(1));

@@ -86,6 +86,42 @@ success_med_f9 = zeros(NUM_OF_STRATEGIES,length(f9_range),50000);
 four_prob_med_f9 = zeros(NUM_OF_STRATEGIES,length(f9_range),4);
 eval_rate_med_f9 = zeros(NUM_OF_STRATEGIES,length(f9_range));
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Save all data
+T_f6 = zeros(NUM_OF_STRATEGIES,length(f6_range),NUM_OF_RUNS);
+f_x_f6 = zeros(NUM_OF_STRATEGIES,length(f6_range),NUM_OF_RUNS,50000);
+sigma_f6 = zeros(NUM_OF_STRATEGIES,length(f6_range),NUM_OF_RUNS,50000);
+sigma_star_f6 = zeros(NUM_OF_STRATEGIES,length(f6_range),NUM_OF_RUNS,50000);
+success_f6 = zeros(NUM_OF_STRATEGIES,length(f6_range),NUM_OF_RUNS);
+four_prob_f6 = zeros(NUM_OF_STRATEGIES,length(f6_range),NUM_OF_RUNS,4);
+eval_rate_f6 = zeros(NUM_OF_STRATEGIES,length(f6_range),NUM_OF_RUNS);
+
+T_f7 = zeros(NUM_OF_STRATEGIES,length(f7_range),NUM_OF_RUNS);
+f_x_f7 = zeros(NUM_OF_STRATEGIES,length(f7_range),NUM_OF_RUNS,50000);
+sigma_f7 = zeros(NUM_OF_STRATEGIES,length(f7_range),NUM_OF_RUNS,50000);
+sigma_star_f7 = zeros(NUM_OF_STRATEGIES,length(f7_range),NUM_OF_RUNS,50000);
+success_f7 = zeros(NUM_OF_STRATEGIES,length(f7_range),NUM_OF_RUNS);
+four_prob_f7 = zeros(NUM_OF_STRATEGIES,length(f7_range),NUM_OF_RUNS,4);
+eval_rate_f7 = zeros(NUM_OF_STRATEGIES,length(f7_range),NUM_OF_RUNS);
+
+T_f8 = zeros(NUM_OF_STRATEGIES,length(f8_range),NUM_OF_RUNS);
+f_x_f8 = zeros(NUM_OF_STRATEGIES,length(f8_range),NUM_OF_RUNS,50000);
+sigma_f8 = zeros(NUM_OF_STRATEGIES,length(f8_range),NUM_OF_RUNS,50000);
+sigma_star_f8 = zeros(NUM_OF_STRATEGIES,length(f8_range),NUM_OF_RUNS,50000);
+success_f8 = zeros(NUM_OF_STRATEGIES,length(f8_range),NUM_OF_RUNS);
+four_prob_f8 = zeros(NUM_OF_STRATEGIES,length(f8_range),NUM_OF_RUNS,4);
+eval_rate_f8 = zeros(NUM_OF_STRATEGIES,length(f8_range),NUM_OF_RUNS);
+
+f9_range = [1];
+T_f9 = zeros(NUM_OF_STRATEGIES,length(f9_range),NUM_OF_RUNS);
+f_x_f9 = zeros(NUM_OF_STRATEGIES,length(f9_range),NUM_OF_RUNS,50000);
+sigma_f9 = zeros(NUM_OF_STRATEGIES,length(f9_range),NUM_OF_RUNS,50000);
+sigma_star_f9 = zeros(NUM_OF_STRATEGIES,length(f9_range),NUM_OF_RUNS,50000);
+success_f9 = zeros(NUM_OF_STRATEGIES,length(f9_range),NUM_OF_RUNS);
+four_prob_f9 = zeros(NUM_OF_STRATEGIES,length(f9_range),NUM_OF_RUNS,4);
+eval_rate_f9 = zeros(NUM_OF_STRATEGIES,length(f8_range),NUM_OF_RUNS);
+
 sigma0 = 1;
 
 
@@ -165,9 +201,44 @@ for fname = 6:9
             success_rate_array(5,i) = cell2mat(c3(10));
             sigma_star_matrix(5,i,:) = cell2mat(c3(9));
             four_prob_matrix(5,i,:) = cell2mat(c3(12));
-            eval_rate_array(5,i) = cell2mat(c3(13));
+            eval_rate_array(5,i) = cell2mat(c3(13));        
         end 
-        
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        % Save all datas
+        if fname == 6
+            T_f6(:,para_i,:) = T_array;
+            f_x_f6(:,para_i,:,:) = f_x_matrix;
+            sigma_f6(:,para_i,:,:) = sigma_matrix;
+            sigma_star_f6(:,para_i,:,:) = sigma_star_matrix;
+            success_f6(:,para_i,:) = success_rate_array;
+            four_prob_f6(:,para_i,:,:) = four_prob_matrix;
+            eval_rate_f6(:,para_i,:) = eval_rate_array;
+        elseif fname == 7 
+            T_f7(:,para_i,:) = T_array;
+            f_x_f7(:,para_i,:,:) = f_x_matrix;
+            sigma_f7(:,para_i,:,:) = sigma_matrix;
+            sigma_star_f7(:,para_i,:,:) = sigma_star_matrix;
+            success_f7(:,para_i,:) = success_rate_array;
+            four_prob_f7(:,para_i,:,:) = four_prob_matrix;
+            eval_rate_f7(:,para_i,:) = eval_rate_array;
+        elseif fname == 8
+            T_f8(:,para_i,:) = T_array;
+            f_x_f8(:,para_i,:,:) = f_x_matrix;
+            sigma_f8(:,para_i,:,:) = sigma_matrix;
+            sigma_star_f8(:,para_i,:,:) = sigma_star_matrix;
+            success_f8(:,para_i,:) = success_rate_array;
+            four_prob_f8(:,para_i,:,:) = four_prob_matrix;
+            eval_rate_f8(:,para_i,:) = eval_rate_array;
+        elseif fname == 9
+            T_f9(:,para_i,:) = T_array;
+            f_x_f9(:,para_i,:,:) = f_x_matrix;
+            sigma_f9(:,para_i,:,:) = sigma_matrix;
+            sigma_star_f9(:,para_i,:,:) = sigma_star_matrix;
+            success_f9(:,para_i,:) = success_rate_array;
+            four_prob_f9(:,para_i,:,:) = four_prob_matrix;
+            eval_rate_f9(:,para_i,:) = eval_rate_array;
+        end
+
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         % Take median run
         for strategy_i = 1:1:5
@@ -215,21 +286,26 @@ for fname = 6:9
                     four_prob_med_f9(strategy_i,para_i,:) = four_prob_matrix(strategy_i,med_index,:);
                     eval_rate_med_f9(strategy_i,para_i) = eval_rate_array(strategy_i,med_index);
                 end
-            end            
+            end 
         end
+        
     end
     fprintf('fname = %d done\n',fname);
 end
 
-save_name_sprint = sprintf('med_dim=%d.mat',n);
+save_name_sprint = sprintf('all_dim=%d.mat',n);
 save(save_name_sprint,'NUM_OF_STRATEGIES','n','NUM_OF_RUNS','f6_range','f7_range', 'f8_range',...
     'TRAINING_SIZE','LS_onePlusOne','LS_mml', 'NUM_OF_ITERATIONS','C1','C2','C3',...
     'T_med_f6','f_x_med_f6','sigma_med_f6','sigma_star__med_f6','success_med_f6','four_prob_med_f6','eval_rate_med_f6',...
     'T_med_f7','f_x_med_f7','sigma_med_f7','sigma_star__med_f7','success_med_f7','four_prob_med_f7','eval_rate_med_f7',...
     'T_med_f8','f_x_med_f8','sigma_med_f8','sigma_star__med_f8','success_med_f8','four_prob_med_f8','eval_rate_med_f8',...
-    'T_med_f9','f_x_med_f9','sigma_med_f9','sigma_star__med_f9','success_med_f9','four_prob_med_f9','eval_rate_med_f9');
+    'T_med_f9','f_x_med_f9','sigma_med_f9','sigma_star__med_f9','success_med_f9','four_prob_med_f9','eval_rate_med_f9',....
+    'T_f6','f_x_f6','sigma_f6','sigma_star_f6','success_f6','four_prob_f6','eval_rate_f6',...
+    'T_f7','f_x_f7','sigma_f7','sigma_star_f7','success_f7','four_prob_f7','eval_rate_f7',...
+    'T_f8','f_x_f8','sigma_f8','sigma_star_f8','success_f8','four_prob_f8','eval_rate_f8',...
+    'T_f9','f_x_f9','sigma_f9','sigma_star_f9','success_f9','four_prob_f9','eval_rate_f9');
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Plots 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -237,13 +313,12 @@ figure(FIGURE_NUM);
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Fig. 1
 subplot(subplot_ROW,subplot_COL,(fig_row_index-1)*subplot_COL+1)
-plot(f6_range, T_med_f6(1,:)./T_med_f6(2,:));hold on;
-plot(f6_range, T_med_f6(1,:)./T_med_f6(3,:));hold on;
-plot(f6_range, T_med_f6(1,:)./T_med_f6(4,:));hold on;
-plot(f6_range, T_med_f6(1,:)./T_med_f6(5,:));hold on;
+for i = 2:1:NUM_OF_STRATEGIES
+    plot(f6_range, T_med_f6(1,:)./T_med_f6(i,:));hold on;
+end
 legend({'GP-(1+1)-ES','GP-(3/3,10)-ES','GP-(5/5,20)-ES','GP-(10/10,40)-ES'});
 if fig_row_index==1
     title('spheres','fontsize',15);
@@ -253,13 +328,12 @@ set(gca, 'YScale', 'log');
 set(gca, 'XScale', 'log');
 ylim([1 40]);
 ylabel(sprintf('speed-up over (1+1)-ES N=%d',n),'FontSize',13);
-%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Fig. 2
 subplot(subplot_ROW,subplot_COL,(fig_row_index-1)*subplot_COL+2)
-plot(f7_range, T_med_f7(1,:)./T_med_f7(2,:));hold on;
-plot(f7_range, T_med_f7(1,:)./T_med_f7(3,:));hold on;
-plot(f7_range, T_med_f7(1,:)./T_med_f7(4,:));hold on;
-plot(f7_range, T_med_f7(1,:)./T_med_f7(5,:));hold on;
+for i = 2:1:NUM_OF_STRATEGIES
+    plot(f7_range, T_med_f7(1,:)./T_med_f7(i,:));hold on;
+end
 legend({'GP-(1+1)-ES','GP-(3/3,10)-ES','GP-(5/5,20)-ES','GP-(10/10,40)-ES'});
 if fig_row_index==1
     title('quartic','fontsize',15);
@@ -268,13 +342,12 @@ set(gca, 'YScale', 'log');
 ylim([1 40]);
 xlabel('\alpha','FontSize',15); 
 % ylabel(sprintf('speed-up over (1+1)-ES N=%d',n),'FontSize',13);
-%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Fig. 3
 subplot(subplot_ROW,subplot_COL,(fig_row_index-1)*subplot_COL+3)
-plot(f8_range, T_med_f8(1,:)./T_med_f8(2,:));hold on;
-plot(f8_range, T_med_f8(1,:)./T_med_f8(3,:));hold on;
-plot(f8_range, T_med_f8(1,:)./T_med_f8(4,:));hold on;
-plot(f8_range, T_med_f8(1,:)./T_med_f8(5,:));hold on;
+for i = 2:1:NUM_OF_STRATEGIES
+    plot(f8_range, T_med_f8(1,:)./T_med_f8(i,:));hold on;
+end
 set(gca, 'YScale', 'log');
 set(gca, 'XScale', 'log');
 ylim([1 40]);
@@ -284,15 +357,13 @@ if fig_row_index==1
 end
 xlabel('\beta','FontSize',15); 
 % ylabel(sprintf('speed-up over (1+1)-ES N=%d',n),'FontSize',13);
-%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Fig. 4
 subplot(subplot_ROW,subplot_COL,(fig_row_index-1)*subplot_COL+4)
-bar([T_med_f9(1,:)./T_med_f9(2,:); T_med_f9(1,:)./T_med_f9(3,:);...
-    T_med_f9(1,:)./T_med_f9(4,:); T_med_f9(1,:)./T_med_f9(5,:); ]);hold on;
-% plot(f6_range, T_med_f7(1,:)./T_med_f9(2,:));hold on;
-% plot(f6_range, T_med_f7(1,:)./T_med_f9(3,:));hold on;
-% plot(f6_range, T_med_f7(1,:)./T_med_f9(4,:));hold on;
-% plot(f6_range, T_med_f7(1,:)./T_med_f9(5,:));
+% Refactored code is below
+% bar([T_med_f9(1,:)./T_med_f9(2,:); T_med_f9(1,:)./T_med_f9(3,:);...
+%     T_med_f9(1,:)./T_med_f9(4,:); T_med_f9(1,:)./T_med_f9(5,:); ]);hold on;
+bar(repmat(T_med_f9(1,:),NUM_OF_STRATEGIES-1,1)./T_med_f9(2:NUM_OF_STRATEGIES,:));
 str_cell_SIGMA_STAR = {'GP-(1+1)','GP-(3/3,10)','GP-(5/5,20)','GP-(10/10,40)'};
 set(gca,'xticklabel',str_cell_SIGMA_STAR);
 set(gca, 'YScale', 'log');
@@ -305,161 +376,4 @@ end
 fig_name = sprintf('merged_speed-up_dim%d.fig',n);
 saveas(gcf,fig_name); 
 
-
-% 
-% for fname = 6:1:9
-%     if(fname == 6)
-%         dt =sprintf('spheres');
-%         title(dt,'fontsize',15);
-%     elseif(fname == 7)
-%         dt =sprintf('');
-%         title(dt,'fontsize',15);
-%     elseif(fname == 8)
-%         dt =sprintf('');
-%         title(dt,'fontsize',15);
-%     elseif(fname == 9)
-%         dt =sprintf('Schwefel function');
-%         title(dt,'fontsize',15);
-%     end
-%     
-% end
-
-% 
-% for q = 1:1:length(PROB_RATE_array)
-%     lambda = PROB_RATE_array(q);
-%     mu = ceil(lambda/4);
-%     C1 = SUCCESS_RATE*DF;
-%     C2 = (1-SUCCESS_RATE)*DF;
-%     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     % Def of variables
-% 
-%     
-% 
-% 
-%     
-% 
-%     
-%     % Range of T for ploting
-% %     t_start = TRAINING_SIZE/lambda;
-% %     T_range_1 = (0:1:t_start).*(lambda+1)+1;
-% %     T_range_2 = (t_start+2:t_med)+lambda*t_start;
-% %     T_range = [T_range_1 T_range_2];
-%     T_range = 1:1:t_med;
-%     % counter
-%     fprintf('FIG %d finished \n',fname);
-% 
-%     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     % GRPAH
-%     % For f(x), sigma, sigmaStar, GP_error over objective function evaluations
-%     
-%     legend('-DynamicLegend'); 
-%     hold on;
-%     
-%     d = sprintf('(%d/%d,%d)-ES,C=%.1f,%.1f,%.1f,LS=%d',mu,mu,lambda,C1,C2,C3,LENGTH_SCALE);
-%     
-%     % Fig 1: histgragm of objFunCalls
-%     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     subplot(subplot_ROW,subplot_COL,(0)*subplot_COL+fname);
-%     h = histogram(T_array);hold on; % mml with GP
-%     
-%     if(fname == 1)
-%         dt =sprintf('linear sphere');
-%         title(dt,'fontsize',15);
-%         h.BinWidth = 5;
-%     elseif(fname == 2)
-%         dt =sprintf('quadratic sphere');
-%         title(dt,'fontsize',15);
-%         h.BinWidth = 2;
-%     elseif(fname == 3)
-%         dt =sprintf('cubic sphere');
-%         title(dt,'fontsize',15);
-%         h.BinWidth = 2;
-%     elseif(fname == 4)
-%         dt =sprintf('Schwefel function');
-%         title(dt,'fontsize',15);
-%         h.BinWidth = 10;
-%     elseif(fname == 5)
-%         dt =sprintf('quartic function');
-%         title(dt,'fontsize',15); 
-%         h.BinWidth = 10;
-%     end
-%     xlabel('Objective function calls','FontSize',15); 
-%     
-%     
-%     
-%     % Fig 2: convergence plots [FIGURE_NUM.fig]
-%     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     subplot(subplot_ROW,subplot_COL,(1)*subplot_COL+fname);
-%     plot(T_range, f_x_med(1:t_med),'DisplayName',d);hold on; % mml with GP
-%     if(fname==1)
-%         ylabel(sprintf('Objective function value'),'FontSize',15);
-%     end
-%     xlabel('function calls','FontSize',15); 
-%     set(gca, 'YScale', 'log');
-%     legend('-DynamicLegend'); 
-%     legend('show');
-% 
-% 
-%     % Fig 3: step size [FIGURE_NUM+1.fig]
-%     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     subplot(subplot_ROW,subplot_COL,(2)*subplot_COL+fname);
-%     plot(T_range, sigma_matrix_med(1:t_med),'DisplayName',d);hold on; % mml with GP
-%     % plot(1:t_med_noGP, f_x_med_noGP(i,1:t_med_noGP),'DisplayName',d_noGP);hold on; % mml with GP
-%     if(fname==1)
-%         ylabel(sprintf('Step size'),'FontSize',15);
-%     end
-%     xlabel('function calls','FontSize',15);
-%     set(gca, 'YScale', 'log');
-%     legend('-DynamicLegend'); 
-%     legend('show');
-% 
-%     % Fig 4: Normalized step size [FIGURE_NUM+2.fig]
-%     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     subplot(subplot_ROW,subplot_COL,(3)*subplot_COL+fname);
-%     plot(T_range, sigma_star_med(1:t_med),'DisplayName',d);hold on; % mml with GP
-%     % plot(1:t_med_noGP, f_x_med_noGP(i,1:t_med_noGP),'DisplayName',d_noGP);hold on; % mml with GP
-%     if(fname==1)
-%         ylabel(sprintf('Normalized step size'),'FontSize',15);
-%     end
-%     xlabel('function calls','FontSize',15);
-%     set(gca, 'YScale', 'log');
-%     legend('-DynamicLegend'); 
-%     legend('show');
-% 
-% end
-%     figure(FIGURE_NUM);
-%     subplot(subplot_ROW,subplot_COL,(0)*subplot_COL+fname);
-%     legendCell = {};
-%     for i = 1:1:length(PROB_RATE_array)
-%         legendCell{i} = sprintf('(%d/%d,%d)-ES',ceil(PROB_RATE_array(i)/4),ceil(PROB_RATE_array(i)/4),PROB_RATE_array(i));
-%     end
-%     legend(legendCell);
-%     
-%     % Fig 5:med success rate & evaluation rate [bar][bar]
-%     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     subplot(subplot_ROW,subplot_COL,(4)*subplot_COL+fname);
-%     bar([success_rate_final_med, eval_rate_final_med]);hold on;
-%     set(gca,'xticklabel',str_cell_SIGMA_STAR);
-%     if(fname==1)
-%         ylabel(sprintf('Probabilities'),'FontSize',15);
-%     end
-%     legend({'success rate','evaluation rate'});
-%     xlabel('\lambda','FontSize',15);  
-% 
-%     % Fig 6: four probs TP, TN, FP, FN
-%     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     subplot(subplot_ROW,subplot_COL,(5)*subplot_COL+fname);
-%     bar(four_prob_final_med./sum(four_prob_final_med,2));hold on;
-%     legend({'TN','FP','FN','TP'})
-%     set(gca,'xticklabel',str_cell_SIGMA_STAR);
-%     if(fname==1)
-%         ylabel(sprintf('Probabilities'),'FontSize',15);
-%     end
-%     xlabel('\lambda','FontSize',15); 
-%     fig_name = sprintf('merged%d_LS.fig',lambda);
-%     saveas(gcf,fig_name); 
-% 
-%     val = {T_final_med};
-% % val = {t_array,sigma_matrix,T_array,f_x_matrix,convergence_rate_array,GP_error_matrix,sigma_star_matrix,success_rate_array,delta_matrix};
 end
