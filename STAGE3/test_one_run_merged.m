@@ -1,4 +1,4 @@
-n=8;
+n=12;
 % mu=ceil(lambda/4);
 NUM_OF_ITERATIONS = 20000;
 sigma0 = 1;
@@ -11,10 +11,11 @@ SIGMA_STAR = 1;
 % close all;
 
 
-fname = 6;
-para = 10;
+fname = 8;
+para = 100;
 
-TRAINING_SIZE = 20;
+TRAINING_SIZE = 30;
+
 x0 = randn(n,1);
 a = onePlusOne(fname,para,x0,sigma0,50000);
 LENGTH_SCALE = 8;
@@ -28,7 +29,6 @@ C2 = (1-SUCCESS_RATE)*DF;
 C3 = 0.2;
 LENGTH_SCALE = 20;
 kappa = 1;
-TRAINING_SIZE = 20;
 
 
 lambda = 10;
@@ -96,6 +96,7 @@ f_x_matrix4 = cell2mat(d1(6));
 f_x_matrix5 = cell2mat(d1(6));
 f_x_matrix6 = cell2mat(d1(6));
 
+repmat(T,1,4)./[T_b, T1, T2, T3]
 
 
 

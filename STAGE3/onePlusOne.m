@@ -79,7 +79,6 @@ while((t < NUM_OF_ITERATIONS) && fx > 10^(-8))
             val = {t, x_array(:,t), fx, sigma, 99999, f_x, convergence_rate, -1, sigma_star_array,success_rate};
             return
         end
-        
     elseif(fx > 5000)
         % if diverge -> convergence rate = 0 success rate = 0
         success_rate = 0;

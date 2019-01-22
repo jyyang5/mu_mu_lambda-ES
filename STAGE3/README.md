@@ -86,6 +86,9 @@
 weights = weights = log((lambda+1)/2)-log(1:mu);
 weights = kappa*weights/sum(weights);
 ```
+- **Results**
+	- Improve sphere functions, a loss in other functions 
+	- Not worth doing 
 
 ### [*lengthScale*]
 
@@ -156,6 +159,10 @@ weights = kappa*weights/sum(weights);
 	- Experiments 
 		- Seems larger $\kappa$ improves performance on sphere functions 
 		- Not significantly different, GP-(1+1)-ES still outperform all when dim n grows 
+
+- [x] 20190119
+	- Save all data 
+		- 
 
 
 

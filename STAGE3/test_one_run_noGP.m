@@ -9,8 +9,8 @@ TRAINING_SIZE = 40;
 SUCCESS_RATE = 0.4;
 SIGMA_STAR = 1;
 
-fname = 6;
-para = 1/10;
+fname = 8;
+para = 100;
 
 
 a = onePlusOne(fname,para,x0,sigma0,NUM_OF_ITERATIONS);
