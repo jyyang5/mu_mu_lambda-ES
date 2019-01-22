@@ -125,9 +125,9 @@ while(T < NUM_OF_ITERATIONS && t < 40000 && f(x_array(:,T))>10^(-8))%(norm(x_arr
     % update GP iff. there is 40 candiate solutions
     if T > TRAINING_SIZE
         theta = sigma*LENGTH_SCALE*sqrt(n);                                 % NOtE: need to be updated every time
-        fy_ep = gp(xTrain(:, T-40:T-1), fTrain(T-40:T-1), y, fx, theta);    % fitness of offspring(use GP)
+        fy_ep = gp(xTrain(:, T-TRAINING_SIZE:T-1), fTrain(T-TRAINING_SIZE:T-1), y, fx, theta);    % fitness of offspring(use GP)
         % update GP estimate for parent
-        fep_x(T) = gp(xTrain(:, T-40:T-1), fTrain(T-40:T-1), x, fx, theta);
+        fep_x(T) = gp(xTrain(:, T-TRAINING_SIZE:T-1), fTrain(T-TRAINING_SIZE:T-1), x, fx, theta);
             % To calculate four probs 
             fep_y_array(t) = fy_ep;
             f_y_array(t) = f(y);

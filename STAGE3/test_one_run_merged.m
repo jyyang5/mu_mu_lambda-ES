@@ -1,28 +1,35 @@
-n=10;
-mu=ceil(lambda/4);
+n=8;
+% mu=ceil(lambda/4);
 NUM_OF_ITERATIONS = 20000;
 sigma0 = 1;
-TRAINING_SIZE = 40;
-SUCCESS_RATE = 0.4;
+
+SUCCESS_RATE = 0.5;
+DF = 2;
+
 SIGMA_STAR = 1;
 
-close all;
+% close all;
 
 
-fname = 8;
-para = 0.6;
+fname = 6;
+para = 10;
 
-
+TRAINING_SIZE = 20;
 x0 = randn(n,1);
 a = onePlusOne(fname,para,x0,sigma0,50000);
 LENGTH_SCALE = 8;
 b = withGP(fname,para,x0,sigma0,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE);
 
-C1 = 1.0;
-C2 = 1.0;
+% C1 = 1.2;
+% C2 = 0.8;
+C1 = SUCCESS_RATE*DF;
+C2 = (1-SUCCESS_RATE)*DF;
+
 C3 = 0.2;
 LENGTH_SCALE = 20;
-kappa = 2;
+kappa = 1;
+TRAINING_SIZE = 20;
+
 
 lambda = 10;
 c1 = bestSoFar_arashVariant(fname,para,x0,sigma0,lambda,NUM_OF_ITERATIONS,TRAINING_SIZE,LENGTH_SCALE,C1,C2,C3);
