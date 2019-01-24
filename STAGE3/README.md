@@ -113,6 +113,13 @@ weights = kappa*weights/sum(weights);
 		- T_fX: [strategyIndex, f6ParaIndex, runIndex]
 		- f_x_fX: [strategyIndex, f6ParaIndex, runIndex, 50000]
 
+## 3. Analysis [*C=1,1,0.2_LS=20_save_AllData_analysis*]
+
+Analyze the results obtained using C1=1.0,C2=1.0,C3=0.2, length scale = 20
+
+### A. Some GP-mml-ES does not converge 
+- Not all converge on quartic function when $\alpha >= 1.3335$
+
 
 
 ## Schedule
