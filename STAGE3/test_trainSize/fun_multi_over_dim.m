@@ -125,7 +125,7 @@ eval_rate_f9 = zeros(NUM_OF_STRATEGIES,length(f8_range),NUM_OF_RUNS);
 sigma0 = 1;
 
 
-for fname = 6:9
+for fname = 9:9
     
     if fname == 6
         para_arrya = f6_range;

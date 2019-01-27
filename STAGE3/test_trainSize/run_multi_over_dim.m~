@@ -19,7 +19,7 @@ f8_range = 10.^(-2:0.4:2);
 TRAINING_SIZE = 40;
 LS_onePlusOne = 8;
 NUM_OF_ITERATIONS = 50000;
-FIGURE_NUM = 2;
+FIGURE_NUM = 3;
 subplot_ROW = length(n_dim_array);
 subplot_COL = 4;
 

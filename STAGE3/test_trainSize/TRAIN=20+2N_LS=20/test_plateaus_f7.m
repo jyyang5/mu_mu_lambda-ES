@@ -5,18 +5,18 @@
 
 % Plot all plateaus runs 
 
-for p = 1:1:7
+for p = 5:1:10
     f_num = 800;        % the # of obejctive functions want to return value
     % index of runs plateaus
-    r_array2 = find(squeeze(T_f6(2,p,:) == 99999))'; 
-    r_array3 = find(squeeze(T_f6(3,p,:) == 9999))'; 
-    r_array4 = find(squeeze(T_f6(4,p,:) == 9999))';
-    r_array5 = find(squeeze(T_f6(5,p,:) == 9999))';
+    r_array2 = find(squeeze(T_f7(2,p,:) == 99999))'; 
+    r_array3 = find(squeeze(T_f7(3,p,:) == 9999))'; 
+    r_array4 = find(squeeze(T_f7(4,p,:) == 9999))';
+    r_array5 = find(squeeze(T_f7(5,p,:) == 9999))';
     % objective function value of runs plateaus with objFunCall = f_num
-    fx_array2 = squeeze(f_x_f6(2,p,r_array2,f_num))'
-    fx_array3 = squeeze(f_x_f6(3,p,r_array3,f_num))'
-    fx_array4 = squeeze(f_x_f6(4,p,r_array4,f_num))'
-    fx_array5 = squeeze(f_x_f6(5,p,r_array5,f_num))'
+    fx_array2 = squeeze(f_x_f7(2,p,r_array2,f_num))'
+    fx_array3 = squeeze(f_x_f7(3,p,r_array3,f_num))'
+    fx_array4 = squeeze(f_x_f7(4,p,r_array4,f_num))'
+    fx_array5 = squeeze(f_x_f7(5,p,r_array5,f_num))'
 
 
     % r_array = r_array3;
@@ -38,12 +38,12 @@ for p = 1:1:7
             for i = 1:length(r_array)
                 f = 7;
                 r = r_array(i);
-                f_x_array = squeeze(f_x_f6(s,p,r,:));
-                sigma_array = squeeze(sigma_f6(s,p,r,:));
-                sigma_star_array = squeeze(sigma_star_f6(s,p,r,:));
-                success_rate = squeeze(success_f6(s,p,r));
-                eval_rate = squeeze(eval_rate_f6(s,p,r));
-                four_probs = squeeze(four_prob_f6(s,p,r,:));
+                f_x_array = squeeze(f_x_f7(s,p,r,:));
+                sigma_array = squeeze(sigma_f7(s,p,r,:));
+                sigma_star_array = squeeze(sigma_star_f7(s,p,r,:));
+                success_rate = squeeze(success_f7(s,p,r));
+                eval_rate = squeeze(eval_rate_f7(s,p,r));
+                four_probs = squeeze(four_prob_f7(s,p,r,:));
 
                 T_range = 1:9999;
 
