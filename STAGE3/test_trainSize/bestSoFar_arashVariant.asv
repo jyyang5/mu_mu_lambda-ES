@@ -126,8 +126,8 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     % early stopping 
     % early stopping 
     if(fname == 6)
-        if(f_centroid> 1000000 || sigma <  10^-90)
-            % if diverge -> convergence rate = 0 success rate = 0
+        if(f_centroid> 100000000 || sigma <  10^-1)
+            % if diverge -> convergence rate = success rate = 0
             success_rate = 0;
             FOUR_COUNT = [0,0,0,0];
             val = {t,centroid,f_centroid,sigma_array, 9999, fcentroid_array,convergence_rate,error_array,sigma_star_array,success_rate,delta_array,FOUR_COUNT,0};

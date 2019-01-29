@@ -126,7 +126,7 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     % early stopping 
     % early stopping 
     if(fname == 6)
-        if(f_centroid> 10000000 || sigma <  10^-90)
+        if(f_centroid> 1000000 || sigma <  10^-90)
             % if diverge -> convergence rate = 0 success rate = 0
             success_rate = 0;
             FOUR_COUNT = [0,0,0,0];

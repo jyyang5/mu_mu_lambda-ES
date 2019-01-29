@@ -99,7 +99,7 @@ while(T < NUM_OF_ITERATIONS && t < 40000 && f(x_array(:,T))>10^(-8))%(norm(x_arr
     
     % early stopping 
     if(fname == 6)
-        if(fx> 50000000 || t > 10000000 || sigma <  10^-120)
+        if(fx> 5000000 || t > 10000000 || sigma <  10^-90)
             % if diverge -> convergence rate = 0 success rate = 0
             success_rate = 0;
             convergence_rate = 0;

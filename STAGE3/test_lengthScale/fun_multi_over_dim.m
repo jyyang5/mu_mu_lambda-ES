@@ -363,12 +363,7 @@ subplot(subplot_ROW,subplot_COL,(fig_row_index-1)*subplot_COL+4)
 % Refactored code is below
 % bar([T_med_f9(1,:)./T_med_f9(2,:); T_med_f9(1,:)./T_med_f9(3,:);...
 %     T_med_f9(1,:)./T_med_f9(4,:); T_med_f9(1,:)./T_med_f9(5,:); ]);hold on;
-b = bar(repmat(T_med_f9(1,:),NUM_OF_STRATEGIES-1,1)./T_med_f9(2:NUM_OF_STRATEGIES,:));
-b.FaceColor = 'flat';
-b.CData(1,:) = [0  0.4470 0.7410];
-b.CData(2,:) = [0.8500  0.3250  0.0980];
-b.CData(3,:) = [0.9290  0.6940  0.1250];
-b.CData(4,:) = [0.4940  0.1840  0.5560];
+bar(repmat(T_med_f9(1,:),NUM_OF_STRATEGIES-1,1)./T_med_f9(2:NUM_OF_STRATEGIES,:));
 str_cell_SIGMA_STAR = {'GP-(1+1)','GP-(3/3,10)','GP-(5/5,20)','GP-(10/10,40)'};
 set(gca,'xticklabel',str_cell_SIGMA_STAR);
 set(gca, 'YScale', 'log');

@@ -72,7 +72,7 @@ f_x(t) = fx;
 
 while((t < NUM_OF_ITERATIONS) && fx > 10^(-8))
     if(fname==6)
-        if fx > 50000000
+        if fx > 5000000
             % if diverge -> convergence rate = 0 success rate = 0
             success_rate = 0;
             convergence_rate = 0;

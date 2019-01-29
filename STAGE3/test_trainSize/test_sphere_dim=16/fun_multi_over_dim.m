@@ -125,7 +125,7 @@ eval_rate_f9 = zeros(NUM_OF_STRATEGIES,length(f8_range),NUM_OF_RUNS);
 sigma0 = 1;
 
 
-for fname = 6:9
+for fname = 6
     
     if fname == 6
         para_arrya = f6_range;
@@ -294,16 +294,10 @@ for fname = 6:9
 end
 
 save_name_sprint = sprintf('all_dim=%d.mat',n);
-save(save_name_sprint,'NUM_OF_STRATEGIES','n','NUM_OF_RUNS','f6_range','f7_range', 'f8_range',...
+save(save_name_sprint,'NUM_OF_STRATEGIES','n','NUM_OF_RUNS','f6_range',...
     'TRAINING_SIZE','LS_onePlusOne','LS_mml', 'NUM_OF_ITERATIONS','C1','C2','C3',...
     'T_med_f6','f_x_med_f6','sigma_med_f6','sigma_star__med_f6','success_med_f6','four_prob_med_f6','eval_rate_med_f6',...
-    'T_med_f7','f_x_med_f7','sigma_med_f7','sigma_star__med_f7','success_med_f7','four_prob_med_f7','eval_rate_med_f7',...
-    'T_med_f8','f_x_med_f8','sigma_med_f8','sigma_star__med_f8','success_med_f8','four_prob_med_f8','eval_rate_med_f8',...
-    'T_med_f9','f_x_med_f9','sigma_med_f9','sigma_star__med_f9','success_med_f9','four_prob_med_f9','eval_rate_med_f9',....
-    'T_f6','f_x_f6','sigma_f6','sigma_star_f6','success_f6','four_prob_f6','eval_rate_f6',...
-    'T_f7','f_x_f7','sigma_f7','sigma_star_f7','success_f7','four_prob_f7','eval_rate_f7',...
-    'T_f8','f_x_f8','sigma_f8','sigma_star_f8','success_f8','four_prob_f8','eval_rate_f8',...
-    'T_f9','f_x_f9','sigma_f9','sigma_star_f9','success_f9','four_prob_f9','eval_rate_f9');
+     'T_f6','f_x_f6','sigma_f6','sigma_star_f6','success_f6','four_prob_f6','eval_rate_f6');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -363,12 +357,7 @@ subplot(subplot_ROW,subplot_COL,(fig_row_index-1)*subplot_COL+4)
 % Refactored code is below
 % bar([T_med_f9(1,:)./T_med_f9(2,:); T_med_f9(1,:)./T_med_f9(3,:);...
 %     T_med_f9(1,:)./T_med_f9(4,:); T_med_f9(1,:)./T_med_f9(5,:); ]);hold on;
-b = bar(repmat(T_med_f9(1,:),NUM_OF_STRATEGIES-1,1)./T_med_f9(2:NUM_OF_STRATEGIES,:));
-b.FaceColor = 'flat';
-b.CData(1,:) = [0  0.4470 0.7410];
-b.CData(2,:) = [0.8500  0.3250  0.0980];
-b.CData(3,:) = [0.9290  0.6940  0.1250];
-b.CData(4,:) = [0.4940  0.1840  0.5560];
+bar(repmat(T_med_f9(1,:),NUM_OF_STRATEGIES-1,1)./T_med_f9(2:NUM_OF_STRATEGIES,:));
 str_cell_SIGMA_STAR = {'GP-(1+1)','GP-(3/3,10)','GP-(5/5,20)','GP-(10/10,40)'};
 set(gca,'xticklabel',str_cell_SIGMA_STAR);
 set(gca, 'YScale', 'log');
