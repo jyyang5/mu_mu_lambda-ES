@@ -1,4 +1,4 @@
-n=10;
+n=12;
 lambda = 10;
 mu=ceil(lambda/4);
 NUM_OF_ITERATIONS = 20000;

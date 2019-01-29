@@ -51,6 +51,18 @@ window_length = 40;
 kernel = exp(-(-3*window_length:3*window_length).^2/window_length^2/2);
 kernel = kernel/sum(kernel);        % Normalized    
 
+
+if n==2
+    load('all_dim=2.mat');
+elseif n==4
+    load('all_dim=4.mat');
+elseif n==8
+    load('all_dim=8.mat');
+elseif n==16
+    load('all_dim=16.mat');
+end
+    
+
 NUM_OF_STRATEGIES = 5;
 
 T_med_f6 = zeros(NUM_OF_STRATEGIES,length(f6_range));

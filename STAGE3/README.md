@@ -118,7 +118,18 @@ weights = kappa*weights/sum(weights);
 Analyze the results obtained using C1=1.0,C2=1.0,C3=0.2, length scale = 20
 
 ### A. Some GP-mml-ES does not converge 
-- Not all converge on quartic function when $\alpha >= 1.3335$
+- Not all converge on quartic function 
+	- N=12: $\alpha >= 1.3335$, 
+	- Ok
+		- a several local minima in the quartic functions
+		- Each $\lapha$ has plateaus at a same objective function value 
+
+
+### B. Some GP-mml-ES does not converge [modified]
+- Previous version problem with **training size** (all fixed to 40)
+	- Make TRAIN_SIZE = 4*N 
+- Experiment with dimension N = 2,4,8,16
+	
 
 
 
@@ -169,7 +180,12 @@ Analyze the results obtained using C1=1.0,C2=1.0,C3=0.2, length scale = 20
 
 - [x] 20190119
 	- Save all data 
-		- 
+	
+
+- [x] 20190129 
+	- Table
+	- Speed-up Fig.
+	- Single step behaviour Fig.
 
 
 

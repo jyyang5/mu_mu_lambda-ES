@@ -1,4 +1,4 @@
-function val = onePlusOne_1(fname,para,x0,sigma0,NUM_OF_ITERATIONS)
+function val = onePlusOne(fname,para,x0,sigma0,NUM_OF_ITERATIONS)
 % initialization
 % fname:                objective function value
 % x0:                 initial point
@@ -43,16 +43,18 @@ elseif(fname==7)
     f=@f7;
 elseif(fname==8)
     f=@f8;
+elseif(fname==9)
+    f=@f9;
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % initialization
 [n,~] = size(x0);
 
-x = zeros(n, 10000);                       % parent solution with dim n 
+x_array = zeros(n, 50000);                       % parent solution with dim n 
 y = zeros(n,1);                            % offspring solution with dim n
-sigma = zeros(1,10000);                    % mutation strength
-f_x = zeros(1,10000);                      % objectie function value for selected offspring
-sigma_star_array = zeros(1,10000);         % store normalized step size
+sigma = zeros(1,50000);                    % mutation strength
+f_x = zeros(1,50000);                      % objectie function value for selected offspring
+sigma_star_array = zeros(1,50000);         % store normalized step size
 
 D = sqrt(1+n);
 c2 = -0.2;                                 % decrease step size
@@ -68,34 +70,44 @@ sigma_star_array(t) = sigma(t)*n/norm(x0);
 fx = f(x0);
 f_x(t) = fx;
 
-while((t < NUM_OF_ITERATIONS) && f(x(:,t)) > 10^(-8))
-    if(fx > 5000)
+while((t < NUM_OF_ITERATIONS) && fx > 10^(-8))
+    if(fname==6)
+        if fx > 1000000000000
+            % if diverge -> convergence rate = 0 success rate = 0
+            success_rate = 0;
+            convergence_rate = 0;
+            val = {t, x_array(:,t), fx, sigma, 99999, f_x, convergence_rate, -1, sigma_star_array,success_rate};
+            return
+        end
+    elseif(fx > 50000000)
         % if diverge -> convergence rate = 0 success rate = 0
         success_rate = 0;
         convergence_rate = 0;
         val = {t, x_array(:,t), fx, sigma, 99999, f_x, convergence_rate, -1, sigma_star_array,success_rate};
-
         return 
     end
     % offspring_generation
-    y = x(:,t) + sigma(t)*randn(n,1);
+    y = x + sigma(t)*randn(n,1);
     
     % objective function val 
     fy = f(y);
     
+
     if(fy < fx)                             % good offspring
-       x(:,t+1) = y;
+       x_array(:,t+1) = y;
        fx = fy;
-       sigma(t+1) = sigma(t) * exp(c3/D);   % increase step size
+       x = y;
+       sigma(t+1) = sigma(t) * exp(0.8/D);   % increase step size
        f_x(t+1) = fy; 
     else                                    % bad offspring
-       x(:,t+1) = x(:,t);  
-       sigma(t+1) = sigma(t) * exp(c2/D);   % reduce step size
+       x_array(:,t+1) = x;  
+       sigma(t+1) = sigma(t) * exp(-0.2/D);   % reduce step size
        f_x(t+1) = fx; 
     end
     t = t + 1;
     sigma_star_array(t) = sigma(t)*n/norm(x);
-
+    
+    
     % store last normalized step size
     
     
@@ -104,7 +116,7 @@ end
 convergence_rate = -n/2*sum(log(f_x(2:t)./f_x(1:t-1)))/(t-1);
 success_rate = sum(f_x(2:t)<f_x(1:t-1))/(t-1);
 
-val = {t, x(:,t), fx, sigma, t, f_x, convergence_rate, -1, sigma_star_array,success_rate};
+val = {t, x_array(:,t), fx, sigma, t, f_x, convergence_rate, -1, sigma_star_array,success_rate};
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Schwefel's Problem 1.2
@@ -125,7 +137,8 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % generalized sphere function 
 function val = f6(x)
-    val = (x'*x)^(para/2);
+    
+    val = para^6*(x'*x)^(para/2);
 end
 % quartic function with varying beta
 function val = f7(x)
@@ -144,5 +157,13 @@ function val = f8(x)
         val = x'*diag([para, ones(1,length(x)-1)])*x;
     end
 end
+% Schwefel's Problem 1.2
+function val = f9(x)
+    val = 0;
+    for i = 1:1:length(x)
+        val = val + sum(x(1:i))^2;
+    end
+end
+
 
 end
