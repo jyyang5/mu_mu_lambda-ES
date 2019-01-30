@@ -71,8 +71,8 @@ fx = f(x0);
 f_x(t) = fx;
 
 while((t < NUM_OF_ITERATIONS) && fx > 10^(-8))
-    if(fname==6)
-        if fx > 1000000000000
+    if(fname==6 || fname == 8)
+        if fx > 10^18
             % if diverge -> convergence rate = 0 success rate = 0
             success_rate = 0;
             convergence_rate = 0;
@@ -154,7 +154,7 @@ function val = f8(x)
     if length(x) == 1
         val = x'.*para.*x;
     elseif length(x) >= 2
-        val = x'*diag([para, ones(1,length(x)-1)])*x;
+        val =x'*diag([para, ones(1,length(x)-1)])*x;
     end
 end
 % Schwefel's Problem 1.2

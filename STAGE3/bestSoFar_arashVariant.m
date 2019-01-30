@@ -34,7 +34,7 @@ function val = bestSoFar_arashVariant(fname,para,x0,sigma0,lambda,NUM_OF_ITERATI
 % 5.T:                  # of objective function calls
 % 6.f_x:                objective function values for parents
 % 7.convergence_rate:   rate of convergence
-% 8.-1:                 no GP error
+% 8.error_array :                 no GP error
 % 9.sigma_star_array:   normalized step size
 % 10.success_rate       success_rate
 % 11.delta_array        normalized delta  (f_centroid(t)-f_centroid(t-1))/factor
@@ -75,8 +75,6 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 [n, ~] = size(x0);
 mu = ceil(lambda/4);
-% TRAINING_SIZE = 40;
-% TRAINING_SIZE = 4*lambda;
 xTrain = zeros(n,50000);            % training data for GP size 4*mu
 fTrain = zeros(1,50000);
 
@@ -86,17 +84,18 @@ fcentroid_array = zeros(1,50000);
 
 
 sigma_array = zeros(1,50000);
-sigma_star_array = zeros(1,50000);                                          % store normalized step size 
-error_array = zeros(1,50000);                                               % store similar to noise-to-signal ratio
-delta_array = zeros(1,50000);                                               % for pdf of fitness gain in each iteration
+sigma_star_array = zeros(1,50000);                   % store normalized step size 
+error_array = zeros(1,50000);                             % store similar to noise-to-signal ratio
+delta_array = zeros(1,50000);                             % for pdf of fitness gain in each iteration
 
-y = zeros(n,lambda);                                                        % lambda offspring solution with dim n
-z = zeros(n,lambda);                                                        % random directions added for lambda offsprings dim n
-fy = zeros(lambda,1);                                                       % objective function value of y     
+y = zeros(n,lambda);                                           % lambda offspring solution with dim n
+z = zeros(n,lambda);                                           % random directions added for lambda offsprings dim n
+fy = zeros(lambda,1);                                          % objective function value of y     
 centroid = x0;                                                     % centroid of parent set, size = [n, 1]
-f_centroid = f(centroid);                                                   % fx of centroid
-fyep = zeros(lambda,1);                                                     % GP estimate for offsprings
+f_centroid = f(centroid);                                      % fx of centroid
+fyep = zeros(lambda,1);                                      % GP estimate for offsprings
 
+fy_true = zeros(1,lambda);                                  % for calculating GP error                            
 convergence_rate = 0;
 
 t = 1;       
@@ -125,8 +124,8 @@ f_x_array = zeros(1,50000);     % true function value of parent
 while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     % early stopping 
     % early stopping 
-    if(fname == 6)
-        if(f_centroid> 1000000)
+    if(fname == 6 || fname == 8)
+        if(f_centroid> 10^18 || sigma <  10^-90)
             % if diverge -> convergence rate = 0 success rate = 0
             success_rate = 0;
             FOUR_COUNT = [0,0,0,0];
@@ -134,7 +133,7 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
             return 
                         
         end
-    elseif(f_centroid > 5000 || iteration >= 500000)
+    elseif(f_centroid > 50000 || iteration >= 500000 || sigma <  10^-45)
         % if diverge -> convergence rate = 0 success rate = 0
         success_rate = 0;
         FOUR_COUNT = [0,0,0,0];
@@ -172,9 +171,10 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
         % offspring_generation (lambda offspring) 
         z = randn(n,lambda);
         fyep = gp(xTrain(:,T-TRAINING_SIZE+1:T), fTrain(T-TRAINING_SIZE+1:T), repmat(centroid,1,lambda)+sigma*z, f_centroid, theta);
-%         for i=1:1:lambda
-%             fyep(i) = gp(xTrain(:,T-TRAINING_SIZE+1:T), fTrain(T-TRAINING_SIZE+1:T), centroid+sigma*z(:,i), f_centroid, theta);
-%         end
+        for k=1:1:lambda
+            fy_true(k) = f(centroid+z(:,k));
+        end
+        error_array(iteration) = sqrt(var(fyep-fy_true)/var(fy_true-f(centroid)));
         % sort fyep (smaller first)
         [~, sorted_order] = sort(fyep);
         z = z(:,sorted_order);
@@ -241,7 +241,7 @@ end
     fn = sum(true_superior & ~predicted_superior);
     tp = sum(true_superior & predicted_superior);
     FOUR_COUNT = [tn,fp,fn,tp];
-    val = {t,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,error_array,sigma_star_array,success_rate,delta_array,FOUR_COUNT,t/iteration};
+    val = {iteration,centroid,f_centroid,sigma_array, T, fcentroid_array,convergence_rate,error_array,sigma_star_array,success_rate,delta_array,FOUR_COUNT,t/iteration};
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Schwefel's Problem 1.2

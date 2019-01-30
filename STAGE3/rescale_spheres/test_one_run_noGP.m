@@ -1,8 +1,8 @@
-n=12;
+n=8;
 lambda = 10;
 mu=ceil(lambda/4);
 NUM_OF_ITERATIONS = 20000;
-x0 = randn(n,1);
+x0 = 0.1*randn(n,1);
 sigma0 = 1;
 LENGTH_SCALE = 20;
 TRAINING_SIZE = 40;
@@ -10,11 +10,11 @@ SUCCESS_RATE = 0.4;
 SIGMA_STAR = 1;
 
 
-fname = 6;
-para = 0.1;
+fname = 8;
+para = 0.01;
 a = onePlusOne(fname,para,x0,sigma0,NUM_OF_ITERATIONS);
 
-para = 10;
+para = 100;
 b = onePlusOne(fname,para,x0,sigma0,NUM_OF_ITERATIONS);
 
 t_array = cell2mat(a(1));

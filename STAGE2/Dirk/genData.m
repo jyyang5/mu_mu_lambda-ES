@@ -1,4 +1,4 @@
-function genData(c1,c2,c3,mu,lambda,LENGTH_SCALE)
+function genData(c1,c2,c3,mu,lambda,LENGTH_SCALE,n)
 N=21;    % number of runs
 evals = @(x) x(end, 1);
 
@@ -7,7 +7,7 @@ evals = @(x) x(end, 1);
 % c3 = 0.1;
 % LENGTH_SCALE = 20;
 % lambda = 10;
-
+% 
 % mu = ceil(lambda/4);
 
 
@@ -19,11 +19,11 @@ f5 = @(x) sum((x(2:end)-x(1:end-1).^2).^2 + (x(1:end-1)-1).^2); % quartic functi
 
 rec = cell(N, 5);
 for k=1:N
-    [~, rec{k, 1}] = ES(f1, mu, lambda, 1.0e+00*randn(10, 1), 1.0, LENGTH_SCALE, 40, c1, c2, c3);
-    [~, rec{k, 2}] = ES(f2, mu, lambda, 1.0e+00*randn(10, 1), 1.0, LENGTH_SCALE, 40, c1, c2, c3);
-    [~, rec{k, 3}] = ES(f3, mu, lambda, 1.0e+00*randn(10, 1), 1.0, LENGTH_SCALE, 40, c1, c2, c3);
-    [~, rec{k, 4}] = ES(f4, mu, lambda, 1.0e+00*randn(10, 1), 1.0, LENGTH_SCALE, 40, c1, c2, c3);
-    [~, rec{k, 5}] = ES(f5, mu, lambda, 1.0e+00*randn(10, 1), 1.0, LENGTH_SCALE, 40, c1, c2, c3);
+    [~, rec{k, 1}] = ES(f1, mu, lambda, 1.0e+00*randn(n, 1), 1.0, LENGTH_SCALE, 40, c1, c2, c3);
+    [~, rec{k, 2}] = ES(f2, mu, lambda, 1.0e+00*randn(n, 1), 1.0, LENGTH_SCALE, 40, c1, c2, c3);
+    [~, rec{k, 3}] = ES(f3, mu, lambda, 1.0e+00*randn(n, 1), 1.0, LENGTH_SCALE, 40, c1, c2, c3);
+    [~, rec{k, 4}] = ES(f4, mu, lambda, 1.0e+00*randn(n, 1), 1.0, LENGTH_SCALE, 40, c1, c2, c3);
+    [~, rec{k, 5}] = ES(f5, mu, lambda, 1.0e+00*randn(n, 1), 1.0, LENGTH_SCALE, 40, c1, c2, c3);
 end
 
 Nevals = cellfun(evals, rec);

@@ -17,7 +17,7 @@
 
 % For compact subplots 
 make_it_tight = true;
-subplot = @(m,n,p) subtightplot (m, n, p, [0.05 0.02], [0.05 0.02], [0.05 0.02]);
+subplot = @(m,n,p) subtightplot (m, n, p, [0.05 0.08], [0.05 0.08], [0.05 0.08]);
 if ~make_it_tight,  clear subplot;  end
 
 % GP smooth 
@@ -37,7 +37,8 @@ n = 16;
 for fname = 1:1:4
     if fname == 1
             f_x_med =  f_x_med_f6;
-            sigma_med  =    sigma_med_f6;
+            sigma_med  =  sigma_med_f6;
+            T_array = 
             T_matrix =  T_f6;
             four_prob = four_prob_med_f6;
             eval_rate = eval_rate_med_f6;
@@ -115,7 +116,7 @@ for fname = 1:1:4
         ylim([0 80]);
 
         if(lambda==40)
-            legend({'(1+1)-ES','GP-(1+1)-ES','GP-(1+1)_{(3/3,10)}-ES','GP-(1+1)_{(5/5,20)}-ES','GP-(1+1)_{(10/10,40)}-ES'},'interpreter','latex');
+            legend({'(1+1)-ES','(1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'interpreter','latex');
             if(fname == 1)
                 title(sprintf('spheres (n=%d, $\beta$=%.2f)',n,f_range(para)),'fontsize',15,'interpreter','latex');
             elseif(fname == 2)
@@ -152,7 +153,7 @@ for fname = 1:1:4
         hLegend = findobj(gcf, 'Type', 'Legend');
         set(hLegend, 'Fontsize', 8,'interpreter','latex');
         if(fname==1)
-            ylabel('objective function value','FontSize',15,'interpreter','latex');
+            ylabel('step size','FontSize',15,'interpreter','latex');
         end
         xlabel('objective function calls','FontSize',15,'interpreter','latex');
         set(gca, 'YScale', 'log');
@@ -160,36 +161,22 @@ for fname = 1:1:4
         legend('-DynamicLegend'); 
         legend('show');
         
-%         if lambda==0
-%             plot(t_start:1:T_med,GP_error_matrix_med(t_start:T_med),'DisplayName',d);hold on;
-% %             smoothed_GP = smoothdata(GP_error_matrix_med(t_start:T_med),'gaussian',40);
-%             smoothed_GP = exp(conv(log(GP_error_matrix_med(t_start:T_med)), kernel, 'same'));
-%             d1 = sprintf('(1+1)-ES[smoothed]');
-%             plot(t_start:1:T_med,smoothed_GP,'DisplayName',d1,'LineWidth',2);hold on;
-%         else 
-% %             GP_error_range1 = GP_error_matrix_med(1:t_start);
-%             GP_error_range2 = GP_error_matrix_med(t_start+1:t_med);
-%             plot(t_range2,GP_error_range2,'DisplayName',d);hold on;
-% %             plot([t_range1 t_range2], [GP_error_range1 GP_error_range2],'DisplayName',d);hold on;
-%             % GP smoothed
-% %             smoothed_GP_range1 = smoothdata(GP_error_range1,'gaussian',40);
-% %             smoothed_GP_range2 = smoothdata(GP_error_range2,'gaussian',40);
-%             smoothed_GP_range2 = exp(conv(log(GP_error_range2), kernel, 'same'));
-% 
-%             d1 = sprintf('(%d/%d,%d)-ES[smoothed]',mu,mu,lambda);
-%             plot(t_range2, smoothed_GP_range2,'DisplayName',d1,'LineWidth',2);hold on;
-% %             plot([t_range1 t_range2],[smoothed_GP_range1 smoothed_GP_range2],'DisplayName',d1,'LineWidth',2);hold on;
-%         end
-%         if(fname==1)
-%             ylabel('relative model error','FontSize',15);%
-%         end
-%         xlabel('objective function calls','FontSize',15); 
-%         set(gca, 'YScale', 'log');
-%         ylim([0.01 10^4]);
-%         legend('-DynamicLegend'); 
-%         legend('show');
-%         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%         % 4.normalized step size [row 4](only makes sense for sphere functions)
+
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        % 4. GP error [row 4]
+        subplot(subplot_ROW,subplot_COL,fname+subplot_COL*2);
+        plot(range,sigma_array(range),'DisplayName',d);hold on;
+        hLegend = findobj(gcf, 'Type', 'Legend');
+        set(hLegend, 'Fontsize', 8,'interpreter','latex');
+        if(fname==1)
+            ylabel('step size','FontSize',15,'interpreter','latex');
+        end
+        xlabel('objective function calls','FontSize',15,'interpreter','latex');
+        set(gca, 'YScale', 'log');
+        ylim([10^(-12) 1]);
+        legend('-DynamicLegend'); 
+        legend('show');
+        
 %         if(fname<4)
 %             subplot(subplot_ROW,subplot_COL,fname+15);
 %             if lambda==0

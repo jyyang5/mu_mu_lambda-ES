@@ -71,15 +71,16 @@ fx = f(x0);
 f_x(t) = fx;
 
 while((t < NUM_OF_ITERATIONS) && fx > 10^(-8))
-    if(fname==6)
-        if fx > 100000000
+    if(fname==6 || fname == 8)
+        if fx > 10^18
             % if diverge -> convergence rate = 0 success rate = 0
             success_rate = 0;
             convergence_rate = 0;
             val = {t, x_array(:,t), fx, sigma, 99999, f_x, convergence_rate, -1, sigma_star_array,success_rate};
             return
         end
-    elseif(fx > 500000)
+        
+    elseif(fx > 5000)
         % if diverge -> convergence rate = 0 success rate = 0
         success_rate = 0;
         convergence_rate = 0;
