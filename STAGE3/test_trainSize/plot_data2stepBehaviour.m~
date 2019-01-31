@@ -1,5 +1,5 @@
 % test file
-% plot from data saved
+% using 5 different obejctive functions plot 5 seperate graphs
 % NOTE: DO NOT CHANGE THE NUMBER WHEN CALL fun_graph_merged
 %       OR CANNOT SAVE ITERTAION DATA
 % MODIFICATION 
@@ -140,11 +140,11 @@ for fname = 1:1:subplot_COL
         if(lambda==40)
             legend({'(1+1)','(1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'Fontsize',15,'Interpreter','latex');
             if(fname == 1)
-                title(sprintf('spheres ($n=%d$, $\\beta=%.2f$)',n,f_range(para)),'Fontsize',15,'interpreter','latex');
+                title(sprintf('spheres (n=%d, $\\beta$=%.2f)',n,f_range(para)),'Fontsize',15,'interpreter','latex');
             elseif(fname == 2)
-                title(sprintf('quartic function ($n=%d$, $\\beta=%.2f$)',n,f_range(para)),'Fontsize',15,'interpreter','latex');
+                title(sprintf('quartic function (n=%d, $\\beta$=%.2f)',n,f_range(para)),'Fontsize',15,'interpreter','latex');
             elseif(fname == 3 || fname == 4)
-                title(sprintf('ellipsoids ($n=%d$, $\\beta=%.2f$)',n,f_range(para)),'Fontsize',15,'interpreter','latex');
+                title(sprintf('ellipsoids (n=%d, $\\beta$=%.2f)',n,f_range(para)),'Fontsize',15,'interpreter','latex');
             end
         end
         hLegend = findobj(gcf, 'Type', 'Legend');
@@ -187,7 +187,7 @@ for fname = 1:1:subplot_COL
         subplot(subplot_ROW,subplot_COL,fname+subplot_COL*3);
         if lambda == 1 || lambda == 20
             plot(range_t,GP_error(range_t),'DisplayName',d);hold on;
-            plot(range_t,exp(conv(log(GP_error(range_t)), kernel, 'same')),'LineWidth',1,'DisplayName',d);hold on;
+            plot(range_t,exp(conv(log(GP_error_b(range_t)), kernel, 'same')),'LineWidth',1);hold on;
         end
         hLegend = findobj(gcf, 'Type', 'Legend');
         set(hLegend,'Fontsize',15,'interpreter','latex');
@@ -201,6 +201,67 @@ for fname = 1:1:subplot_COL
         legend('show');
 
         saveas(gcf,sprintf('singleStep_n=%d.fig',n)); 
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%         % 5. histogram normalized fitness gain per iteration
+%         figure(500);
+%         subplot(1,subplot_COL,fname);
+%         % No bar colour, bold binwidth
+%         if(T_med == 5000) % early stopping
+%             h2 = histogram(nonzeros(delta_matrix_temp),'Normalization','probability','DisplayName',d);hold on;
+%         else
+%             h2 = histogram(nonzeros(delta_matrix_temp),'Normalization','probability','DisplayName',d);hold on;
+%         end
+%         xlim([-3 3]);
+%         if(lambda==0)
+%             h2.EdgeColor= [0  0.4470 0.7410];
+%         elseif(lambda == 10)
+%             h2.EdgeColor= [0.8500  0.3250  0.0980];
+%         elseif(lambda==20)
+%             h2.EdgeColor= [0.9290  0.6940  0.1250];
+%         elseif(lambda==40)
+%             h2.EdgeColor= [0.4940  0.1840  0.5560];
+%         end
+%         h2.LineWidth=1.2;
+%         h2.BinWidth = 0.2;
+        
+%         if(fname == 1 || fname == 2 || fname == 3)
+%             figure(201);
+%             subplot(2,subplot_COL,fname);
+%             value = h2.Values;		% height of the bar
+%             width = h2.BinWidth;				% width of the bar
+%             range = h2.BinLimits;		% [startX endX]
+%             disp(length(range(1)+width/2:width:range(2)-width/2)==length(value));
+%             % Did not do the exact range right ends at [range(1)+width/2:width:range(2)-width/2] 
+%             plot((range(1)+width/2):width:(range(2)),value,'DisplayName',d);hold on;
+%             if(fname==1)
+%                 ylabel('Probability','FontSize',15);%
+%             end
+%             xlabel('Normalized fitness gain','FontSize',15); 
+%             % set(gca, 'YScale', 'log');
+%             % title('step size \sigma','FontSize',20);
+%             legend('-DynamicLegend'); 
+%             legend('show');
+%             xlim([-3 3]);
+
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            % Subplot row and col number of fig2
+%             subplot_ROW = 4;
+%             subplot_COL = 5; 
+% 
+%             xNameSprintf = sprintf('onvergence rate');
+%             xLimit = [0 1];
+%             plot_pdf(convergence_array,T_med,201,subplot_ROW,subplot_COL,fname,lambda,xNameSprintf,xLimit);
+%             xNameSprintf = sprintf('success rate');
+%             xLimit = [0 1];
+%             plot_pdf(success_med,T_med,201,subplot_ROW,subplot_COL,fname+subplot_COL*2,lambda,xNameSprintf,xLimit);
+% %             xNameSprintf = sprintf('fitGain per iteration');
+% %             xLimit = [0 1];
+%     %         plot_pdf(delta_matrix_temp,T_med,300,3,5,fname+10,lambda,xNameSprintf,xLimit);
+%             legend('-DynamicLegend'); 
+%             legend('show');
+%         end
+        
 
         
     end   

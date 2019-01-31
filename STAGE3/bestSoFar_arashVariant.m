@@ -124,8 +124,8 @@ f_x_array = zeros(1,50000);     % true function value of parent
 while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
     % early stopping 
     % early stopping 
-    if(fname == 6 || fname == 8)
-        if(f_centroid> 10^18 || sigma <  10^-90)
+    if(fname == 6)
+        if(f_centroid> 10^30 || sigma <  10^-90)
             % if diverge -> convergence rate = 0 success rate = 0
             success_rate = 0;
             FOUR_COUNT = [0,0,0,0];

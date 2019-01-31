@@ -132,6 +132,8 @@ while(T < NUM_OF_ITERATIONS && t < 40000 && f(x_array(:,T))>10^(-8))%(norm(x_arr
             fep_y_array(t) = fy_ep;
             f_y_array(t) = f(y);
             f_x_array(t) = fx;
+            % GP error
+            GP_error(t) = abs(fy_ep-f(y))./abs(f(y)-f(x));
     end
     
     % update mutation & assign new offspring
@@ -148,11 +150,6 @@ while(T < NUM_OF_ITERATIONS && t < 40000 && f(x_array(:,T))>10^(-8))%(norm(x_arr
         xTrain(:, T) = y;                
         fTrain(T) = fy;
         T = T + 1;
-        % GP error
-        if(T>TRAINING_SIZE+1)
-            GP_error(T) = abs(fy_ep-fy)./abs(fy-f(x));
-%             GP_error(T-41) = abs(fy_ep-fy)./abs(fy-fx);                     % relative error of GP |f(y)-fep(y)|/ |f(y)-f(x)| after GP built
-        end
         if(fy >= fx)                      % bad offspring    
             if T <= TRAINING_SIZE
                 sigma = sigma * exp(-0.2/D);

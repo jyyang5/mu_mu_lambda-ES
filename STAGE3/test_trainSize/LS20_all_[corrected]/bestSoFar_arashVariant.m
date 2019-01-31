@@ -171,6 +171,7 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
         % offspring_generation (lambda offspring) 
         z = randn(n,lambda);
         fyep = gp(xTrain(:,T-TRAINING_SIZE+1:T), fTrain(T-TRAINING_SIZE+1:T), repmat(centroid,1,lambda)+sigma*z, f_centroid, theta);
+        % GP error
         for k=1:1:lambda
             fy_true(k) = f(centroid+z(:,k));
         end
