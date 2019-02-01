@@ -365,7 +365,7 @@ subplot(subplot_ROW,subplot_COL,fig_row_index)
 for i = 2:1:NUM_OF_STRATEGIES
     plot(f6_range, T_med_f6(1,:)./T_med_f6(i,:));hold on;
 end
-legend({'(1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'fontsize',15,'interpreter','latex');
+legend({'(1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'Fontsize',15,'Interpreter','latex','NumColumns',2);
 title(sprintf('dimension $n=%d$',n),'Fontsize',15,'Interpreter','latex');
 if fig_row_index==1
     ylabel('speed-up (spheres)','Fontsize',15,'Interpreter','latex');
@@ -379,13 +379,13 @@ subplot(subplot_ROW,subplot_COL,fig_row_index+subplot_COL*1)
 for i = 2:1:NUM_OF_STRATEGIES
     plot(f7_range, T_med_f7(1,:)./T_med_f7(i,:));hold on;
 end
-legend({'(1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'fontsize',15,'interpreter','latex');
+legend({'(1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'Fontsize',15,'Interpreter','latex','NumColumns',2);
 if fig_row_index==1
-    ylabel('speed-up (quartic function)','fontsize',15,'interpreter','latex');
+    ylabel('speed-up (quartic function)','Fontsize',15,'Interpreter','latex');
 end
 set(gca, 'YScale', 'log', 'Fontsize',15);
 ylim([1 100]);
-xlabel('parameter $\beta$','FontSize',15,'interpreter','latex');
+xlabel('parameter $\beta$','Fontsize',15,'Interpreter','latex');
 % ylabel(sprintf('speed-up over (1+1)-ES N=%d',n),'FontSize',13);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Fig. 3 [elliposids]
@@ -395,7 +395,7 @@ for i = 2:1:NUM_OF_STRATEGIES
 end
 set(gca, 'YScale', 'log', 'XScale', 'log', 'Fontsize',15);
 ylim([1 100]);
-legend({'(1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'Fontsize',15,'interpreter','latex');
+legend({'(1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'Fontsize',15,'Interpreter','latex','NumColumns',2);
 if fig_row_index==1
     ylabel('speed-up (ellipsoids)','Fontsize',15,'Interpreter','latex');
 end

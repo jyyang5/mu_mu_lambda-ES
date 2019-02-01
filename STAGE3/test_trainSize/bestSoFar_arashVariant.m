@@ -305,7 +305,6 @@ function fTest = gp(xTrain, fTrain, xTest, mu, theta)
 
     [n, m] = size(xTrain);                                            % m:  # of training data
     ms = size(xTest, 2);
-
     if n==1
         delta = repmat(xTrain, 1, m)-repelem(xTrain, 1, m);
     else

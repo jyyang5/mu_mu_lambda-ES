@@ -366,7 +366,8 @@ for i = 2:1:NUM_OF_STRATEGIES
     plot(f6_range, T_med_f6(1,:)./T_med_f6(i,:));hold on;
 end
 legend({'(1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'Fontsize',15,'Interpreter','latex','NumColumns',2);
-title(sprintf('dimension $n=%d$',n),'Fontsize',15,'Interpreter','latex');
+% [CHANGE]
+title(sprintf('$n=%d$,$TRAIN=%d$,$LS=%d$',n,TRAINING_SIZE,LS_mml),'Fontsize',15,'Interpreter','latex');
 if fig_row_index==1
     ylabel('speed-up (spheres)','Fontsize',15,'Interpreter','latex');
 end

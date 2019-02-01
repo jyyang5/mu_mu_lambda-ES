@@ -13,12 +13,15 @@
 %           Row 2: normalized success rate [good step]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Load data
+% load('all_dim=8.mat');
 
 
 % For compact subplots 
 make_it_tight = true;
-subplot = @(m,n,p) subtightplot (m, n, p, [0.05 0.08], [0.05 0.08], [0.05 0.08]);
+subplot = @(m,n,p) subtightplot (m, n, p, [0.06 0.04], [0.06 0.04], [0.06 0.04]);
 if ~make_it_tight,  clear subplot;  end
+
 
 % GP smooth 
 window_length = TRAINING_SIZE;
@@ -80,7 +83,6 @@ for fname = 1:1:subplot_COL
     for i = 1:1:STRATEGY_NUM
         % Subplot row and col number of fig1
         
-
         
         T = squeeze(T_med_matrix(i,para,:));
         if i ~=  1      
@@ -127,30 +129,30 @@ for fname = 1:1:subplot_COL
         subplot(subplot_ROW,subplot_COL,fname);
         h = histogram(T_array,'DisplayName',d);hold on;
         if(fname == 1)
-            h.BinWidth = 150;
+            h.BinWidth = 30;
         elseif(fname == 2)
-            h.BinWidth = 200;
-        elseif(fname == 3)
-            h.BinWidth = 600;
-        elseif(fname == 4)
             h.BinWidth = 150;
+        elseif(fname == 3)
+            h.BinWidth = 300;
+        elseif(fname == 4)
+            h.BinWidth = 50;
         end
-        ylim([0 80]);
+        ylim([0 60]);
 
         if(lambda==40)
-            legend({'(1+1)','(1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'Fontsize',15,'Interpreter','latex');
+            legend({'(1+1)','(1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'Fontsize',13,'Interpreter','latex');
             if(fname == 1)
-                title(sprintf('spheres ($n=%d$, $\\beta=%.2f$)',n,f_range(para)),'Fontsize',15,'interpreter','latex');
+                title(sprintf('spheres ($n=%d$, $\\beta=%.2f$)',n,f_range(para)),'Fontsize',13,'interpreter','latex');
             elseif(fname == 2)
-                title(sprintf('quartic function ($n=%d$, $\\beta=%.2f$)',n,f_range(para)),'Fontsize',15,'interpreter','latex');
+                title(sprintf('quartic function ($n=%d$, $\\beta=%.2f$)',n,f_range(para)),'Fontsize',13,'interpreter','latex');
             elseif(fname == 3 || fname == 4)
-                title(sprintf('ellipsoids ($n=%d$, $\\beta=%.2f$)',n,f_range(para)),'Fontsize',15,'interpreter','latex');
+                title(sprintf('ellipsoids ($n=%d$, $\\beta=%.2f$)',n,f_range(para)),'Fontsize',13,'interpreter','latex');
             end
         end
         hLegend = findobj(gcf, 'Type', 'Legend');
-        set(hLegend,'Fontsize',15,'interpreter','latex');
-        set(gca,'Fontsize',15);
-        xlabel('number of objective function calls','Fontsize',15,'interpreter','latex');
+        set(hLegend,'Fontsize',13,'interpreter','latex');
+        xlabel('objective function calls','Fontsize',13,'interpreter','latex');
+        set(gca, 'Fontsize',13);       
 %         ylim([0 0.3]);
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         % 2.objective function [row 2]
@@ -159,11 +161,11 @@ for fname = 1:1:subplot_COL
         hLegend = findobj(gcf, 'Type', 'Legend');
         set(hLegend,'Fontsize',15,'interpreter','latex');
         if(fname==1)
-            ylabel('objective function value','Fontsize',15,'interpreter','latex');
+            ylabel('objective function value','Fontsize',13,'interpreter','latex');
         end
-        xlabel('objective function calls','Fontsize',15,'interpreter','latex');
-        set(gca, 'YScale', 'log','Fontsize',15);
-        ylim([10^(-10) 10^4]);
+        xlabel('objective function calls','Fontsize',13,'interpreter','latex');
+        set(gca, 'YScale', 'log','Fontsize',13);
+        ylim([10^(-10) 10^10]);
         legend('-DynamicLegend'); 
         legend('show');
 %         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -171,13 +173,13 @@ for fname = 1:1:subplot_COL
         subplot(subplot_ROW,subplot_COL,fname+subplot_COL*2);
         plot(range,sigma_array(range),'DisplayName',d);hold on;
         hLegend = findobj(gcf, 'Type', 'Legend');
-        set(hLegend,'Fontsize',15,'interpreter','latex');
+        set(hLegend,'Fontsize',13,'interpreter','latex');
         if(fname==1)
-            ylabel('step size','Fontsize',15,'interpreter','latex');
+            ylabel('step size','Fontsize',13,'interpreter','latex');
         end
-        xlabel('objective function calls','Fontsize',15,'interpreter','latex');
-        set(gca, 'YScale', 'log','Fontsize',15);
-        ylim([10^(-10) 1000]);
+        xlabel('objective function calls','Fontsize',13,'interpreter','latex');
+        set(gca, 'YScale', 'log','Fontsize',13);
+        ylim([10^(-6) 10^5]);
         legend('-DynamicLegend'); 
         legend('show');
         
@@ -187,15 +189,15 @@ for fname = 1:1:subplot_COL
         subplot(subplot_ROW,subplot_COL,fname+subplot_COL*3);
         if lambda == 1 || lambda == 20
             plot(range_t,GP_error(range_t),'DisplayName',d);hold on;
-            plot(range_t,exp(conv(log(GP_error(range_t)), kernel, 'same')),'LineWidth',1,'DisplayName',d);hold on;
+            plot(range_t,exp(conv(log(GP_error(range_t)), kernel, 'same')),'LineWidth',1,'DisplayName',ds);hold on;
         end
         hLegend = findobj(gcf, 'Type', 'Legend');
-        set(hLegend,'Fontsize',15,'interpreter','latex');
+        set(hLegend,'Fontsize',13,'interpreter','latex','NumColumns',2);
         if(fname==1)
-            ylabel('relative model error','Fontsize',15,'interpreter','latex');
+            ylabel('relative model error','Fontsize',13,'interpreter','latex');
         end
-        xlabel('iterations','Fontsize',15,'interpreter','latex');
-        set(gca, 'YScale', 'log','Fontsize',15);
+        xlabel('iterations','Fontsize',13,'interpreter','latex');
+        set(gca, 'YScale', 'log','Fontsize',13);
 %         ylim([10^(-12) 1]);
         legend('-DynamicLegend'); 
         legend('show');
@@ -242,31 +244,31 @@ function plot_pdf(data,T_med,figureName,fig_row,fig_col,fig_index,lambda,xNameSp
         h2.EdgeColor= [0.4940  0.1840  0.5560];
     end
     if(rem(fig_index,fig_col)==1)
-        ylabel('probability','FontSize',15);%
+        ylabel('probability','FontSize',13);%
     end
     % Set titles for the first row 
     if(fig_index == 1)
         d3 =sprintf('linear sphere');
-        title(d3,'fontsize',15);
+        title(d3,'fontsize',13);
     elseif(fig_index == 2)
         d3 =sprintf('quadratic sphere');
-        title(d3,'fontsize',15);
+        title(d3,'fontsize',13);
     elseif(fig_index == 3)
         d3 =sprintf('cubic sphere');
-        title(d3,'fontsize',15);
+        title(d3,'fontsize',13);
     elseif(fig_index == 4)
         d3 =sprintf('Schwefel function');
-        title(d3,'fontsize',15);
+        title(d3,'fontsize',13);
     elseif(fig_index == 5)
         d3 =sprintf('quartic function');
-        title(d3,'fontsize',15);
+        title(d3,'fontsize',13);
     end
     ylim([0 0.4]);
     
     legend('-DynamicLegend'); 
     legend('show');
     xlim(xLimit);
-    xlabel(xNameSprintf,'FontSize',15); 
+    xlabel(xNameSprintf,'FontSize',13); 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Plot pdf curve
     figure(figureName);
@@ -277,10 +279,10 @@ function plot_pdf(data,T_med,figureName,fig_row,fig_col,fig_index,lambda,xNameSp
     % Did not do the exact range right ends at [range(1)+width/2:width:range(2)-width/2] 
     plot((range(1)+width/2):width:(range(2)),value,'DisplayName',d);hold on;
     if(rem(fig_index,fig_col)==1)
-        ylabel('probability','FontSize',15);%
+        ylabel('probability','FontSize',13);%
     end
     xlim(xLimit);
-    xlabel(xNameSprintf,'FontSize',15); 
+    xlabel(xNameSprintf,'FontSize',13); 
     % set(gca, 'YScale', 'log');
     % title('step size \sigma','FontSize',20);
     legend('-DynamicLegend'); 
