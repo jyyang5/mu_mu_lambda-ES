@@ -339,7 +339,7 @@ for fname = 6:8
     fprintf('fname = %d done\n',fname);
 end
 
-save_name_sprint = sprintf('all_dim=%d.mat',n);
+save_name_sprint = sprintf('data_dim%d_TS%d_LS%d.mat',n,TRAINING_SIZE,LS_mml);
 save(save_name_sprint,'NUM_OF_STRATEGIES','n','NUM_OF_RUNS','f6_range','f7_range', 'f8_range',...
     'TRAINING_SIZE','LS_onePlusOne','LS_mml', 'NUM_OF_ITERATIONS','C1','C2','C3',...
     'T_med_f6','f_x_med_f6','sigma_med_f6','sigma_star__med_f6','success_med_f6','four_prob_med_f6','eval_rate_med_f6','error_array_med_f6','t_med_f6',...
@@ -422,7 +422,7 @@ xlabel('parameter $\gamma$','Fontsize',15,'Interpreter','latex');
 % end
 % ylabel(sprintf('speed-up over (1+1)-ES N=%d',n),'FontSize',13);
 
-fig_name = sprintf('merged_speed-up_dim%d.fig',n);
+fig_name = sprintf('speed-up_dim%d.fig',n);
 saveas(gcf,fig_name); 
 
 end

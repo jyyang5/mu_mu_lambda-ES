@@ -1,13 +1,13 @@
 
 
-n_dim_array = [8,16];
+n_dim_array = [8];
 % close all;
-NUM_OF_RUNS = 3; 
+NUM_OF_RUNS = 501; 
 
 C1 = 1.0;
 C2 = 1.0;
 C3 = 0.2;
-LS_mml = 6;
+LS_mml = 8;
 LS_onePlusOne = LS_mml;
 
 % Standard [renew]
@@ -17,9 +17,9 @@ LS_onePlusOne = LS_mml;
 
 
 
-f6_range =  [0.25 10.^(-0.6+0.12:0.12:0.6-0.12*3) 2 3 4];%[0.25,2];%
-f7_range = 1:0.4:5;%[];%
-f8_range = 10.^(-2:0.4:2);% [];%
+f6_range =  [2];%[0.25,2];%
+f7_range = 1;%[];%
+f8_range = 10.^[-2 2];% [];%
 
 % TRAINING_SIZE = 40;
 NUM_OF_ITERATIONS = 50000;
@@ -31,7 +31,7 @@ fig_row_index = 1;
 clc
 for i = 1:1:length(n_dim_array)
     n = n_dim_array(i);
-    TRAINING_SIZE = 20;
+    TRAINING_SIZE = 2*n+20;
 %     LS_mml = 0.5*n;
 %     LS_onePlusOne = 0.5*n;
     fun_multi_over_dim(n,NUM_OF_RUNS,f6_range, f7_range, f8_range,TRAINING_SIZE,...
