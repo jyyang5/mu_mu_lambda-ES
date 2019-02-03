@@ -116,22 +116,28 @@ for fname = 1:1:subplot_COL
         hold on;
         mu = ceil(lambda/4);
         if lambda==0
-             d = sprintf('(1+1)');
+             d = sprintf('no model');
         elseif lambda == 1
-            d = sprintf('(1,1)');
-            ds = sprintf('(1,1)[S]');
+            d = sprintf('(1/1,1)');
+            ds = sprintf('(1/1,1)[S]');
         else
             d = sprintf('(%d/%d,%d)',mu,mu,lambda);
             ds = sprintf('(%d/%d,%d) [S]',mu,mu,lambda);
         end
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         % 1.objective function [row 1]
-        subplot(subplot_ROW,subplot_COL,fname);
+        if fname == 2
+            subplot(subplot_ROW,subplot_COL,fname+2);
+        elseif fname >= 3
+            subplot(subplot_ROW,subplot_COL,fname-1);
+        else
+            subplot(subplot_ROW,subplot_COL,fname);
+        end
         h = histogram(T_array,'DisplayName',d);hold on;
         if(fname == 1)
-            h.BinWidth = 30;
+            h.BinWidth = 25;
         elseif(fname == 2)
-            h.BinWidth = 150;
+            h.BinWidth = 120;
         elseif(fname == 3)
             h.BinWidth = 300;
         elseif(fname == 4)
@@ -140,7 +146,7 @@ for fname = 1:1:subplot_COL
         ylim([0 60]);
 
         if(lambda==40)
-            legend({'(1+1)','(1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'Fontsize',13,'Interpreter','latex');
+            legend({'no model','(1/1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'Fontsize',13,'Interpreter','latex');
             if(fname == 1)
                 title(sprintf('spheres ($n=%d$, $\\beta=%.2f$)',n,f_range(para)),'Fontsize',13,'interpreter','latex');
             elseif(fname == 2)
@@ -150,49 +156,73 @@ for fname = 1:1:subplot_COL
             end
         end
         hLegend = findobj(gcf, 'Type', 'Legend');
-        set(hLegend,'Fontsize',13,'interpreter','latex');
+        set(hLegend,'Fontsize',12,'interpreter','latex');
         xlabel('objective function calls','Fontsize',13,'interpreter','latex');
         set(gca, 'Fontsize',13);       
 %         ylim([0 0.3]);
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         % 2.objective function [row 2]
-        subplot(subplot_ROW,subplot_COL,fname+subplot_COL);
+        
+        if fname == 2
+            subplot(subplot_ROW,subplot_COL,fname+2+subplot_COL);
+        elseif fname >= 3
+            subplot(subplot_ROW,subplot_COL,fname-1+subplot_COL);
+        else
+            subplot(subplot_ROW,subplot_COL,fname+subplot_COL);
+        end
         plot(range,f_x_array(range),'DisplayName',d);hold on;
         hLegend = findobj(gcf, 'Type', 'Legend');
-        set(hLegend,'Fontsize',15,'interpreter','latex');
+        set(hLegend,'Fontsize',12,'interpreter','latex');
         if(fname==1)
             ylabel('objective function value','Fontsize',13,'interpreter','latex');
         end
         xlabel('objective function calls','Fontsize',13,'interpreter','latex');
         set(gca, 'YScale', 'log','Fontsize',13);
-        ylim([10^(-10) 10^10]);
+        ylim([10^(-9) 10^9]);
+        yticks([10^-9 10^0 10^9]);
+        yticklabels({'10^{-8}','10^{0}', '10^{8}'});
         legend('-DynamicLegend'); 
         legend('show');
 %         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %         % 3.sigma [row 3]
-        subplot(subplot_ROW,subplot_COL,fname+subplot_COL*2);
+        if fname == 2
+            subplot(subplot_ROW,subplot_COL,fname+2+subplot_COL*2);
+        elseif fname >= 3
+            subplot(subplot_ROW,subplot_COL,fname-1+subplot_COL*2);
+        else
+            subplot(subplot_ROW,subplot_COL,fname+subplot_COL*2);
+        end
         plot(range,sigma_array(range),'DisplayName',d);hold on;
         hLegend = findobj(gcf, 'Type', 'Legend');
-        set(hLegend,'Fontsize',13,'interpreter','latex');
+        set(hLegend,'Fontsize',12,'interpreter','latex');
         if(fname==1)
             ylabel('step size','Fontsize',13,'interpreter','latex');
         end
         xlabel('objective function calls','Fontsize',13,'interpreter','latex');
         set(gca, 'YScale', 'log','Fontsize',13);
-        ylim([10^(-6) 10^5]);
+        ylim([10^(-8) 10^4]);
+        yticks([10^-8 10^-4 10^0 10^4]);
+        yticklabels({'10^{-8}','10^{-4}','10^{0}', '10^{4}'});
         legend('-DynamicLegend'); 
         legend('show');
         
 
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         % 4. GP error [row 4]
-        subplot(subplot_ROW,subplot_COL,fname+subplot_COL*3);
+         if fname == 2
+            subplot(subplot_ROW,subplot_COL,fname+2+subplot_COL*3);
+        elseif fname >= 3
+            subplot(subplot_ROW,subplot_COL,fname-1+subplot_COL*3);
+        else
+            subplot(subplot_ROW,subplot_COL,fname+subplot_COL*3);
+        end
+        
         if lambda == 1 || lambda == 20
             plot(range_t,GP_error(range_t),'DisplayName',d);hold on;
             plot(range_t,exp(conv(log(GP_error(range_t)), kernel, 'same')),'LineWidth',1,'DisplayName',ds);hold on;
         end
         hLegend = findobj(gcf, 'Type', 'Legend');
-        set(hLegend,'Fontsize',13,'interpreter','latex','NumColumns',2);
+        set(hLegend,'Fontsize',12,'interpreter','latex','NumColumns',2);
         if(fname==1)
             ylabel('relative model error','Fontsize',13,'interpreter','latex');
         end

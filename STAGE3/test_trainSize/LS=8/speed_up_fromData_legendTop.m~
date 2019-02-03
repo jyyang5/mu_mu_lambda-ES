@@ -50,7 +50,7 @@ if ~make_it_tight,  clear subplot;  end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Plots 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-FIGURE_index = 101;
+FIGURE_index = 100;
 
 n_array = [2,4,8,16];
 for n = n_array
@@ -81,56 +81,52 @@ end
 % legend({'(1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'Fontsize',15,'Interpreter','latex','NumColumns',2);
 title(sprintf('dimension $n=%d$',n),'Fontsize',15,'Interpreter','latex');
 if fig_col_index==1
-    ylabel({'speed-up' ;'sphere functions'},'Fontsize',15,'Interpreter','latex');
+    ylabel('speed-up \n spheres','Fontsize',15,'Interpreter','latex');
 end
 set(gca, 'YScale', 'log', 'XScale', 'log', 'Fontsize',15);
 xtickformat('%.1f');
-ylim([1 8]);
+ylim([1 10]);
 if fig_col_index==4
-    legend({'(1/1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'Fontsize',15,'Interpreter','latex','NumColumns',4);
+    legend({'(1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'Fontsize',15,'Interpreter','latex','NumColumns',4);
 end
 xlabel('parameter $\alpha$','Fontsize',15,'Interpreter','latex');
-yticks([1 2 4 8]);
-yticklabels({'1.0','2.0','4.0', '8.0'});
-xticks([0.25, 0.5, 1.0, 2.0, 4.0]);
-xticklabels({'0.25','0.50', '1.00','2.00', '4.00'});
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Fig. 2 [elliposids]
-subplot(subplot_ROW,subplot_COL,fig_col_index+subplot_COL*2)
-for i = 2:1:NUM_OF_STRATEGIES
-    plot(f8_range, T_med_f8(1,:)./T_med_f8(i,:));hold on;
-end
-ylim([1 32]);
-% legend({'(1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'Fontsize',15,'Interpreter','latex','NumColumns',2);
-if fig_col_index==1
-    ylabel({'speed-up'; 'ellipsoid functions'},'Fontsize',15,'Interpreter','latex');
-end
-ytickformat('%.1f');
-set(gca, 'YScale', 'log', 'XScale', 'log', 'Fontsize',15);
-xlabel('parameter $\beta$','Fontsize',15,'Interpreter','latex');
-yticks([1 2 4 8 16 32]);
-yticklabels({'1.0','2.0','4.0','8.0','16.0','32.0'});
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Fig. 3 [quartic]
+% Fig. 2 [quartic]
 subplot(subplot_ROW,subplot_COL,fig_col_index+subplot_COL*3)
 for i = 2:1:NUM_OF_STRATEGIES
     plot(f7_range, T_med_f7(1,:)./T_med_f7(i,:));hold on;
 end
 % legend({'(1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'Fontsize',15,'Interpreter','latex','NumColumns',2);
 if fig_col_index==1
-    ylabel({'speed-up'; 'quartic functions'},'Fontsize',15,'Interpreter','latex');
+    ylabel('speed-up (quartic function)','Fontsize',15,'Interpreter','latex');
 end
 set(gca, 'YScale', 'log', 'Fontsize',15);
-ylim([1 32]);
+ylim([1 30]);
 xlim([1 5]);
 xtickformat('%.1f');
 ytickformat('%.1f');
-xlabel('parameter $\gamma$','Fontsize',15,'Interpreter','latex');
-yticks([1 2 4 8 16 32]);
-yticklabels({'1.0','2.0','4.0','8.0','16.0','32.0'});
+xlabel('parameter $\beta$','Fontsize',15,'Interpreter','latex');
+yticks([1 10 30]);
+yticklabels({'1.0','10.0','30.0'});
 
 % ylabel(sprintf('speed-up over (1+1)-ES N=%d',n),'FontSize',13);
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Fig. 3 [elliposids]
+subplot(subplot_ROW,subplot_COL,fig_col_index+subplot_COL*2)
+for i = 2:1:NUM_OF_STRATEGIES
+    plot(f8_range, T_med_f8(1,:)./T_med_f8(i,:));hold on;
+end
+ylim([1 30]);
+% legend({'(1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'Fontsize',15,'Interpreter','latex','NumColumns',2);
+if fig_col_index==1
+    ylabel('speed-up (ellipsoids)','Fontsize',15,'Interpreter','latex');
+end
+ytickformat('%.1f');
+set(gca, 'YScale', 'log', 'XScale', 'log', 'Fontsize',15);
+xlabel('parameter $\gamma$','Fontsize',15,'Interpreter','latex');
+yticks([1 10 30]);
+yticklabels({'1.0','10.0','30.0'});
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % Fig. 4
