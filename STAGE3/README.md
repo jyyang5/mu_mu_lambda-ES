@@ -184,8 +184,19 @@ Analyze the results obtained using C1=1.0,C2=1.0,C3=0.2, length scale = 20
 
 - [x] 20190129 
 	- Table
+		- Fine with more $\beta$s if have space
 	- Speed-up Fig.
+		- One test function/row (same scale) log||linear??
+		- Get rid of schwefel 
 	- Single step behaviour Fig.
-
+		- N = 8
+		- 4 cols:
+		    - Sphere: quartic 
+		    - Quartic: $\beta=1$
+		    - Ellipsoids: $\beta = 0.1,1$   
+		- 4 rows
+			- hist of objective function calls
+			- convergence plot 
+			- 
 
 

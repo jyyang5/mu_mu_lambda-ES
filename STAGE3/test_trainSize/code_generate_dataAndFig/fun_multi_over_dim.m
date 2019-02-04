@@ -13,9 +13,10 @@
 % difficulty: 
 %            
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function fun_multi_over_dim(n,NUM_OF_RUNS,f6_range, f7_range, f8_range,TRAINING_SIZE,LS_onePlusOne,LS_mml,NUM_OF_ITERATIONS,FIGURE_NUM,subplot_ROW,subplot_COL,fig_row_index,C1,C2,C3)
+function fun_multi_over_dim(n,n_array,NUM_OF_RUNS,f6_range, f7_range, f8_range,TRAINING_SIZE,LS_onePlusOne,LS_mml,NUM_OF_ITERATIONS,FIGURE_NUM,subplot_ROW,subplot_COL,C1,C2,C3)
 %Input:
-%    n:                                  dim of data
+%    n:                                  dim of test problem used 
+%    n_array:                        dim array for test functions
 %    NUM_OF_RUNS:            # of replicates 
 %    f6_range:                      range of exponents used in sphere functions 
 %    f7_range:                      ange of \alpha used in quartic functions 
@@ -321,17 +322,6 @@ for fname = 6:8
                     four_prob_med_f8(strategy_i,para_i,:) = four_prob_matrix(strategy_i,med_index,:);
                     eval_rate_med_f8(strategy_i,para_i) = eval_rate_array(strategy_i,med_index);
                 end
-%             elseif fname == 9
-%                 T_med_f9(strategy_i,para_i) = T_array(strategy_i,med_index);
-%                 f_x_med_f9(strategy_i,para_i,:) = f_x_matrix(strategy_i,med_index,:);
-%                 sigma_med_f9(strategy_i,para_i,:) = sigma_matrix(strategy_i,med_index,:);
-%                 sigma_star__med_f9(strategy_i,para_i,:) = sigma_star_matrix(strategy_i,med_index,:);
-%                 error_array_med_f9(strategy_i,para_i,:) = error_matrix(strategy_i,med_index,:);
-%                 success_med_f9(strategy_i,para_i) = success_rate_array(strategy_i,med_index);
-%                 if strategy_i ~= 1
-%                     four_prob_med_f9(strategy_i,para_i,:) = four_prob_matrix(strategy_i,med_index,:);
-%                     eval_rate_med_f9(strategy_i,para_i) = eval_rate_array(strategy_i,med_index);
-%                 end
             end 
         end
         
@@ -339,9 +329,12 @@ for fname = 6:8
     fprintf('fname = %d done\n',fname);
 end
 
-save_name_sprint = sprintf('all_dim=%d.mat',n);
+fig_col_index = find(n_array == n); % column number
+
+save_name_sprint = sprintf('data_dim=%d.mat',n);
+
 save(save_name_sprint,'NUM_OF_STRATEGIES','n','NUM_OF_RUNS','f6_range','f7_range', 'f8_range',...
-    'TRAINING_SIZE','LS_onePlusOne','LS_mml', 'NUM_OF_ITERATIONS','C1','C2','C3',...
+    'TRAINING_SIZE','LS_onePlusOne','LS_mml', 'NUM_OF_ITERATIONS','C1','C2','C3','subplot_COL','fig_col_index',...
     'T_med_f6','f_x_med_f6','sigma_med_f6','sigma_star__med_f6','success_med_f6','four_prob_med_f6','eval_rate_med_f6','error_array_med_f6','t_med_f6',...
     'T_med_f7','f_x_med_f7','sigma_med_f7','sigma_star__med_f7','success_med_f7','four_prob_med_f7','eval_rate_med_f7','error_array_med_f7','t_med_f7',...
     'T_med_f8','f_x_med_f8','sigma_med_f8','sigma_star__med_f8','success_med_f8','four_prob_med_f8','eval_rate_med_f8','error_array_med_f8','t_med_f8',...
@@ -353,75 +346,73 @@ save(save_name_sprint,'NUM_OF_STRATEGIES','n','NUM_OF_RUNS','f6_range','f7_range
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Plots 
+% Plots  speed-ups
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 figure(FIGURE_NUM);
 
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Fig. 1 [shperes]
-subplot(subplot_ROW,subplot_COL,fig_row_index)
+subplot(subplot_ROW,subplot_COL,fig_col_index+subplot_COL*1)
 for i = 2:1:NUM_OF_STRATEGIES
     plot(f6_range, T_med_f6(1,:)./T_med_f6(i,:));hold on;
 end
-legend({'(1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'Fontsize',15,'Interpreter','latex','NumColumns',2);
+% legend({'(1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'Fontsize',15,'Interpreter','latex','NumColumns',2);
 title(sprintf('dimension $n=%d$',n),'Fontsize',15,'Interpreter','latex');
-if fig_row_index==1
-    ylabel('speed-up (spheres)','Fontsize',15,'Interpreter','latex');
+if fig_col_index==1
+    ylabel({'speed-up' ;'sphere functions'},'Fontsize',15,'Interpreter','latex');
+end
+set(gca, 'YScale', 'log', 'XScale', 'log', 'Fontsize',15);
+xtickformat('%.1f');
+ylim([1 8]);
+if fig_col_index==4
+    legend({'(1/1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'Fontsize',15,'Interpreter','latex','NumColumns',4);
 end
 xlabel('parameter $\alpha$','Fontsize',15,'Interpreter','latex');
-set(gca, 'YScale', 'log', 'XScale', 'log', 'Fontsize',15);
-ylim([1 10]);
+yticks([1 2 4 8]);
+yticklabels({'1.0','2.0','4.0', '8.0'});
+xticks([0.25, 0.5, 1.0, 2.0, 4.0]);
+xticklabels({'0.25','0.50', '1.00','2.00', '4.00'});
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Fig. 2 [quartic]
-subplot(subplot_ROW,subplot_COL,fig_row_index+subplot_COL*1)
-for i = 2:1:NUM_OF_STRATEGIES
-    plot(f7_range, T_med_f7(1,:)./T_med_f7(i,:));hold on;
-end
-legend({'(1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'Fontsize',15,'Interpreter','latex','NumColumns',2);
-if fig_row_index==1
-    ylabel('speed-up (quartic function)','Fontsize',15,'Interpreter','latex');
-end
-set(gca, 'YScale', 'log', 'Fontsize',15);
-ylim([1 100]);
-xlabel('parameter $\beta$','Fontsize',15,'Interpreter','latex');
-% ylabel(sprintf('speed-up over (1+1)-ES N=%d',n),'FontSize',13);
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Fig. 3 [elliposids]
-subplot(subplot_ROW,subplot_COL,fig_row_index+subplot_COL*2)
+% Fig. 2 [elliposids]
+subplot(subplot_ROW,subplot_COL,fig_col_index+subplot_COL*2)
 for i = 2:1:NUM_OF_STRATEGIES
     plot(f8_range, T_med_f8(1,:)./T_med_f8(i,:));hold on;
 end
-set(gca, 'YScale', 'log', 'XScale', 'log', 'Fontsize',15);
-ylim([1 100]);
-legend({'(1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'Fontsize',15,'Interpreter','latex','NumColumns',2);
-if fig_row_index==1
-    ylabel('speed-up (ellipsoids)','Fontsize',15,'Interpreter','latex');
+ylim([1 32]);
+% legend({'(1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'Fontsize',15,'Interpreter','latex','NumColumns',2);
+if fig_col_index==1
+    ylabel({'speed-up'; 'ellipsoid functions'},'Fontsize',15,'Interpreter','latex');
 end
-xlabel('parameter $\gamma$','Fontsize',15,'Interpreter','latex');
+ytickformat('%.1f');
+set(gca, 'YScale', 'log', 'XScale', 'log', 'Fontsize',15);
+xlabel('parameter $\beta$','Fontsize',15,'Interpreter','latex');
+yticks([1 2 4 8 16 32]);
+yticklabels({'1.0','2.0','4.0','8.0','16.0','32.0'});
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % Fig. 4
-% subplot(subplot_ROW,subplot_COL,(fig_row_index-1)*subplot_COL+4)
-% % Refactored code is below
-% % bar([T_med_f9(1,:)./T_med_f9(2,:); T_med_f9(1,:)./T_med_f9(3,:);...
-% %     T_med_f9(1,:)./T_med_f9(4,:); T_med_f9(1,:)./T_med_f9(5,:); ]);hold on;
-% b = bar(repmat(T_med_f9(1,:),NUM_OF_STRATEGIES-1,1)./T_med_f9(2:NUM_OF_STRATEGIES,:));
-% b.FaceColor = 'flat';
-% b.CData(1,:) = [0  0.4470 0.7410];
-% b.CData(2,:) = [0.8500  0.3250  0.0980];
-% b.CData(3,:) = [0.9290  0.6940  0.1250];
-% b.CData(4,:) = [0.4940  0.1840  0.5560];
-% str_cell_SIGMA_STAR = {'\lambda=1','\lambda=10','\lambda=20','\lambda=40'};
-% set(gca,'xticklabel',str_cell_SIGMA_STAR);
-% set(gca, 'YScale', 'log');
-% ylim([1 100]);
-% if fig_row_index==1
-%     title("Schwefel's function",'fontsize',15,'fontname','times');
-% end
-% ylabel(sprintf('speed-up over (1+1)-ES N=%d',n),'FontSize',13);
+% Fig. 3 [quartic]
+subplot(subplot_ROW,subplot_COL,fig_col_index+subplot_COL*3)
+for i = 2:1:NUM_OF_STRATEGIES
+    plot(f7_range, T_med_f7(1,:)./T_med_f7(i,:));hold on;
+end
+% legend({'(1,1)','(3/3,10)','(5/5,20)','(10/10,40)'},'Fontsize',15,'Interpreter','latex','NumColumns',2);
+if fig_col_index==1
+    ylabel({'speed-up'; 'quartic functions'},'Fontsize',15,'Interpreter','latex');
+end
+set(gca, 'YScale', 'log', 'Fontsize',15);
+ylim([1 32]);
+xlim([1 5]);
+xtickformat('%.1f');
+ytickformat('%.1f');
+xlabel('parameter $\gamma$','Fontsize',15,'Interpreter','latex');
+yticks([1 2 4 8 16 32]);
+yticklabels({'1.0','2.0','4.0','8.0','16.0','32.0'});
 
-fig_name = sprintf('merged_speed-up_dim%d.fig',n);
+fig_name = sprintf('speed-up.fig');
 saveas(gcf,fig_name); 
+
+
 
 end
