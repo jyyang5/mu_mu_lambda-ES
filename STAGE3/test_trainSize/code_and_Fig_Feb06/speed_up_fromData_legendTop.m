@@ -132,6 +132,6 @@ yticklabels({'1.0','2.0','4.0','8.0','16.0','32.0'});
 
 end
 
-fig_name = sprintf('speed-up.fig');
+fig_name = sprintf('speed-up1.fig');
 saveas(gcf,fig_name); 
 
