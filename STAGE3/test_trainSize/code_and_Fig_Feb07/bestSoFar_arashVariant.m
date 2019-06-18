@@ -175,7 +175,7 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
             fy_true(k) = f(centroid+sigma*z(:,k));
         end
         
-        error_array(iteration) = mean(fyep-fy_true)/std(fy_true);
+        error_array(iteration) = std(fyep-fy_true)/std(fy_true);
         % sort fyep (smaller first)
         [~, sorted_order] = sort(fyep);
         z = z(:,sorted_order);

@@ -47,7 +47,6 @@ for fname = 1:1:subplot_COL
             f_x_med =  f_x_med_f6;
             sigma_med  =  sigma_med_f6;
             T_med_matrix = T_med_f6;
-            t_med_matrix = t_med_f6;
             eval_rate_med = eval_rate_med_f6;
             error_array_med = error_array_med_f6;
             
@@ -59,7 +58,6 @@ for fname = 1:1:subplot_COL
             f_x_med =  f_x_med_f7;
             sigma_med  =    sigma_med_f7;
             T_med_matrix = T_med_f7;
-            t_med_matrix = t_med_f7;
             eval_rate_med = eval_rate_med_f7;
             error_array_med = error_array_med_f7;
             
@@ -71,7 +69,6 @@ for fname = 1:1:subplot_COL
             f_x_med =  f_x_med_f8;
             sigma_med  =    sigma_med_f8;
             T_med_matrix = T_med_f8;
-            t_med_matrix = t_med_f8;
             eval_rate_med = eval_rate_med_f8;
             error_array_med = error_array_med_f8;
             
@@ -90,12 +87,10 @@ for fname = 1:1:subplot_COL
     for i = 1:1:STRATEGY_NUM
         % Subplot row and col number of fig1
         
-        %==========================
-        % Assign reltiave model error in median runs
-        %==========================
+        
         T = squeeze(T_med_matrix(i,para,:));
         if i ~=  1      
-            t = t_med_matrix(i,para);
+            t = T/eval_rate_med(i,para);
             GP_error = squeeze(error_array_med(i,para,:));
             range_t = TRAINING_SIZE+2:1:t;
         end
@@ -144,7 +139,7 @@ for fname = 1:1:subplot_COL
         end
         h = histogram(T_array,'DisplayName',d);hold on;
         if(fname == 1)
-            h.BinWidth = 21;
+            h.BinWidth = 25;
         elseif(fname == 2)
             h.BinWidth = 120;
         elseif(fname == 3)
@@ -168,8 +163,6 @@ for fname = 1:1:subplot_COL
         set(hLegend,'Fontsize',12,'interpreter','latex');
         xlabel('objective function calls','Fontsize',13,'interpreter','latex');
         set(gca, 'Fontsize',13);       
-        box on
-
 %         ylim([0 0.3]);
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         % 2.objective function [row 2]
@@ -194,8 +187,6 @@ for fname = 1:1:subplot_COL
         yticklabels({'10^{-8}','10^{0}', '10^{8}'});
         legend('-DynamicLegend'); 
         legend('show');
-        box on
-
 %         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %         % 3.sigma [row 3]
         if fname == 2
@@ -218,8 +209,7 @@ for fname = 1:1:subplot_COL
         yticklabels({'10^{-8}','10^{-4}','10^{0}', '10^{4}'});
         legend('-DynamicLegend'); 
         legend('show');
-        box on
-
+        
 
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         % 4. GP error [row 4]
@@ -230,9 +220,7 @@ for fname = 1:1:subplot_COL
         else
             subplot(subplot_ROW,subplot_COL,fname+subplot_COL*3);
         end
-        %==========================
-        % Plot relative model error 
-        %==========================
+        
         if lambda == 1 || lambda == 20
             plot(range_t,GP_error(range_t),'DisplayName',d);hold on;
             plot(range_t,exp(conv(log(GP_error(range_t)), kernel, 'same')),'LineWidth',1,'DisplayName',ds);hold on;
@@ -247,10 +235,8 @@ for fname = 1:1:subplot_COL
 %         ylim([10^(-12) 1]);
         legend('-DynamicLegend'); 
         legend('show');
-        box on
 
-%         saveas(gcf,sprintf('step_behaviour.fig')); 
-        saveas(gcf,sprintf('step_behaviour1.fig')); 
+        saveas(gcf,sprintf('step_behaviour.fig')); 
 
         
     end   

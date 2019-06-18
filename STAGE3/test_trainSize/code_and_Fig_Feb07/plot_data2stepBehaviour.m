@@ -28,12 +28,12 @@ if ~make_it_tight,  clear subplot;  end
 
 
 % GP smooth 
-window_length = TRAINING_SIZE;
+window_length = 40;
 kernel = exp(-(-3*window_length:3*window_length).^2/window_length^2/2);
 kernel = kernel/sum(kernel);        % Normalized   
 
 
-para_array = [9 ,1, 1, 11];
+para_array = [1 ,1, 1, 2];
 
 subplot_ROW = 4;
 subplot_COL = 4; 
@@ -244,13 +244,13 @@ for fname = 1:1:subplot_COL
         end
         xlabel('iterations','Fontsize',13,'interpreter','latex');
         set(gca, 'YScale', 'log','Fontsize',13);
-%         ylim([10^(-12) 1]);
+        ylim([10^(-5) 10^5]);
         legend('-DynamicLegend'); 
         legend('show');
         box on
 
 %         saveas(gcf,sprintf('step_behaviour.fig')); 
-        saveas(gcf,sprintf('step_behaviour1.fig')); 
+        saveas(gcf,sprintf('step_behaviour2.fig')); 
 
         
     end   

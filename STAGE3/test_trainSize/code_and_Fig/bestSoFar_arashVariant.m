@@ -172,10 +172,9 @@ while((T < NUM_OF_ITERATIONS) && f_centroid > 10^(-8))
         z = randn(n,lambda);
         fyep = gp(xTrain(:,T-TRAINING_SIZE+1:T), fTrain(T-TRAINING_SIZE+1:T), repmat(centroid,1,lambda)+sigma*z, f_centroid, theta);
         for k=1:1:lambda
-            fy_true(k) = f(centroid+sigma*z(:,k));
+            fy_true(k) = f(centroid+z(:,k));
         end
-        
-        error_array(iteration) = mean(fyep-fy_true)/std(fy_true);
+        error_array(iteration) = sqrt(var(fyep-fy_true)/var(fy_true-f(centroid)));
         % sort fyep (smaller first)
         [~, sorted_order] = sort(fyep);
         z = z(:,sorted_order);
